@@ -1,0 +1,383 @@
+.AddInvoiceContainer{
+    font-family: Cairo;
+    line-height: 1em;
+    padding: 1em 2em;
+    right: 0;
+    position: absolute;
+    width: 35%;
+    height: 100vh;
+    color: black;
+    border-left: solid 1px rgba(219, 219, 219, 0.753);
+    background-color: white;
+    transition: transform 0.3s ease-out;
+    transform-origin: right;
+    border-radius: 2em 0 0 5em;
+    z-index: 2;
+}
+
+.AddInvoiceForm{
+    height: 94%;
+    display: flex;
+    flex-direction: column;
+}
+
+.NewInvoiceHeader{
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #0275d8;
+    margin-bottom: 1em;
+}
+
+.FirstRowOfAddInvoice{
+    width: 100%;
+    display: flex;
+    margin-bottom: 1em;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.FirstRowInputField{
+    padding: 0.5em;
+    margin-top: 0.5em;
+    border-radius: 5px;
+    border: solid 1px gray;
+}
+
+.BusinessNameContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.BusinessEmailContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.BusinessNotRegistered{
+    align-self: flex-end;
+    font-size: 0.75em;
+    padding-bottom: 0.5em;
+    color: #3d3d3da8;
+    cursor: default;
+}
+
+.AddBusinessButton{
+    border-radius: 5px;
+    font-size: 0.75em;
+    color: white;
+    background-color: #0275d8;
+    border: none;
+    display: inline-block;
+    padding: 0.75em 1.5em;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: 1em;
+}
+
+.AddBusinessButton:hover{
+    background-color: #001c35;
+}
+
+.SecondRowOfAddInvoice{
+    margin-bottom: 1em;
+}
+
+.ChangeTermsContainer{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.5em;
+}
+
+/* .ChangeTermsButton{
+    border-radius: 5px;
+    color: white;
+    background-color: #0275d8;
+    border: none;
+    display: inline-block;
+    padding: 0.75em 1.5em;
+    cursor: pointer;
+}
+
+.ChangeTermsButton:hover{
+    background-color: #001c35;
+}
+
+.OR{
+    color: #0275d8;
+    align-self: center;
+} */
+
+.TermsAndDateFormContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.TermsInput{
+    margin-top: 0.5em;
+    padding: 0.5em;
+    border: solid 1px gray;
+    border-radius: 5px;
+}
+
+.DateInput{
+    margin-top: 0.5em;
+    padding: 0.5em;
+    border: solid 1px gray;
+    border-radius: 5px;
+}
+
+
+
+.ChangeAmountContainer{
+    width: 100%;
+    display: flex;
+    margin-bottom: 0.5em;
+    justify-content: center;
+}
+
+.Tab{
+    font-size: 0.9em;
+    color: rgb(146, 146, 146);
+    font-weight: 500;
+    cursor: pointer;
+    transition: filter 200ms;
+}
+
+.Tab:hover{
+    transform: brightness(1.2);
+    color: #0275d8;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.AmountAndItemsFormContainer{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1em;
+}
+
+.AmountInput{
+    margin-top: 0.5em;
+    padding: 0.5em;
+    border: solid 1px gray;
+    border-radius: 5px;
+}
+
+.AddItemsContainer{
+    display: flex;
+    height: 20%;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 0.3em;
+}
+
+.AddItemsHeaders{
+    margin: 0.3em 0 0.25em 1em;
+    color: rgba(0, 0, 0, 0.596);
+    display: flex;
+    width: 94%;
+    padding: 0 0em;
+    justify-content: space-between;
+}
+
+.QtyPriceTotalContainer{
+    width: 40%;
+    margin-left: auto;
+    display: flex;
+    justify-content: space-around;
+    margin-right: 2.5em;
+    margin-bottom: 0.3em;
+
+}
+
+.AddItemDetails{
+    max-height:3.5em;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: auto;
+    margin-bottom: 0.5em;
+}
+
+
+
+.OneItemContainer{
+    border-top: 1px solid rgba(128, 128, 128, 0.534);
+    margin-left: 1.2em;
+    margin-top: 0.1em;
+    color: rgb(0, 0, 0);
+    display: flex;
+    width: 96%;
+    padding: 0.3em 0em 0.3em 0;
+    font-size: 0.8em;
+
+}
+
+.AddItemRHS{
+    display: flex;
+    width: 48%;
+    margin-left: auto;
+    margin-right: 1em;
+    align-items: center;
+}
+
+.ItemQtyInTable{
+    width: 32%;
+    text-align: center;
+}
+
+.ItemPriceInTable{
+    width: 32%;
+    text-align: center;
+}
+
+.ItemTotalInTable{
+    width: 32%;
+    text-align: center;
+    margin-right: 1em;
+}
+
+.DeleteItemButton{
+    margin-right: 0;
+    font-size: 0.8em;
+    text-align: center;
+    width: 4%;
+    cursor: pointer;
+    border-radius: 5px;
+    color: white;
+    display: inline-block;
+    padding: 0.25em 0.5em;
+    background-color: #d80202;
+    transition: filter 300ms;
+}
+
+.DeleteItemButton:hover{
+    filter: brightness(1.2)
+}
+
+.AddItemFields{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 0.5em;
+}
+
+.AddItemNameInput{
+    width: 45%;
+    padding: 0.3em 1.2em;
+    border-radius: 5px;
+    border: solid 1px gray;
+}
+
+.AddItemQTYInput{
+    width: 15.5%;
+    padding: 0.3em 1.2em;
+    border-radius: 5px;
+    border: solid 1px gray;
+}
+
+.AddItemPriceInput{
+    width: 15.5%;
+    padding: 0.3em 1.2em;
+    border-radius: 5px;
+    border: solid 1px gray;
+}
+
+.AddItemOptions{
+    margin-top: 1em;
+    font-family: Cairo;
+    font-size: 0.9em;
+    margin-left: 1.3em;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.AddItemButton{
+    display: inline-block;
+    font-size: 0.95em;
+    border-radius: 5px;
+    text-transform: uppercase;
+    color: white;
+    cursor: pointer;
+    transition: filter 300ms;
+    padding: 0.2em 1em;
+    background-color: #00aa2b;
+}
+
+.AddItemIcon{
+    font-size: 0.8em;
+}
+
+.AddItemButton:hover, .AddItemButton:focus{
+    filter:brightness(1.2)
+}
+
+.AddItemTotalAmount{
+    font-weight: 700;
+}
+
+.AcceptedMediumsContainer{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1em;
+}
+
+.RadioContainer{
+    padding: 0 0.5em 0 0;
+    margin-top: 0.5em;
+    justify-content: space-between;
+    display: flex;
+}
+
+.AdditionalNotesContainer{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1em;
+}
+
+.NoteInput{
+    margin-top: 0.5em;
+    padding: 0.5em 0.5em 0.5em 0.5em;
+    border: solid 1px gray;
+    border-radius: 5px;
+}
+
+.SubmitAndDiscardContainer{
+    width: 100%;
+    margin-top: auto;
+    display: flex;
+}
+
+.SubmitInvoiceButton{
+    border-radius: 5px;
+    color: white;
+    background-color: #0275d8;
+    border: none;
+    display: inline-block;
+    padding: 0.75em 1.5em;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: 1em;
+}
+
+.SubmitInvoiceButton:hover{
+    background-color: #001c35;
+}
+
+.DiscardInvoiceButton{
+    box-sizing: border-box;
+    background-color: white;
+    border: solid 1px #0275d8;
+    border-radius: 5px;
+    color: #0275d8;
+    display: inline-block;
+    padding: 0.75em 1.5em;
+    cursor: pointer;
+}
+
+.DiscardInvoiceButton:hover{
+    border: 1px solid #001c35;
+    color: #001c35;
+}
+

@@ -1,0 +1,26 @@
+.RHSHeaders{
+    font-family: Cairo;
+    line-height: 1em;
+    color: #575d63;
+    width: 90%;
+    margin-top: 1.2em;
+    font-size: 0.85em;
+    font-weight: bold;
+    display: flex;
+}
+
+.hideHeaders{
+    display: none;
+}
+
+.ItemDescriptionHeader{
+    margin-left: 1em;
+}
+
+
+.QuantityPriceAmountContainer{
+    margin-left: auto;
+    display: flex;
+    width: 25%;
+    justify-content: space-between;
+}

@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300;500;700;800;900&display=swap');
+
+.NavContainer{
+    width: 17.5vw;
+    height: 100vh;
+    margin: 0;
+    /* transition: 0.15s; */
+}
+
+/* .NavContainer:hover{
+    width: 20vw;
+} */
+
+
+.navbar{
+    font-family: Inter;
+    background: #ffffff;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+    font-size: 1.25em;
+    border: #343a403d solid 0px 2px;
+}
+/* 
+.navbar:hover .text{
+    display: inline;
+} */
+
+.nav-item{
+    padding: 0.5em 0 0.5em 0.5em;
+    display: flex;
+    margin: 0.15em 0.15em 0.15em 10%;
+    color: rgb(146, 146, 146);
+    width: 90%;
+    cursor: pointer;
+    font-size: 0.77em;
+    font-weight:500;
+
+}
+
+.SubNavItem{
+    padding: 0.5em 0 0.5em 0.5em;
+    display: flex;
+    margin: 0.15em 0.15em 0.15em 30%;
+    color: rgb(146, 146, 146);
+    width: 90%;
+    cursor: pointer;
+    font-size: 0.57em;
+    font-weight:500;
+    display: none;
+}
+
+.ShowNav{
+    padding: 0.5em 0 0.5em 0.5em;
+    display: flex;
+    margin: 0.15em 0.15em 0.15em 30%;
+    color: rgb(146, 146, 146);
+    width: 90%;
+    cursor: pointer;
+    font-size: 0.57em;
+    font-weight:500;
+}
+
+.ShowNav:hover{
+    color: rgb(26, 23, 25);
+    font-weight: 700;
+}
+
+.navLogo{
+    color: rgb(26, 23, 25);
+    text-transform: uppercase;
+    font-size: 1.15em;
+    padding: 0.5em 1em 0.5em 2.5em;
+    margin-top: 0;
+    border: none;
+    width: 100%;
+    border-radius: 0;
+    margin-bottom: 19%;
+    font-weight: 700;
+    cursor: default;
+}
+
+
+.navLogo .text{
+    margin-left:0em
+}
+
+.navLogo .icon{
+    margin-right:0.5em
+}
+
+
+
+.icon{
+    margin-left: 0.25em;
+    margin-right: 0.9em;
+}
+
+/* .icon:hover{
+    margin-left: 2px;
+} */
+
+/* .nav-item .text{
+    display: none;
+} */
+
+.nav-item:hover{
+    color: rgb(26, 23, 25);
+    font-weight: 700;
+}
+
+.ActiveNavItem{
+    color: rgb(0, 0, 0);
+    font-weight: 700;
+    background-color: #343a401a;
+    border-radius: 5em 0 0 5em;
+    padding: 0.5em 0 0.5em 0.75em;
+    display: flex;
+    margin: 0.15em 0.15em 0.15em 10%;
+    width: 90%;
+    cursor: pointer;
+    font-size: 0.77em;
+}
+
+.ActiveNavItem .text{
+    margin-left: 0.15em;
+}
+
+.nav-item:nth-last-child(3){
+    margin-top: auto;
+}
+.nav-item:last-child{
+    margin-bottom: 1em;
+}
+
+
+

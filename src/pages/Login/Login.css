@@ -1,0 +1,130 @@
+.LoginPageFlex{
+    margin: 0;
+    padding: 0;
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: cover;
+    background-image: url('https://images.unsplash.com/photo-1592495981488-073153776d9a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=786&q=80');
+    font-family: Cairo;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    overflow: none;
+}
+
+.LoginColumnFlex{
+    margin: 2% 1% 2% 5%;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    justify-content: center;
+}
+
+.LoginHeader{
+    color: #00335f;
+    font-family: DM Serif Display;
+    font-size: 7.6em;
+    text-transform: uppercase;
+    font-weight: 400;
+    cursor: default;
+    line-height: 1em;
+}
+
+.LoginPageDescription{
+    font-family: Cairo;
+    font-size: 1.2em;
+    width: 77%;
+    color: #343a4085;
+
+}
+
+
+.LoginImage img{
+    margin-top: 1em;
+    height: 100%;
+    width: 100%;
+}
+
+
+
+.flexContainerLogin{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 90vh;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.formContainerLogin{
+    margin-left: 30%;
+    width: 70%;
+    margin-top: 7.5%;
+}
+
+.titleLogin{
+    color: #00335f;
+    font-size: 1.75em;
+    font-weight: 700;
+    line-height: 0em;
+}
+
+.AlreadyAMember{
+    color: #343a40c9;
+    font-weight: 600;
+    margin-bottom: 1em;
+}
+
+.LoginLink{
+    cursor: pointer;
+    color: #0275d8;
+}
+
+.formContainerSmall{
+    display: flex;
+    flex-direction: column;
+}
+
+.subtitleLogin{
+    font-weight: 600;
+    color: #343a40c9;
+}
+
+
+.inputLogin{
+    width: 68%;
+    margin-bottom: 0.5em;
+    padding: 0.99em 0em 0.99em 2%;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid rgba(128, 128, 128, 0.397);
+}
+
+
+.submitLogin{
+    font-weight: 500;
+    width: 70%;
+    color: white;
+    margin-top: 1em;
+    padding: 1.1em 6em;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    background: #00335f;
+    cursor: pointer;
+}
+
+
+.submitLogin:hover{
+    background: #001c35;
+}
+
+.LoginError{
+    margin-top: 0.2em;
+    font-size: 1.3em;
+    margin-left: 0.2em;
+    color: rgb(192, 0, 10);
+    font-weight: 400;
+}
+

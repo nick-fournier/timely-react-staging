@@ -1,0 +1,472 @@
+.HomePageContainer{
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+    background-color: rgb(255, 255, 255);
+    font-family: Cairo;
+    line-height: 1.6em;
+    display: flex;
+    flex-direction: column;
+}
+
+.HomeNav{
+    background-color: white;
+    z-index: 1;
+    height: 14vh;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 200ms;
+}
+
+.HomeNavBorder{
+    background-color: white;
+    z-index: 1;
+    height: 13vh;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.158);
+}
+
+.HomeLogo{
+    margin-left: 2.5em;
+    font-size: 2em;
+    font-weight: 600;
+    text-transform: uppercase;
+    
+}
+
+.HomeButton{
+    margin: 1em 5em 1em 0;
+    border: solid 1.5px rgb(0, 0, 0);
+    color: black;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 200ms;
+}
+
+.HomeHero{
+    display: flex;
+    height: 90vh;
+    width: 100%;
+    padding-top: 4em;
+ }
+
+.HeroLHS{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    justify-content: center;
+    height: 100%;
+    padding-left: 5em;
+}
+
+.HomeHeader{
+    font-weight: 700;
+    font-size: 2.9em;
+    line-height: 1.2em;
+    margin-bottom: 0.3em;
+    width: 100%;
+}
+
+.HomeSubHeader{
+    font-family: Inter;
+    font-size: 1.1em;
+    font-weight: 300;
+    color: rgba(0, 0, 0, 0.774);
+    width: 82%;
+    margin-bottom: 0.3em;
+}
+
+.HeroRHS{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.HeroRHS img{
+    height: 80%;
+    margin-top: -4em;
+
+}
+
+/* Learn more Section */
+
+.LearnMoreSection{
+    margin-top: 2em;
+    display: flex;
+}
+
+
+.LearnMoreField{
+    margin: 0;
+    width: 27em;
+    padding: 1.2em 0em 1.2em 2em;
+    border: none;
+    background-color: #006cc413;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+}
+
+.LearnMoreButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0275d8;
+    border-radius: 0 5px 5px 0;
+    color: white;
+    margin: 0;
+    width: 9em;
+    cursor: pointer;
+    transition: filter 300ms;
+}
+
+.LearnMoreButton:hover{
+    filter: brightness(1.3);
+}
+
+
+
+.TeaserSection{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 10em 0 0 0;
+    background-color: rgba(241, 241, 241, 0.308);
+
+}
+
+.TeaserContainer{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+ .TeaserImage{
+    width: 70%;
+    height: 70%;
+}
+
+.TeaserVideo{
+    position: absolute;
+    width: 75%;
+    height: 75%;
+    left: 9.5em;
+    top: 3em;
+    border-radius: 10px;
+}
+
+
+/*  For the SVG laptop
+
+ .TeaserImage{
+    width: 400%;
+    height: 400%;
+}
+
+.TeaserVideo{
+    position: absolute;
+    width: 300%;
+    height: 300%;
+} */
+
+.LogosSection{
+    background-color: rgba(241, 241, 241, 0.308);
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 1.95em;
+    gap: 3.75em;
+    align-items: center;
+    padding-bottom: 5em;
+}
+
+.TeaserLogo{
+    height: 100%;
+}
+
+.TeaserLogoSmall{
+    height: 400%;
+}
+
+.TeaserLogoMedium{
+    height: 130%;
+}
+
+
+
+
+
+
+.HowItWorks{
+    margin: 5em 0;
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.HowItWorksHeader{
+    font-weight: 600;
+    font-size: 3em;
+    line-height: 1.1em;
+    margin-bottom: 1.5em;
+}
+
+.HowItWorksView{
+    width: 90%;
+    justify-content: space-around;
+    align-items: spac;
+    display: flex;
+    gap: 1em;
+}
+
+
+
+.HowItWorksCard{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.HowItWorksCard img{
+    height: 10em;
+    width: 30%;
+}
+
+.HowItWorksCardHeader{
+    margin: 0 0 0.3em 0;
+    font-size: 1.5em;
+}
+
+.HowItWorksParagraph{
+    color: rgba(0, 0, 0, 0.705);
+    margin: 0;
+    padding: 0 3.5em;
+    font-size: 1.15em;
+    font-weight: 400;
+
+}
+
+
+/* Our immediate payment solutions section: */
+
+
+.OurImmediatePaymentsSection{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.OurImmediatePaymentsHeader{
+    font-size: 3em;
+    line-height: 1.1em;
+    font-weight: 600;
+
+}
+
+.OurImmediatePaymentsSubheader{
+    color: rgba(0, 0, 0, 0.644);
+    margin-top: 0.7em;
+    font-size: 1.2em;
+    font-weight: 400;
+}
+
+
+.OurImmediatePaymentsView{
+
+    margin-top: 8em;
+    display: flex;
+    margin: 10em 5em 3em 5em;
+    gap: 2.5em;
+}
+
+.OurImmediatePaymentsCard{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    border: solid 2px rgba(128, 128, 128, 0.596);
+}
+
+.ImmediateCardTopHalf{
+    padding: 2em 0 4em 0;
+    position: relative;
+    border-bottom: dashed 2px rgba(128, 128, 128, 0.596);
+}
+
+.ImmediateCardImg {
+    padding: 1.75em;
+    background-color: white;
+    margin-top: -7.2em;
+    position: absolute;
+    transform: translateX(-50%);
+    width: 8em;
+
+}
+
+.ImmediateCardHeader{
+    color: rgba(0, 0, 0, 0.856);
+    margin: 1em 0 0.25em 0;
+    font-size: 3em;
+    line-height: 1.1em;
+    font-weight: 600;
+}
+
+.ImmediateCardSubHeader{
+    text-transform: uppercase;
+    font-size: 1.1em;
+    color: rgba(0, 0, 0, 0.774);
+    margin-bottom: -1.5em;
+}
+
+.ImmediateCardBottomHalf{
+    padding: 2.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 70%;
+}
+
+.ImmediateCardParagraph{
+    font-size: 1.1em;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.699);
+    height: 60%;
+}
+
+.ImmediateCardButton{
+    margin: 3.3em 0 1.1em 0;
+    padding: 1.2em 1.1em;
+    width: 45%;
+    justify-self: center;
+    background-color: #0275d8;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    transition: filter 300ms;
+}
+
+
+.ImmediateCardButton:hover{
+    filter: brightness(1.3);
+}
+
+/* WhoAreWeSection */
+
+.WhoAreWeHeader{
+    align-self: center;
+    font-size: 3em;
+    line-height: 1.1em;
+    font-weight: 600;
+    margin-top: 3em;
+    margin-bottom: 5em;
+}
+
+
+.WhoAreWeSection{
+    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80vw;
+    height: 40vh;
+    gap: 10em;
+    margin-bottom: 10em;
+}
+
+.WhoAreWeCard{
+    position: relative;
+    height: 33em;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgb(0,0,0);
+    background: linear-gradient(85deg,#dddddd8c,rgb(255, 255, 255),#dddddd8c);
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: -1rem 1.5rem 1.5rem -1rem  #000000;
+    text-align: center;
+}
+
+.WhoAreWeImage{
+
+
+}
+
+.WhoAreWeImage img{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+
+}
+
+.WhoAreWeName{
+    margin-top: 0.5em;
+    font-size: 1.25em;
+    font-weight: 500;
+}
+
+.WhoAreWeTitle{
+    margin-top: 0.4em;
+    color: rgba(0, 0, 0, 0.753);
+}
+
+.WhoAreWeDescription{
+    display: flex;
+    align-items: flex-end;
+    font-size: 1.1em;
+    position: absolute;
+    transform: translateY(33em);
+    transition: 300ms;
+    height: 10em;
+    color: rgba(0, 0, 0, 0.753);
+    background: rgb(0,0,0);
+    background: linear-gradient(0deg,#0061a750 10%,rgba(255, 255, 255, 0) 90%);
+    border-radius: 0px 0px 20px 20px;
+    padding: 2em;
+}
+
+/* Learn More 2 Section */
+
+.LearnMore2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    width: 100%;
+    padding: 4em 0;
+    background: rgb(0,0,0);
+    background: linear-gradient(85deg,#dddddd8c,rgb(255, 255, 255),#dddddd8c);
+    margin: 4em 0 0 0;
+}
+
+
+
+.GetEarlyAccessHeader{
+    font-size: 3em;
+    line-height: 1.1em;
+    font-weight: 600;
+}
+

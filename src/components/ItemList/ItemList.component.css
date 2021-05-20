@@ -1,0 +1,11 @@
+
+.ItemDetailsContainer{
+    font-family: Cairo;
+    line-height: 1.6em;
+    font-size: 0.9em;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+
+}
+

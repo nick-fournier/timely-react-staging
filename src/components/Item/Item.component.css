@@ -1,0 +1,35 @@
+
+.ItemDetails{
+    display: flex;
+    padding: 0.75em 0;
+    border-top: 0.5px solid #343a403d;
+    margin-top: 0.5em;
+    font-size: 0.75em;
+    font-weight: 600;
+}
+
+
+.ItemDetailsLHS{
+    text-transform: capitalize;
+    display: flex;
+    flex-direction: column;
+    margin-left: 1em;
+}
+
+
+.ItemDetailsLHS .ItemName{
+    font-size: 1.5em;
+    line-height: 1.25em;
+    font-weight: 600;
+    display: block;
+}
+
+.QuantityPriceAmountContainerNumbers{
+    margin-left: auto;
+    display: flex;
+    width: 20%;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 0.5em;
+    font-size: 1.2em;
+}
