@@ -1,6 +1,11 @@
 import './Home.css'
 import {useEffect, useState} from 'react'
 import {useHistory} from 'react-router-dom'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faFacebook } from "@fortawesome/free-brands-svg-icons"
+import { faLinkedin } from "@fortawesome/free-brands-svg-icons"
+import { faInstagram } from "@fortawesome/free-brands-svg-icons"
+
 
 export default function Home() {
 
@@ -8,7 +13,11 @@ export default function Home() {
     const [iseHovered2, setiseHovered2] = useState(false)
 
     const AnimateY = {
-        transform: 'translateY(8.5em)',
+        transform: 'translateY(-4.5em)',
+    }
+
+    const BlurredCard = {
+        opacity: '0.3'
     }
 
     const AnimateNav = {
@@ -27,7 +36,7 @@ export default function Home() {
     useEffect(() => {
     window.addEventListener("scroll", () => {
         setScroll(window.scrollY > 70);
-        setScrollBig(window.scrollY > 400);
+        setScrollBig(window.scrollY > 380);
     });
 
     }, []);
@@ -40,7 +49,7 @@ export default function Home() {
                     Timely
                 </div>
                 <div className="HomeButton" style={scrollBig?ScrolledButton:{}}>
-                    Learn More
+                    Request Early Access
                 </div>
             </div>
             <div className="HomeHero">
@@ -50,11 +59,11 @@ export default function Home() {
                         get paid out immediately
                     </div>
                     <div className="HomeSubHeader">
-                        Simplify your entire payments process and take charge of your working capital with our immediate payments solutions.
+                    	Simplify your business payments and take charge of your working capital with our immediate payments solutions.
                     </div>
                     <div className="LearnMoreSection">
                         <input type="email" className='LearnMoreField' placeholder='Enter your email' />
-                        <div className="LearnMoreButton">Learn More</div>
+                        <div className="LearnMoreButton">Request Early Access</div>
                     </div>
                 </div>
                 <div className="HeroRHS">
@@ -80,7 +89,10 @@ export default function Home() {
 
             <div className="HowItWorks">
                 <div className="HowItWorksHeader">
-                    How It Works
+                    What You Get With Timely
+                </div>
+                <div className="HowItWorksSubHeader">
+                    One network to manage your payables, receivables, and working capital
                 </div>
                 <div className="HowItWorksView">
                     <div className="HowItWorksCard">
@@ -88,7 +100,7 @@ export default function Home() {
                             <img src="\undraw_Add_files_re_v09g.svg" alt="" />
                         </div>
                         <div className="HowItWorksCardHeader">
-                            Invoice/Bill Management 
+                            Invoice Management 
                         </div>
                         <div className="HowItWorksParagraph">
                         	Create (or upload) invoices with customized branding and all the key terms. Buyers can access bills by email, or on our portal. 
@@ -103,7 +115,7 @@ export default function Home() {
                             Payments Processing
                         </div>
                         <div className="HowItWorksParagraph">
-                        	Specify how you’d like to be paid. Buyers schedule payments with a bank transfer or card, and we’ll take care of any reconciliations.
+                        	Choose how you’d like to be paid. Buyers schedule payments with a bank transfer or card, and we’ll take care of any reconciliations.
                         </div>
                     </div>
                     
@@ -142,7 +154,7 @@ export default function Home() {
                         </div>
                         <div className="ImmediateCardBottomHalf">
                             <div className="ImmediateCardParagraph">
-                            	Timely pays you up front for outstanding invoices so you can focus on growing your business. We’ll advance you ~90% of the invoice value within 24hrs and transfer the balance once the invoice is paid. We also offer full default protection and customer-friendly collections. 
+                                Timely pays you up front for outstanding invoices so you can focus on growing your business. No hidden fees or terms, just choose the offer that works best for you. 
                             </div>
                             <div className="ImmediateCardButton">
                                 Coming Soon
@@ -162,7 +174,7 @@ export default function Home() {
                         </div>
                         <div className="ImmediateCardBottomHalf">
                             <div className="ImmediateCardParagraph">
-                            	With Timely, you no longer have to make the tradeoff between burning through your working capital or paying vendors late. In addition to supporting credit cards, we also offer buy now pay later - so you can pay your bills in installments, improving your cash flow, while your vendor gets paid upfront. 
+                            	With Timely, you no longer have to make the tradeoff between burning through your working capital or paying vendors late. You get a transparent payment schedule, and your vendor gets fully paid up front. 
                             </div>  
                             <div className="ImmediateCardButton">
                                 Coming Soon
@@ -176,33 +188,34 @@ export default function Home() {
                 Who We Are
             </div>
             <div className="WhoAreWeSection">
-                <div className="WhoAreWeCard" onMouseEnter={()=>setiseHovered1(true)} onMouseLeave={()=>setiseHovered1(false)}>
-                    <div className="WhoAreWeImage">
-                        <img src="https://vistapointe.net/images/andy-samberg-2.jpg" alt="" />
+                <div className="WhoAreWeCard"  onMouseEnter={()=>setiseHovered1(true)} onMouseLeave={()=>setiseHovered1(false)}>
+                    <div style={iseHovered1?BlurredCard:{}} className="WhoAreWeImage">
+                        <img src="\Omar.png" alt="" />
                     </div>
-                    <div className="WhoAreWeName">
+                    <div style={iseHovered1?BlurredCard:{}} className="WhoAreWeName">
                         Omar Mohamed
                     </div>
-                    <div className="WhoAreWeTitle">
+                    <div style={iseHovered1?BlurredCard:{}} className="WhoAreWeTitle">
                         Co-Founder & Chief-Product Officer
                     </div>
                     <div className="WhoAreWeDescription" style={iseHovered1?AnimateY:{}}>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum autem voluptatibus laboriosam libero. At exercitationem perferendis mollitia ea eveniet. Enim!
+                    	Prior to founding Timely, Omar worked at Bridgewater Associates, where he advised institutional investors on their portfolio construction and provided them with analytical tools to work through their deepest challenges. Omar holds a B.A. in Political Economy from UC Berkeley.
                     </div>   
                 </div>
 
-                <div className="WhoAreWeCard" onMouseEnter={()=>setiseHovered2(true)} onMouseLeave={()=>setiseHovered2(false)}>
-                    <div className="WhoAreWeImage">
-                        <img src="https://i.pinimg.com/originals/18/1d/6c/181d6c936ff2311d7ade14ca4a6622f6.jpg" alt="" />
+                <div className="WhoAreWeCard"  onMouseEnter={()=>setiseHovered2(true)} onMouseLeave={()=>setiseHovered2(false)}>
+                    <div style={iseHovered2?BlurredCard:{}} className="WhoAreWeImage">
+                        <img src="\Nick.png" alt="" />
                     </div>
-                    <div className="WhoAreWeName">
+                    <div style={iseHovered2?BlurredCard:{}} className="WhoAreWeName">
                         Nick Fornier
                     </div>
-                    <div className="WhoAreWeTitle">
+                    <div style={iseHovered2?BlurredCard:{}} className="WhoAreWeTitle">
                         Co-Founder & Chief-Technology Officer
                     </div>
                     <div className="WhoAreWeDescription" style={iseHovered2?AnimateY:{}}>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam porro quo cumque eveniet corrupti eos repellat quasi, sit voluptates quam.
+                    	Nick is a transportation engineering and urban planning post-doctoral scholar at UC Berkeley. His expertise is in network modeling and price optimization, but also human factors and safety. He understands complex human systems and is applying his skills for making safe and efficient transportation systems towards business finance.
+
                     </div>   
                 </div>
             </div>
@@ -214,6 +227,44 @@ export default function Home() {
                 <div className="LearnMoreSection">
                     <input type="email" className='LearnMoreField' placeholder='Enter your email' />
                     <div className="LearnMoreButton">Join</div>
+                </div>
+            </div>
+            <div className="LandingFooter">
+                <div className="LandingFooterLHS">
+
+                </div>
+                <div className="LandingFooterMiddle">
+                    <div className="LandingFotterMiddleLeft">
+                        TIMELY
+                    </div>
+                    <div className="LandingFotterMiddleMiddle">
+                        Coming Soon
+                    </div>
+
+
+                    <div className="LandingFooterMiddleRightPart">
+                        <div className="LandingFooterRHSHeader">
+                            Follow Us
+                        </div>
+
+                        <div className="LandingFooterLogosContainer">
+                            <div className="LandingFooterRHSLogo">
+                                <FontAwesomeIcon icon ={faFacebook } />
+                            </div>
+                            <div className="LandingFooterRHSLogo">
+                                <FontAwesomeIcon icon ={faInstagram} />
+                            </div>
+                            <div className="LandingFooterRHSLogo">
+                                <FontAwesomeIcon icon ={faLinkedin} />
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                    
+                <div className="LandingFooterRHS">
+                    
                 </div>
             </div>
 

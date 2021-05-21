@@ -125,7 +125,7 @@
     border-radius: 0 5px 5px 0;
     color: white;
     margin: 0;
-    width: 9em;
+    width: 11em;
     cursor: pointer;
     transition: filter 300ms;
 }
@@ -205,8 +205,8 @@
     height: 130%;
 }
 
-
-
+/* 
+How It Works Section */
 
 
 
@@ -225,7 +225,14 @@
     font-weight: 600;
     font-size: 3em;
     line-height: 1.1em;
-    margin-bottom: 1.5em;
+}
+
+.HowItWorksSubHeader{
+    color: rgba(0, 0, 0, 0.644);
+    margin-top: 0.7em;
+    font-size: 1.2em;
+    font-weight: 400;
+    margin-bottom: 6em;
 }
 
 .HowItWorksView{
@@ -395,6 +402,7 @@
 
 .WhoAreWeCard{
     position: relative;
+    overflow: hidden;
     height: 33em;
     width: 40%;
     display: flex;
@@ -403,7 +411,7 @@
     align-items: center;
     background: rgb(0,0,0);
     background: linear-gradient(85deg,#dddddd8c,rgb(255, 255, 255),#dddddd8c);
-    overflow: hidden;
+    transition: 300ms;
     border-radius: 20px;
     box-shadow: -1rem 1.5rem 1.5rem -1rem  #000000;
     text-align: center;
@@ -433,13 +441,16 @@
 }
 
 .WhoAreWeDescription{
+    font-weight: 600;
+    margin-top: 5em;
+    opacity: 1;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     font-size: 1.1em;
     position: absolute;
-    transform: translateY(33em);
+    transform: translateY(30em);
     transition: 300ms;
-    height: 10em;
+    height: 30em;
     color: rgba(0, 0, 0, 0.753);
     background: rgb(0,0,0);
     background: linear-gradient(0deg,#0061a750 10%,rgba(255, 255, 255, 0) 90%);
@@ -456,7 +467,7 @@
     align-items: center;
     align-self: center;
     width: 100%;
-    padding: 4em 0;
+    padding: 4em 0 0.5em 0;
     background: rgb(0,0,0);
     background: linear-gradient(85deg,#dddddd8c,rgb(255, 255, 255),#dddddd8c);
     margin: 4em 0 0 0;
@@ -468,5 +479,47 @@
     font-size: 3em;
     line-height: 1.1em;
     font-weight: 600;
+}
+
+.LandingFooter{
+    height: 4em;
+    display: flex;
+    background: rgb(0,0,0);
+    background: linear-gradient(85deg,#dddddd8c,rgb(255, 255, 255),#dddddd8c);
+}
+
+.LandingFooterLHS{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    width: 33%;
+    color: #000000;
+    font-size: 2em;
+}
+
+.LandingFooterMiddle{
+
+    width: 37em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.LandingFooterRHS{
+    width: 33%;
+}
+
+.LandingFooterMiddleRightPart{
+    display: flex;
+    flex-direction: column;
+}
+
+.LandingFooterLogosContainer{
+    display: flex;
+    justify-content: space-between;
+}
+
+.LandingFotterMiddleLeft{
+    font-size: 2em;
 }
 
