@@ -68,7 +68,7 @@
          offset="0"
          id="stop2891" />
       <svg:stop
-         stop-color="#222222"
+         stop-color="#444"
          offset="1"
          id="stop2893" />
     </svg:radialGradient>
@@ -84,7 +84,7 @@
   </svg:g>
   <svg:text
      xml:space="preserve"
-     style="font-size:220px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#222222;fill-opacity:1;stroke:none;font-family:Verdana;-inkscape-font-specification:Verdana Bold"
+     style="font-size:220px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#444;fill-opacity:1;stroke:none;font-family:Verdana;-inkscape-font-specification:Verdana Bold"
      x="-9.8425188"
      y="193.30708"
      id="text2903"
@@ -95,7 +95,7 @@
        y="193.30708">Disc</svg:tspan></svg:text>
   <svg:text
      xml:space="preserve"
-     style="font-size:220px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#222222;fill-opacity:1;stroke:none;font-family:Verdana;-inkscape-font-specification:Verdana Bold"
+     style="font-size:220px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#444;fill-opacity:1;stroke:none;font-family:Verdana;-inkscape-font-specification:Verdana Bold"
      x="655.51172"
      y="193.41451"
      id="text2911"
@@ -106,7 +106,7 @@
        y="193.41451">ver</svg:tspan></svg:text>
   <svg:text
      xml:space="preserve"
-     style="font-size:40px;font-style:normal;font-weight:normal;fill:#222222;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+     style="font-size:40px;font-style:normal;font-weight:normal;fill:#444;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
      x="1043.307"
      y="69.291351"
      id="text2820"><svg:tspan

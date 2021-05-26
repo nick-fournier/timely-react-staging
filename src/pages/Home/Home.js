@@ -1,23 +1,40 @@
 import './Home.css'
-import {useEffect, useState} from 'react'
+import {useEffect, useState, useRef} from 'react'
 import {useHistory} from 'react-router-dom'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faFacebook } from "@fortawesome/free-brands-svg-icons"
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons"
 import { faInstagram } from "@fortawesome/free-brands-svg-icons"
+import {useForm} from 'react-hook-form'
+import {TimelineLite, Power3, gsap} from 'gsap'
+import {ScrollTrigger} from 'gsap/ScrollTrigger'
 
 
 export default function Home() {
 
-    const [iseHovered1, setiseHovered1] = useState(false)
-    const [iseHovered2, setiseHovered2] = useState(false)
+
+
+
+    const LearnMore = useRef();
+    const EmailInputField1 = useRef();
+    const EmailInputField2 = useRef();
+
+    function scrollToComponent() {
+        if (window.location.hash === '#LearnMore') {
+            LearnMore.current.scrollIntoView();
+            LearnMore.current.focus();
+        }
+    }
+
+
+
 
     const AnimateY = {
         transform: 'translateY(-4.5em)',
     }
 
     const BlurredCard = {
-        opacity: '0.3'
+        opacity: '0.1'
     }
 
     const AnimateNav = {
@@ -32,23 +49,123 @@ export default function Home() {
     }
 
     const [scroll, setScroll] = useState(false);
-    const [scrollBig, setScrollBig] = useState(false);
-    useEffect(() => {
-    window.addEventListener("scroll", () => {
-        setScroll(window.scrollY > 70);
-        setScrollBig(window.scrollY > 380);
-    });
+    const [ScrollForButton, setScrollForButton] = useState(false);
+    const [scrollHide, setScrollHide] = useState(false);
 
+    const [iseHovered1, setiseHovered1] = useState(false)
+    const [iseHovered2, setiseHovered2] = useState(false)
+    const [UserEmail1, setUserEmail1] = useState('')
+    const [UserEmail2, setUserEmail2] = useState('')
+
+    const t1 = new TimelineLite({delay: 0.3})
+
+    useEffect(() => {
+        gsap.registerPlugin(ScrollTrigger);
+        window.addEventListener("scroll", () => {
+            setScroll(window.pageYOffset > 70);
+            setScrollForButton(window.pageYOffset > 380);
+            setScrollForButton((window.pageYOffset > 3480)?false:(window.pageYOffset > 380)?true:false);
+            //scrollToComponent()
+            // setScrollHide(window.pageYOffset > 3600);
+        });
+
+        t1.from('.HeroRHS', {x:100, duration: 1,  opacity: 0, ease: Power3.easeOut, delay: 0.3}, 'Start')
+        t1.from('.HeroLHS', {x:-100, duration: 1, stagger:0.15, opacity: 0, ease: Power3.easeOut, delay: 0.1}, 'Start')
+        gsap.from('.TeaserLogoGSAP',{
+            y:'-100',
+            duration: 1,
+            stagger: 0.25,
+            opacity:0,
+            ease: "ease-out",
+            scrollTrigger: {
+                trigger: '.TeaserSection',
+                start: 'bottom 80%',
+                toggleActions: 'play none none none'
+            }
+        })
+        gsap.from('.HowItWorksCard',{
+            x:'-300',
+            duration: 1,
+            stagger: 0.5,
+            opacity:0,
+            ease: "ease-out",
+            scrollTrigger: {
+                trigger: '.HowItWorksView',
+                markers: true,
+                start: 'top 70%',
+                toggleActions: 'play none none none'
+            }
+        })
+        gsap.from('.TeaserContainer',{
+            y:100,
+            duration: 1,
+            opacity:0,
+            ease: "ease-out",
+            scrollTrigger: {
+                trigger: '.TeaserSection',
+                markers: true,
+                start: 'top 50%',
+                toggleActions: 'play none none none'
+            }
+        })
+        // t1.from('.TeaserLogoGSAP', {y:100, duration: 1, stagger:{each:0.5, from:'start'}, opacity: 0, ease: Power3.easeOut, delay: 0.1}, 'Start')
+        // t1.from('.HowItWorksCard', {x:-300, duration: 1, stagger:0.5, opacity: 0, ease: Power3.easeOut, delay: 0.1}, 'Start')
     }, []);
 
+
+    const { handleSubmit } = useForm();
+
+    async function onSubmit(data){
+        const special_key = 'p!OOR&E[WnxP(o6?p~m$AOi1d]Gc_`'
+        const NewsLetterData = new FormData()
+        NewsLetterData.append('email', UserEmail1?UserEmail1:UserEmail2)
+        NewsLetterData.append('special_key', special_key)
+
+        const httpResponse = await fetch('http://localhost:8000/api/newsletter/',{
+            method: 'POST',
+            body: NewsLetterData,
+            headers: new Headers({
+                'Authorization': `token ${localStorage.token}`
+            }),
+        })
+
+        const JsonResponse = await httpResponse.json()
+        console.log(JsonResponse)
+        
+        if (JsonResponse.first_name === null){
+            alert('Joined successfully!')
+
+        }
+
+        else if (JsonResponse.email ='This field may not be blank.'){
+            alert('Please enter your email')
+        }
+        else {
+            alert('Error while signing up to news letter. ')
+        }
+
+        setUserEmail1('')
+        setUserEmail2('')
+        EmailInputField1.current.value=''
+        EmailInputField2.current.value=''
+
+    }
+
+    // const handleFormChange = (e) =>{
+    //     const CurrentValue = e.target.value
+    //     console.log(CurrentValue)
+    //     setUserEmail(e.target.value)
+    // }
     
     return (
         <div className='HomePageContainer'>
-            <div style={scroll?AnimateNav:{}} className='HomeNav'>
+            <div className={scrollHide?'HomeNavHide':'HomeNav'} style={scroll?AnimateNav:{}}>
                 <div className="HomeLogo">
                     Timely
                 </div>
-                <div className="HomeButton" style={scrollBig?ScrolledButton:{}}>
+                <div onClick={()=>{
+                    LearnMore.current.scrollIntoView()
+                }} className="HomeButton" style={ScrollForButton?ScrolledButton:{}}>
                     Request Early Access
                 </div>
             </div>
@@ -61,10 +178,19 @@ export default function Home() {
                     <div className="HomeSubHeader">
                     	Simplify your business payments and take charge of your working capital with our immediate payments solutions.
                     </div>
-                    <div className="LearnMoreSection">
-                        <input type="email" className='LearnMoreField' placeholder='Enter your email' />
-                        <div className="LearnMoreButton">Request Early Access</div>
-                    </div>
+                    <form action="" method='post' onSubmit={handleSubmit(onSubmit)}>
+                        <div className="LearnMoreSection">
+                            <input onClick={()=>{
+                                setUserEmail2('')
+                                EmailInputField2.current.value=''
+                            }} ref={EmailInputField1} onChange={(e)=>{
+                                setUserEmail1(e.target.value)
+                                setUserEmail2('')
+                                EmailInputField2.current.value=''
+                                }} type="email" className='LearnMoreField'  placeholder='Enter your email' />
+                            <button type='submit' className="LearnMoreButton">Request Early Access</button>
+                        </div>
+                    </form>
                 </div>
                 <div className="HeroRHS">
                     <img src="\undraw_Agreement_re_d4dv.svg" alt="" />
@@ -74,16 +200,16 @@ export default function Home() {
             
             <div className="TeaserSection">
                 <div className="TeaserContainer">
-                    <img className='TeaserImage' src="https://i.imgur.com/KoZ18EV.png" alt="" />
+                    <img className='TeaserImage' src="\portrait_black_edited.png" alt="" />
                     <video className='TeaserVideo' loop muted autoPlay src="\Timely - Google Chrome 2021-05-16 00-28-38.mp4"></video>
                 </div>
             </div>
             <div className="LogosSection">
-                <img className='TeaserLogo' src="\Visa_Inc._logo.svg" alt="" />
-                <img className='TeaserLogoSmall' src="\americanexpress.svg" alt="" />
-                <img className='TeaserLogoMedium' src="\MasterCard_Logo.svg" alt="" />
-                <img className='TeaserLogo' src="\DiscoverCard.svg" alt="" />
-                <img className='TeaserLogo' src="\quickbooks-logo.png" alt="" />
+                <img className='TeaserLogo TeaserLogoGSAP' src="\Visa_Inc._logo.svg" alt="" />
+                <img className='TeaserLogoSmall TeaserLogoGSAP' src="\americanexpress.svg" alt="" />
+                <img className='TeaserLogoMedium TeaserLogoGSAP' src="\MasterCard_Logo.svg" alt="" />
+                <img className='TeaserLogo TeaserLogoGSAP' src="\DiscoverCard.svg" alt="" />
+                <img className='TeaserLogo TeaserLogoGSAP' src="\quickbooks-logo.png" alt="" />
 
             </div>
 
@@ -188,7 +314,7 @@ export default function Home() {
                 Who We Are
             </div>
             <div className="WhoAreWeSection">
-                <div className="WhoAreWeCard"  onMouseEnter={()=>setiseHovered1(true)} onMouseLeave={()=>setiseHovered1(false)}>
+                <div className="WhoAreWeCard" onMouseEnter={()=>setiseHovered1(true)} onMouseLeave={()=>setiseHovered1(false)}>
                     <div style={iseHovered1?BlurredCard:{}} className="WhoAreWeImage">
                         <img src="\Omar.png" alt="" />
                     </div>
@@ -222,12 +348,24 @@ export default function Home() {
 
             <div className="LearnMore2">
                 <div className="GetEarlyAccessHeader">
-                    Join Mailing List
+                	Join Timely
                 </div>
-                <div className="LearnMoreSection">
-                    <input type="email" className='LearnMoreField' placeholder='Enter your email' />
-                    <div className="LearnMoreButton">Join</div>
+                <div className="GetEarlyAccessSubHeader">
+                	Focus on what matters most for your business
                 </div>
+                <form action="" method='post' onSubmit={handleSubmit(onSubmit)}>
+                    <div className="LearnMoreSection">
+                        <input onClick={()=>{
+                            setUserEmail1('')
+                            EmailInputField1.current.value=''
+                        }} ref={EmailInputField2} onChange={(e)=>{
+                            setUserEmail2(e.target.value)
+                            setUserEmail1('')
+                            EmailInputField1.current.value=''
+                            }} type="email" className='LearnMoreField' placeholder='Enter your email' />
+                        <button ref={LearnMore} id='LearnMore' type='submit' className="LearnMoreButton">Request Early Access</button>
+                    </div>
+                </form>
             </div>
             <div className="LandingFooter">
                 <div className="LandingFooterLHS">

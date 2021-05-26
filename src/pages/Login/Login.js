@@ -51,7 +51,7 @@ export default function Login() {
                         Timely
                     </div>
                     <div className="LoginPageDescription">
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet dolores mollitia sunt fugiat nesciunt ipsam consequatur nihil recusandae minima veniam!
+                    Focus on what matters most for your business.
                     </div>
                     <div className="LoginImage">
                         

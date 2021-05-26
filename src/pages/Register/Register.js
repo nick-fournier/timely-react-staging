@@ -64,7 +64,7 @@ export default function Register() {
                         Timely
                     </div>
                     <div className="RegisterPageDescription">
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet dolores mollitia sunt fugiat nesciunt ipsam consequatur nihil recusandae minima veniam!
+                    Focus on what matters most for your business.
                     </div>
                     <div className="RegisterImage">
                         
@@ -73,7 +73,18 @@ export default function Register() {
 
                 <div className='flexContainerRegister'>
                     <form className='formContainerRegister' action="" method="post" onSubmit={handleSubmit(onSubmit)}>
-                        <h2 className='titleRegister'>Sign Up to Timely</h2>
+                        <div className="RegisterTitle">
+                            <h2 className='titleRegister'>Sign Up to Timely</h2>
+                            {/* <div className="CircleContainer">
+                                <div className="OneOutOfTwo">
+                                    <img src="\FullCircle.png" alt="" />
+                                    1 / 2
+                                </div>
+                                <div className="TwoOutOfTwo">
+                                    2 / 2
+                                </div>
+                            </div> */}
+                        </div>
                         <div style={firstStep? ShowInputs:HideInputs} className='AlreadyAMember'> Already a Member? <span className='LoginLink' onClick={()=>{
                             History.push('login')
                         }}>Login</span></div>
