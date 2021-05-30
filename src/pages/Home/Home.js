@@ -56,6 +56,9 @@ export default function Home() {
     const [iseHovered2, setiseHovered2] = useState(false)
     const [UserEmail1, setUserEmail1] = useState('')
     const [UserEmail2, setUserEmail2] = useState('')
+    const [successfulEntry, setsuccessfulEntry] = useState(true)
+    const [emptyEntry, setemptyEntry] = useState(true)
+    const [existingEntry, setexistingEntry] = useState(false)
 
     const t1 = new TimelineLite({delay: 0.3})
 
@@ -69,8 +72,8 @@ export default function Home() {
             // setScrollHide(window.pageYOffset > 3600);
         });
 
-        t1.from('.HeroRHS', {x:100, duration: 1,  opacity: 0, ease: Power3.easeOut, delay: 0.3}, 'Start')
-        t1.from('.HeroLHS', {x:-100, duration: 1, stagger:0.15, opacity: 0, ease: Power3.easeOut, delay: 0.1}, 'Start')
+        t1.from('.HeroRHS', {x:100, duration: 1, opacity: 0, ease: Power3.easeOut, delay: 1.2}, 'Start')
+        t1.from('.HeroLHSTYPEGsap', {x:-100, duration: 1, stagger:0.4, opacity: 0, ease: Power3.easeOut, delay: 0.1}, 'Start')
         gsap.from('.TeaserLogoGSAP',{
             y:'-100',
             duration: 1,
@@ -79,7 +82,7 @@ export default function Home() {
             ease: "ease-out",
             scrollTrigger: {
                 trigger: '.TeaserSection',
-                start: 'bottom 80%',
+                start: 'bottom 90%',
                 toggleActions: 'play none none none'
             }
         })
@@ -91,26 +94,143 @@ export default function Home() {
             ease: "ease-out",
             scrollTrigger: {
                 trigger: '.HowItWorksView',
-                markers: true,
                 start: 'top 70%',
                 toggleActions: 'play none none none'
             }
         })
         gsap.from('.TeaserContainer',{
-            y:100,
+            y:200,
             duration: 1,
             opacity:0,
             ease: "ease-out",
             scrollTrigger: {
                 trigger: '.TeaserSection',
-                markers: true,
                 start: 'top 50%',
                 toggleActions: 'play none none none'
             }
         })
+        gsap.from('.HowItWorksTypeGSAP',{
+            y:200,
+            duration: 1,
+            stagger: 0.25,
+            opacity:0,
+            ease: "ease-out",
+            scrollTrigger: {
+                trigger: '.HowItWorksView',
+                start: 'top 80%',
+                toggleActions: 'play none none none'
+            }
+        })
+        gsap.from('.ImmediateSolutionsTypeGSAP',{
+            y:200,
+            duration: 1,
+            stagger: 0.25,
+            opacity:0,
+            ease: "ease-out",
+            scrollTrigger: {
+                trigger: '.OurImmediatePaymentsSection',
+                start: 'top 80%',
+                toggleActions: 'play none none none'
+            }
+        })
+        gsap.from('.ImmediateCardGSAPLeft',{
+            x:-200,
+            duration: 1,
+            stagger: 0.25,
+            opacity:0,
+            ease: "ease-out",
+            scrollTrigger: {
+                trigger: '.OurImmediatePaymentsSection',
+                start: 'top 20%',
+                toggleActions: 'play none none none'
+            }
+        })
+        gsap.from('.ImmediateCardGSAPRight',{
+            x:200,
+            duration: 1,
+            stagger: 0.25,
+            opacity:0,
+            ease: "ease-out",
+            scrollTrigger: {
+                trigger: '.OurImmediatePaymentsSection',
+                start: 'top 10%',
+                toggleActions: 'play none none none'
+            }
+        })
+        gsap.from('.WhoAreWeHeader',{
+            y:200,
+            duration: 1,
+            stagger: 0.25,
+            opacity:0,
+            ease: "ease-out",
+            scrollTrigger: {
+                trigger: '.WhoAreWeSection',
+                start: 'top 100%',
+                toggleActions: 'play none none none'
+            }
+        })
+        gsap.from('.WhoAreWeCardGSAPLeft',{
+            y:150,
+            duration: 1,
+            opacity:0,
+            ease: "ease-out",
+            scrollTrigger: {
+                trigger: '.WhoAreWeSection',
+                start: 'top 70%',
+                toggleActions: 'play none none none'
+            }
+        })
+        gsap.from('.WhoAreWeCardGSAPRight',{
+            y:150,
+            duration: 1,
+            opacity:0,
+            ease: "ease-out",
+            scrollTrigger: {
+                trigger: '.WhoAreWeSection',
+                start: 'top 70%',
+                toggleActions: 'play none none none'
+            }
+        })
+        gsap.from('.EarlyAccessGSAP',{
+            y:150,
+            duration: 1,
+            stagger:0.5,
+            opacity:0,
+            ease: "ease-out",
+            scrollTrigger: {
+                trigger: '.LearnMore2',
+                start: 'top 70%',
+                toggleActions: 'play none none none'
+            }
+        })
+
         // t1.from('.TeaserLogoGSAP', {y:100, duration: 1, stagger:{each:0.5, from:'start'}, opacity: 0, ease: Power3.easeOut, delay: 0.1}, 'Start')
         // t1.from('.HowItWorksCard', {x:-300, duration: 1, stagger:0.5, opacity: 0, ease: Power3.easeOut, delay: 0.1}, 'Start')
     }, []);
+
+    const AnimateSubmitMessage = () => {
+        gsap.to('.EarlyAccessSubmitMessage', {
+            x:150,
+            duration: 1,
+            opacity:1,
+            ease: "ease-out",
+            delay: 0.5,
+         });
+         gsap.to('.EarlyAccessSubmitMessage', {
+            x:500,
+            duration: 1,
+            opacity:0,
+            ease: "ease-out",
+            delay: 3.5,
+         });
+         gsap.to('.EarlyAccessSubmitMessage', {
+            x:0,
+            duration: 0.001,
+            opacity:0,
+            ease: "ease-out",
+            delay: 0,
+         });
+    }
 
 
     const { handleSubmit } = useForm();
@@ -133,15 +253,30 @@ export default function Home() {
         console.log(JsonResponse)
         
         if (JsonResponse.first_name === null){
-            alert('Joined successfully!')
+            setemptyEntry(false)
+            setsuccessfulEntry(true)
+            AnimateSubmitMessage()
 
         }
 
-        else if (JsonResponse.email ='This field may not be blank.'){
-            alert('Please enter your email')
-        }
+        else if (JsonResponse.email =='This field may not be blank.'){
+            setemptyEntry(true)
+            setexistingEntry(false)
+            setsuccessfulEntry(false)
+            AnimateSubmitMessage()
+        }   
+        else if (JsonResponse.email =='newsletter with this email already exists.'){
+            setemptyEntry(false)
+            setexistingEntry(true)
+            setsuccessfulEntry(false)
+            AnimateSubmitMessage()
+        }   
         else {
-            alert('Error while signing up to news letter. ')
+            setexistingEntry(false)
+            setemptyEntry(false)
+            setsuccessfulEntry(false)
+            AnimateSubmitMessage()
+
         }
 
         setUserEmail1('')
@@ -171,15 +306,15 @@ export default function Home() {
             </div>
             <div className="HomeHero">
                 <div className="HeroLHS">
-                    <div className="HomeHeader">
+                    <div className="HomeHeader HeroLHSTYPEGsap">
                         Pay bills on your own terms,
                         get paid out immediately
                     </div>
-                    <div className="HomeSubHeader">
+                    <div className="HomeSubHeader HeroLHSTYPEGsap">
                     	Simplify your business payments and take charge of your working capital with our immediate payments solutions.
                     </div>
                     <form action="" method='post' onSubmit={handleSubmit(onSubmit)}>
-                        <div className="LearnMoreSection">
+                        <div className="LearnMoreSection HeroLHSTYPEGsap">
                             <input onClick={()=>{
                                 setUserEmail2('')
                                 EmailInputField2.current.value=''
@@ -191,6 +326,23 @@ export default function Home() {
                             <button type='submit' className="LearnMoreButton">Request Early Access</button>
                         </div>
                     </form>
+                    <div className="EarlyAccessSubmitMessage">
+                        {successfulEntry?
+                        <div className="EarlyAccessSuccessMessage">
+                            Thank you, we’ll get back to you soon!
+                        </div>
+                        :
+                        <div className="EarlyAccessFailureMessage">
+                            {emptyEntry?
+                            <span>Please enter your email before submitting.</span>
+                            :existingEntry?
+                            <span>You're already signed up to the list!</span>
+                            :
+                            <span>Please enter a valid Email Address.</span>
+                            }
+                        </div>
+                        }
+                    </div>
                 </div>
                 <div className="HeroRHS">
                     <img src="\undraw_Agreement_re_d4dv.svg" alt="" />
@@ -214,10 +366,10 @@ export default function Home() {
             </div>
 
             <div className="HowItWorks">
-                <div className="HowItWorksHeader">
+                <div className="HowItWorksHeader HowItWorksTypeGSAP">
                     What You Get With Timely
                 </div>
-                <div className="HowItWorksSubHeader">
+                <div className="HowItWorksSubHeader HowItWorksTypeGSAP">
                     One network to manage your payables, receivables, and working capital
                 </div>
                 <div className="HowItWorksView">
@@ -261,14 +413,14 @@ export default function Home() {
             </div>
 
             <div className="OurImmediatePaymentsSection">
-                <div className="OurImmediatePaymentsHeader">
+                <div className="OurImmediatePaymentsHeader ImmediateSolutionsTypeGSAP">
                     Our Immediate Payments Solutions
                 </div>
-                <div className="OurImmediatePaymentsSubheader">
+                <div className="OurImmediatePaymentsSubheader ImmediateSolutionsTypeGSAP">
                     Custom tools to help you manage your working capital
                 </div>
                 <div className="OurImmediatePaymentsView">
-                    <div className="OurImmediatePaymentsCard">
+                    <div className="OurImmediatePaymentsCard ImmediateCardGSAPLeft">
                         <div className="ImmediateCardTopHalf">
                             <img className='ImmediateCardImg' src="\undraw_revenue_3osh.svg" alt="" />
                             <div className="ImmediateCardHeader">
@@ -288,7 +440,7 @@ export default function Home() {
                         </div>      
                     </div>
 
-                    <div className="OurImmediatePaymentsCard">
+                    <div className="OurImmediatePaymentsCard ImmediateCardGSAPRight">
                         <div className="ImmediateCardTopHalf">
                             <img className='ImmediateCardImg' src="\undraw_financial_data_es63.svg" alt="" />
                             <div className="ImmediateCardHeader">
@@ -314,7 +466,7 @@ export default function Home() {
                 Who We Are
             </div>
             <div className="WhoAreWeSection">
-                <div className="WhoAreWeCard" onMouseEnter={()=>setiseHovered1(true)} onMouseLeave={()=>setiseHovered1(false)}>
+                <div className="WhoAreWeCard WhoAreWeCardGSAPLeft" onMouseEnter={()=>setiseHovered1(true)} onMouseLeave={()=>setiseHovered1(false)}>
                     <div style={iseHovered1?BlurredCard:{}} className="WhoAreWeImage">
                         <img src="\Omar.png" alt="" />
                     </div>
@@ -329,12 +481,12 @@ export default function Home() {
                     </div>   
                 </div>
 
-                <div className="WhoAreWeCard"  onMouseEnter={()=>setiseHovered2(true)} onMouseLeave={()=>setiseHovered2(false)}>
+                <div className="WhoAreWeCard WhoAreWeCardGSAPRight"  onMouseEnter={()=>setiseHovered2(true)} onMouseLeave={()=>setiseHovered2(false)}>
                     <div style={iseHovered2?BlurredCard:{}} className="WhoAreWeImage">
                         <img src="\Nick.png" alt="" />
                     </div>
                     <div style={iseHovered2?BlurredCard:{}} className="WhoAreWeName">
-                        Nick Fornier
+                        Nick Fournier
                     </div>
                     <div style={iseHovered2?BlurredCard:{}} className="WhoAreWeTitle">
                         Co-Founder & Chief-Technology Officer
@@ -347,14 +499,14 @@ export default function Home() {
             </div>
 
             <div className="LearnMore2">
-                <div className="GetEarlyAccessHeader">
+                <div className="GetEarlyAccessHeader EarlyAccessGSAP">
                 	Join Timely
                 </div>
-                <div className="GetEarlyAccessSubHeader">
+                <div className="GetEarlyAccessSubHeader EarlyAccessGSAP">
                 	Focus on what matters most for your business
                 </div>
                 <form action="" method='post' onSubmit={handleSubmit(onSubmit)}>
-                    <div className="LearnMoreSection">
+                    <div className="LearnMoreSection EarlyAccessGSAP">
                         <input onClick={()=>{
                             setUserEmail1('')
                             EmailInputField1.current.value=''

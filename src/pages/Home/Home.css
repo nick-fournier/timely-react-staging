@@ -97,6 +97,22 @@
     margin-bottom: 0.3em;
 }
 
+.EarlyAccessSubmitMessage{
+    font-size: 1.5em;
+    margin: 0.75em 0 0.75em -6em;
+    opacity: 0;
+    cursor: default;
+
+}
+
+.EarlyAccessSuccessMessage{
+    color: rgb(26, 192, 48);
+}
+
+.EarlyAccessFailureMessage{
+    color: rgb(241, 35, 35);
+}
+
 .HeroRHS{
     width: 50%;
     display: flex;
@@ -154,7 +170,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 10em 0 0 0;
+    margin: 5em 0 0 0;
     background-color: rgba(241, 241, 241, 0.308);
 
 }
@@ -437,7 +453,7 @@ How It Works Section */
     width: 250px;
     height: 250px;
     border-radius: 50%;
-
+    border: solid rgba(0, 0, 0, 0.445) 1px;
 }
 
 .WhoAreWeName{
