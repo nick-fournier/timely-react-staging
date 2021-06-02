@@ -1,4 +1,9 @@
+
+
+
+
 .HomePageContainer{
+    overflow-x: hidden;
     padding: 0%;
     margin: 0%;
     box-sizing: border-box;
@@ -106,11 +111,14 @@
 }
 
 .EarlyAccessSuccessMessage{
+    width: fit-content;
     color: rgb(26, 192, 48);
 }
 
 .EarlyAccessFailureMessage{
     color: rgb(241, 35, 35);
+    width: fit-content;
+
 }
 
 .HeroRHS{
@@ -444,10 +452,6 @@ How It Works Section */
     text-align: center;
 }
 
-.WhoAreWeImage{
-
-
-}
 
 .WhoAreWeImage img{
     width: 250px;
@@ -501,6 +505,43 @@ How It Works Section */
     /* background: linear-gradient(85deg,#2b2b2bbe,rgba(92, 92, 92, 0.548),#2b2b2bbe); */
     margin: 4em 0 0 0;
 }
+
+.LearnMoreSection2{
+    display: FLEX;
+    margin: 3em auto 0 auto;
+    width: 90%;
+}
+
+.LearnMoreField2{
+    margin: 0;
+    width: 27em;
+    padding: 1.2em 0em 1.2em 2em;
+    border: none;
+    background-color: #006cc413;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+}
+
+
+.LearnMoreButton2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0275d8;
+    border-radius: 0 5px 5px 0;
+    color: white;
+    margin: 0;
+    width: 13em;
+    cursor: pointer;
+    transition: filter 300ms;
+    border: none;
+
+}
+
+.LearnMoreButton2:hover{
+    filter: brightness(1.3);
+}
+
 
 
 
@@ -561,3 +602,274 @@ How It Works Section */
     font-size: 2em;
 }
 
+
+
+@media screen and (min-width: 0) and (max-width: 480px) {
+    .HomePageContainer{
+        max-width: 480px;
+    }
+    
+    .HomeNav{
+        max-width: 480px;
+        width: 100%;
+        height: 8vh;
+
+    }
+    .HomeHero{
+        height: 20vh;
+    }
+    
+    
+    .HeroLHS{
+        width: 90%;
+        margin-top: 10em;
+        justify-content: flex-start;
+    }
+
+    .HeroRHS{
+        display: none;
+    }
+
+    .LearnMoreSection{
+        margin-top: 3em;
+        width: 90%;
+    }
+
+    .LearnMoreField{
+        width: 60%;
+        padding: 0.75em 1.5em;
+        font-size: 2em;
+    }
+
+    .LearnMoreButton{
+        font-size: 1.75em;
+    }
+
+    .TeaserSection{
+        height: 50vh;
+        margin: 17.5em 0 0 0 ;
+    }
+
+    .TeaserVideo{
+        width: 72.5%;
+        height: 72.5%;
+        left: 9.25em;
+    }
+
+    /* 
+How It Works Section */
+
+
+
+    .HowItWorks{
+        margin: 7.5em 0 6em 0;
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .HowItWorksHeader{
+        font-weight: 600;
+        font-size: 3em;
+        line-height: 1.1em;
+    }
+
+    .HowItWorksSubHeader{
+        margin-bottom: 2em;
+        padding-bottom: 1em;
+        border-bottom: solid 0.5px rgba(128, 128, 128, 0.685);
+    }
+
+
+
+    .HowItWorksView{
+        width: 50%;
+        flex-direction: column;
+        gap: 4em;
+    }
+
+    .HowItWorksCard img{
+        height: 15em;
+        width: 40%;
+    }
+
+
+    .HowItWorksParagraph{
+        width: 70%;
+    }   
+
+
+    /* Our immediate payment solutions section: */
+
+
+    .OurImmediatePaymentsSection{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .OurImmediatePaymentsHeader{
+        font-size: 3em;
+        line-height: 1.1em;
+        font-weight: 600;
+
+    }
+
+    .OurImmediatePaymentsSubheader{
+        color: rgba(0, 0, 0, 0.644);
+        margin-top: 0.7em;
+        font-size: 1.2em;
+        font-weight: 400;
+        padding-bottom: 0.5em;
+        border-bottom: solid 0.5px rgba(128, 128, 128, 0.685);
+        width: fit-content;
+        align-self: center;
+    }
+
+
+    .OurImmediatePaymentsView{
+        flex-direction: column;
+        margin-top: 8em;
+        display: flex;
+        margin: 10em 5em 3em 5em;
+        gap: 2.5em;
+    }
+
+    .OurImmediatePaymentsCard{
+        width: 80%;
+        height: auto;
+        margin: 0em auto 5em auto;
+        flex-direction: column;
+        border: solid 2px #0274d834;
+        border-radius: 10px;
+    }
+
+    .ImmediateCardTopHalf{
+        padding: 2em 0 4em 0;
+        position: relative;
+        border-bottom: dashed 2px #0275d834;
+    }
+
+    .ImmediateCardImg {
+        padding: 1.75em;
+        background-color: white;
+        margin-top: -7.2em;
+        position: absolute;
+        transform: translateX(-50%);
+        width: 8em;
+
+    }
+
+    .ImmediateCardHeader{
+        font-size: 3.5em;
+    }
+
+    .ImmediateCardSubHeader{
+        text-transform: capitalize;
+        font-size: 1.5em;
+    }
+
+    .ImmediateCardParagraph{
+        font-size: 1.45em;
+        color: rgba(0, 0, 0, 0.774);
+        height: 60%;
+        line-height: 1.7;
+    }
+
+    .ImmediateCardButton{
+        margin: 2em 0 1.1em 0;
+        width: 40%;
+        font-size: 1.5em;
+    }
+
+    /* WhoAreWeSection */
+
+    .WhoAreWeHeader{
+        align-self: center;
+        font-size: 3em;
+        line-height: 1.1em;
+        font-weight: 600;
+        margin-top: 1em;
+        margin-bottom: 1.5em;
+    }
+
+
+    .WhoAreWeSection{
+        width: 80vw;
+        height: 40vh;
+        gap: 10em;
+        margin-bottom: 4em;
+    }
+
+    .WhoAreWeCard{
+        height: auto;
+        width: auto;
+    }
+
+    .WhoAreWeImage img{
+        width: 21em;
+        height: 21em;
+        border-radius: 50%;
+        border: solid rgba(0, 0, 0, 0.445) 1px;
+    }
+
+    .WhoAreWeName{
+        margin-top: 0.5em;
+        font-size: 1.25em;
+        font-weight: 500;
+    }
+
+    .WhoAreWeTitle{
+        margin-top: 0.4em;
+        color: rgba(0, 0, 0, 0.753);
+    }
+
+    .WhoAreWeDescription{
+        margin-top: 7.5em;
+        font-size: 1.1em;
+        padding: 2em;
+    }
+
+    .LearnMore2{
+        color: rgb(0, 0, 0);
+        align-self: center;
+        width: 100%;
+        padding: 0em 0 8em 0;
+        margin: 4em 0 0 0;
+    }
+
+    .LearnMoreSection2{
+        display: flex;
+        margin: 3em auto 0 auto;
+        width: 90%;
+    }
+
+    .LearnMoreField2{
+        height: 0.5em;
+    }
+
+    .LearnMoreButton2{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #0275d8;
+        border-radius: 0 5px 5px 0;
+        color: white;
+        margin: 0;
+        width: 40%;
+        font-size: 1.6em;
+        cursor: pointer;
+        transition: filter 300ms;
+        border: none;
+    
+    }
+    
+
+
+
+
+}

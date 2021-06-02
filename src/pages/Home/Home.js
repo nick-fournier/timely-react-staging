@@ -217,7 +217,7 @@ export default function Home() {
             delay: 0.5,
          });
          gsap.to('.EarlyAccessSubmitMessage', {
-            x:500,
+            x:400,
             duration: 1,
             opacity:0,
             ease: "ease-out",
@@ -336,7 +336,7 @@ export default function Home() {
                             {emptyEntry?
                             <span>Please enter your email before submitting.</span>
                             :existingEntry?
-                            <span>You're already signed up to the list!</span>
+                            <span>You're already on our list!</span>
                             :
                             <span>Please enter a valid Email Address.</span>
                             }
@@ -506,7 +506,7 @@ export default function Home() {
                 	Focus on what matters most for your business
                 </div>
                 <form action="" method='post' onSubmit={handleSubmit(onSubmit)}>
-                    <div className="LearnMoreSection EarlyAccessGSAP">
+                    <div className="LearnMoreSection2 EarlyAccessGSAP">
                         <input onClick={()=>{
                             setUserEmail1('')
                             EmailInputField1.current.value=''
@@ -514,8 +514,25 @@ export default function Home() {
                             setUserEmail2(e.target.value)
                             setUserEmail1('')
                             EmailInputField1.current.value=''
-                            }} type="email" className='LearnMoreField' placeholder='Enter your email' />
-                        <button ref={LearnMore} id='LearnMore' type='submit' className="LearnMoreButton">Request Early Access</button>
+                            }} type="email" className='LearnMoreField2' placeholder='Enter your email' />
+                        <button ref={LearnMore} id='LearnMore' type='submit' className="LearnMoreButton2">Request Early Access</button>
+                    </div>
+                    <div className="EarlyAccessSubmitMessage">
+                        {successfulEntry?
+                        <div className="EarlyAccessSuccessMessage">
+                            Thank you, we’ll get back to you soon!
+                        </div>
+                        :
+                        <div className="EarlyAccessFailureMessage">
+                            {emptyEntry?
+                            <span>Please enter your email before submitting.</span>
+                            :existingEntry?
+                            <span>You're already on our list!</span>
+                            :
+                            <span>Please enter a valid Email Address.</span>
+                            }
+                        </div>
+                        }
                     </div>
                 </form>
             </div>
