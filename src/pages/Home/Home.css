@@ -629,7 +629,7 @@ How It Works Section */
     .HeroLHS{
         width: 86%;
         margin-left: 2.2em;
-        margin-top: 10em;
+        margin-top: 15em;
         justify-content: flex-start;
     }
 
@@ -807,14 +807,14 @@ How It Works Section */
 
     .WhoAreWeSection{
         width: 100vw;
-        height: 120vh;
+        height: auto;
         margin-bottom: 4em;
         flex-direction: column-reverse;
     }
 
     .WhoAreWeCard{
         height: auto;
-        width: 100vw;
+        width: 80vw;
     }
 
     .WhoAreWeImage{
