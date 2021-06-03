@@ -36,7 +36,7 @@ export default function Register() {
         RegisterData.append('password2', data.password2)
 
 
-    const httpResponse = await fetch('http://localhost:8000/api/rest-auth/registration/',{
+    const httpResponse = await fetch('https://timely-invoicing-api.herokuapp.com/api/rest-auth/registration/',{
         method: 'POST',
         body: RegisterData
     })

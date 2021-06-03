@@ -31,7 +31,7 @@ function App() {
   const [reFetchBusinesses, setreFetchBusinesses] = useState(true)
 
   async function loadReceivablesData(){
-    const rawReceivablesData = await fetch('http://localhost:8000/api/receivables/',{
+    const rawReceivablesData = await fetch('https://timely-invoicing-api.herokuapp.com/api/receivables/',{
       method: "GET",
       headers: new Headers({
         'Authorization': `token ${localStorage.token}`
@@ -45,7 +45,7 @@ function App() {
   }
 
   async function loadPayablesData(){
-    const rawPayablesData = await fetch('http://localhost:8000/api/payables/',{
+    const rawPayablesData = await fetch('https://timely-invoicing-api.herokuapp.com/api/payables/',{
       method: "GET",
       headers: new Headers({
         'Authorization': `token ${localStorage.token}`

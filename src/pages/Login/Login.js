@@ -21,9 +21,7 @@ export default function Login() {
         LoginData.append('email', data.email)
         LoginData.append('password', data.password)
     
-
-
-        const httpResponse = await fetch('http://localhost:8000/api/rest-auth/login/',{
+        const httpResponse = await fetch('https://timely-invoicing-api.herokuapp.com/api/rest-auth/login/',{
             method: 'POST',
             body: LoginData
         })

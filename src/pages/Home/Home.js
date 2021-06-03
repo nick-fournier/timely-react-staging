@@ -72,7 +72,10 @@ export default function Home() {
             // setScrollHide(window.pageYOffset > 3600);
         });
 
-        t1.from('.HeroRHS', {x:100, duration: 1, opacity: 0, ease: Power3.easeOut, delay: 1.2}, 'Start')
+        ScrollTrigger.matchMedia({
+            "(min-width: 900px)": function() {
+
+                t1.from('.HeroRHS', {x:100, duration: 1, opacity: 0, ease: Power3.easeOut, delay: 1.2}, 'Start')
         t1.from('.HeroLHSTYPEGsap', {x:-100, duration: 1, stagger:0.4, opacity: 0, ease: Power3.easeOut, delay: 0.1}, 'Start')
         gsap.from('.TeaserLogoGSAP',{
             y:'-100',
@@ -203,6 +206,10 @@ export default function Home() {
                 toggleActions: 'play none none none'
             }
         })
+            }
+        })
+
+        
 
         // t1.from('.TeaserLogoGSAP', {y:100, duration: 1, stagger:{each:0.5, from:'start'}, opacity: 0, ease: Power3.easeOut, delay: 0.1}, 'Start')
         // t1.from('.HowItWorksCard', {x:-300, duration: 1, stagger:0.5, opacity: 0, ease: Power3.easeOut, delay: 0.1}, 'Start')
@@ -241,12 +248,9 @@ export default function Home() {
         NewsLetterData.append('email', UserEmail1?UserEmail1:UserEmail2)
         NewsLetterData.append('special_key', special_key)
 
-        const httpResponse = await fetch('http://localhost:8000/api/newsletter/',{
+        const httpResponse = await fetch('https://timely-invoicing-api.herokuapp.com/api/newsletter/',{
             method: 'POST',
             body: NewsLetterData,
-            headers: new Headers({
-                'Authorization': `token ${localStorage.token}`
-            }),
         })
 
         const JsonResponse = await httpResponse.json()

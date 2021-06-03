@@ -220,7 +220,7 @@
 } */
 
 .LogosSection{
-    background-color: rgba(241, 241, 241, 0.308);
+    background-color: rgb(255, 255, 255);
     display: flex;
     justify-content: center;
     width: 100%;
@@ -228,6 +228,7 @@
     gap: 3.75em;
     align-items: center;
     padding-bottom: 5em;
+    margin-top: 6em;
 }
 
 .TeaserLogo{
@@ -561,7 +562,7 @@ How It Works Section */
 .LandingFooter{
     border-top: 0.5px solid rgba(0, 0, 0, 0.158);
     color: white;
-    height: 5em;
+    height: 30vh;
     display: flex;
     background: rgb(29, 29, 29);
     /* background: linear-gradient(85deg,#2b2b2bbe,rgba(92, 92, 92, 0.548),#2b2b2bbe); */
@@ -605,15 +606,20 @@ How It Works Section */
 
 
 @media screen and (min-width: 0) and (max-width: 480px) {
+
     .HomePageContainer{
         max-width: 480px;
     }
     
     .HomeNav{
-        max-width: 480px;
-        width: 100%;
+        padding: 1em 0;
+        font-size: 1.5em;
+        width: 100vw;
         height: 8vh;
+    }
 
+    .HomeButton{
+        padding: 1em;
     }
     .HomeHero{
         height: 20vh;
@@ -646,8 +652,8 @@ How It Works Section */
     }
 
     .TeaserSection{
-        height: 50vh;
-        margin: 17.5em 0 0 0 ;
+        height: 30vh;
+        margin: 25em 0 0 0 ;
     }
 
     .TeaserVideo{
@@ -799,10 +805,11 @@ How It Works Section */
 
 
     .WhoAreWeSection{
-        width: 80vw;
-        height: 40vh;
-        gap: 10em;
+        width: 100vw;
+        height: 85vh;
+        gap: 5em;
         margin-bottom: 4em;
+        flex-direction: column-reverse;
     }
 
     .WhoAreWeCard{
@@ -811,20 +818,22 @@ How It Works Section */
     }
 
     .WhoAreWeImage img{
-        width: 21em;
-        height: 21em;
+        width: 23em;
+        height: 23em;
         border-radius: 50%;
         border: solid rgba(0, 0, 0, 0.445) 1px;
     }
 
     .WhoAreWeName{
         margin-top: 0.5em;
-        font-size: 1.25em;
+        font-size: 1.5em;
         font-weight: 500;
     }
 
     .WhoAreWeTitle{
         margin-top: 0.4em;
+        margin-bottom: 0.5em;
+        font-size: 1.2em;
         color: rgba(0, 0, 0, 0.753);
     }
 
@@ -845,7 +854,7 @@ How It Works Section */
     .LearnMoreSection2{
         display: flex;
         margin: 3em auto 0 auto;
-        width: 90%;
+        width: 80%;
     }
 
     .LearnMoreField2{
@@ -860,12 +869,16 @@ How It Works Section */
         border-radius: 0 5px 5px 0;
         color: white;
         margin: 0;
-        width: 40%;
+        width: 50%;
         font-size: 1.6em;
         cursor: pointer;
         transition: filter 300ms;
         border: none;
-    
+    }
+
+    .LandingFooter{
+        padding: 0 4.5em;
+        font-size: 1.5em;
     }
     
 

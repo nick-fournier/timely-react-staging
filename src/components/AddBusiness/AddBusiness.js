@@ -32,7 +32,7 @@ export default function AddBusiness({ShowNewBusiness, setShowNewBusiness, setSho
 
 
 
-        const httpResponse = await fetch('http://localhost:8000/api/businesses/',{
+        const httpResponse = await fetch('https://timely-invoicing-api.herokuapp.com/api/businesses/',{
             method: 'POST',
             headers: new Headers({
                 'Authorization': `token ${localStorage.token}`,

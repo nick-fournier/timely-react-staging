@@ -44,7 +44,7 @@ export default function AddInvoice( {ShowNewInvoice, setShowNewInvoice, setisAct
         
         const loadBusinesses = async () =>{
 
-            const response = await fetch('http://localhost:8000/api/businesses/',{
+            const response = await fetch('https://timely-invoicing-api.herokuapp.com/api/businesses/',{
                 method: "GET",
                 headers: new Headers({
                   'Authorization': `token ${localStorage.token}`
@@ -98,7 +98,7 @@ export default function AddInvoice( {ShowNewInvoice, setShowNewInvoice, setisAct
 
         console.table(TestInvoice)
 
-        const httpResponse = await fetch('http://localhost:8000/api/new_invoices/',{
+        const httpResponse = await fetch('https://timely-invoicing-api.herokuapp.com/api/new_invoices/',{
             method: 'POST',
             headers: new Headers({
                 'Authorization': `token ${localStorage.token}`,
