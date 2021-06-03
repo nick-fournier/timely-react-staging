@@ -806,20 +806,23 @@ How It Works Section */
 
     .WhoAreWeSection{
         width: 100vw;
-        height: 85vh;
-        gap: 5em;
+        height: 120vh;
         margin-bottom: 4em;
         flex-direction: column-reverse;
     }
 
     .WhoAreWeCard{
-        height: auto;
-        width: auto;
+        height: 60vh;
+        width: 100vw;
+    }
+
+    .WhoAreWeImage{
+        height: 100%;
     }
 
     .WhoAreWeImage img{
-        width: 23em;
-        height: 23em;
+        width: 30em;
+        height: 30em;
         border-radius: 50%;
         border: solid rgba(0, 0, 0, 0.445) 1px;
     }
@@ -839,7 +842,7 @@ How It Works Section */
 
     .WhoAreWeDescription{
         margin-top: 7.5em;
-        font-size: 1.1em;
+        font-size: 2em;
         padding: 2em;
     }
 
