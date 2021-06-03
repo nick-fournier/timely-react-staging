@@ -134,9 +134,9 @@ export default function InvoiceOptions({CurrentItem, setsearchField, setSearchMe
                     <button style={buttonStyles} onClick ={flagInvoice} className="Button">Flag</button>  
                     <button style={buttonStyles} disabled={CurrentItem.is_paid?true:false} onClick={markInvoice} className={CurrentItem.is_paid?'Disabled':'Button'}>Mark as Paid</button>
                     {DataSwitch === 1?
-                    <button onClick={scheduleInvoice} className="Button">Schedule</button>
-                    :
                     <button onClick={scheduleInvoice} className="Button">Remind</button>
+                    :
+                    <button onClick={scheduleInvoice} className="Button">Schedule</button>
                     }  
                 </div>
             </div>
