@@ -632,6 +632,10 @@ How It Works Section */
         margin-top: 15em;
         justify-content: flex-start;
     }
+    .HomeSubHeader{
+        font-size: 2em;
+        line-height: 1.2em;
+    }
 
     .HeroRHS{
         display: none;
@@ -689,7 +693,7 @@ How It Works Section */
         margin-bottom: 2em;
         padding-bottom: 1em;
         border-bottom: solid 0.5px rgba(128, 128, 128, 0.685);
-        font-size: 2em;
+        font-size: 2.2em;
     }
 
 
@@ -736,7 +740,7 @@ How It Works Section */
     .OurImmediatePaymentsSubheader{
         color: rgba(0, 0, 0, 0.644);
         margin-top: 0.7em;
-        font-size: 2em;
+        font-size: 2.2em;
         font-weight: 400;
         padding-bottom: 0.5em;
         border-bottom: solid 0.5px rgba(128, 128, 128, 0.685);
@@ -784,8 +788,8 @@ How It Works Section */
 
     .ImmediateCardSubHeader{
         text-transform: capitalize;
-        font-size: 2em;
-        padding-bottom: 1em;
+        font-size: 2.2em;
+        padding: 0.2em 0 1em 0;
     }
 
     .ImmediateCardParagraph{
