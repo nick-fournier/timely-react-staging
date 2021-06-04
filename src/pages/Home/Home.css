@@ -685,6 +685,7 @@ How It Works Section */
     }
 
     .HowItWorksHeader{
+        margin-top: 3em;
         font-weight: 600;
         font-size: 3.5em;
         line-height: 1.1em;
@@ -709,13 +710,13 @@ How It Works Section */
     }
 
     .HowItWorksCardHeader{
-        color: rgba(0, 0, 0, 0.712);
+        color: rgb(0, 0, 0);
     }
 
     .HowItWorksCard img{
         height: 15em;
-        width: 50%;
-        margin-bottom: 1.5em;
+        width: 40%;
+        margin-bottom: 0em;
     }
 
 
@@ -742,12 +743,13 @@ How It Works Section */
         font-size: 3.5em;
         line-height: 1.1em;
         font-weight: 600;
-
+        margin-top: 3em;
     }
 
     .OurImmediatePaymentsSubheader{
         color: rgba(0, 0, 0, 0.644);
         margin-top: 0.7em;
+        margin-bottom: 1.5em;
         font-size: 2.2em;
         font-weight: 400;
         padding-bottom: 0.5em;
