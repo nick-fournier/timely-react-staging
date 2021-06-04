@@ -605,10 +605,10 @@ How It Works Section */
 
 
 
-@media screen and (min-width: 0) and (max-width: 600px) {
+@media screen and (min-width: 0) and (max-width: 480px) {
 
     .HomePageContainer{
-        max-width: 600px;
+        max-width: 480px;
     }
     
     .HomeNav{
@@ -689,24 +689,30 @@ How It Works Section */
         margin-bottom: 2em;
         padding-bottom: 1em;
         border-bottom: solid 0.5px rgba(128, 128, 128, 0.685);
+        font-size: 2em;
     }
 
 
 
     .HowItWorksView{
-        width: 50%;
+        font-size: 2em;
+        width: 80%;
         flex-direction: column;
         gap: 4em;
     }
 
     .HowItWorksCard img{
         height: 15em;
-        width: 40%;
+        width: 50%;
+        margin-bottom: 1.5em;
     }
 
 
     .HowItWorksParagraph{
-        width: 70%;
+        align-self: center;
+        width: 80%;
+        line-height: 1.6em;
+        margin-top: 0.5em;
     }   
 
 
@@ -717,6 +723,7 @@ How It Works Section */
         display: flex;
         flex-direction: column;
         text-align: center;
+        margin-top: 5em;
     }
 
     .OurImmediatePaymentsHeader{
@@ -729,7 +736,7 @@ How It Works Section */
     .OurImmediatePaymentsSubheader{
         color: rgba(0, 0, 0, 0.644);
         margin-top: 0.7em;
-        font-size: 1.2em;
+        font-size: 2em;
         font-weight: 400;
         padding-bottom: 0.5em;
         border-bottom: solid 0.5px rgba(128, 128, 128, 0.685);
@@ -777,11 +784,12 @@ How It Works Section */
 
     .ImmediateCardSubHeader{
         text-transform: capitalize;
-        font-size: 1.5em;
+        font-size: 2em;
+        padding-bottom: 1em;
     }
 
     .ImmediateCardParagraph{
-        font-size: 1.45em;
+        font-size: 2em;
         color: rgba(0, 0, 0, 0.774);
         height: 60%;
         line-height: 1.7;
@@ -830,14 +838,14 @@ How It Works Section */
 
     .WhoAreWeName{
         margin-top: 0.5em;
-        font-size: 1.5em;
+        font-size: 2.5em;
         font-weight: 500;
     }
 
     .WhoAreWeTitle{
-        margin-top: 0.4em;
+        margin-top: 0.8em;
         margin-bottom: 0.5em;
-        font-size: 1.2em;
+        font-size: 2em;
         color: rgba(0, 0, 0, 0.753);
     }
 
