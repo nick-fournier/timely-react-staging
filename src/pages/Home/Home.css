@@ -871,6 +871,7 @@ How It Works Section */
     }
 
     .LearnMore2{
+        background-color: rgba(241, 241, 241, 0.308);
         color: rgb(0, 0, 0);
         align-self: center;
         width: 100%;
