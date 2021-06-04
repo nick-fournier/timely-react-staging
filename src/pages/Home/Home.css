@@ -507,6 +507,7 @@ How It Works Section */
     margin: 4em 0 0 0;
 }
 
+
 .LearnMoreSection2{
     display: FLEX;
     margin: 3em auto 0 auto;
@@ -877,6 +878,15 @@ How It Works Section */
         margin: 4em 0 0 0;
     }
 
+    .GetEarlyAccessHeader{
+        margin-top: 3em;
+        font-size: 3.5em;
+    }
+
+    .GetEarlyAccessSubHeader{
+        font-size: 1.5em;
+    }
+
     .LearnMoreSection2{
         display: flex;
         margin: 3em auto 0 auto;
@@ -896,7 +906,7 @@ How It Works Section */
         color: white;
         margin: 0;
         width: 50%;
-        font-size: 1.6em;
+        font-size: 1.4em;
         cursor: pointer;
         transition: filter 300ms;
         border: none;
