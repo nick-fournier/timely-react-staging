@@ -633,7 +633,8 @@ How It Works Section */
         justify-content: flex-start;
     }
     .HomeSubHeader{
-        font-size: 2em;
+        color: rgba(0, 0, 0, 0.651);
+        font-size: 1.6em;
         line-height: 1.2em;
     }
 
@@ -685,12 +686,14 @@ How It Works Section */
 
     .HowItWorksHeader{
         font-weight: 600;
-        font-size: 3em;
+        font-size: 3.5em;
         line-height: 1.1em;
     }
 
     .HowItWorksSubHeader{
         margin-bottom: 2em;
+        width: 60%;
+        line-height: 1.1em;
         padding-bottom: 1em;
         border-bottom: solid 0.5px rgba(128, 128, 128, 0.685);
         font-size: 2.2em;
@@ -705,6 +708,10 @@ How It Works Section */
         gap: 4em;
     }
 
+    .HowItWorksCardHeader{
+        color: rgba(0, 0, 0, 0.712);
+    }
+
     .HowItWorksCard img{
         height: 15em;
         width: 50%;
@@ -714,6 +721,7 @@ How It Works Section */
 
     .HowItWorksParagraph{
         align-self: center;
+        color: rgba(0, 0, 0, 0.692);
         width: 80%;
         line-height: 1.6em;
         margin-top: 0.5em;
@@ -731,7 +739,7 @@ How It Works Section */
     }
 
     .OurImmediatePaymentsHeader{
-        font-size: 3em;
+        font-size: 3.5em;
         line-height: 1.1em;
         font-weight: 600;
 
@@ -809,7 +817,7 @@ How It Works Section */
 
     .WhoAreWeHeader{
         align-self: center;
-        font-size: 3em;
+        font-size: 3.5em;
         line-height: 1.1em;
         font-weight: 600;
         margin-top: 1em;
