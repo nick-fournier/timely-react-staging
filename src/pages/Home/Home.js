@@ -541,42 +541,30 @@ export default function Home() {
                 </form>
             </div>
             <div className="LandingFooter">
-                <div className="LandingFooterLHS">
-
+                <div className="FooterLHS">
+                    TIMELY
                 </div>
-                <div className="LandingFooterMiddle">
-                    <div className="LandingFotterMiddleLeft">
-                        TIMELY
-                    </div>
-                    <div className="LandingFotterMiddleMiddle">
-                        Coming Soon
-                    </div>
 
+                <div className="FooterMiddle">
+                    Coming Soon
+                </div>
 
-                    <div className="LandingFooterMiddleRightPart">
-                        <div className="LandingFooterRHSHeader">
-                            Follow Us
+                <div className="FooterRHS">
+                    <div className="FooterRHSTOP">
+                        Follow Us
+                    </div>
+                    <div className="FooterRHSBottom">
+                        <div className="LandingFooterRHSLogo">
+                            <FontAwesomeIcon icon ={faFacebook } />
                         </div>
-
-                        <div className="LandingFooterLogosContainer">
-                            <div className="LandingFooterRHSLogo">
-                                <FontAwesomeIcon icon ={faFacebook } />
-                            </div>
-                            <div className="LandingFooterRHSLogo">
-                                <FontAwesomeIcon icon ={faInstagram} />
-                            </div>
-                            <div className="LandingFooterRHSLogo">
-                                <FontAwesomeIcon icon ={faLinkedin} />
-                            </div>
+                        <div className="LandingFooterRHSLogo">
+                            <FontAwesomeIcon icon ={faInstagram} />
                         </div>
-                        
+                        <div className="LandingFooterRHSLogo">
+                            <FontAwesomeIcon icon ={faLinkedin} />
+                        </div>
                     </div>
-                </div>
-
-                    
-                <div className="LandingFooterRHS">
-                    
-                </div>
+                </div>     
             </div>
 
         </div>

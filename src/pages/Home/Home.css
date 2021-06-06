@@ -566,43 +566,43 @@ How It Works Section */
     height: 30vh;
     display: flex;
     background: rgb(29, 29, 29);
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5em;
     /* background: linear-gradient(85deg,#2b2b2bbe,rgba(92, 92, 92, 0.548),#2b2b2bbe); */
 }
 
-.LandingFooterLHS{
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    width: 5%;
-    color: #ffffff;
-    font-size: 2em;
+.FooterLHS{
+    font-size: 2vw;
 }
 
-.LandingFooterMiddle{
-
-    width: 75em;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.FooterMiddle{
+    font-size: 1vw;
 }
 
-.LandingFooterRHS{
-    width: 5%;
-}
-
-.LandingFooterMiddleRightPart{
+.FooterRHS{
+    width: auto;
     display: flex;
     flex-direction: column;
+    gap: 1em;
+    font-size: 1vw;
 }
 
-.LandingFooterLogosContainer{
+.FooterRHSTOP{
+    text-align: center;
+}
+
+.FooterRHSBottom{
+    gap: 1em;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
-.LandingFotterMiddleLeft{
-    font-size: 2em;
+.LandingFooterRHSLogo{
+    font-size: 1.5vw;
+    cursor: pointer;
 }
+
 
 
 
@@ -659,7 +659,7 @@ How It Works Section */
     }
 
     .TeaserSection{
-        height: 30vh;
+        height: 40em;
         margin: 20em 0 0 0 ;
     }
 
@@ -942,6 +942,7 @@ How It Works Section */
     }
     .HomeHero{
         height: 20vh;
+        margin-bottom: 10em;
     }
     
     
@@ -977,8 +978,8 @@ How It Works Section */
     }
 
     .TeaserSection{
-        height: 30vh;
-        margin: 20em 0 0 0 ;
+        margin-top: 10em;
+        height: 60em;
     }
 
     .TeaserVideo{
@@ -1237,10 +1238,10 @@ How It Works Section */
     }
 }
 
-@media screen and (min-width: 841px) and (max-width: 1215px) {
+@media screen and (min-width: 841px) and (max-width: 1230px) {
 
     .HomePageContainer{
-        max-width: 1215px;
+        max-width: 1230px;
     }
     
     .HomeNav{
@@ -1256,7 +1257,7 @@ How It Works Section */
 
     .HomeHero{
         margin-top: -5em;
-        margin-bottom: -15rem;
+        margin-bottom: -5em;
     }
 
     .HomeSubHeader{
@@ -1292,7 +1293,7 @@ How It Works Section */
         height: 200%;
     }
     .LogosSection{
-        margin-top: -5rem;
+
     }
 
     /* 
@@ -1541,10 +1542,98 @@ How It Works Section */
     }
 
     .LandingFooter{
-        padding: 0 4.5em;
+        padding: 0 5em;
         font-size: 1.5em;
     }
     
+}
+
+@media screen and (min-width: 1230px) and (max-width: 1280px) {
+
+    .HomePageContainer{
+        max-width: 1284px;
+    }
+
+    .TeaserVideo{
+        width: 75%;
+        height: 75%;
+        left: 14.5em;
+        top: 4em;
+    }
+}
+
+@media screen and (min-width: 1281px) and (max-width: 1300px) {
+
+    .HomePageContainer{
+        max-width: 1300px;
+    }
+
+    .TeaserVideo{
+        width: 75%;
+        height: 75%;
+        left: 9.425em;
+    }
+}
+
+@media screen and (min-width: 1301px) {
+    html body {
+        font-size: 1vw;
+    }
+
+    .HeroRHS img{
+        width: 80%;
+        margin-top: 0.1em;
+    }
+
+    .LearnMoreSection{
+        width: 75%;
+    }
+
+    .LearnMoreField{
+        font-size: 1em;
+        border-radius: 0.4em 0 0 0.4em;
+    }
+    
+    .LearnMoreButton{
+        font-size: 1em;
+        border-radius: 0 0.4em 0.4em 0;
+        width: 50%;
+    
+    }
+
+    .TeaserImage{
+        width: 60vw;
+    }
+
+    .TeaserVideo{
+        width: 33.75vw;
+        transform: scale(1.38);
+        left: 13.1em;
+    }
+
+    .WhoAreWeImage img{
+        height: 20em;
+        width: 20em;
+    }
+
+    .LearnMoreSection2{
+        display: flex;
+        margin: 3em auto 0 auto;
+        width: 80%;
+        font-size: 0.8em;
+    }
+
+    .LearnMoreField2{
+        font-size: 1.5em;
+        border-radius: 0.4em 0 0 0.4em;
+    }
+
+    .LearnMoreButton2{
+        border-radius: 0 0.4em 0.4em 0;
+        padding: 0 2em;;
+        width: 50%;
+        font-size: 1.3em;
+    }
 }
 
 /* test */
