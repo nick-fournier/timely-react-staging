@@ -917,6 +917,23 @@ How It Works Section */
         padding: 0 4.5em;
         font-size: 1.5em;
     }
+
+    .FooterLHS{
+        font-size: 2em;
+    }
+
+    .FooterMiddle{
+        font-size: 1em;
+    }
+
+    .FooterRHS{
+        font-size: 1em;
+        gap: 0.5em;
+    }
+
+    .LandingFooterRHSLogo{
+        font-size: 1em;
+    }
     
 
 
