@@ -1577,7 +1577,7 @@ How It Works Section */
     }
 
     .HeroRHS img{
-        height: 60%;        
+        width: 80%;        
     }
 
 
@@ -1608,7 +1608,7 @@ How It Works Section */
     }
 
     .HeroRHS img{
-        height: 70%;        
+        width: 70%;        
     }
 }
 
