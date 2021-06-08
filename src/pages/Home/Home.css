@@ -1614,7 +1614,7 @@ How It Works Section */
 
 @media screen and (min-width: 1301px) {
     html body {
-        font-size: 0.85vw;
+        font-size: 1vw;
     }
 
     .HeroRHS img{
@@ -1645,7 +1645,7 @@ How It Works Section */
     .TeaserVideo{
         width: 33.75vw;
         transform: scale(1.38);
-        left: 15.5em;
+        left: 13.15em;
     }
 
     .WhoAreWeImage img{
