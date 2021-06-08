@@ -159,7 +159,7 @@
     }
 
     .nav-item{
-        margin: 0;
+        margin: 0.15em;
         width: fit-content;
     }
     
@@ -167,6 +167,7 @@
         display: flex;
         margin: 0.15em 1em;
         width: fit-content;
+        font-size: 0.77em;
     }
     
     .ShowNav{
@@ -204,7 +205,7 @@
         margin: 0.15em;
         width: fit-content;
         border-radius: 5em ;
-        padding: 0.5em 0.75em 0.5em 0.75em;
+        padding: 0.5em 1em 0.5em 1em;
         margin: 0 1em;
     }
     
@@ -219,11 +220,7 @@
         margin-top: 0;
     }
     .nav-item:last-child{
-        margin-bottom: 0.15em;
-        margin-top: auto;
-        margin-right: 1em;
         justify-self: center;
-        padding-bottom: 1em;
     }
 
 }
