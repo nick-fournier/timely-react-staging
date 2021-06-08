@@ -16,6 +16,7 @@ body{
 
 .invoicePageContainer{
     display: flex;
+    flex-direction: column;
 }
 
 .Cover{
