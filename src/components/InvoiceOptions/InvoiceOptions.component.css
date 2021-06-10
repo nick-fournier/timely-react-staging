@@ -5,7 +5,8 @@
     display: flex;
     width: 100%;
     background-color: rgb(240, 240, 240);
- }
+
+}
 
 .SearchAndTabsContainer{
     width: 28%;
@@ -17,7 +18,7 @@
 .SearchAndTabs{
     display: flex;
     flex-direction: column;
-    margin-left: 0em;
+
 }
 
 .InvoiceSearchContainer{
@@ -167,4 +168,88 @@
     font-family: Inter;
     font-size: 1.5em;
     font-weight: 800;
+}
+
+@media screen and (max-width: 480px) {
+    .InvoiceOptionsContainer{
+        font-size: 1.5em;
+        padding: 1em 1em;
+    }
+
+    .SearchAndTabsContainer{
+        width: 100%;
+    }
+    
+    .SearchAndTabs{
+        width: 100%;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .InvoiceSearchContainer{
+        width: 50%;
+        justify-self: center;
+        margin: auto auto auto 3em;
+    }   
+    
+    .SearchInput{
+        width: 100%;
+    }
+    
+    
+    .InvoiceTabs{
+        margin: auto;
+        padding-right: 2em;
+    }
+    
+    
+    
+    .InvoiceTabItem{
+
+    }
+    
+
+    .CurrentTabItemClicked{
+
+    }
+    
+    
+    .ButtonContainer{
+        display: none;
+    }
+    
+    .Disabled{
+
+    }
+    
+    .Button{
+
+    }
+    
+    .LabelButton{
+
+    }
+    
+    .LabelButton:hover{
+
+    }
+    
+    .Button:hover{
+
+    }
+    
+    .SecondaryButtonContainer{
+
+    }
+    
+    .ReceviableTitle{
+        margin: auto;
+
+    }
+    
+    .PayableTitle{
+        margin: auto;
+    }
+
 }
