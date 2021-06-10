@@ -170,12 +170,15 @@
     font-weight: 800;
 }
 
+.InvoicesTitleContainer{
+
+}
+
 @media screen and (max-width: 480px) {
     .InvoiceOptionsContainer{
         font-size: 1.6em;
-        padding: 0 1em;
-        height: 8vh;
-
+        height: 10vh;
+        background-color: rgb(245, 245, 245);
     }
 
     .SearchAndTabsContainer{
@@ -184,7 +187,7 @@
     
     .SearchAndTabs{
         width: 100%;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
     }
@@ -192,17 +195,36 @@
     .InvoiceSearchContainer{
         width: 50%;
         justify-self: center;
-        margin: auto auto auto 3em;
+        margin: auto 1em auto auto;
+        padding: 1em;
     }   
+
+    .InvoiceSearchAndTabsContainer{
+        display: flex;
+        flex-direction: row-reverse;
+        width: 100%;
+    }
+
+    .InvoicesTitleContainer{
+        font-size: 1em;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding-top: 1em;
+    }
     
     .SearchInput{
         width: 100%;
+        padding: 0.45em 0.95em;
+        font-size: 1.3em;
+        border: 0.5px solid #343a40;
     }
     
     
     .InvoiceTabs{
         margin: auto;
-        padding-right: 2em;
+        font-size: 1em;
+        padding: 1em;
     }
     
     
@@ -246,12 +268,11 @@
     }
     
     .ReceviableTitle{
-        margin: auto;
-
+        font-weight: 900;
     }
     
     .PayableTitle{
-        margin: auto;
+
     }
 
 }

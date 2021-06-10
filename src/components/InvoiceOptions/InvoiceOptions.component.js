@@ -114,16 +114,24 @@ export default function InvoiceOptions({CurrentItem, setsearchField, setSearchMe
         <div className="InvoiceOptionsContainer">
             <div className="SearchAndTabsContainer">
                 <div className="SearchAndTabs">
-                {DataSwitch === 1? <div className='ReceviableTitle'>Receivables</div>:<div className='PayableTitle'>Payables</div>}
+                <div className="InvoicesTitleContainer">
+                    {DataSwitch === 1?
+                        <div className='ReceviableTitle'>Receivables</div>:
+                        <div className='PayableTitle'>Payables</div>
+                    }
+                </div>
+                <div className="InvoiceSearchAndTabsContainer">
                     <div className="InvoiceSearchContainer">
-                        <input onChange={handleChange} className='SearchInput' type="search" placeholder='Search for an invoice'/>
-                    </div>
-                    <div className="InvoiceTabs">
-                            <div onClick={handleClickInbox} className={currentTab===1?'CurrentTabItemClicked':"InvoiceTabItem"}>Inbox</div>
-                            <div onClick={handleClickScheduled} className={currentTab===2?'CurrentTabItemClicked':"InvoiceTabItem"}>Scheduled</div>
-                            <div onClick={handleClickFlagged} className={currentTab===3?'CurrentTabItemClicked':"InvoiceTabItem"}>Flagged</div>
-                            <div onClick={handleClickPaid} className={currentTab===4?'CurrentTabItemClicked':"InvoiceTabItem"}>Paid</div>
-                    </div>
+                            <input onChange={handleChange} className='SearchInput' type="search" placeholder='Search for an invoice'/>
+                        </div>
+                        <div className="InvoiceTabs">
+                                <div onClick={handleClickInbox} className={currentTab===1?'CurrentTabItemClicked':"InvoiceTabItem"}>Inbox</div>
+                                <div onClick={handleClickScheduled} className={currentTab===2?'CurrentTabItemClicked':"InvoiceTabItem"}>Scheduled</div>
+                                <div onClick={handleClickFlagged} className={currentTab===3?'CurrentTabItemClicked':"InvoiceTabItem"}>Flagged</div>
+                                <div onClick={handleClickPaid} className={currentTab===4?'CurrentTabItemClicked':"InvoiceTabItem"}>Paid</div>
+                        </div>
+                </div>
+                    
                 </div>
             </div>
             

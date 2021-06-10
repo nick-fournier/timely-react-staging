@@ -140,6 +140,7 @@
         width: 100vw;
         height: 17vh;
         margin: 0;
+        border-bottom: 1px solid rgba(97, 97, 97, 0.404);
         /* transition: 0.15s; */
     }
 
