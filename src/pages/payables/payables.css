@@ -24,6 +24,7 @@ body {
 }
 
 
+
 .RHSContainer{
     background-color: rgb(207, 207, 207);
     width: 80%;
@@ -46,6 +47,14 @@ body {
     height: 60%;
     overflow: auto;
 }
+
+
+@media screen and (max-width: 480px) {
+  .invoice-page-container{
+    flex-direction: column;
+  }
+}
+
 
 
 
