@@ -20,7 +20,11 @@ body{
 }
 
 @media screen and (max-width: 480px){
-    flex-direction: column;
+    .invoicePageContainer{
+        display: flex;
+        flex-direction: column;
+    }
+
 }
 
 .Cover{
