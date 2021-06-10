@@ -263,13 +263,13 @@ export default function Home() {
 
         }
 
-        else if (JsonResponse.email =='This field may not be blank.'){
+        else if (JsonResponse.email ==='This field may not be blank.'){
             setemptyEntry(true)
             setexistingEntry(false)
             setsuccessfulEntry(false)
             AnimateSubmitMessage()
         }   
-        else if (JsonResponse.email =='newsletter with this email already exists.'){
+        else if (JsonResponse.email ==='newsletter with this email already exists.'){
             setemptyEntry(false)
             setexistingEntry(true)
             setsuccessfulEntry(false)
