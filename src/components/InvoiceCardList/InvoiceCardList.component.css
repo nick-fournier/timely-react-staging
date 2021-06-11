@@ -1,0 +1,24 @@
+.cardsContainer{
+    width: 25%;
+    background-color: rgb(245, 245, 245);
+    overflow:auto;
+    height: 84.5vh;
+    transition: 300ms;
+}
+
+@media screen and (max-width: 480px){
+    .cardsContainer{
+        width: 100%;
+        background-color: rgb(245, 245, 245);
+        overflow:auto;
+        font-size: 2.5em;
+    }
+
+    .MobileListView{
+        width: 0;
+    }
+
+    .MobileListHidden{
+        width: 100%;
+    }
+}

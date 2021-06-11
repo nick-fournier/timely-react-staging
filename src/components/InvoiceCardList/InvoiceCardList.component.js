@@ -1,12 +1,13 @@
 import React from 'react'
 import InvoiceCard from '../InvoiceCard/InvoiceCard.component'
+import './InvoiceCardList.component.css'
 
-export default function InvoiceCardList({SearchedData, itemList, setitemList, setCurrentItem}) {
+export default function InvoiceCardList({SearchedData, itemList, setitemList, setCurrentItem, isMobile, setisMobile}) {
 
     return (
-        <div className="cardsContainer">
+        <div className= {`${isMobile?'MobileListView':'MobileListHidden'} cardsContainer`}>
             {SearchedData.map(item => (
-                <InvoiceCard key={item.invoice_id} item={item} itemList={itemList} setitemList={setitemList} setCurrentItem={setCurrentItem}/>
+                <InvoiceCard setisMobile={setisMobile} key={item.invoice_id} item={item} itemList={itemList} setitemList={setitemList} setCurrentItem={setCurrentItem}/>
             ))}
         </div>
     )

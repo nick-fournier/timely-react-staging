@@ -5,6 +5,7 @@ import Payables from './pages/payables/payables'
 import Nav from './components/Nav/nav'
 import AddInvoice from './components/AddInvoice/AddInvoice.component'
 import AddBusiness from './components/AddBusiness/AddBusiness';
+import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 function App() {
 
   const AddCover = {
@@ -29,6 +30,9 @@ function App() {
   const [ShowNewBusiness, setShowNewBusiness] = useState(false)
   const [isActive, setisActive] = useState(false)
   const [reFetchBusinesses, setreFetchBusinesses] = useState(true)
+
+
+  const [isMobile, setisMobile] = useState(false)
 
   async function loadReceivablesData(){
     const rawReceivablesData = await fetch('https://timely-invoicing-api.herokuapp.com/api/receivables/',{
@@ -117,9 +121,9 @@ function App() {
         <div className='invoicePageContainer'>
           <Nav isActive={isActive} setisActive={setisActive} ShowNewInvoice={ShowNewInvoice} setShowNewInvoice={setShowNewInvoice} setcurrentNavItem={setcurrentNavItem} setShowNewBusiness={setShowNewBusiness} currentNavItem={currentNavItem} loadReceivables={loadReceivables} loadPayables={loadPayables} />
           {DataSwitch === 1?
-            <Receivables loadReceivables={loadReceivables} loadPayables={loadPayables} SearchedData={SearchedData()} setSearchMethod={setSearchMethod} DataSet={DataSet} setDataSet={setDataSet} itemList={itemList} CurrentItem={CurrentItem} setitemList={setitemList} setCurrentItem={setCurrentItem} setsearchField={setsearchField} DataSwitch={DataSwitch}/>
+            <Receivables setisMobile={setisMobile} isMobile={isMobile} loadReceivables={loadReceivables} loadPayables={loadPayables} SearchedData={SearchedData()} setSearchMethod={setSearchMethod} DataSet={DataSet} setDataSet={setDataSet} itemList={itemList} CurrentItem={CurrentItem} setitemList={setitemList} setCurrentItem={setCurrentItem} setsearchField={setsearchField} DataSwitch={DataSwitch}/>
            :
-            <Payables loadPayables={loadPayables} loadReceivables={loadReceivables} SearchedData={SearchedData()} setSearchMethod={setSearchMethod} DataSet={DataSet} setDataSet={setDataSet} itemList={itemList} CurrentItem={CurrentItem} setitemList={setitemList} setCurrentItem={setCurrentItem} setsearchField={setsearchField} DataSwitch={DataSwitch}/>
+            <Payables setisMobile={setisMobile} isMobile={isMobile} loadPayables={loadPayables} loadReceivables={loadReceivables} SearchedData={SearchedData()} setSearchMethod={setSearchMethod} DataSet={DataSet} setDataSet={setDataSet} itemList={itemList} CurrentItem={CurrentItem} setitemList={setitemList} setCurrentItem={setCurrentItem} setsearchField={setsearchField} DataSwitch={DataSwitch}/>
           }  
         </div>
       </div>

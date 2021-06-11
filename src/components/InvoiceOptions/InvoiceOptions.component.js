@@ -1,6 +1,6 @@
 import './InvoiceOptions.component.css'
 import {useState} from 'react'
-export default function InvoiceOptions({CurrentItem, setsearchField, setSearchMethod, DataSwitch}) {
+export default function InvoiceOptions({CurrentItem, setsearchField, setSearchMethod, DataSwitch, isMobile}) {
 
     const [markDisabled, setmarkDisabled] = useState(CurrentItem.is_paid?true:false)
     const [currentTab, setcurrentTab] = useState(1)
@@ -111,18 +111,18 @@ export default function InvoiceOptions({CurrentItem, setsearchField, setSearchMe
 
     return (
 
-        <div className="InvoiceOptionsContainer">
-            <div className="SearchAndTabsContainer">
+        <div className='InvoiceOptionsContainer'>
+            <div className={`${isMobile?'HideOptions':'ShowOptions'} SearchAndTabsContainer`}>
                 <div className="SearchAndTabs">
-                <div className="InvoicesTitleContainer">
-                    {DataSwitch === 1?
-                        <div className='ReceviableTitle'>Receivables</div>:
-                        <div className='PayableTitle'>Payables</div>
-                    }
-                </div>
-                <div className="InvoiceSearchAndTabsContainer">
-                    <div className="InvoiceSearchContainer">
-                            <input onChange={handleChange} className='SearchInput' type="search" placeholder='Search for an invoice'/>
+                    <div className="InvoicesTitleContainer">
+                        {DataSwitch === 1?
+                            <div className='ReceviableTitle'>Receivables</div>:
+                            <div className='PayableTitle'>Payables</div>
+                        }
+                    </div>
+                    <div className="InvoiceSearchAndTabsContainer">
+                        <div className="InvoiceSearchContainer">
+                                <input onChange={handleChange} className='SearchInput' type="search" placeholder='Search for an invoice'/>
                         </div>
                         <div className="InvoiceTabs">
                                 <div onClick={handleClickInbox} className={currentTab===1?'CurrentTabItemClicked':"InvoiceTabItem"}>Inbox</div>
@@ -130,12 +130,11 @@ export default function InvoiceOptions({CurrentItem, setsearchField, setSearchMe
                                 <div onClick={handleClickFlagged} className={currentTab===3?'CurrentTabItemClicked':"InvoiceTabItem"}>Flagged</div>
                                 <div onClick={handleClickPaid} className={currentTab===4?'CurrentTabItemClicked':"InvoiceTabItem"}>Paid</div>
                         </div>
-                </div>
-                    
+                    </div>
                 </div>
             </div>
             
-            <div className="ButtonContainer">
+            <div className={`${isMobile?'ShowButtons':'HideButtons'} ButtonContainer`}>
                 
                 <div className="SecondaryButtonContainer">
                     <button onClick={showButtons} className='LabelButton' > Label</button>   

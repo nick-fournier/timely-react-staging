@@ -2,7 +2,7 @@ import '../../pages/receivables/receivables.css'
 import './InvoiceCard.component.css'
 import {useState, useEffect} from 'react'
 
-export default function InvoiceCard({item, itemList, setitemList, setCurrentItem}) {
+export default function InvoiceCard({item, itemList, setitemList, setCurrentItem, setisMobile}) {
     const [isActive, setisActive] = useState(false)
 
     useEffect(() => {
@@ -20,6 +20,7 @@ export default function InvoiceCard({item, itemList, setitemList, setCurrentItem
             setTimeout(() => {
                 setisActive(true)
             }, 0.1);
+            setisMobile(true)
  
         }}
          id="id" className={isActive === true?'ActiveCard':'card-container'} >
