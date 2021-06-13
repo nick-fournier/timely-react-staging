@@ -24,3 +24,36 @@
     width: 25%;
     justify-content: space-between;
 }
+
+.QuantityHeader{
+
+}
+
+.ItemPriceHeader{
+
+}
+
+.ItemsTotalPriceHeader{
+
+}
+
+
+@media screen and (max-width: 480px){
+
+    .QuantityPriceAmountContainer{
+        margin-left: auto;
+        display: flex;
+        width: 30%;
+        justify-content: space-between;
+    }
+
+    .QuantityHeader{
+        padding: 0 0.8em 0 0;
+    }
+    .ItemPriceHeader{
+        padding: 0 0.8em 0 0;
+    }
+    .ItemsTotalPriceHeader{
+        padding: 0 0.8em 0 0;
+    }
+}

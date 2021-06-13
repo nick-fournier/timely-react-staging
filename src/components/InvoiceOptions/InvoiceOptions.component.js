@@ -1,6 +1,11 @@
 import './InvoiceOptions.component.css'
 import {useState} from 'react'
-export default function InvoiceOptions({CurrentItem, setsearchField, setSearchMethod, DataSwitch, isMobile}) {
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+
+
+export default function InvoiceOptions({CurrentItem, setsearchField, setSearchMethod, DataSwitch, isMobile, setisMobile}) {
 
     const [markDisabled, setmarkDisabled] = useState(CurrentItem.is_paid?true:false)
     const [currentTab, setcurrentTab] = useState(1)
@@ -137,6 +142,9 @@ export default function InvoiceOptions({CurrentItem, setsearchField, setSearchMe
             <div className={`${isMobile?'ShowButtons':'HideButtons'} ButtonContainer`}>
                 
                 <div className="SecondaryButtonContainer">
+                    <div onClick={()=> setisMobile(false)} className="BackToInvoiceList">
+                        <FontAwesomeIcon icon={faArrowLeft} />
+                    </div>
                     <button onClick={showButtons} className='LabelButton' > Label</button>   
                     <button style={buttonStyles} onClick ={flagInvoice} className="Button">Flag</button>  
                     <button style={buttonStyles} disabled={CurrentItem.is_paid?true:false} onClick={markInvoice} className={CurrentItem.is_paid?'Disabled':'Button'}>Mark as Paid</button>

@@ -10,9 +10,6 @@
     font-family: Cairo;
 }
 
-.BackToInvoiceList{
-    display: none;
-}
 
 .TopPartLHS{
     display: flex;
@@ -60,8 +57,36 @@
 }
 
 @media screen and (max-width: 480px){
-    .BackToInvoiceList{
-        display: block;
+
+    
+    .TopPart{
+        height: 12%;
+        font-size: 1.4em;
+    }
+
+
+
+    .TopPartLHS{
+
+    }
+    
+    
+    .logo{
+
+    }
+    
+    .InvoiceNumber{
+
+    }
+    
+    
+    .InvoiceHeaders{
+
+    }
+    
+    
+    .TopPartRHS{
+
     }
     
 }
