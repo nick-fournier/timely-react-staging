@@ -9,9 +9,11 @@
 @media screen and (max-width: 480px){
     .cardsContainer{
         width: 100%;
+        height: 73vh;
         background-color: rgb(245, 245, 245);
         overflow:auto;
         font-size: 2.5em;
+        padding: 0 0 0 0;
     }
 
     .MobileListView{

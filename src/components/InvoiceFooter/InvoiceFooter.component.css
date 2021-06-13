@@ -39,3 +39,38 @@
 .PaymentMedium{
     margin-bottom: 1em;
 }
+
+
+@media screen and (max-width:480px){
+    .BottomPart{
+        height: 15vh;
+        font-size: 0.9em;
+        overflow: hidden;
+    }
+    
+    .From .To{
+
+    }
+    
+    .FromName,.ToName{
+        
+
+    }
+    
+    
+    
+    .NoteContainer{
+
+    }
+    
+    .Note{
+
+    
+    }
+    
+    .PaymentMedium{
+
+    }
+    
+    
+}
