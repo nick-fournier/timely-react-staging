@@ -273,7 +273,9 @@
     }
     
     .Disabled{
-
+        border-radius: 5px;
+        padding-right: 1em;
+        padding-left: 1em;
     }
     
     .Button{
@@ -301,6 +303,7 @@
         align-items: center;
         justify-content: center;
         font-size: 1.75em;
+        
     }
     
     .ReceviableTitle{

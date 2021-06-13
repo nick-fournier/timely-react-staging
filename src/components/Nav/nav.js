@@ -12,7 +12,7 @@ import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import {useHistory} from 'react-router-dom'
 
-export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, currentNavItem, ShowNewInvoice, setShowNewInvoice, setShowNewBusiness, isActive, setisActive}) {
+export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, currentNavItem, ShowNewInvoice, setShowNewInvoice, setShowNewBusiness, isActive, setisActive, setisMobile}) {
     const [showNav, setshowNav] = useState(false)
     const History = useHistory()
 
@@ -73,6 +73,7 @@ export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, c
                     setshowNav(false)
                     setShowNewInvoice(false)
                     setisActive(false)
+                    setisMobile(false)
                 }}>
                     <span className="icon IconRed">
                         <FontAwesomeIcon icon={faMoneyCheckAlt} />
@@ -86,6 +87,7 @@ export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, c
                     setshowNav(false)
                     setShowNewInvoice(false)
                     setisActive(false)
+                    setisMobile(false)
                 }}>
                     <span className="icon IconGreen">
                         <FontAwesomeIcon icon={faMoneyCheckAlt} />

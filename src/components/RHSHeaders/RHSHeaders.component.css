@@ -39,6 +39,11 @@
 
 
 @media screen and (max-width: 480px){
+    .RHSHeaders{
+        padding-top: 0.5em;
+        padding-bottom: 1em;
+        padding-right: 0.5em;
+    }
 
     .QuantityPriceAmountContainer{
         margin-left: auto;
