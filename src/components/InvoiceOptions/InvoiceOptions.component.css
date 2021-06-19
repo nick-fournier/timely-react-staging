@@ -216,34 +216,35 @@
         display: flex;
         flex-direction: row-reverse;
         width: 100%;
+        margin-top: 1em;
     }
 
     .InvoicesTitleContainer{
         font-size: 1em;
         width: 100%;
-        display: flex;
+        display: none;
         justify-content: center;
         padding-top: 1em;
     }
     
     .SearchInput{
         width: 100%;
-        padding: 0.45em 0.95em;
-        font-size: 1.3em;
+        padding: 0.45em 0.2em 0.45em 0.95em;
+        font-size: 1.5em;
         border: 0.5px solid #343a40;
     }
     
     
     .InvoiceTabs{
         margin: auto;
-        font-size: 1em;
+        font-size: 1.3em;
         padding: 1em;
     }
     
     
     
     .InvoiceTabItem{
-
+        margin: 0.75em 0.5em 
     }
     
 

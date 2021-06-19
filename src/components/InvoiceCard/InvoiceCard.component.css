@@ -41,6 +41,7 @@
 
 .top-part-content{
     margin: 0 0.5em 0 0.5em;
+    text-transform: capitalize;
 }
 
 .bot-part{

@@ -1,5 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300;500;700;800;900&display=swap');
 
+.MobileNavContainer{
+    display: none;
+}
+
+.MobileNavFirstRow{
+    display: none;
+}
+
+.MobileNavSecondRow{
+    display: none;
+}
+
 .NavContainer{
     width: 17.5vw;
     height: 100vh;
@@ -33,6 +45,10 @@
     cursor: pointer;
     font-size: 0.77em;
     font-weight:500;
+
+}
+
+.nav-item2{
 
 }
 
@@ -123,6 +139,14 @@
 
 }
 
+.ActiveNavItem1{
+
+}
+
+.ActiveNavItem2{
+
+}
+
 .ActiveNavItem .text{
     margin-left: 0.15em;
 }
@@ -135,6 +159,51 @@
 }
 
 
+.HideMobileNavList{
+
+}
+
+.MobileNavListLeft{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    font-size: 3em;
+    border-radius: 0 0 1em 0;
+    background-color: rgba(54, 54, 54, 0.925);
+    transform: translate(-150%,51%);
+    color: white;
+    width: fit-content;
+    transition: 400ms;
+    justify-content: center;
+    align-items: center;
+}
+
+.MobileNavListRight{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    font-size: 3em;
+    border-radius: 0 0 0 1em;
+    background-color: rgba(54, 54, 54, 0.925);
+    transform: translate(250%,51%);
+    color: white;
+    width: 9em;
+    transition: 300ms;
+    align-items: flex-end;
+}
+
+.navItemMobile{
+
+}
+
+.navItemMobile2{
+
+}
+
+.navItemMobile2 .icon{
+    margin-left: 0.8em;
+}
+
 @media screen and (max-width: 480px){
     .NavContainer{
         width: 100vw;
@@ -144,11 +213,68 @@
         /* transition: 0.15s; */
     }
 
+    .MobileNavContainer{
+        display: flex;
+        flex-direction: column;
+        width: 100vw;
+        height: 100%;
+        margin: 0;
+        justify-content: space-between;
+    }
+
+    .MobileNavFirstRow{
+        display: flex;
+        width: auto;
+        font-size: 3.5em;
+        justify-content: space-between;
+        padding: 0.5em 0em 0.5em 0.6em;
+        height: fit-content;
+        color: white;
+        background-color: rgba(34, 34, 34, 0.815);
+    }
+
+    .MobileNavLogo{
+        font-weight: 700;
+        font-family: Inter;
+        text-transform: uppercase;
+    }
+
+    .MobileNavSecondRow{
+        width: 100%;
+        font-size: 4em;
+        display: flex;
+        text-transform: uppercase;
+        font-family: Inter;
+        align-items: flex-end;
+        height: fit-content;
+    }
+
+    .navItemMobile{
+        width: 9em;
+        height: 2em;
+        padding: 0.25em 1em 0.25em 1em;
+        margin-top: 0.55em;
+        font-family: Inter;
+        font-weight: 300;
+        font-size: 0.8em;
+    }
+    .navItemMobile2{
+        display: flex;
+        flex-direction: row-reverse;
+        width: 8em;
+        height: 2em;
+        padding: 0.25em 0.5em 0.25em 0.25em;
+        margin-top: 0.55em;
+        font-family: Inter;
+        font-weight: 300;
+        font-size: 0.8em;
+    }
+
     .navbar{
+        display: none;
         font-family: Inter;
         background: #ffffff;
         height: 100%;
-        display: flex;
         flex-direction: row;
         padding: 0;
         margin: 0;
@@ -160,8 +286,53 @@
     }
 
     .nav-item{
-        margin: 0.15em;
+        margin: 0.5em 0 0 0 ;
+        width: 50%;
+
+        padding: 0.5em;
+        font-size: 0.77em;
+    }
+
+    .nav-item2{
+        margin: 0.5em 0 0 0;
+        width: 50%;
+        padding: 0.5em;
+        font-size: 0.77em;
+        display: flex;
+        color: rgb(146, 146, 146);
+        width: 90%;
+        cursor: pointer;
+    }
+
+
+ 
+    .ActiveNavItem1{
         width: fit-content;
+        height: fit-content;
+        padding: 0.5em 2em 0.65em 0.75em;
+        margin: 0.5em 1em 0em 0;
+        box-sizing: border-box;
+        color: white;
+        font-weight: 800;
+        background-color: rgba(34, 34, 34, 0.815);
+        border-radius: 0 5em 0em 0;
+        display: flex;
+        cursor: pointer;
+        font-size: 0.72em;
+    }
+    .ActiveNavItem2{
+        width: fit-content;
+        height: fit-content;
+        padding: 0.5em 1em 0.65em 2em;
+        margin: 0.5em 0 0 1em;
+
+        color: white;
+        font-weight: 700;
+        background-color: rgba(34, 34, 34, 0.815);
+        border-radius: 5em 0 0 0em;
+        display: flex;              
+        cursor: pointer;
+        font-size: 0.72em;
     }
     
     .SubNavItem{
@@ -188,11 +359,17 @@
     
     
     .navLogo .text{
-
     }
     
     .navLogo .icon{
+    }
 
+    .MobileNavLogo .text{
+        margin-left: 0;
+    }
+
+    .MobileNavLogo .icon{
+        margin-right: 0.25em;
     }
     
     
@@ -201,17 +378,14 @@
 
     }
 
+
     
-    .ActiveNavItem{
-        margin: 0.15em;
-        width: fit-content;
-        border-radius: 5em ;
-        padding: 0.5em 1em 0.5em 1em;
-        margin: 0 1em;
+    .ActiveNavItem1 .text{
+        margin-left: 0em;
+        height: fit-content;
     }
-    
-    .ActiveNavItem .text{
-        margin-left: 0.15em;
+    .ActiveNavItem1 .icon{
+        height: fit-content;
     }
 
     .nav-item:nth-last-child(8){
