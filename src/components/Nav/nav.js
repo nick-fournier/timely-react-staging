@@ -197,7 +197,8 @@ export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, c
                     <div className="navItemMobile" onClick ={()=>{
                         setShowNewBusiness(false)
                         setShowNewInvoice(!ShowNewInvoice)
-                        {isActive?setisActive(false):setisActive(true)}
+                        {isActive?setisActive(false):setisActive(true)
+                        ShowNewInvoice?setshowMobileNavList1(true):setshowMobileNavList1(false)}
                     }}>
                         <span className="icon">
                             <FontAwesomeIcon icon ={faPlus} />

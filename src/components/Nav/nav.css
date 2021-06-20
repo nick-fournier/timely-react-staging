@@ -176,6 +176,7 @@
     transition: 400ms;
     justify-content: center;
     align-items: center;
+    z-index: 5;
 }
 
 .MobileNavListRight{
@@ -190,6 +191,8 @@
     width: 9em;
     transition: 300ms;
     align-items: flex-end;
+    z-index: 5;
+
 }
 
 .navItemMobile{
@@ -232,6 +235,7 @@
         height: fit-content;
         color: white;
         background-color: rgba(34, 34, 34, 0.815);
+        z-index: 5;
     }
 
     .MobileNavLogo{
@@ -326,7 +330,6 @@
         height: fit-content;
         padding: 0.5em 1em 0.65em 2em;
         margin: 0.5em 0 0 1em;
-
         color: white;
         font-weight: 700;
         background-color: rgba(34, 34, 34, 0.815);
@@ -376,7 +379,6 @@
     
     
     .icon{
-
     }
 
 
