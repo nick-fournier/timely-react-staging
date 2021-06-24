@@ -4,8 +4,12 @@ import './InvoiceCardList.component.css'
 
 export default function InvoiceCardList({SearchedData, itemList, setitemList, setCurrentItem, isMobile, setisMobile}) {
 
+    const hideInvoiceList={
+        left : '-100%'
+    }
+
     return (
-        <div className= {`${isMobile?'MobileListView':'MobileListHidden'} cardsContainer`}>
+        <div style={isMobile?hideInvoiceList:{}} className= 'cardsContainer'>
             {SearchedData.map(item => (
                 <InvoiceCard setisMobile={setisMobile} key={item.invoice_id} item={item} itemList={itemList} setitemList={setitemList} setCurrentItem={setCurrentItem}/>
             ))}

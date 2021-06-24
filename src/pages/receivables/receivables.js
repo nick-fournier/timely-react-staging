@@ -10,13 +10,18 @@ import { useEffect } from 'react'
 export default function Receivables({SearchedData, DataSet, setDataSet, itemList, setitemList, CurrentItem, setCurrentItem, setsearchField, setSearchMethod, DataSwitch, loadPayables, loadReceivables, setisMobile, isMobile}) {
 
 
+    const ShowInvoiceDetails = {
+        right: '0'
+    }
+    
+
     return (
         <div className='ReceivablesPageContainer'>
             <InvoiceOptions setisMobile={setisMobile} isMobile={isMobile} SearchedData={SearchedData} DataSet={DataSet} setDataSet={setDataSet} CurrentItem={CurrentItem} setsearchField={setsearchField} setSearchMethod={setSearchMethod} DataSwitch={DataSwitch} loadPayables={loadPayables} loadReceivables={loadReceivables}/>
             <div className="invoice-page-container">
                 <InvoiceCardList  setisMobile={setisMobile} isMobile={isMobile} SearchedData={SearchedData} itemList={itemList} setitemList={setitemList} setCurrentItem={setCurrentItem}/>
 
-            <div className={`${isMobile?'InvoiceMobileHidden':'InvoiceMobileView'} RHSContainer`}>
+            <div  style={isMobile?ShowInvoiceDetails:{}} className={`${isMobile?'InvoiceMobileHidden':'InvoiceMobileView'} RHSContainer`}>
                 <div className="RightHandSide">
                 <InvoiceHeader setisMobile={setisMobile} CurrentItem={CurrentItem}/>
                     

@@ -8,6 +8,8 @@
 
 @media screen and (max-width: 480px){
     .cardsContainer{
+        position: absolute;
+        left: 0;
         width: 100%;
         height: 73vh;
         background-color: rgb(245, 245, 245);
@@ -17,10 +19,8 @@
     }
 
     .MobileListView{
-        width: 0;
     }
 
     .MobileListHidden{
-        width: 100%;
     }
 }

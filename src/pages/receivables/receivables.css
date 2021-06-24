@@ -70,7 +70,8 @@ body {
     background-color: rgb(207, 207, 207);
     height: auto;
     transition: 300ms;
-
+    position: absolute;
+    right: 100%;
     font-size: 1.9em;
   }
 
@@ -79,7 +80,7 @@ body {
   }
 
   .InvoiceMobileView{
-    width: 0;
+    width: 100%;
   }
 
   .MiddlePart{

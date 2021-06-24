@@ -142,9 +142,9 @@ export default function InvoiceOptions({CurrentItem, setsearchField, setSearchMe
             <div className={`${isMobile?'ShowButtons':'HideButtons'} ButtonContainer`}>
                 
                 <div className="SecondaryButtonContainer">
-                    <div onClick={()=> setisMobile(false)} className="BackToInvoiceList">
+                    <button onClick={()=> setisMobile(false)} className="BackToInvoiceList">
                         <FontAwesomeIcon icon={faArrowLeft} />
-                    </div>
+                    </button>
                     <button onClick={showButtons} className='LabelButton' > Label</button>   
                     <button style={buttonStyles} onClick ={flagInvoice} className="Button">Flag</button>  
                     <button style={buttonStyles} disabled={CurrentItem.is_paid?true:false} onClick={markInvoice} className={CurrentItem.is_paid?'Disabled':'Button'}>Mark as Paid</button>

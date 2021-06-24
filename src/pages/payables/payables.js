@@ -7,13 +7,18 @@ import RHSHeaders from '../../components/RHSHeaders/RHSHeaders.component'
 import Price from '../../components/Price/Price.component'
 import InvoiceOptions from '../../components/InvoiceOptions/InvoiceOptions.component'
 export default function Payables({SearchedData, DataSet, setDataSet, itemList, setitemList, CurrentItem, setCurrentItem, setsearchField, setSearchMethod, DataSwitch, loadPayables, loadReceivables, setisMobile, isMobile}) {
+    
+    const ShowInvoiceDetails = {
+        right: '0'
+    }
+    
     return (
         <div className='ReceivablesPageContainer'>
             <InvoiceOptions setisMobile={setisMobile} isMobile={isMobile} SearchedData={SearchedData} DataSet={DataSet} setDataSet={setDataSet} CurrentItem={CurrentItem} setsearchField={setsearchField} setSearchMethod={setSearchMethod} loadPayables={loadPayables} loadReceivables={loadReceivables}/>
             <div className="invoice-page-container">
                 <InvoiceCardList setisMobile={setisMobile} isMobile={isMobile} SearchedData={SearchedData} itemList={itemList} setitemList={setitemList} setCurrentItem={setCurrentItem}/>
 
-            <div className={`${isMobile?'InvoiceMobileHidden':'InvoiceMobileView'} RHSContainer`}>
+            <div style={isMobile?ShowInvoiceDetails:{}} className={`${isMobile?'InvoiceMobileHidden':'InvoiceMobileView'} RHSContainer`}>
                 <div className="RightHandSide">
                 <InvoiceHeader setisMobile={setisMobile} CurrentItem={CurrentItem}/>
                     
