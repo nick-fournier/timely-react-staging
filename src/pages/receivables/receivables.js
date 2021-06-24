@@ -11,7 +11,7 @@ export default function Receivables({SearchedData, DataSet, setDataSet, itemList
 
 
     const ShowInvoiceDetails = {
-        right: '0'
+        transform: 'translateX(100%)'
     }
     
 

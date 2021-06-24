@@ -9,7 +9,7 @@ import InvoiceOptions from '../../components/InvoiceOptions/InvoiceOptions.compo
 export default function Payables({SearchedData, DataSet, setDataSet, itemList, setitemList, CurrentItem, setCurrentItem, setsearchField, setSearchMethod, DataSwitch, loadPayables, loadReceivables, setisMobile, isMobile}) {
     
     const ShowInvoiceDetails = {
-        right: '0'
+        transform: 'translateX(100%)'
     }
     
     return (

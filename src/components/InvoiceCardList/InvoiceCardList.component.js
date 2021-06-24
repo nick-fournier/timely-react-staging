@@ -5,7 +5,7 @@ import './InvoiceCardList.component.css'
 export default function InvoiceCardList({SearchedData, itemList, setitemList, setCurrentItem, isMobile, setisMobile}) {
 
     const hideInvoiceList={
-        left : '-100%'
+        transform : 'translateX(-100%)'
     }
 
     return (

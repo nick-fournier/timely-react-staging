@@ -163,7 +163,7 @@ export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, c
                     </div>
                 </div>
                 <div className="MobileNavSecondRow">
-                    <div className={currentNavItem === 2? 'ActiveNavItem1':'nav-item noSelect'} onClick={()=>{
+                    <div className={currentNavItem === 2? 'ActiveNavItem1':'nav-item'} onClick={()=>{
                         loadReceivables()
                         setshowNav(false)
                         setShowNewInvoice(false)
@@ -177,7 +177,7 @@ export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, c
                             Receivables
                         </span>
                     </div>
-                    <div className={currentNavItem === 3?'ActiveNavItem2':"nav-item2 noSelect"} onClick={()=>{
+                    <div className={currentNavItem === 3?'ActiveNavItem2':"nav-item2"} onClick={()=>{
                         loadPayables()
                         setshowNav(false)
                         setShowNewInvoice(false)

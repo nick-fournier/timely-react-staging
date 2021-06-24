@@ -71,7 +71,7 @@ body {
     height: auto;
     transition: 500ms;
     position: absolute;
-    right: 100%;
+    left: -100%;
     font-size: 1.9em;
   }
 
