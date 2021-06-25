@@ -14,56 +14,56 @@ export default function Receivables({SearchedData, DataSet, setDataSet, itemList
 
 
     const ShowInvoiceDetails = {
-        transform: 'translateX(100%)'
+        transform: 'translateX(-100%)'
     }
     
 
     return (
         <div className='ReceivablesPageContainer'>
             <MediaQuery maxDeviceWidth={480} >
-            <InvoiceOptions setisMobile={setisMobile} isMobile={isMobile} SearchedData={SearchedData} DataSet={DataSet} setDataSet={setDataSet} CurrentItem={CurrentItem} setsearchField={setsearchField} setSearchMethod={setSearchMethod} DataSwitch={DataSwitch} loadPayables={loadPayables} loadReceivables={loadReceivables}/>
-            <div className="invoice-page-container">
-                <InvoiceCardList  setisMobile={setisMobile} isMobile={isMobile} SearchedData={SearchedData} itemList={itemList} setitemList={setitemList} setCurrentItem={setCurrentItem}/>
+                <InvoiceOptions setisMobile={setisMobile} isMobile={isMobile} SearchedData={SearchedData} DataSet={DataSet} setDataSet={setDataSet} CurrentItem={CurrentItem} setsearchField={setsearchField} setSearchMethod={setSearchMethod} DataSwitch={DataSwitch} loadPayables={loadPayables} loadReceivables={loadReceivables}/>
+                <div className="invoice-page-container">
+                    <InvoiceCardList  setisMobile={setisMobile} isMobile={isMobile} SearchedData={SearchedData} itemList={itemList} setitemList={setitemList} setCurrentItem={setCurrentItem}/>
 
-            <div  style={isMobile?ShowInvoiceDetails:{}} className={`${isMobile?'InvoiceMobileHidden':'InvoiceMobileView'} RHSContainer`}>
-                <div className="RightHandSide">
-                <InvoiceHeader setisMobile={setisMobile} CurrentItem={CurrentItem}/>
-                    
-                    <div className="MiddlePart" id='MiddlePart'>
-                        <RHSHeaders CurrentItem={CurrentItem}/>
-                        <ItemList itemList={itemList}/>
-
+                <div  style={isMobile?ShowInvoiceDetails:{}} className={`${isMobile?'InvoiceMobileHidden':'InvoiceMobileView'} RHSContainer`}>
+                    <div className="RightHandSide">
+                    <InvoiceHeader setisMobile={setisMobile} CurrentItem={CurrentItem}/>
                         
+                        <div className="MiddlePart" id='MiddlePart'>
+                            <RHSHeaders CurrentItem={CurrentItem}/>
+                            <ItemList itemList={itemList}/>
 
-                        <Price CurrentItem={CurrentItem} DataSwitch={DataSwitch}/>
+                            
+
+                            <Price CurrentItem={CurrentItem} DataSwitch={DataSwitch}/>
+                        </div>
+                        <InvoiceFooter CurrentItem={CurrentItem}/>
                     </div>
-                    <InvoiceFooter CurrentItem={CurrentItem}/>
                 </div>
-            </div>
-            </div>
+                </div>
             </MediaQuery>
 
             <MediaQuery minDeviceWidth={481} >
-            <InvoiceOptions setisMobile={setisMobile} isMobile={isMobile} SearchedData={SearchedData} DataSet={DataSet} setDataSet={setDataSet} CurrentItem={CurrentItem} setsearchField={setsearchField} setSearchMethod={setSearchMethod} DataSwitch={DataSwitch} loadPayables={loadPayables} loadReceivables={loadReceivables}/>
-            <div className="invoice-page-container">
-                <InvoiceCardList  setisMobile={setisMobile} isMobile={isMobile} SearchedData={SearchedData} itemList={itemList} setitemList={setitemList} setCurrentItem={setCurrentItem}/>
+                <InvoiceOptions setisMobile={setisMobile} isMobile={isMobile} SearchedData={SearchedData} DataSet={DataSet} setDataSet={setDataSet} CurrentItem={CurrentItem} setsearchField={setsearchField} setSearchMethod={setSearchMethod} DataSwitch={DataSwitch} loadPayables={loadPayables} loadReceivables={loadReceivables}/>
+                <div className="invoice-page-container">
+                    <InvoiceCardList  setisMobile={setisMobile} isMobile={isMobile} SearchedData={SearchedData} itemList={itemList} setitemList={setitemList} setCurrentItem={setCurrentItem}/>
 
-            <div  className={`${isMobile?'InvoiceMobileHidden':'InvoiceMobileView'} RHSContainer`}>
-                <div className="RightHandSide">
-                <InvoiceHeader setisMobile={setisMobile} CurrentItem={CurrentItem}/>
-                    
-                    <div className="MiddlePart" id='MiddlePart'>
-                        <RHSHeaders CurrentItem={CurrentItem}/>
-                        <ItemList itemList={itemList}/>
-
+                <div  className={`${isMobile?'InvoiceMobileHidden':'InvoiceMobileView'} RHSContainer`}>
+                    <div className="RightHandSide">
+                    <InvoiceHeader setisMobile={setisMobile} CurrentItem={CurrentItem}/>
                         
+                        <div className="MiddlePart" id='MiddlePart'>
+                            <RHSHeaders CurrentItem={CurrentItem}/>
+                            <ItemList itemList={itemList}/>
 
-                        <Price CurrentItem={CurrentItem} DataSwitch={DataSwitch}/>
+                            
+
+                            <Price CurrentItem={CurrentItem} DataSwitch={DataSwitch}/>
+                        </div>
+                        <InvoiceFooter CurrentItem={CurrentItem}/>
                     </div>
-                    <InvoiceFooter CurrentItem={CurrentItem}/>
                 </div>
-            </div>
-            </div>
+                </div>
             </MediaQuery>
         </div>
     )

@@ -11,7 +11,7 @@ import MediaQuery from "react-responsive";
 export default function Payables({SearchedData, DataSet, setDataSet, itemList, setitemList, CurrentItem, setCurrentItem, setsearchField, setSearchMethod, DataSwitch, loadPayables, loadReceivables, setisMobile, isMobile}) {
     
     const ShowInvoiceDetails = {
-        transform: 'translateX(100%)'
+        transform: 'translateX(-100%)'
     }
     
     return (
