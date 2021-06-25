@@ -30,6 +30,8 @@ export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, c
         transform: 'translate(147.5%,51%)'
     }
 
+
+
     return (
         <div className='NavContainer'>
             <ul className="navbar">
@@ -157,7 +159,7 @@ export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, c
                         <span onClick={()=>{
                             setshowMobileNavList2(!showMobileNavList2)
                             setshowMobileNavList1(false)
-                            }} className="icon">
+                            }} className="icon iconCog" >
                             <FontAwesomeIcon icon ={faCog} />
                         </span>
                     </div>

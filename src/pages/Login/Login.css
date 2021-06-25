@@ -128,3 +128,100 @@
     font-weight: 400;
 }
 
+
+@media screen and (max-width:480px){
+    .LoginPageFlex{
+        margin: 0;
+        padding: 0;
+        flex-direction: column;
+        align-items: center;
+        
+    }
+    
+    .LoginColumnFlex{
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        width: 100vw;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(255, 255, 255, 0.199);
+    }
+    
+    .LoginHeader{
+        color: rgb(0, 0, 0);
+        margin-top: 2em;
+        font-size: 9em;
+        width: 100vw;
+        text-align: center;
+    }
+    
+    .LoginPageDescription{
+        font-size: 2.5em;
+        text-align: center;
+        color: black;
+    }
+    
+    
+    .LoginImage img{
+
+    }
+    
+    
+    
+    .flexContainerLogin{
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.288);
+    }
+    
+    .formContainerLogin{
+        margin: 0;
+        text-align: center;
+        width: 100%;
+    }
+    
+    .titleLogin{
+        font-size: 4em;
+        color: rgb(0, 0, 0);
+        margin: 1em;
+    }
+    
+    .AlreadyAMember{
+        font-size: 3.2em;
+        color: black;
+
+    }
+    
+    .LoginLink{
+
+    }
+    
+    .formContainerSmall{
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .subtitleLogin{
+
+    }
+    
+    
+    .inputLogin{
+        text-align: center;
+    }
+    
+    
+    .submitLogin{
+
+    }
+    
+    
+    .submitLogin:hover{
+    }
+    
+    .LoginError{
+
+    }
+}
+

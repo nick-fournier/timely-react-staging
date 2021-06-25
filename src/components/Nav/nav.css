@@ -382,7 +382,9 @@
     
     
     .icon{
+        transition: 200ms;
     }
+
 
 
     
