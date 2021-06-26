@@ -135,7 +135,7 @@
         padding: 0;
         flex-direction: column;
         align-items: center;
-        
+        background-position:left;
     }
     
     .LoginColumnFlex{
