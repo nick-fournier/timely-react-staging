@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState, useRef, useEffect} from 'react'
 import './nav.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMoneyCheckAlt } from '@fortawesome/free-solid-svg-icons'
@@ -18,6 +18,30 @@ export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, c
     const History = useHistory()
     const [showMobileNavList1, setshowMobileNavList1] = useState(false)
     const [showMobileNavList2, setshowMobileNavList2] = useState(false)
+
+    const RefListLeft = useRef(null);
+    const RefListRight = useRef(null);
+
+    const handleClickOutsideLeft = (event) => {
+        if (RefListLeft.current && !RefListLeft.current.contains(event.target)) {
+            setshowMobileNavList1(false)
+        }
+    }
+
+    const handleClickOutsideRight = (event) => {
+        if (RefListRight.current && !RefListRight.current.contains(event.target)) {
+            setshowMobileNavList2(false)
+        }
+    }
+
+    useEffect(() => {
+        document.addEventListener('click', handleClickOutsideLeft, true);
+        document.addEventListener('click', handleClickOutsideRight, true);
+        return () => {
+            document.removeEventListener('click', handleClickOutsideLeft, true);
+            document.removeEventListener('click', handleClickOutsideRight, true);
+        };
+    });
 
     const black = {
         color: 'black',
@@ -195,7 +219,7 @@ export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, c
                     </div>
                 </div>
 
-                <div style={showMobileNavList1?showNav1:{}} className='MobileNavListLeft'>
+                <div ref={RefListLeft} style={showMobileNavList1?showNav1:{}} className='MobileNavListLeft'>
                     <div className="navItemMobile" onClick ={()=>{
                         setShowNewBusiness(false)
                         setShowNewInvoice(!ShowNewInvoice)
@@ -219,7 +243,7 @@ export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, c
                     </div>
                 </div>
 
-                <div style={showMobileNavList2?showNav2:{}} className='MobileNavListRight'>
+                <div ref={RefListRight} style={showMobileNavList2?showNav2:{}} className='MobileNavListRight'>
                     <div className="navItemMobile2">
                         <span className="icon">
                             <FontAwesomeIcon icon ={faQuestionCircle} />
