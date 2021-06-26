@@ -35,13 +35,13 @@ export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, c
     }
 
     useEffect(() => {
-        document.addEventListener('click', handleClickOutsideLeft, true);
-        document.addEventListener('click', handleClickOutsideRight, true);
+        document.addEventListener('click', handleClickOutsideLeft, true)
+        document.addEventListener('click', handleClickOutsideRight, true)
         return () => {
-            document.removeEventListener('click', handleClickOutsideLeft, true);
-            document.removeEventListener('click', handleClickOutsideRight, true);
-        };
-    });
+            document.removeEventListener('click', handleClickOutsideLeft, true)
+            document.removeEventListener('click', handleClickOutsideRight, true)
+        }
+    })
 
     const black = {
         color: 'black',
