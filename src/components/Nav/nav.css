@@ -29,7 +29,7 @@
     margin: 0;
     align-items: center;
     font-size: 1.25em;
-    border: #343a403d solid 0px 2px;
+    border: #343a403d solid 0px;
 }
 /* 
 .navbar:hover .text{
