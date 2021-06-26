@@ -148,8 +148,8 @@
     }
     
     .LoginHeader{
-        color: rgb(0, 0, 0);
-        margin-top: 3em;
+        color: #00335f;
+        margin-top: 2em;
         font-size: 9em;
         width: 100vw;
         text-align: center;
@@ -158,7 +158,8 @@
     .LoginPageDescription{
         font-size: 2.5em;
         text-align: center;
-        color: black;
+        color: #00335f;
+
     }
     
     
@@ -171,7 +172,7 @@
     .flexContainerLogin{
         width: 100%;
         justify-content: flex-start;
-        margin-top: 2em;
+        margin-top: 15em;
     }
     
     .formContainerLogin{
@@ -182,7 +183,7 @@
     
     .titleLogin{
         font-size: 4em;
-        color: rgb(0, 0, 0);
+        color: #00335f;
         margin: 1em;
     }
     
