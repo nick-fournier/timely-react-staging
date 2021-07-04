@@ -68,6 +68,7 @@
     font-size: 1.75em;
     font-weight: 700;
     line-height: 0em;
+    margin-left: 0.3em;
 }
 
 .AlreadyAMember{
@@ -87,18 +88,20 @@
 }
 
 .subtitleLogin{
-    font-weight: 600;
-    color: #343a40c9;
+    font-weight: 700;
+    color: #00335f;
+    margin-left: 0.6em;
 }
 
 
 .inputLogin{
     width: 68%;
-    margin-bottom: 0.5em;
+    margin-bottom: 1em;
     padding: 0.99em 0em 0.99em 2%;
-    border-radius: 5px;
     outline: none;
-    border: 1px solid rgba(128, 128, 128, 0.397);
+    border: none;
+    background: none;
+    border-bottom: 1px solid #00335f;
 }
 
 
@@ -106,9 +109,9 @@
     font-weight: 500;
     width: 70%;
     color: white;
-    margin-top: 1em;
+    margin-top: 2em;
     padding: 1.1em 6em;
-    border-radius: 5px;
+    border-radius: 5em;
     outline: none;
     border: none;
     background: #00335f;
@@ -184,6 +187,7 @@
     }
     
     .titleLogin{
+        margin-left: 0;
         font-size: 4em;
         color: #00335f;
         margin: 1em;
@@ -206,6 +210,7 @@
     }
     
     .subtitleLogin{
+        margin-left: 0;
         font-size: 3em;
     }
     
