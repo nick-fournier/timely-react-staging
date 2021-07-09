@@ -13,7 +13,7 @@ import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import {useHistory} from 'react-router-dom'
 
-export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, currentNavItem, ShowNewInvoice, setShowNewInvoice, setShowNewBusiness, isActive, setisActive, setisMobile}) {
+export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, currentNavItem, ShowNewInvoice, setShowNewInvoice, setShowNewBusiness, isActive, setisActive, setisMobile, ShowNewPayment, setShowNewPayment}) {
     const [showNav, setshowNav] = useState(false)
     const History = useHistory()
     const [showMobileNavList1, setshowMobileNavList1] = useState(false)
@@ -85,6 +85,7 @@ export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, c
                 </li>
                 <li style={isActive? black : {}} className={showNav?'ShowNav':'SubNavItem'} onClick ={()=>{
                     setShowNewBusiness(false)
+                    setShowNewPayment(false)
                     setShowNewInvoice(!ShowNewInvoice)
                     {isActive?setisActive(false):setisActive(true)}
                 }}>
@@ -95,7 +96,12 @@ export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, c
                         New Invoice
                     </span>
                 </li>
-                <li className={showNav?'ShowNav':'SubNavItem'}>
+                <li className={showNav?'ShowNav':'SubNavItem'} onClick ={()=>{
+                    setShowNewBusiness(false)
+                    setShowNewInvoice(false)
+                    setShowNewPayment(!ShowNewPayment)
+                    setisActive(false)
+                }}>
                     <span className="icon">
                         <FontAwesomeIcon icon ={faPlus} />
                     </span>
@@ -224,8 +230,8 @@ export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, c
                         setShowNewBusiness(false)
                         setShowNewInvoice(!ShowNewInvoice)
                         {isActive?setisActive(false):setisActive(true)
-                        ShowNewInvoice?setshowMobileNavList1(true):setshowMobileNavList1(false)}
-                    }}>
+                        ShowNewInvoice?setshowMobileNavList1(true):setshowMobileNavList1(false)
+                    }}}>
                         <span className="icon">
                             <FontAwesomeIcon icon ={faPlus} />
                         </span>
@@ -233,7 +239,12 @@ export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, c
                             New Invoice
                         </span>
                     </div>
-                    <div className="navItemMobile">
+                    <div className="navItemMobile" onClick ={()=>{
+                        setShowNewBusiness(false)
+                        setShowNewInvoice(false)
+                        setShowNewPayment(!ShowNewPayment)
+                        ShowNewInvoice?setshowMobileNavList1(true):setshowMobileNavList1(false)
+                    }}>
                         <span className="icon">
                             <FontAwesomeIcon icon ={faPlus} />
                         </span>
