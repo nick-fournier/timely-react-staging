@@ -10,7 +10,7 @@ import { useEffect } from 'react'
 
 import MediaQuery from "react-responsive";
 
-export default function Receivables({SearchedData, DataSet, setDataSet, itemList, setitemList, CurrentItem, setCurrentItem, setsearchField, setSearchMethod, DataSwitch, loadPayables, loadReceivables, setisMobile, isMobile}) {
+export default function Receivables({SearchedData, DataSet, setDataSet, itemList, setitemList, CurrentItem, setCurrentItem, setsearchField, setSearchMethod, DataSwitch, loadPayables, loadReceivables, setisMobile, isMobile, ShowSchedulePayment, setShowSchedulePayment}) {
 
 
     const ShowInvoiceDetails = {
@@ -21,7 +21,7 @@ export default function Receivables({SearchedData, DataSet, setDataSet, itemList
     return (
         <div className='ReceivablesPageContainer'>
             <MediaQuery maxDeviceWidth={480} >
-                <InvoiceOptions setisMobile={setisMobile} isMobile={isMobile} SearchedData={SearchedData} DataSet={DataSet} setDataSet={setDataSet} CurrentItem={CurrentItem} setsearchField={setsearchField} setSearchMethod={setSearchMethod} DataSwitch={DataSwitch} loadPayables={loadPayables} loadReceivables={loadReceivables}/>
+                <InvoiceOptions ShowSchedulePayment={ShowSchedulePayment} setShowSchedulePayment={setShowSchedulePayment} setisMobile={setisMobile} isMobile={isMobile} SearchedData={SearchedData} DataSet={DataSet} setDataSet={setDataSet} CurrentItem={CurrentItem} setsearchField={setsearchField} setSearchMethod={setSearchMethod} DataSwitch={DataSwitch} loadPayables={loadPayables} loadReceivables={loadReceivables} />
                 <div className="invoice-page-container">
                     <InvoiceCardList  setisMobile={setisMobile} isMobile={isMobile} SearchedData={SearchedData} itemList={itemList} setitemList={setitemList} setCurrentItem={setCurrentItem}/>
 

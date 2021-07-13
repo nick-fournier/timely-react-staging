@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 
 
-export default function InvoiceOptions({CurrentItem, setsearchField, setSearchMethod, DataSwitch, isMobile, setisMobile}) {
+export default function InvoiceOptions({CurrentItem, setsearchField, setSearchMethod, DataSwitch, isMobile, setisMobile, ShowSchedulePayment, setShowSchedulePayment}) {
 
     const [markDisabled, setmarkDisabled] = useState(CurrentItem.is_paid?true:false)
     const [currentTab, setcurrentTab] = useState(1)
@@ -151,7 +151,10 @@ export default function InvoiceOptions({CurrentItem, setsearchField, setSearchMe
                     {DataSwitch === 1?
                     <button onClick={scheduleInvoice} className="Button">Remind</button>
                     :
-                    <button onClick={scheduleInvoice} className="Button">Schedule</button>
+                    <button onClick={()=>{
+                        setShowSchedulePayment(true)
+                        // scheduleInvoice()
+                    }} className="Button">Schedule</button>
                     }  
                 </div>
             </div>

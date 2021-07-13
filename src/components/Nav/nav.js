@@ -13,8 +13,10 @@ import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import {useHistory} from 'react-router-dom'
 
-export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, currentNavItem, ShowNewInvoice, setShowNewInvoice, setShowNewBusiness, isActive, setisActive, setisMobile, ShowNewPayment, setShowNewPayment}) {
+export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, currentNavItem, ShowNewInvoice, setShowNewInvoice, setShowNewBusiness, isActive, setisActive, setisMobile, ShowNewPayment, setShowNewPayment, setShowSchedulePayment, ShowPaymentSettings, setShowPaymentSettings}) {
     const [showNav, setshowNav] = useState(false)
+    const [showNavSettings, setshowNavSettings] = useState(false)
+
     const History = useHistory()
     const [showMobileNavList1, setshowMobileNavList1] = useState(false)
     const [showMobileNavList2, setshowMobileNavList2] = useState(false)
@@ -69,6 +71,7 @@ export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, c
                 </li>
                 <li className={currentNavItem === 1?'ActiveNavItem':"nav-item"} onClick={()=>{
                     setshowNav(!showNav)
+                    setshowNavSettings(false)
                     if (!showNav){
                         setcurrentNavItem(1)
                         setisActive(false)
@@ -87,34 +90,40 @@ export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, c
                     setShowNewBusiness(false)
                     setShowNewPayment(false)
                     setShowNewInvoice(!ShowNewInvoice)
-                    {isActive?setisActive(false):setisActive(true)}
+                    setShowSchedulePayment(false)
+                    {isActive?setisActive(false):setisActive(true)
+                    }
                 }}>
                     <span className="icon">
                         <FontAwesomeIcon icon ={faPlus} />
                     </span>
                     <span className="text">
-                        New Invoice
+                        Invoice To Send
                     </span>
                 </li>
                 <li className={showNav?'ShowNav':'SubNavItem'} onClick ={()=>{
                     setShowNewBusiness(false)
                     setShowNewInvoice(false)
                     setShowNewPayment(!ShowNewPayment)
+                    setShowSchedulePayment(false)
                     setisActive(false)
                 }}>
                     <span className="icon">
                         <FontAwesomeIcon icon ={faPlus} />
                     </span>
                     <span className="text">
-                        New Payment
+                        Bill To Pay
                     </span>
                 </li>
                 <li className={currentNavItem === 2? 'ActiveNavItem':'nav-item'} onClick={()=>{
                     loadReceivables()
                     setshowNav(false)
+                    setshowNavSettings(false)
+
                     setShowNewInvoice(false)
                     setisActive(false)
                     setisMobile(false)
+
                 }}>
                     <span className="icon IconRed">
                         <FontAwesomeIcon icon={faMoneyCheckAlt} />
@@ -126,9 +135,12 @@ export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, c
                 <li className={currentNavItem === 3?'ActiveNavItem':"nav-item"}onClick={()=>{
                     loadPayables()
                     setshowNav(false)
+                    setshowNavSettings(false)
+
                     setShowNewInvoice(false)
                     setisActive(false)
                     setisMobile(false)
+
                 }}>
                     <span className="icon IconGreen">
                         <FontAwesomeIcon icon={faMoneyCheckAlt} />
@@ -138,12 +150,33 @@ export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, c
                     </span>
                 </li>
 
-                <li className="nav-item">
+                <li className={currentNavItem === 4?'ActiveNavItem':"nav-item"} onClick={()=>{
+                    setshowNavSettings(!showNavSettings)
+                    setShowNewInvoice(false)
+                    setShowNewBusiness(false)
+                    setShowNewPayment(false)
+                    setshowNav(false)
+                    setcurrentNavItem(4)
+                }}>
                     <span className="icon">
                         <FontAwesomeIcon icon ={faCog} />
                     </span>
                     <span className="text">
                         Settings
+                    </span>
+                </li>
+                <li className={showNavSettings?'ShowNav':'SubNavItem'} onClick ={()=>{
+                    setShowNewBusiness(false)
+                    setShowNewPayment(false)
+                    setShowPaymentSettings(!ShowPaymentSettings)
+                    setShowSchedulePayment(false)
+                    {isActive?setisActive(false):setisActive(true)}
+                }}>
+                    <span className="icon">
+                        <FontAwesomeIcon icon ={faCog} />
+                    </span>
+                    <span className="text">
+                        Payment Settings
                     </span>
                 </li>
                 <li className="nav-item">

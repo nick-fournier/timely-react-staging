@@ -8,7 +8,7 @@ import Price from '../../components/Price/Price.component'
 import InvoiceOptions from '../../components/InvoiceOptions/InvoiceOptions.component'
 import MediaQuery from "react-responsive";
 
-export default function Payables({SearchedData, DataSet, setDataSet, itemList, setitemList, CurrentItem, setCurrentItem, setsearchField, setSearchMethod, DataSwitch, loadPayables, loadReceivables, setisMobile, isMobile}) {
+export default function Payables({SearchedData, DataSet, setDataSet, itemList, setitemList, CurrentItem, setCurrentItem, setsearchField, setSearchMethod, DataSwitch, loadPayables, loadReceivables, setisMobile, isMobile, ShowSchedulePayment, setShowSchedulePayment}) {
     
     const ShowInvoiceDetails = {
         transform: 'translateX(-100%)'
@@ -17,7 +17,7 @@ export default function Payables({SearchedData, DataSet, setDataSet, itemList, s
     return (
         <div className='ReceivablesPageContainer'>
             <MediaQuery maxDeviceWidth={480} >
-                <InvoiceOptions setisMobile={setisMobile} isMobile={isMobile} SearchedData={SearchedData} DataSet={DataSet} setDataSet={setDataSet} CurrentItem={CurrentItem} setsearchField={setsearchField} setSearchMethod={setSearchMethod} loadPayables={loadPayables} loadReceivables={loadReceivables}/>
+                <InvoiceOptions setShowSchedulePayment={setShowSchedulePayment} ShowSchedulePayment={ShowSchedulePayment} setisMobile={setisMobile} isMobile={isMobile} SearchedData={SearchedData} DataSet={DataSet} setDataSet={setDataSet} CurrentItem={CurrentItem} setsearchField={setsearchField} setSearchMethod={setSearchMethod} loadPayables={loadPayables} loadReceivables={loadReceivables}/>
                 <div className="invoice-page-container">
                     <InvoiceCardList setisMobile={setisMobile} isMobile={isMobile} SearchedData={SearchedData} itemList={itemList} setitemList={setitemList} setCurrentItem={setCurrentItem}/>
 
@@ -39,7 +39,7 @@ export default function Payables({SearchedData, DataSet, setDataSet, itemList, s
             </MediaQuery>
 
             <MediaQuery minDeviceWidth={481}>
-                <InvoiceOptions setisMobile={setisMobile} isMobile={isMobile} SearchedData={SearchedData} DataSet={DataSet} setDataSet={setDataSet} CurrentItem={CurrentItem} setsearchField={setsearchField} setSearchMethod={setSearchMethod} loadPayables={loadPayables} loadReceivables={loadReceivables}/>
+                <InvoiceOptions setShowSchedulePayment={setShowSchedulePayment} ShowSchedulePayment={ShowSchedulePayment} setisMobile={setisMobile} isMobile={isMobile} SearchedData={SearchedData} DataSet={DataSet} setDataSet={setDataSet} CurrentItem={CurrentItem} setsearchField={setsearchField} setSearchMethod={setSearchMethod} loadPayables={loadPayables} loadReceivables={loadReceivables}/>
                 <div className="invoice-page-container">
                     <InvoiceCardList setisMobile={setisMobile} isMobile={isMobile} SearchedData={SearchedData} itemList={itemList} setitemList={setitemList} setCurrentItem={setCurrentItem}/>
 

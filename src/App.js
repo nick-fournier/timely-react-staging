@@ -6,8 +6,17 @@ import Nav from './components/Nav/nav'
 import AddInvoice from './components/AddInvoice/AddInvoice.component'
 import AddBusiness from './components/AddBusiness/AddBusiness';
 import AddPayment from './components/AddPayment/AddPayment';
+import SchedulePayment from './components/SchedulePayment/SchedulePayment';
+import PaymentSettings from './components/PaymentSettings/PaymentSettings';
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
+
+import { loadStripe } from '@stripe/stripe-js';
+import {Elements} from '@stripe/react-stripe-js'
+
 function App() {
+
+  const stripePromise = loadStripe('pk_live_51J7P2UC6DO7oZMzwtWVkgIsmCRKoBEFsr5pz9GqTMT34rqXemiIPRmUSd4dRgCU5FP2kYHWJQnnLsUgcPHHXZGne00nW9J1ICt')
+
 
   const AddCover = {
     visibility : 'visible',
@@ -30,6 +39,8 @@ function App() {
   const [ShowNewInvoice, setShowNewInvoice] = useState(false)
   const [ShowNewBusiness, setShowNewBusiness] = useState(false)
   const [ShowNewPayment, setShowNewPayment] = useState(false)
+  const [ShowSchedulePayment, setShowSchedulePayment] = useState(false)
+  const [ShowPaymentSettings, setShowPaymentSettings] = useState(false)
   const [isActive, setisActive] = useState(false)
   const [reFetchBusinesses, setreFetchBusinesses] = useState(true)
 
@@ -114,22 +125,26 @@ function App() {
 
 
     return (
-        <div className='AppInside'>
-          <div className="AddStuff">
-            <AddBusiness setreFetchBusinesses={setreFetchBusinesses} ShowNewBusiness={ShowNewBusiness} setShowNewBusiness={setShowNewBusiness} setShowNewInvoice={setShowNewInvoice}/>
-            <AddInvoice setloading={setloading} setreFetchBusinesses={setreFetchBusinesses} reFetchBusinesses={reFetchBusinesses} ShowNewBusiness={ShowNewBusiness} setShowNewBusiness={setShowNewBusiness} setisActive={setisActive} ShowNewInvoice={ShowNewInvoice} setShowNewInvoice={setShowNewInvoice}/>
-            <AddPayment setloading={setloading} ShowNewPayment={ShowNewPayment} setShowNewPayment={setShowNewPayment} setShowNewBusiness={setShowNewBusiness} setisActive={setisActive} ShowNewInvoice={ShowNewInvoice} setShowNewInvoice={setShowNewInvoice}/>
+      <Elements stripe={stripePromise}>
+          <div className='AppInside'>
+            <div className="AddStuff">
+              <AddBusiness setreFetchBusinesses={setreFetchBusinesses} ShowNewBusiness={ShowNewBusiness} setShowNewBusiness={setShowNewBusiness} setShowNewInvoice={setShowNewInvoice}/>
+              <AddInvoice setloading={setloading} setreFetchBusinesses={setreFetchBusinesses} reFetchBusinesses={reFetchBusinesses} ShowNewBusiness={ShowNewBusiness} setShowNewBusiness={setShowNewBusiness} setisActive={setisActive} ShowNewInvoice={ShowNewInvoice} setShowNewInvoice={setShowNewInvoice}/>
+              <SchedulePayment CurrentItem={CurrentItem} setloading={setloading} ShowSchedulePayment={ShowSchedulePayment} setShowSchedulePayment={setShowSchedulePayment} setShowNewBusiness={setShowNewBusiness} setisActive={setisActive} ShowNewInvoice={ShowNewInvoice} setShowNewInvoice={setShowNewInvoice}/>
+              <PaymentSettings CurrentItem={CurrentItem} setloading={setloading} ShowPaymentSettings={ShowPaymentSettings} setShowPaymentSettings={setShowPaymentSettings} setShowNewBusiness={setShowNewBusiness} setisActive={setisActive} ShowNewInvoice={ShowNewInvoice} setShowNewInvoice={setShowNewInvoice}/>
+              <AddPayment setloading={setloading} ShowNewPayment={ShowNewPayment} setShowNewPayment={setShowNewPayment} setShowNewBusiness={setShowNewBusiness} setisActive={setisActive} ShowNewInvoice={ShowNewInvoice} setShowNewInvoice={setShowNewInvoice}/>
+            </div>
+          <div style={ShowNewInvoice||ShowNewBusiness||ShowNewPayment||ShowPaymentSettings||ShowSchedulePayment?AddCover:RemoveCover} className='Cover'></div>
+          <div className='invoicePageContainer'>
+            <Nav ShowPaymentSettings={ShowPaymentSettings} setShowPaymentSettings={setShowPaymentSettings} setShowSchedulePayment={setShowSchedulePayment} ShowNewPayment={ShowNewPayment} setShowNewPayment={setShowNewPayment} setisMobile={setisMobile} isActive={isActive} setisActive={setisActive} ShowNewInvoice={ShowNewInvoice} setShowNewInvoice={setShowNewInvoice} setcurrentNavItem={setcurrentNavItem} setShowNewBusiness={setShowNewBusiness} currentNavItem={currentNavItem} loadReceivables={loadReceivables} loadPayables={loadPayables} />
+            {DataSwitch === 1?
+              <Receivables ShowSchedulePayment={ShowSchedulePayment} setShowSchedulePayment={setShowSchedulePayment} setisMobile={setisMobile} isMobile={isMobile} loadReceivables={loadReceivables} loadPayables={loadPayables} SearchedData={SearchedData()} setSearchMethod={setSearchMethod} DataSet={DataSet} setDataSet={setDataSet} itemList={itemList} CurrentItem={CurrentItem} setitemList={setitemList} setCurrentItem={setCurrentItem} setsearchField={setsearchField} DataSwitch={DataSwitch}/>
+              :
+              <Payables ShowSchedulePayment={ShowSchedulePayment} setShowSchedulePayment={setShowSchedulePayment} setisMobile={setisMobile} isMobile={isMobile} loadPayables={loadPayables} loadReceivables={loadReceivables} SearchedData={SearchedData()} setSearchMethod={setSearchMethod} DataSet={DataSet} setDataSet={setDataSet} itemList={itemList} CurrentItem={CurrentItem} setitemList={setitemList} setCurrentItem={setCurrentItem} setsearchField={setsearchField} DataSwitch={DataSwitch}/>
+            }  
           </div>
-        <div style={ShowNewInvoice||ShowNewBusiness||ShowNewPayment?AddCover:RemoveCover} className='Cover'></div>
-        <div className='invoicePageContainer'>
-          <Nav ShowNewPayment={ShowNewPayment} setShowNewPayment={setShowNewPayment} setisMobile={setisMobile} isActive={isActive} setisActive={setisActive} ShowNewInvoice={ShowNewInvoice} setShowNewInvoice={setShowNewInvoice} setcurrentNavItem={setcurrentNavItem} setShowNewBusiness={setShowNewBusiness} currentNavItem={currentNavItem} loadReceivables={loadReceivables} loadPayables={loadPayables} />
-          {DataSwitch === 1?
-            <Receivables setisMobile={setisMobile} isMobile={isMobile} loadReceivables={loadReceivables} loadPayables={loadPayables} SearchedData={SearchedData()} setSearchMethod={setSearchMethod} DataSet={DataSet} setDataSet={setDataSet} itemList={itemList} CurrentItem={CurrentItem} setitemList={setitemList} setCurrentItem={setCurrentItem} setsearchField={setsearchField} DataSwitch={DataSwitch}/>
-           :
-            <Payables setisMobile={setisMobile} isMobile={isMobile} loadPayables={loadPayables} loadReceivables={loadReceivables} SearchedData={SearchedData()} setSearchMethod={setSearchMethod} DataSet={DataSet} setDataSet={setDataSet} itemList={itemList} CurrentItem={CurrentItem} setitemList={setitemList} setCurrentItem={setCurrentItem} setsearchField={setsearchField} DataSwitch={DataSwitch}/>
-          }  
         </div>
-      </div>
+        </Elements>
     );
   }
 

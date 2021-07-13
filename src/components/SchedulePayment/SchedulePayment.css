@@ -1,0 +1,113 @@
+.SchedulePaymentContainer{
+    font-family: Cairo;
+    line-height: 1em;
+    padding: 1em 2em;
+    right: 0;
+    position: absolute;
+    width: 35%;
+    height: 100vh;
+    color: black;
+    border-left: solid 1px rgba(219, 219, 219, 0.753);
+    background-color: white;
+    transition: transform 0.3s ease-in-out;
+    transform-origin: right;
+    border-radius: 2em 0 0 5em;
+    z-index: 2;
+}
+
+.NewPaymentHeader{
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #0275d8;
+    margin-bottom: 1em;
+}
+
+.SchedulePaymentForm{
+    display: flex;
+    flex-direction: column;
+    height: 94%;
+}
+
+.SchedulePaymentInputContainer{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1em;
+}
+
+.SchedulePaymentDateContainer{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1em;
+}
+
+.SchedulePaymentDateInput{
+    border-radius: 5px;
+    padding: 0.5em;
+    border: gray solid 1px;
+}
+
+.CardInputContainer{
+    display: flex;
+    flex-direction: column;
+    font-size: 1em;
+    border: solid 1px gray;
+    padding: 0.5em;
+    border-radius: 5px;
+    margin-bottom: 1em;
+}
+
+
+.CardDetailsLabel{
+    margin-bottom: 0.5em;
+}
+
+.SubmitPaymentButton{
+    border-radius: 5px;
+    color: white;
+    background-color: #0275d8;
+    border: none;
+    display: inline-block;
+    padding: 0.75em 1.5em;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: 1em;
+    margin-top: auto;
+}
+
+.SubmitPaymentButton:hover{
+    background-color: #001c35;
+}
+
+.optional{
+    color: rgba(0, 158, 34, 0.705);
+    font-size: 0.7em;
+    margin-left: 0.5em;
+    font-weight: bold;
+}
+
+.SelectInput{
+    margin-top: 0.5em;
+    padding: 0.5em;
+    border: solid 1px gray;
+    border-radius: 5px;
+}
+
+
+@media screen and (max-width:480px){
+    .SchedulePaymentContainer{
+        right: 0;
+        position: absolute;
+        width: 88%;
+        height: 85vh;
+        margin-top: 7vh;
+        color: black;
+        border-left: solid 1px rgba(219, 219, 219, 0.753);
+        background-color: white;
+        transition: transform 0.5s ease-out;
+        transform-origin: right;
+        border-radius: 1em 1em 0 0;
+        z-index: 2;
+        font-size: 2.1em;
+    }
+}
+
