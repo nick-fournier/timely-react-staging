@@ -9,10 +9,12 @@ import { setIntervalAsync, clearIntervalAsync } from 'set-interval-async/dynamic
 export default function PaymentSettings({ShowPaymentSettings, setShowNewInvoice, setShowPaymentSettings, CurrentItem}) {
 
     const [RedirectURL, setRedirectURL] = useState('')
-    const [RedirectTrigger, setRedirectTrigger] = useState(false)
-    const [Refresh, setRefresh] = useState(false)
     const [Loading, setLoading] = useState(false)
     
+    
+        useEffect(() => {
+            LoadStripeLink()
+        }, [])
 
     useEffect( async () => {
         setIntervalAsync(async () => {
@@ -34,12 +36,17 @@ export default function PaymentSettings({ShowPaymentSettings, setShowNewInvoice,
         }, 300000);
     }, [Loading])
     
-
-    const {register, handleSubmit, setValue } = useForm();
-
-    const resetValue = () => {
+    const LoadStripeLink = async () => {
+        const httpResponse = await fetch('https://timely-invoicing-api.herokuapp.com/pay/onboard',{
+            method: 'GET',
+            headers: new Headers({
+                'Authorization': `token ${localStorage.token}`,
+            })
+        })
+        const JsonResponse = await httpResponse.json()
+        console.log(JsonResponse.url)
+        setRedirectURL(JsonResponse.url)
     }
-
     const ShowPaymentSettingsTab = {
         transform: 'translateX(0%)'
     }
