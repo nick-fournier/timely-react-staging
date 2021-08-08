@@ -3,7 +3,7 @@ import InvoiceCard from '../InvoiceCard/InvoiceCard.component'
 import './InvoiceCardList.component.css'
 import MediaQuery from 'react-responsive'
 
-export default function InvoiceCardList({SearchedData, itemList, setitemList, setCurrentItem, isMobile, setisMobile}) {
+export default function InvoiceCardList({SearchedData, itemList, setitemList, setCurrentItem, CurrentItem, isMobile, setisMobile}) {
 
     const hideInvoiceList={
         transform : 'translateX(-100%)'
@@ -22,7 +22,7 @@ export default function InvoiceCardList({SearchedData, itemList, setitemList, se
         <MediaQuery minDeviceWidth={481}>
             <div className= 'cardsContainer'>
                 {SearchedData.map(item => (
-                    <InvoiceCard setisMobile={setisMobile} key={item.invoice_id} item={item} itemList={itemList} setitemList={setitemList} setCurrentItem={setCurrentItem}/>
+                    <InvoiceCard CurrentItem={CurrentItem} setisMobile={setisMobile} key={item.invoice_id} item={item} itemList={itemList} setitemList={setitemList} setCurrentItem={setCurrentItem}/>
                 ))}
             </div>
         </MediaQuery>

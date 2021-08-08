@@ -15,18 +15,79 @@
     z-index: 2;
 }
 
+.OnboardingOrPaymentMethodButtonsContainer{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 2em;
+    color: rgba(0, 0, 0, 0.486);
+    cursor: default;
+    margin-bottom: 1em;
+}
+
+.PaymentSettingTab{
+    cursor: pointer;
+}
+
+.PaymentMethodContainer{
+    display: flex;
+    flex-direction: column;
+    height: 91%;
+    width: 100%;
+}
+
 .PaymentSettingsHeader{
+    text-align: center;
+    width: 80%;
     font-size: 1.2em;
     font-weight: bold;
     color: #000000;
     line-height: 1.5em;
     margin-bottom: 1em;
+    margin: 1em auto;
+}
+
+.AddNewCardHeader{
+    text-align: center;
+    width: 80%;
+    font-size: 1.2em;
+    font-weight: bold;
+    width: 25%;
+    padding: 0.15em 0;
+    border-bottom: #0275d8 2px solid;
+    color: #0275d8;
+    line-height: 1.5em;
+    margin-bottom: 1em;
+    margin: auto auto 2em auto;
+}
+
+
+.PaymentSettingsImg{
+    width: 83.2%;
+    justify-self: center;
+    align-self: center;
+}
+
+.StripeOnboardingImg{
+    width: 90%;
+    justify-self: center;
+    align-self: center;
+    margin-top: 6em;
+    
+}
+
+.StripeOnboardingImg img{
+    width: 100%;
+}
+
+.PaymentSettingsImg img{
+    width: 100%;
 }
 
 .PaymentSettingsForm{
     display: flex;
     flex-direction: column;
-    height: 94%;
+    height: 92%;
 }
 
 .PaymentSettingsInputContainer{
@@ -47,6 +108,22 @@
     border: gray solid 1px;
 }
 
+
+.PaymentMethodMessageSuccess{
+    margin-top: 0.5em;
+    font-size: 1.5em;
+    text-align: center;
+    color: rgb(0, 167, 0);
+}
+
+.PaymentMethodMessageError{
+    margin-top: 0.5em;
+    font-size: 1.5em;
+    text-align: center;
+    color: red;
+    
+}
+
 .CardInputContainer{
     display: flex;
     flex-direction: column;
@@ -55,11 +132,21 @@
     padding: 0.5em;
     border-radius: 5px;
     margin-bottom: 1em;
+    width: 80%;
+    margin: 1em auto;
 }
 
 
 .CardDetailsLabel{
     margin-bottom: 0.5em;
+}
+
+.SubmitAndDiscardContainer{
+    display: flex;
+    gap: 0.5em;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 1em;
 }
 
 .OnBoardingButton{
@@ -72,9 +159,6 @@
     display: inline-block;
     padding: 1em 1.5em;
     cursor: pointer;
-    margin-left: auto;
-    margin-right: 1em;
-    margin-top: auto;
 }
 
 .SubmitPaymentButton:hover{
