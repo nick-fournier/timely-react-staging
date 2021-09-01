@@ -13,7 +13,7 @@ import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import {useHistory} from 'react-router-dom'
 
-export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, currentNavItem, ShowNewInvoice, setShowNewInvoice, setShowNewBusiness, isActive, setisActive, setisMobile, ShowNewPayment, setShowNewPayment, setShowSchedulePayment, ShowPaymentSettings, setShowPaymentSettings}) {
+export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, currentNavItem, ShowNewInvoice, setShowNewInvoice, setShowNewBusiness, isActive, setisActive, setisMobile, ShowNewPayment, setShowNewPayment, setShowSchedulePayment, ShowPaymentSettings, setShowPaymentSettings, setSettingsOrInvoices, SettingsOrInvoices}) {
     const [showNav, setshowNav] = useState(false)
     const [showNavSettings, setshowNavSettings] = useState(false)
 
@@ -116,6 +116,8 @@ export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, c
                     </span>
                 </li>
                 <li className={currentNavItem === 2? 'ActiveNavItem':'nav-item'} onClick={()=>{
+                    setSettingsOrInvoices(false)
+                    History.push('/invoices')
                     loadReceivables()
                     setshowNav(false)
                     setshowNavSettings(false)
@@ -133,6 +135,8 @@ export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, c
                     </span>
                 </li>
                 <li className={currentNavItem === 3?'ActiveNavItem':"nav-item"}onClick={()=>{
+                    setSettingsOrInvoices(false)
+                    History.push('/invoices')
                     loadPayables()
                     setshowNav(false)
                     setshowNavSettings(false)
@@ -140,6 +144,7 @@ export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, c
                     setShowNewInvoice(false)
                     setisActive(false)
                     setisMobile(false)
+                    
 
                 }}>
                     <span className="icon IconGreen">
@@ -151,7 +156,9 @@ export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, c
                 </li>
 
                 <li className={currentNavItem === 4?'ActiveNavItem':"nav-item"} onClick={()=>{
-                    setshowNavSettings(!showNavSettings)
+                    setSettingsOrInvoices(true)
+                    History.push('/settings')
+                    // setshowNavSettings(!showNavSettings)
                     setShowNewInvoice(false)
                     setShowNewBusiness(false)
                     setShowNewPayment(false)

@@ -2,7 +2,7 @@
 import './AddBusiness.css'
 import {useForm} from 'react-hook-form'
 
-export default function AddBusiness({ShowNewBusiness, setShowNewBusiness, setShowNewInvoice, setreFetchBusinesses}) {
+export default function AddBusiness({ShowNewBusiness, setShowNewBusiness, setShowNewInvoice, setreFetchBusinesses, RedirectToNewReceivableOrPayable, setShowNewPayment}) {
 
 
 
@@ -26,13 +26,12 @@ export default function AddBusiness({ShowNewBusiness, setShowNewBusiness, setSho
     async function onSubmit(data){
         const NewInvoice = new FormData()
         NewInvoice.append('business_name', data.business_name)
-        NewInvoice.append('email', data.email)
+        NewInvoice.append('business_email', data.email)
         NewInvoice.append('phone', data.phone)
-       // NewInvoice.append('fax', data.fax)
 
 
 
-        const httpResponse = await fetch('https://timely-invoicing-api.herokuapp.com/api/businesses/',{
+        const httpResponse = await fetch('https://api.pendulumapp.com/api/businesses/',{
             method: 'POST',
             headers: new Headers({
                 'Authorization': `token ${localStorage.token}`,
@@ -47,7 +46,7 @@ export default function AddBusiness({ShowNewBusiness, setShowNewBusiness, setSho
             alert('Business added successfully')
             resetValue()
             setShowNewBusiness(false)
-            setShowNewInvoice(true)
+            {RedirectToNewReceivableOrPayable?setShowNewInvoice(true):setShowNewPayment(true)}
             setreFetchBusinesses(true)
         }
         else{
@@ -84,7 +83,8 @@ export default function AddBusiness({ShowNewBusiness, setShowNewBusiness, setSho
                 <button className="DiscardInvoiceButton" onClick={(e)=>{
                             resetValue()
                             setShowNewBusiness(false)
-                            setShowNewInvoice(true)
+
+                            {RedirectToNewReceivableOrPayable?setShowNewInvoice(true):setShowNewPayment(true)}
                             e.preventDefault()
                         }}> Discard</button>
             </div>

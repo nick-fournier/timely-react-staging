@@ -7,7 +7,7 @@ import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 
 
 
-export default function PaymentSettings({ShowPaymentSettings, setShowNewInvoice, setShowPaymentSettings, CurrentItem}) {
+export default function PaymentSettings({ShowPaymentSettings, setShowNewInvoice, setShowPaymentSettings, CurrentItem, setreFetchPM, reFetchPM}) {
 
     const stripe = useStripe()
     const elements = useElements()
@@ -25,34 +25,46 @@ export default function PaymentSettings({ShowPaymentSettings, setShowNewInvoice,
     const [PaymentMethodSuccessOrError, setPaymentMethodSuccessOrError] = useState(false)
     const [MessageReveal, setMessageReveal] = useState(false)
     const [LoadingPaymentMethod, setLoadingPaymentMethod] = useState(false)
-
+    
     const [ErrorMessage, setErrorMessage] = useState('')
     const [ErrorState, setErrorState] = useState(false)
-
+    
     useEffect(() => {
         LoadStripeLink()
     }, [])
-
+    
     useEffect( async () => {
         setIntervalAsync(async () => {
-                setLoading(true)
-                const httpResponse = await fetch('https://timely-invoicing-api.herokuapp.com/api/stripe/onboard',{
-                    method: 'GET',
-                    headers: new Headers({
-                        'Authorization': `token ${localStorage.token}`,
-                    })
+            setLoading(true)
+            const httpResponse = await fetch('https://api.pendulumapp.com/api/stripe/onboard',{
+                method: 'GET',
+                headers: new Headers({
+                    'Authorization': `token ${localStorage.token}`,
                 })
-                const JsonResponse = await httpResponse.json()
-                console.log(JsonResponse.url)
-                setRedirectURL(JsonResponse.url)
-                
-                return function cleanup(){
-                    clearIntervalAsync()
-                    setLoading(false)
-                }
+            })
+            const JsonResponse = await httpResponse.json()
+            console.log(JsonResponse.url)
+            setRedirectURL(JsonResponse.url)
+            
+            return function cleanup(){
+                clearIntervalAsync()
+                setLoading(false)
+            }
         }, 300000);
     }, [Loading])
-
+    
+    const LoadStripeLink = async () => {
+        const httpResponse = await fetch('https://api.pendulumapp.com/api/stripe/onboard',{
+            method: 'GET',
+            headers: new Headers({
+                'Authorization': `token ${localStorage.token}`,
+            })
+        })
+        const JsonResponse = await httpResponse.json()
+        console.log(JsonResponse.url)
+        setRedirectURL(JsonResponse.url)
+    }
+    
     async function handleSubmit(e){
         setErrorState(false)
         setLoadingPaymentMethod(true)
@@ -92,7 +104,7 @@ export default function PaymentSettings({ShowPaymentSettings, setShowNewInvoice,
 
             console.log('Entered')            
 
-            const paymentData = await fetch('https://timely-invoicing-api.herokuapp.com/api/stripe/paymentmethods/attach',{
+            const paymentData = await fetch('https://api.pendulumapp.com/api/stripe/paymentmethods/attach',{
                 method: 'POST',
                 headers: new Headers({
                     'Authorization': `token ${localStorage.token}`,
@@ -123,20 +135,10 @@ export default function PaymentSettings({ShowPaymentSettings, setShowNewInvoice,
                 setMessageReveal(false)
                 setErrorMessage('')
             }, 3000);
+            setreFetchPM(true)
             
         }
     
-    const LoadStripeLink = async () => {
-        const httpResponse = await fetch('https://timely-invoicing-api.herokuapp.com/api/stripe/onboard',{
-            method: 'GET',
-            headers: new Headers({
-                'Authorization': `token ${localStorage.token}`,
-            })
-        })
-        const JsonResponse = await httpResponse.json()
-        console.log(JsonResponse.url)
-        setRedirectURL(JsonResponse.url)
-    }
 
 
     const ShowPaymentSettingsTab = {
@@ -201,7 +203,7 @@ export default function PaymentSettings({ShowPaymentSettings, setShowNewInvoice,
                     </div>
 
                     <div className="CardInputContainer">
-                        <CardElement /> 
+                        {/* <CardElement />  */}
                     </div>
 
                     {LoadingPaymentMethod?

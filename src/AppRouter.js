@@ -22,6 +22,9 @@ export default function AppRouter() {
                 <Route path='/login'>
                     <Login  />
                 </Route>
+                <Route path= '/settings'>
+                    <App />
+                </Route>
             </Switch>
         </Router>
     )

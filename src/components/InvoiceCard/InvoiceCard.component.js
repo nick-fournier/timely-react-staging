@@ -24,7 +24,7 @@ export default function InvoiceCard({item, itemList, setitemList, CurrentItem, s
             setisMobile(true)
  
         }}
-         id="id" className={isActive === true?'ActiveCard':'card-container'} >
+         id="id" className={isActive?'ActiveCard':'card-container'} >
             <div className="top-part">
                 <h2 className="top-part-content">{item.to_business_name}</h2>
             </div>

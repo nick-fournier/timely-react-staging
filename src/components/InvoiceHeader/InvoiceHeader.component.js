@@ -14,7 +14,7 @@ export default function InvoiceHeader({CurrentItem, setisMobile}) {
                     </div>
                     <div className="InvoiceHeaders">
                         <div className="BusinessName" id='BusinessName'>
-                            {CurrentItem.to_business_name}
+                            {CurrentItem.from_business_name}
                         </div>
                         <div className="InvoiceNumber" id='InvoiceNumber'>
                             #{CurrentItem.invoice_id}

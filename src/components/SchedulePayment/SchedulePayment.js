@@ -12,7 +12,7 @@ export default function SchedulePayment({ShowSchedulePayment, setShowNewInvoice,
     useEffect(() => {
         
         const loadPMs = async () =>{
-            const response = await fetch('https://timely-invoicing-api.herokuapp.com/api/stripe/payinvoice',{
+            const response = await fetch('https://api.pendulumapp.com/api/stripe/payinvoice',{
                 method: "GET",
                 headers: new Headers({
                   'Authorization': `token ${localStorage.token}`
@@ -34,7 +34,7 @@ export default function SchedulePayment({ShowSchedulePayment, setShowNewInvoice,
 
     async function handleSubmit(e){
         e.preventDefault()
-        const PaymentResponse = await fetch('https://timely-invoicing-api.herokuapp.com/api/stripe/payinvoice',{
+        const PaymentResponse = await fetch('https://api.pendulumapp.com/api/stripe/payinvoice',{
                 method: "POST",
                 headers: new Headers({
                   'Authorization': `token ${localStorage.token}`,

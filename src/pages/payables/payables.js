@@ -21,20 +21,20 @@ export default function Payables({SearchedData, DataSet, setDataSet, itemList, s
                 <div className="invoice-page-container">
                     <InvoiceCardList setisMobile={setisMobile} isMobile={isMobile} SearchedData={SearchedData} itemList={itemList} setitemList={setitemList} setCurrentItem={setCurrentItem}/>
 
-                <div style={isMobile?ShowInvoiceDetails:{}} className={`${isMobile?'InvoiceMobileHidden':'InvoiceMobileView'} RHSContainer`}>
-                    <div className="RightHandSide">
-                    <InvoiceHeader setisMobile={setisMobile} CurrentItem={CurrentItem}/>
-                        
-                        <div className="MiddlePart" id='MiddlePart'>
-                            <RHSHeaders CurrentItem={CurrentItem}/>
-                            <ItemList itemList={itemList}/>
+                    <div style={isMobile?ShowInvoiceDetails:{}} className={`${isMobile?'InvoiceMobileHidden':'InvoiceMobileView'} RHSContainer`}>
+                        <div className="RightHandSide">
+                        <InvoiceHeader setisMobile={setisMobile} CurrentItem={CurrentItem}/>
                             
+                            <div className="MiddlePart" id='MiddlePart'>
+                                <RHSHeaders CurrentItem={CurrentItem}/>
+                                <ItemList itemList={itemList}/>
+                                
 
-                            <Price CurrentItem={CurrentItem} DataSwitch={DataSwitch}/>
+                                <Price CurrentItem={CurrentItem} DataSwitch={DataSwitch}/>
+                            </div>
+                            <InvoiceFooter CurrentItem={CurrentItem}/>
                         </div>
-                        <InvoiceFooter CurrentItem={CurrentItem}/>
                     </div>
-                </div>
                 </div>
             </MediaQuery>
 

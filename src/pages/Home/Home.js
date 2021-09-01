@@ -248,7 +248,7 @@ export default function Home() {
         NewsLetterData.append('email', UserEmail1?UserEmail1:UserEmail2)
         NewsLetterData.append('special_key', special_key)
 
-        const httpResponse = await fetch('https://timely-invoicing-api.herokuapp.com/api/newsletter/',{
+        const httpResponse = await fetch('https://api.pendulumapp.com/api/newsletter/',{
             method: 'POST',
             body: NewsLetterData,
         })
@@ -366,7 +366,6 @@ export default function Home() {
                 <img className='TeaserLogoMedium TeaserLogoGSAP' src="\MasterCard_Logo.svg" alt="" />
                 <img className='TeaserLogo TeaserLogoGSAP' src="\DiscoverCard.svg" alt="" />
                 <img className='TeaserLogo TeaserLogoGSAP' src="\quickbooks-logo.png" alt="" />
-
             </div>
 
             <div className="HowItWorks">

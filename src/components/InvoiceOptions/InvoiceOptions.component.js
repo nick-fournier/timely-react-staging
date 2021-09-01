@@ -45,7 +45,7 @@ export default function InvoiceOptions({CurrentItem, setsearchField, setSearchMe
     const scheduleInvoice = async () =>{
         let ScheduledInvoice = CurrentItem
         ScheduledInvoice.is_scheduled = !ScheduledInvoice.is_scheduled
-        const ScheduleURL = `https://timely-invoicing-api.herokuapp.com/api/${(DataSwitch === 1 ? 'receivables': 'payables')}/${ScheduledInvoice.invoice_id}/`
+        const ScheduleURL = `https://api.pendulumapp.com/api/${(DataSwitch === 1 ? 'receivables': 'payables')}/${ScheduledInvoice.invoice_id}/`
         const ScheduleResponse = await fetch(ScheduleURL, {
            method: 'PUT',
            headers: new Headers({
@@ -67,7 +67,7 @@ export default function InvoiceOptions({CurrentItem, setsearchField, setSearchMe
 
     const flagInvoice = async () =>{
         let FlaggedInvoice = CurrentItem
-        const FlagURL = `https://timely-invoicing-api.herokuapp.com/api/${(DataSwitch === 1 ? 'receivables': 'payables')}/${FlaggedInvoice.invoice_id}/`
+        const FlagURL = `https://api.pendulumapp.com/api/${(DataSwitch === 1 ? 'receivables': 'payables')}/${FlaggedInvoice.invoice_id}/`
         FlaggedInvoice.is_flagged = !FlaggedInvoice.is_flagged
        const FlagResponse = await fetch(FlagURL, {
            method: 'PUT',
@@ -90,7 +90,7 @@ export default function InvoiceOptions({CurrentItem, setsearchField, setSearchMe
 
     const markInvoice = async () =>{ 
         let MarkedInvoice = CurrentItem
-        const MarkURL = `https://timely-invoicing-api.herokuapp.com/api/${(DataSwitch === 1 ? 'receivables': 'payables')}/${MarkedInvoice.invoice_id}/`
+        const MarkURL = `https://api.pendulumapp.com/api/${(DataSwitch === 1 ? 'receivables': 'payables')}/${MarkedInvoice.invoice_id}/`
         MarkedInvoice.is_paid = true
         //console.log(MarkURL)
        const MarkResponse = await fetch(MarkURL, {

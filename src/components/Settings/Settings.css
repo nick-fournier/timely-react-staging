@@ -1,0 +1,328 @@
+.SettingsPageContainer{
+    background-color: rgb(237, 237, 237);
+    width: 100%;
+    border-left: #343a403d solid 1px;
+    font-family: Cairo;
+    display: flex;
+}
+
+.SettingsLHS{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+    background-color: rgb(245, 245, 245);
+    overflow:auto;
+    height: 100%;
+    transition: 500ms;
+}
+
+
+.SettingsHeader{
+    font-size: 1.5em;
+    font-weight: 700;
+    margin-bottom: 1.9em;
+}
+
+.SettingsHeaderIcon{
+    margin-right: 0.5em;
+}
+
+.SettingsCard{
+    border-radius: 5px;
+    width: 70%;
+    display: flex;
+    margin: 1em;
+    cursor: pointer;
+    background-color: white;
+    font-family: Inter;
+    font-size: 1em;
+    transition: 0.05s;
+    padding: 1em 1em;
+    border: solid white 1px;
+    transition: 300ms;
+}
+
+
+.SettingsCardLogoContainer{
+    display: flex;
+
+}
+
+.SettingsCardLogo{
+    display: flex;
+    font-size: 1.5em;
+    justify-self: center;
+    padding: 0.2em 0.5em 0 0.25em;
+}
+
+.SettingsCardData{
+    display: flex;
+    flex-direction: column;
+
+}
+.SettingsCardHeader{
+}
+
+.SettingsCardParagraph{
+    font-size: 0.75em;
+    color: rgba(0, 0, 0, 0.582);
+    margin-top: 0.4em;
+    margin-bottom: 1em;
+}
+
+.SettingsRHS{
+    width: 70%;
+    color: black;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-left: #343a403d solid 1px;
+
+}
+
+.SettingsRHSCard{
+    width: 100%;
+    height: 100%;
+    background-color: rgb(243, 243, 243);
+
+}
+
+
+.ProfileInformationFirstRow{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ProfileInformationHeader{
+    font-size: 2em;
+    margin: 0em 0 1.5em 1.3em;
+    font-weight: 600;
+}
+
+.ProfileInformationButton{
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    border-radius: 5px;
+    color: white;
+    background-color: #0275d8;
+    padding: 0.35em 1.25em;
+    margin: 0em 2em 3em 0;
+    height: auto;
+    text-decoration: none;
+}
+
+.PasswordChangeLink{
+    color: #0275d8;
+    width: fit-content;
+    margin-top: auto;
+    font-size: 1.25em;
+    cursor: pointer;
+}
+
+.ProfileInformationSubmitButton{
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    border-radius: 5px;
+    color: white;
+    background-color: #0275d8;
+    padding: 0.35em 1.25em;
+    margin: 0em 2em 3em 0;
+    height: auto;
+    width: 4em;
+    font-size: 1.2em;
+}
+
+.ProfileInformationData{
+    margin: 0 3em;
+    font-size: 0.75em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    height: 83vh;
+}
+
+.ProfileInformationLabel{
+    line-height: 0.5em;
+    font-size: 1.5em;
+    color: rgba(0, 0, 0, 0.671);
+    font-weight: 700;
+    padding-left: 0.5em;
+}
+
+.ProfileInformationField{
+    font-size: 1.5em;
+    width: 99%;
+    margin-bottom: 1em;
+    margin-top: 0.2em;
+    display: block;
+    border: solid 2px rgb(241,241,241);
+    border-bottom: #343a403d solid 1px;
+    padding-left: 0.5em
+}
+
+.ProfileInformationInput{
+    font-size: 1.5em;
+    width: 99%;
+    margin-bottom: 1em;
+    margin-top: 0.2em;
+    display: block;
+    border: none;
+    background-color: rgb(250, 250, 250);
+    border-radius: 5px;
+    border-bottom: 1px solid #343a403d;
+    padding: 0.4em 0;
+    padding-left: 0.5em
+}
+
+.PaymentSettingsTab{
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    font-size: 1.5em;
+    background-color: white;
+    padding: 1em 2em;
+    width: 80%;
+    border-radius: 5px;
+    margin: 2em auto;
+    border: solid 0.5px #343a403d;
+    cursor: pointer;
+    
+}
+
+.PaymentInformationHeader{
+    width: fit-content;
+    font-size: 2em;
+    margin: 0 auto 1.5em auto;
+    font-weight: 600;
+}
+
+.AddPaymentMethodLabel{
+    font-size: 0.7em;
+    margin-left: auto;
+    color: #0275d8;
+}
+
+.CardDetailsSection{
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 4em 4em 0 4em;
+}
+
+.CardDetailsHeader{
+    font-size: 2.555em;
+    margin: 0 auto 0.5em auto;
+    font-weight: 600;
+    
+}
+
+.CardDetailsLogos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 1.95em;
+    gap: 1em;
+    align-items: center;
+    padding-bottom: 2.7em;
+    margin-top: 1em;
+}
+
+.TeaserLogoPM{
+    height: 1.5em;
+}
+
+.TeaserLogoSmallPM{
+    height: 5em;
+}
+
+.TeaserLogoMediumPM{
+    height: 2em;
+}
+
+.CardInformation{
+    width: 47%;
+    
+}
+
+.CardInfoLabel{
+    color: rgba(0, 0, 0, 0.479);
+    font-weight: 700;
+}
+
+.CardNumberElement{
+    border-bottom: 1px solid #343a403d;
+    margin: 0.5em 0 1em 0;
+}
+
+.CardEXPandCVC{
+    display: flex;
+    justify-content: space-between;
+}
+
+.CardExpiryContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.SaveCardDetails{
+    width: 100%;
+    border: none;
+    background-color: #0275d8;
+    color: white;
+    padding: 1em 0;
+    margin-top: 2em;
+    border-radius: 5px;
+    margin-bottom: 2em;
+}
+
+.CardFooterMessage{
+    margin-top: 0em;
+    margin-bottom: 1em;
+    display: flex;
+    align-items: center;
+    font-size: 0.8em;
+    line-height: 1.3em;
+    gap: 2em;
+    border: solid 1px #343a403d;
+    border-radius: 5px;
+    width: fit-content;
+    padding: 1em;
+}
+
+.CardShieldIcon{
+    color: rgba(0, 0, 0, 0.568);
+    font-size: 3em;
+}
+
+.PMMessageContainer{
+    height: 8em;
+    border: solid 2px rgb(243, 243, 243);
+}
+
+.PaymentMethodResponseMessage{
+    height: 100%;
+}
+
+
+.PaymentMethodMessageSuccess{
+    margin-top: 0.5em;
+    font-size: 1.5em;
+    text-align: center;
+    color: rgb(0, 167, 0);
+    
+}
+
+.PaymentMethodMessageError{
+    margin-top: 0.5em;
+    font-size: 1.5em;
+    text-align: center;
+    color: red;
+    
+}

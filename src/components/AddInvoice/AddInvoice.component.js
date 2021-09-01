@@ -6,7 +6,7 @@ import {useForm} from 'react-hook-form'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faPlus} from '@fortawesome/free-solid-svg-icons'
 
-export default function AddInvoice( {ShowNewInvoice, setShowNewInvoice, setisActive, setShowNewBusiness, reFetchBusinesses, setreFetchBusinesses, setloading} ) {
+export default function AddInvoice( {ShowNewInvoice, setShowNewInvoice, setisActive, setShowNewBusiness, reFetchBusinesses, setreFetchBusinesses, setloading, setRedirectToNewReceivableOrPayable} ) {
 
     const [DateOrTerms, setDateOrTerms] = useState(true)
     const [AmountOrItems, setAmountOrItems] = useState(true)
@@ -32,7 +32,7 @@ export default function AddInvoice( {ShowNewInvoice, setShowNewInvoice, setisAct
 
     const ItemName = useRef(null)
     const ItemQTY = useRef(null)
-    const ItemPrice = useRef(null)
+    const ItemPrice = useRef(null)  
     const BusinessNameRef = useRef(null)
     const TermsRef = useRef(null)
     const DateRef = useRef(null)
@@ -44,7 +44,7 @@ export default function AddInvoice( {ShowNewInvoice, setShowNewInvoice, setisAct
         
         const loadBusinesses = async () =>{
 
-            const response = await fetch('https://timely-invoicing-api.herokuapp.com/api/businesses/',{
+            const response = await fetch('https://api.pendulumapp.com/api/businesses/',{
                 method: "GET",
                 headers: new Headers({
                   'Authorization': `token ${localStorage.token}`
@@ -98,7 +98,7 @@ export default function AddInvoice( {ShowNewInvoice, setShowNewInvoice, setisAct
 
         console.table(TestInvoice)
 
-        const httpResponse = await fetch('https://timely-invoicing-api.herokuapp.com/api/new_invoices/',{
+        const httpResponse = await fetch('https://api.pendulumapp.com/api/new_receivable/',{
             method: 'POST',
             headers: new Headers({
                 'Authorization': `token ${localStorage.token}`,
@@ -228,6 +228,7 @@ export default function AddInvoice( {ShowNewInvoice, setShowNewInvoice, setisAct
                     <div className="BusinessEmailContainer">
                         <button className='AddBusinessButton' onClick={(e)=>{
                             e.preventDefault()
+                            setRedirectToNewReceivableOrPayable(true)
                             setShowNewInvoice(false)
                             setShowNewBusiness(true)
                         }}>Add Business</button>
