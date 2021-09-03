@@ -2,7 +2,7 @@
 import './AddBusiness.css'
 import {useForm} from 'react-hook-form'
 
-export default function AddBusiness({ShowNewBusiness, setShowNewBusiness, setShowNewInvoice, setreFetchBusinesses, RedirectToNewReceivableOrPayable, setShowNewPayment}) {
+export default function AddBusiness({ShowNewBusiness, setShowNewBusiness, setShowNewInvoice, setreFetchBusinesses, RedirectToNewReceivableOrPayable, setShowNewPayment, SetDefaultValueForBusiness, setSetDefaultValueForBusiness}) {
 
 
 
@@ -48,9 +48,11 @@ export default function AddBusiness({ShowNewBusiness, setShowNewBusiness, setSho
             setShowNewBusiness(false)
             {RedirectToNewReceivableOrPayable?setShowNewInvoice(true):setShowNewPayment(true)}
             setreFetchBusinesses(true)
+            setSetDefaultValueForBusiness(true)
         }
         else{
             alert('something went wrong')
+            setSetDefaultValueForBusiness(false)
         }
 
 

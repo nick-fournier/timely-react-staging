@@ -6,7 +6,8 @@ import {useForm} from 'react-hook-form'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faPlus} from '@fortawesome/free-solid-svg-icons'
 
-export default function AddInvoice( {ShowNewInvoice, setShowNewInvoice, setisActive, setShowNewBusiness, reFetchBusinesses, setreFetchBusinesses, setloading, setRedirectToNewReceivableOrPayable} ) {
+
+export default function AddInvoice( {ShowNewInvoice, setShowNewInvoice, setisActive, setShowNewBusiness, reFetchBusinesses, setreFetchBusinesses, setloading, setRedirectToNewReceivableOrPayable, setSetDefaultValueForBusiness, SetDefaultValueForBusiness} ) {
 
     const [DateOrTerms, setDateOrTerms] = useState(true)
     const [AmountOrItems, setAmountOrItems] = useState(true)
@@ -54,10 +55,23 @@ export default function AddInvoice( {ShowNewInvoice, setShowNewInvoice, setisAct
             setBusinssesArray(DataJson)
             console.log(BusinssesArray)
             setreFetchBusinesses(false)
+            let lastItem = BusinssesArray.find(item => item.id === BusinssesArray.length)
+            if(ShowNewInvoice && SetDefaultValueForBusiness){
+                BusinessNameRef.current.value = lastItem.business_name
+                setBusinessKey(lastItem.id)
+                console.log(lastItem.id)
+                console.log(BusinessKey)
+            }
+
+            else if (ShowNewInvoice && !SetDefaultValueForBusiness){
+                BusinessNameRef.current.value = null
+                setBusinessKey(null)
+            }
+            
         }
         loadBusinesses()
 
-    }, [reFetchBusinesses])
+    }, [reFetchBusinesses, ShowNewInvoice])
 
 
 

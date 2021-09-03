@@ -51,6 +51,8 @@ function App() {
 
   const [SettingsOrInvoices, setSettingsOrInvoices] = useState(false)
 
+  const [SetDefaultValueForBusiness, setSetDefaultValueForBusiness] = useState(false)
+
 
   const [isMobile, setisMobile] = useState(false)
 
@@ -154,9 +156,9 @@ function App() {
       <Elements stripe={StripeObject}>
           <div className='AppInside'>
             <div className="AddStuff">
-              <AddBusiness RedirectToNewReceivableOrPayable={RedirectToNewReceivableOrPayable} setreFetchBusinesses={setreFetchBusinesses} ShowNewBusiness={ShowNewBusiness} setShowNewBusiness={setShowNewBusiness} setShowNewInvoice={setShowNewInvoice} setShowNewPayment={setShowNewPayment}/>
-              <AddInvoice RedirectToNewReceivableOrPayable={RedirectToNewReceivableOrPayable} setRedirectToNewReceivableOrPayable={setRedirectToNewReceivableOrPayable} setloading={setloading} setreFetchBusinesses={setreFetchBusinesses} reFetchBusinesses={reFetchBusinesses} ShowNewBusiness={ShowNewBusiness} setShowNewBusiness={setShowNewBusiness} setisActive={setisActive} ShowNewInvoice={ShowNewInvoice} setShowNewInvoice={setShowNewInvoice}/>
-              <AddPayment RedirectToNewReceivableOrPayable={RedirectToNewReceivableOrPayable} setRedirectToNewReceivableOrPayable={setRedirectToNewReceivableOrPayable} setloading={setloading} setreFetchBusinesses={setreFetchBusinesses} reFetchBusinesses={reFetchBusinesses} ShowNewPayment={ShowNewPayment} setShowNewPayment={setShowNewPayment} setShowNewBusiness={setShowNewBusiness} setisActive={setisActive} ShowNewInvoice={ShowNewInvoice} setShowNewInvoice={setShowNewInvoice}/>
+              <AddBusiness SetDefaultValueForBusiness={SetDefaultValueForBusiness} setSetDefaultValueForBusiness={setSetDefaultValueForBusiness} RedirectToNewReceivableOrPayable={RedirectToNewReceivableOrPayable} setreFetchBusinesses={setreFetchBusinesses} ShowNewBusiness={ShowNewBusiness} setShowNewBusiness={setShowNewBusiness} setShowNewInvoice={setShowNewInvoice} setShowNewPayment={setShowNewPayment}/>
+              <AddInvoice SetDefaultValueForBusiness={SetDefaultValueForBusiness} setSetDefaultValueForBusiness={setSetDefaultValueForBusiness} RedirectToNewReceivableOrPayable={RedirectToNewReceivableOrPayable} setRedirectToNewReceivableOrPayable={setRedirectToNewReceivableOrPayable} setloading={setloading} setreFetchBusinesses={setreFetchBusinesses} reFetchBusinesses={reFetchBusinesses} ShowNewBusiness={ShowNewBusiness} setShowNewBusiness={setShowNewBusiness} setisActive={setisActive} ShowNewInvoice={ShowNewInvoice} setShowNewInvoice={setShowNewInvoice}/>
+              <AddPayment SetDefaultValueForBusiness={SetDefaultValueForBusiness} setSetDefaultValueForBusiness={setSetDefaultValueForBusiness} RedirectToNewReceivableOrPayable={RedirectToNewReceivableOrPayable} setRedirectToNewReceivableOrPayable={setRedirectToNewReceivableOrPayable} setloading={setloading} setreFetchBusinesses={setreFetchBusinesses} reFetchBusinesses={reFetchBusinesses} ShowNewPayment={ShowNewPayment} setShowNewPayment={setShowNewPayment} setShowNewBusiness={setShowNewBusiness} setisActive={setisActive} ShowNewInvoice={ShowNewInvoice} setShowNewInvoice={setShowNewInvoice}/>
               <SchedulePayment setreFetchPM={setreFetchPM} reFetchPM={reFetchPM} CurrentItem={CurrentItem} setloading={setloading} ShowSchedulePayment={ShowSchedulePayment} setShowSchedulePayment={setShowSchedulePayment} setShowNewBusiness={setShowNewBusiness} setisActive={setisActive} ShowNewInvoice={ShowNewInvoice} setShowNewInvoice={setShowNewInvoice}/>
               <PaymentSettings setreFetchPM={setreFetchPM} reFetchPM={reFetchPM} CurrentItem={CurrentItem} setloading={setloading} ShowPaymentSettings={ShowPaymentSettings} setShowPaymentSettings={setShowPaymentSettings} setShowNewBusiness={setShowNewBusiness} setisActive={setisActive} ShowNewInvoice={ShowNewInvoice} setShowNewInvoice={setShowNewInvoice}/>
             </div>
@@ -165,7 +167,7 @@ function App() {
             <Nav setSettingsOrInvoices={setSettingsOrInvoices} SettingsOrInvoices={SettingsOrInvoices} ShowPaymentSettings={ShowPaymentSettings} setShowPaymentSettings={setShowPaymentSettings} setShowSchedulePayment={setShowSchedulePayment} ShowNewPayment={ShowNewPayment} setShowNewPayment={setShowNewPayment} setisMobile={setisMobile} isActive={isActive} setisActive={setisActive} ShowNewInvoice={ShowNewInvoice} setShowNewInvoice={setShowNewInvoice} setcurrentNavItem={setcurrentNavItem} setShowNewBusiness={setShowNewBusiness} currentNavItem={currentNavItem} loadReceivables={loadReceivables} loadPayables={loadPayables} />
             {!SettingsOrInvoices?
             DataSwitch === 1?
-              <Receivables ShowSchedulePayment={ShowSchedulePayment} setShowSchedulePayment={setShowSchedulePayment} setisMobile={setisMobile} isMobile={isMobile} loadReceivables={loadReceivables} loadPayables={loadPayables} SearchedData={SearchedData()} setSearchMethod={setSearchMethod} DataSet={DataSet} setDataSet={setDataSet} itemList={itemList} CurrentItem={CurrentItem} setitemList={setitemList} setCurrentItem={setCurrentItem} setsearchField={setsearchField} DataSwitch={DataSwitch}/>
+              <Receivables  ShowSchedulePayment={ShowSchedulePayment} setShowSchedulePayment={setShowSchedulePayment} setisMobile={setisMobile} isMobile={isMobile} loadReceivables={loadReceivables} loadPayables={loadPayables} SearchedData={SearchedData()} setSearchMethod={setSearchMethod} DataSet={DataSet} setDataSet={setDataSet} itemList={itemList} CurrentItem={CurrentItem} setitemList={setitemList} setCurrentItem={setCurrentItem} setsearchField={setsearchField} DataSwitch={DataSwitch}/>
               :
               <Payables ShowSchedulePayment={ShowSchedulePayment} setShowSchedulePayment={setShowSchedulePayment} setisMobile={setisMobile} isMobile={isMobile} loadPayables={loadPayables} loadReceivables={loadReceivables} SearchedData={SearchedData()} setSearchMethod={setSearchMethod} DataSet={DataSet} setDataSet={setDataSet} itemList={itemList} CurrentItem={CurrentItem} setitemList={setitemList} setCurrentItem={setCurrentItem} setsearchField={setsearchField} DataSwitch={DataSwitch}/>
             :

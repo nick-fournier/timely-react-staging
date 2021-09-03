@@ -2,7 +2,7 @@ import '../../pages/receivables/receivables.css'
 import './InvoiceCard.component.css'
 import {useState, useEffect} from 'react'
 
-export default function InvoiceCard({item, itemList, setitemList, CurrentItem, setCurrentItem, setisMobile}) {
+export default function InvoiceCard({item, itemList, setitemList, CurrentItem, setCurrentItem, setisMobile,DataSwitch}) {
     const [isActive, setisActive] = useState(false)
 
     useEffect(() => {
@@ -26,7 +26,7 @@ export default function InvoiceCard({item, itemList, setitemList, CurrentItem, s
         }}
          id="id" className={isActive?'ActiveCard':'card-container'} >
             <div className="top-part">
-                <h2 className="top-part-content">{item.to_business_name}</h2>
+                <h2 className="top-part-content">{DataSwitch===1?item.to_business_name:item.from_business_name}</h2>
             </div>
             <div className="bot-part">
                 <span className="bot-part-content"> Due: {item.date_due} </span>

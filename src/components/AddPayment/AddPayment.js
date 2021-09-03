@@ -7,7 +7,7 @@ import { useState, useEffect, useRef } from 'react'
 
 
 
-export default function AddPayment({ShowNewPayment, setShowNewInvoice, setShowNewPayment, setisActive, setShowNewBusiness, reFetchBusinesses, setreFetchBusinesses, setloading, setRedirectToNewReceivableOrPayable}) {
+export default function AddPayment({ShowNewPayment, setShowNewInvoice, setShowNewPayment, setisActive, setShowNewBusiness, reFetchBusinesses, setreFetchBusinesses, setloading, setRedirectToNewReceivableOrPayable, SetDefaultValueForBusiness, setSetDefaultValueForBusiness}) {
 
     const [DateOrTerms, setDateOrTerms] = useState(true)
     const [AmountOrItems, setAmountOrItems] = useState(true)
@@ -40,8 +40,12 @@ export default function AddPayment({ShowNewPayment, setShowNewInvoice, setShowNe
     const AmountDueRef = useRef(null)
     const NotesRef = useRef(null)
 
-    
 
+    const [ChooseOrInputs, setChooseOrInputs] = useState(true)
+    const [ManualOrUpload, setManualOrUpload] = useState(true)
+
+
+    
 
     useEffect(() => {
         
@@ -57,13 +61,24 @@ export default function AddPayment({ShowNewPayment, setShowNewInvoice, setShowNe
             setBusinssesArray(DataJson)
             console.log(BusinssesArray)
             setreFetchBusinesses(false)
+            let lastItem = BusinssesArray.find(item => item.id === BusinssesArray.length)
+            console.log(lastItem)
+            if (!ChooseOrInputs && SetDefaultValueForBusiness){
+                console.log('testing manual or upload')
+                BusinessNameRef.current.value = lastItem.business_name
+                setBusinessKey(lastItem.id)    
+            }
+
+            else if (!ChooseOrInputs && !SetDefaultValueForBusiness){
+                BusinessNameRef.current.value = null
+                setBusinessKey(null)
+            }
         }
         loadBusinesses()
 
-    }, [reFetchBusinesses])
+    }, [reFetchBusinesses, ChooseOrInputs, ShowNewPayment])
 
-    const [ChooseOrInputs, setChooseOrInputs] = useState(true)
-    const [ManualOrUpload, setManualOrUpload] = useState(true)
+
 
     const {register, handleSubmit, setValue } = useForm();
 
@@ -156,8 +171,10 @@ export default function AddPayment({ShowNewPayment, setShowNewInvoice, setShowNe
     const HandleKey = (e) => {
         const CurrentValue = e.target.value
         console.log(CurrentValue)
+        console.log(BusinssesArray)
         const filteredBusiness = BusinssesArray.find(business => business.business_name === CurrentValue)
         filteredBusiness?setBusinessKey(filteredBusiness.id):setBusinessKey(null)
+        console.log(BusinessKey)
        }
 
     
@@ -181,6 +198,8 @@ export default function AddPayment({ShowNewPayment, setShowNewInvoice, setShowNe
 
         setisActive(false)
         setChooseOrInputs(true)
+        setSetDefaultValueForBusiness(false)
+
         setAddItemName(null)
         setAddItemQty(null)
         setAddItemPrice(null)
