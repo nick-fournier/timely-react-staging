@@ -46,7 +46,7 @@ export default function Login() {
         <div className="LoginPageFlex">
                 <div className="LoginColumnFlex">
                     <div className="LoginHeader">
-                        Timely
+                        Pendulum
                     </div>
                     <div className="LoginPageDescription">
                     Focus on what matters most for your business.
@@ -58,8 +58,8 @@ export default function Login() {
 
                 <div className='flexContainerLogin'>
                     <form className='formContainerLogin' action="" method="post" onSubmit={handleSubmit(onSubmit)}>
-                        <h2 className='titleLogin'>Login to Timely</h2>
-                        <div className='AlreadyAMember'> New to Timely? <span className='LoginLink' onClick={()=>{
+                        <h2 className='titleLogin'>Login to Pendulum</h2>
+                        <div className='AlreadyAMember'> New to Pendulum? <span className='LoginLink' onClick={()=>{
                             History.push('Register')
                         }}>Sign up</span></div>
                         <div className="formContainerSmall">

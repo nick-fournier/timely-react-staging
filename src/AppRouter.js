@@ -11,7 +11,7 @@ export default function AppRouter() {
         <Router>
             <Switch>
                 <Route exact path ='/'>
-                    <Home />
+                    <Login />
                 </Route>
                 <Route path='/invoices'>
                     <App  />

@@ -22,6 +22,37 @@
     margin-bottom: 1em;
 }
 
+.PaymentTotalLabel{
+    font-weight: 700;
+    font-size: 1.25em;
+}
+
+.PaymentTotal{
+    font-size: 3em;
+    margin: 0.5em 0 1em 0;
+}
+
+.PaymentInvoiceDetails{
+    display: flex;
+}
+.PaymentInvoiceBusinessDetails{
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.PaymentInvoiceBusinesslabel{
+    margin-right: 10em;
+    font-size: 0.9em;
+    font-weight: 700;
+    color: rgba(63, 63, 63, 0.5);
+    margin-bottom: 0.5em;
+}
+
+.PaymentInvoiceBusinessname{
+    font-weight: 700;
+}
+
+
 .SchedulePaymentForm{
     display: flex;
     flex-direction: column;
@@ -61,6 +92,73 @@
     margin-bottom: 0.5em;
 }
 
+.PaymentMethodCardList{
+    display: flex;
+    height: 21.5em;
+    flex-direction: column;
+    margin-top: 1em;
+    overflow: scroll;
+    padding-right: 1em;
+    border-bottom: solid 1px rgba(204, 204, 204, 0.527);
+    
+}
+
+.PaymentMethodCard{
+    display: flex;
+    color: black;
+    height: 5em;
+    padding: 2em 1em;
+    margin: 0;
+    cursor: pointer;
+    align-items: center;
+    border: solid 1px rgba(204, 204, 204, 0.527);
+    border-radius: 5px;
+    margin: 0.5em 0;
+    transition: 200ms;
+}
+
+.PaymentMethodCard:hover{
+    background-color: rgba(204, 204, 204, 0.527);
+}
+
+.ActivePaymentMethodCard{
+    display: flex;
+    color: black;
+    border: solid 1px rgba(204, 204, 204, 0.527);
+    border-radius: 5px;
+    height: 5em;
+    padding: 2em 1em;
+    margin:  0.5em 0;
+    cursor: pointer;
+    align-items: center;
+    background-color: rgba(143, 143, 143, 0.527);
+}
+
+
+.PaymentMethodCardLogo{
+    margin-right: 1em;
+}
+
+.PaymentMethodCardInfo{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    
+}
+
+.PaymentMethodCardInfoLabel{
+    font-size: 1.2em;
+    margin: 0 0.5em 0.2em 0.5em;
+    color: rgba(63, 63, 63, 0.5);
+}
+
+.PaymentMethodCardInfoDetails{
+    font-size: 1.2em;
+    margin: 0.5em 0.5em 0.2em 0.5em;
+    text-transform: capitalize;
+
+}
+
 .SubmitPaymentButton{
     border-radius: 5px;
     color: white;
@@ -85,11 +183,16 @@
     font-weight: bold;
 }
 
-.SelectInput{
+.SelectPaymentMethod{
     margin-top: 0.5em;
     padding: 0.5em;
-    border: solid 1px gray;
+    border: solid 1px rgba(204, 204, 204, 0.719);
     border-radius: 5px;
+}
+
+.PaymentMessageContainer{    
+    height: 2em;
+    margin-top: 0.5em;
 }
 
 

@@ -66,7 +66,7 @@ export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, c
                         <FontAwesomeIcon icon={faStopwatch} />
                     </span>
                     <span className="text">
-                        timely
+                        Pendulum
                     </span>
                 </li>
                 <li className={currentNavItem === 1?'ActiveNavItem':"nav-item"} onClick={()=>{
@@ -222,7 +222,7 @@ export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, c
                             <FontAwesomeIcon icon={faStopwatch} />
                         </span>
                         <span className="text">
-                            timely
+                            Pendulum
                         </span>
                     </div>
                     <div className="MobileNavSettings">

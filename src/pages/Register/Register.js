@@ -61,7 +61,7 @@ export default function Register() {
             <div className="RegisterPageFlex">
                 <div className="RegisterColumnFlex">
                     <div className="RegisterHeader">
-                        Timely
+                        Pendulum
                     </div>
                     <div className="RegisterPageDescription">
                     Focus on what matters most for your business.
@@ -74,7 +74,7 @@ export default function Register() {
                 <div className='flexContainerRegister'>
                     <form className='formContainerRegister' action="" method="post" onSubmit={handleSubmit(onSubmit)}>
                         <div className="RegisterTitle">
-                            <h2 className='titleRegister'>Sign Up to Timely</h2>
+                            <h2 className='titleRegister'>Sign Up to Pendulum</h2>
                             {/* <div className="CircleContainer">
                                 <div className="OneOutOfTwo">
                                     <img src="\FullCircle.png" alt="" />

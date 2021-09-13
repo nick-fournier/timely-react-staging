@@ -1,4 +1,6 @@
 .AddPaymentContainer{
+    display: flex;
+    flex-direction: column;
     font-family: Cairo;
     line-height: 1em;
     padding: 1em 2em;
@@ -71,7 +73,7 @@
     align-items: center;
     gap: 1em;
     border: solid 1px rgba(136, 136, 136, 0.753);
-    margin: 1.5em 0;
+    margin: 1.5em 0 0 0;
     border-radius: 5px;
     cursor: pointer;
 }
@@ -90,7 +92,6 @@
 .AddBillMainContent{
     font-weight: 600;
     font-size: 1.25em;
-
 }
 
 .AddBillSubContent{
@@ -102,6 +103,34 @@
 .AddBillButtonContainer{
     display: flex;
     justify-content: flex-end;
+    margin-top: auto;
+    margin-bottom: 3.5em;
+}
+
+.SubmitPayableImmediatelyButton{
+    border-radius: 5px;
+    color: white;
+    background-color: #0275d8;
+    border: none;
+    display: inline-block;
+    padding: 0.75em 1.5em;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: 1em;
+    margin: 0;
+}
+
+.SubmitPayableButton{
+    border-radius: 5px;
+    color: white;
+    background-color: #0275d8;
+    border: none;
+    display: inline-block;
+    padding: 0.75em 1.5em;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: 1em;
+    margin: 0;
 }
 
 .AddBillDiscardButton{
@@ -114,6 +143,7 @@
     padding: 0.75em 1.5em;
     cursor: pointer;
     margin-top: auto;
+    margin-left: 2em;
 
 }
 

@@ -7,7 +7,7 @@ import { useState, useEffect, useRef } from 'react'
 
 
 
-export default function AddPayment({ShowNewPayment, setShowNewInvoice, setShowNewPayment, setisActive, setShowNewBusiness, reFetchBusinesses, setreFetchBusinesses, setloading, setRedirectToNewReceivableOrPayable, SetDefaultValueForBusiness, setSetDefaultValueForBusiness}) {
+export default function AddPayment({ShowNewPayment, setShowNewInvoice, setShowNewPayment, setisActive, setShowNewBusiness, reFetchBusinesses, setreFetchBusinesses, setloading, setRedirectToNewReceivableOrPayable, SetDefaultValueForBusiness, setSetDefaultValueForBusiness, PayInvoiceImmediately, setPayInvoiceImmediately, ImmediatePayableID, setImmediatePayableID, setShowSchedulePayment}) {
 
     const [DateOrTerms, setDateOrTerms] = useState(true)
     const [AmountOrItems, setAmountOrItems] = useState(true)
@@ -63,13 +63,14 @@ export default function AddPayment({ShowNewPayment, setShowNewInvoice, setShowNe
             setreFetchBusinesses(false)
             let lastItem = BusinssesArray.find(item => item.id === BusinssesArray.length)
             console.log(lastItem)
-            if (!ChooseOrInputs && SetDefaultValueForBusiness){
+            
+            if (lastItem && !ChooseOrInputs && SetDefaultValueForBusiness){
                 console.log('testing manual or upload')
                 BusinessNameRef.current.value = lastItem.business_name
                 setBusinessKey(lastItem.id)    
             }
 
-            else if (!ChooseOrInputs && !SetDefaultValueForBusiness){
+            else if (!ChooseOrInputs && !SetDefaultValueForBusiness && ManualOrUpload){
                 BusinessNameRef.current.value = null
                 setBusinessKey(null)
             }
@@ -97,14 +98,13 @@ export default function AddPayment({ShowNewPayment, setShowNewInvoice, setShowNe
         fontWeight: "700",        
     }
 
-    async function onSubmit(data){
-
+    async function SaveAndExit(data){
+        setPayInvoiceImmediately(false)
         const TestInvoice = {
             bill_from_key: BusinessKey,
             terms: TermsValue,
             date_due: DateValue,
             invoice_total_price: TotalPriceValue,
-            accepted_payments: PaymentMethods,
             items: AddItemList,
             notes: (Note?Note:'Thank you for your business')
         }
@@ -123,11 +123,50 @@ export default function AddPayment({ShowNewPayment, setShowNewInvoice, setShowNe
         const JsonResponse = await httpResponse.json()
         console.log(JsonResponse)
         
-        if (JsonResponse.bill_to_name){
+        if (JsonResponse.invoice_id){
+                alert('Invoice added successfully')
+                setloading(true)
+                CleanAllFields()
+                setShowNewPayment(false)
+        }
+        else{
+        alert('something went wrong')
+        }
+
+    }
+
+    async function SaveAndPayImmediately (){
+        setPayInvoiceImmediately(true)
+        const TestInvoice = {
+            bill_from_key: BusinessKey,
+            terms: TermsValue,
+            date_due: DateValue,
+            invoice_total_price: TotalPriceValue,
+            items: AddItemList,
+            notes: (Note?Note:'Thank you for your business')
+        }
+
+        console.table(TestInvoice)
+
+        const httpResponse = await fetch('https://api.pendulumapp.com/api/new_payable/',{
+            method: 'POST',
+            headers: new Headers({
+                'Authorization': `token ${localStorage.token}`,
+                'Content-Type': 'application/json'
+            }),
+            body: JSON.stringify(TestInvoice)
+        })
+
+        const JsonResponse = await httpResponse.json()
+        console.log(JsonResponse)
+        
+        if (JsonResponse.invoice_id){
             alert('Invoice added successfully')
             setloading(true)
             CleanAllFields()
+            setImmediatePayableID(JsonResponse)
             setShowNewPayment(false)
+            setShowSchedulePayment(true)
         }
         else{
         alert('something went wrong')
@@ -396,8 +435,15 @@ export default function AddPayment({ShowNewPayment, setShowNewInvoice, setShowNe
                 </div>
                 
                 <div className="SubmitAndDiscardContainer">
-                    <button className="SubmitInvoiceButton" type="submit" value="Submit" onClick={onSubmit}> Create Payable</button>
-                    <button className="DiscardInvoiceButton" onClick={(e)=>{
+                    <button className="SubmitPayableImmediatelyButton" type="submit" value="Submit" onClick={()=>{
+
+                        SaveAndPayImmediately()
+                    }}> Save and pay immediately</button>
+                    <button className="SubmitPayableButton" type="submit" value="Submit" onClick={()=>{
+
+                        SaveAndExit()
+                    }}> Save and exit</button>
+                    <button className="AddBillDiscardButton" onClick={(e)=>{
                         e.preventDefault()
                         CleanAllFields()
                     }}> Discard</button>

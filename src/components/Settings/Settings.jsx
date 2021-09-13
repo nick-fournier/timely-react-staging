@@ -690,7 +690,7 @@ export default function Settings({setreFetchPM, reFetchPM}) {
                                 <span className='CardShieldIcon'>
                                     <FontAwesomeIcon icon={faUserLock} />
                                 </span>
-                                Timely keeps all your details 100% secure so your sensitive information remains private.
+                                Pendulum keeps all your details 100% secure so your sensitive information remains private.
                             </div>
                         </div>
                     </div>

@@ -27,7 +27,7 @@ export default function AddBusiness({ShowNewBusiness, setShowNewBusiness, setSho
         const NewInvoice = new FormData()
         NewInvoice.append('business_name', data.business_name)
         NewInvoice.append('business_email', data.email)
-        NewInvoice.append('phone', data.phone)
+        NewInvoice.append('business_phone', data.phone)
 
 
 

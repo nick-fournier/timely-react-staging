@@ -7,7 +7,6 @@ export default function InvoiceCard({item, itemList, setitemList, CurrentItem, s
 
     useEffect(() => {
         setisActive(false)
-
     }, [itemList])
 
 
@@ -20,7 +19,7 @@ export default function InvoiceCard({item, itemList, setitemList, CurrentItem, s
            // console.log(item.items)
             setTimeout(() => {
                 setisActive(true)
-            }, 0.1);
+            }, 0.01);
             setisMobile(true)
  
         }}

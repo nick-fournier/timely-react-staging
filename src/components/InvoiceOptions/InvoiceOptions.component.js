@@ -154,7 +154,7 @@ export default function InvoiceOptions({CurrentItem, setsearchField, setSearchMe
                     <button onClick={()=>{
                         setShowSchedulePayment(true)
                         // scheduleInvoice()
-                    }} className="Button">Schedule</button>
+                    }} className="Button">Pay</button>
                     }  
                 </div>
             </div>
