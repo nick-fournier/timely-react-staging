@@ -13,7 +13,7 @@ import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import {useHistory} from 'react-router-dom'
 
-export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, currentNavItem, ShowNewInvoice, setShowNewInvoice, setShowNewBusiness, isActive, setisActive, setisMobile, ShowNewPayment, setShowNewPayment, setShowSchedulePayment, ShowPaymentSettings, setShowPaymentSettings, setSettingsOrInvoices, SettingsOrInvoices}) {
+export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, currentNavItem, ShowNewInvoice, setShowNewInvoice, setShowNewBusiness, isActive, setisActive, setisMobile, ShowNewPayment, setShowNewPayment, setShowSchedulePayment, ShowPaymentSettings, setShowPaymentSettings, setSettingsOrInvoices, SettingsOrInvoices, HideAddInvoiceBackButton, setHideAddInvoiceBackButton, HideAddPaymentBackButton, setHideAddPaymentBackButton}) {
     const [showNav, setshowNav] = useState(false)
     const [showNavSettings, setshowNavSettings] = useState(false)
 
@@ -93,6 +93,9 @@ export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, c
                     setShowSchedulePayment(false)
                     {isActive?setisActive(false):setisActive(true)
                     }
+                    setHideAddPaymentBackButton(true)
+                    HideAddInvoiceBackButton?setHideAddInvoiceBackButton(false):setHideAddInvoiceBackButton(true)
+
                 }}>
                     <span className="icon">
                         <FontAwesomeIcon icon ={faPlus} />
@@ -107,6 +110,9 @@ export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, c
                     setShowNewPayment(!ShowNewPayment)
                     setShowSchedulePayment(false)
                     setisActive(false)
+                    setHideAddInvoiceBackButton(true)
+                    HideAddPaymentBackButton?setHideAddPaymentBackButton(false):setHideAddPaymentBackButton(true)
+
                 }}>
                     <span className="icon">
                         <FontAwesomeIcon icon ={faPlus} />
@@ -123,8 +129,12 @@ export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, c
                     setshowNavSettings(false)
 
                     setShowNewInvoice(false)
+                    setShowNewPayment(false)
                     setisActive(false)
                     setisMobile(false)
+
+                    setHideAddPaymentBackButton(true)
+                    setHideAddInvoiceBackButton(true)
 
                 }}>
                     <span className="icon IconRed">
@@ -142,8 +152,12 @@ export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, c
                     setshowNavSettings(false)
 
                     setShowNewInvoice(false)
+                    setShowNewPayment(false)
                     setisActive(false)
                     setisMobile(false)
+                    
+                    setHideAddPaymentBackButton(true)
+                    setHideAddInvoiceBackButton(true)
                     
 
                 }}>
@@ -160,10 +174,14 @@ export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, c
                     History.push('/settings')
                     // setshowNavSettings(!showNavSettings)
                     setShowNewInvoice(false)
+                    setShowNewPayment(false)
                     setShowNewBusiness(false)
                     setShowNewPayment(false)
                     setshowNav(false)
                     setcurrentNavItem(4)
+
+                    setHideAddPaymentBackButton(true)
+                    setHideAddInvoiceBackButton(true)
                 }}>
                     <span className="icon">
                         <FontAwesomeIcon icon ={faCog} />

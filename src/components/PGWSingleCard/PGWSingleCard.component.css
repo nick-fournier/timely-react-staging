@@ -1,0 +1,79 @@
+.PGWSingleCard{
+    border: solid 1px rgba(172, 172, 172, 0.582);
+    width: 35%;
+    height: 85vh;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.PGWLogo{
+    margin: 2em auto 1em;
+    font-size: 2em;
+    padding: 0.5em;
+    font-weight: 700;
+    color: #fcfcfc;
+    background-color: #2b2b2b;
+    border-radius: 50%;
+    width: 2em;
+    height: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.PGWTitle{
+    font-size: 2em;
+    font-weight: 700;
+}
+
+.PGWBio{
+    margin-top: 1em;
+    font-size: 1.2em;
+    color: rgba(43, 43, 43, 0.493);
+    margin-bottom: 1em;
+}
+
+.PGWAmount{
+    font-size: 3em;
+    margin-top: 0.5em;
+    font-weight: 600;
+}
+
+.PGWDetails{
+    display: flex;
+    justify-content: space-between;
+    width: 85%;
+    margin-top: 5em;
+}
+
+.PGWInvoiceTitle{
+    font-size: 0.9em;
+    font-weight: 700;
+    color: rgba(63, 63, 63, 0.5);
+}
+
+.PGWInvoiceField{
+    font-weight: 700;
+}
+
+.PGWNote{
+    align-self:flex-start;
+    margin-top: 1em;
+    margin-left: 2.5em;
+}
+
+.PGWButton{
+    margin-top: 3em;
+    color: white;
+    background-color: black;
+    width: 87.5%;
+    font-size: 2em;
+    padding: 0.8em;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+    cursor: pointer;
+}

@@ -7,7 +7,7 @@ import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 
 
 
-export default function PaymentSettings({ShowPaymentSettings, setShowNewInvoice, setShowPaymentSettings, CurrentItem, setreFetchPM, reFetchPM}) {
+export default function PaymentSettings({ShowPaymentSettings, setShowNewInvoice, setShowPaymentSettings, CurrentItem, setreFetchPM, reFetchPM, HideAddPaymentBackButton, setHideAddPaymentBackButton}) {
 
     const stripe = useStripe()
     const elements = useElements()

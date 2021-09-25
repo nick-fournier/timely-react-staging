@@ -4,7 +4,7 @@ import './InvoiceHeader.component.css'
 
 
 export default function InvoiceHeader({CurrentItem, setisMobile}) {
-    const logo = (CurrentItem.to_business_name? CurrentItem.to_business_name.split(' ').shift().charAt(0) + CurrentItem.to_business_name.split(' ').pop().charAt(0).toUpperCase(): 'NA')
+    const logo = (CurrentItem.from_business_name? CurrentItem.from_business_name.split(' ').shift().charAt(0) + CurrentItem.from_business_name.split(' ').pop().charAt(0).toUpperCase(): 'NA')
     return (
 
         <div className="TopPart">

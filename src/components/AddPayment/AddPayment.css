@@ -13,8 +13,9 @@
     background-color: white;
     transition: transform 0.3s ease-in-out;
     transform-origin: right;
-    border-radius: 2em 0 0 5em;
     z-index: 2;
+    box-shadow: 0 0 14px #444;
+
 }
 
 .NewPaymentHeader{
@@ -119,6 +120,9 @@
     margin-right: 1em;
     margin: 0;
 }
+.SubmitPayableImmediatelyButton:hover{
+    background-color: #002e57;
+}
 
 .SubmitPayableButton{
     border-radius: 5px;
@@ -143,8 +147,10 @@
     padding: 0.75em 1.5em;
     cursor: pointer;
     margin-top: auto;
-    margin-left: 2em;
-
+}
+.AddBillDiscardButton:hover{
+    border: solid 1px #002e57;
+    color: #002e57;
 }
 
 

@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBriefcase, faCog, faCreditCard, faHandHoldingUsd, faIdCardAlt, faLandmark, faLock, faShieldAlt, faUserLock } from '@fortawesome/free-solid-svg-icons'
 import { useState, useEffect, useRef } from 'react'
 
-import { CardCvcElement, CardElement, CardExpiryElement, CardNumberElement, useElements, useStripe } from '@stripe/react-stripe-js';
+import { CardCvcElement, CardExpiryElement, CardNumberElement, useElements, useStripe } from '@stripe/react-stripe-js';
 
 
 import {gsap} from 'gsap'
@@ -158,6 +158,7 @@ export default function Settings({setreFetchPM, reFetchPM}) {
         setErrorState(false)
         const {id} = paymentMethodRes.paymentMethod
         console.log(id)
+        
         if (!stripe || !elements){
             return;
         }
@@ -672,7 +673,7 @@ export default function Settings({setreFetchPM, reFetchPM}) {
                             </div>
 
 
-                            <button className='SaveCardDetails' onClick={handleSubmit}> Link My Card </button>
+                                <button className='SaveCardDetails' onClick={handleSubmit}> Link My Card </button>
                             <div className="PMMessageContainer">
                                 {LoadingPaymentMethod?
                                 <div className="PaymentMethodMessageSuccess">Loading...</div>
@@ -693,6 +694,7 @@ export default function Settings({setreFetchPM, reFetchPM}) {
                                 Pendulum keeps all your details 100% secure so your sensitive information remains private.
                             </div>
                         </div>
+                        
                     </div>
                     :
                     <div>Coming soon</div>

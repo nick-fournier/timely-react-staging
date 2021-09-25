@@ -110,7 +110,7 @@ export default function SchedulePayment({ShowSchedulePayment, setShowNewInvoice,
                 <div className="NewPaymentHeader">Review Payment</div>
                 <div className="PaymentTotalLabel">Total:</div>
                 <div className="PaymentTotal">
-                    {PayInvoiceImmediately && ImmediatePayableID?`$${ImmediatePayableID?ImmediatePayableID.invoice_total_price:'loading...'}`:`${CurrentItem.invoice_total_price}`}
+                    {PayInvoiceImmediately && ImmediatePayableID?`$${ImmediatePayableID?ImmediatePayableID.invoice_total_price:'loading...'}`:`$${CurrentItem.invoice_total_price}`}
                 </div>
 
                 <div className="PaymentTotalLabel">Pay to:</div>

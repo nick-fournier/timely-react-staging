@@ -1,0 +1,116 @@
+.PGWContainer{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: Cairo;
+    line-height: 1.5em;
+}
+
+.PGWPaySingleCard{
+    border: solid 1px rgba(172, 172, 172, 0.582);
+    width: 35%;
+    height: 85vh;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+
+.PGWPayTitle{
+    font-size: 2em;
+    font-weight: 700;
+    margin: 3em 0 1em 0;
+}
+
+.PGWBackButon{
+    position: absolute;
+    border-top: solid 1px rgba(172, 172, 172, 0.582);
+    border-bottom: solid 1px rgba(172, 172, 172, 0.582);
+    border-left: solid 1px rgba(172, 172, 172, 0.582);
+    left: -25em;
+    top: 32em;
+    height: 8em;
+    width: 8em;
+    background-color: black;
+    background: linear-gradient(90deg, rgb(0, 0, 0) 40%, rgba(0, 0, 0, 0.582) 100%);
+    color: white;
+    font-size: 0.15em;
+    padding: 8em 8em 8em 8em;
+    border-radius: 5px 0 0 5px;
+    cursor: pointer;
+}
+
+.PGWBackButon:hover{
+    opacity: 0.8;
+}
+
+.PGWProcessing{
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-top: 2em;
+    margin-bottom: -2em;
+    color: rgb(56, 199, 144);
+
+}
+
+.PGWError{
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-top: 2em;
+    margin-bottom: -2em;
+    color: rgb(199, 56, 56);
+    width: 80%;
+    line-height: 1.3em;
+}
+
+.PGWCardDetailsLogos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2em;
+    gap: 0.9em;
+    align-items: center;
+    padding-bottom: 2.7em;
+    margin-top: 2em;
+    margin-bottom: 1.5em;
+}
+
+.PGWTeaserLogoPM{
+    height: 1.75em;
+}
+
+.PGWTeaserLogoSmallPM{
+    height: 6em;
+}
+
+.PGWTeaserLogoMediumPM{
+    height: 2.25em;
+}
+
+
+
+
+.PGWCardInformation{
+    width: 80%;
+}
+
+
+.PGWPayButton{
+    margin-top: 3em;
+    color: white;
+    background-color: black;
+    width: 80%;
+    font-size: 2em;
+    padding: 0.6em;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+}

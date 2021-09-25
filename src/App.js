@@ -39,6 +39,9 @@ function App() {
   const [DataSwitch, setDataSwitch] = useState(1)
   const [currentNavItem, setcurrentNavItem] = useState(2)
   const [ShowNewInvoice, setShowNewInvoice] = useState(false)
+  const [HideAddInvoiceBackButton, setHideAddInvoiceBackButton] = useState(true)
+  const [HideAddBusinessBackButton, setHideAddBusinessBackButton] = useState(true)
+  const [HideAddPaymentBackButton, setHideAddPaymentBackButton] = useState(true)
   const [ShowNewBusiness, setShowNewBusiness] = useState(false)
   const [ShowNewPayment, setShowNewPayment] = useState(false)
   const [ShowSchedulePayment, setShowSchedulePayment] = useState(false)
@@ -91,6 +94,16 @@ function App() {
   }
 
   useEffect( async () => {
+    const URL = window.location.href
+    if (URL === 'http://localhost:3000/invoices'){
+      setSettingsOrInvoices(false)
+    }
+
+    else if (URL === 'http://localhost:3000/settings'){
+      setSettingsOrInvoices(true)
+      setcurrentNavItem(4)
+
+    }
    
   const stripePromise = loadStripe(
     'pk_test_51J7P2UC6DO7oZMzwFigARqX8KyMNlZWjDuzas5oRbpgurPlCRrwwwb3ZGeZS5FbsC8RKZmpn7zSdCcwYftctUfz400GYOMb0BJ',
@@ -162,15 +175,15 @@ function App() {
       <Elements stripe={StripeObject}>
           <div className='AppInside'>
             <div className="AddStuff">
-              <AddBusiness SetDefaultValueForBusiness={SetDefaultValueForBusiness} setSetDefaultValueForBusiness={setSetDefaultValueForBusiness} RedirectToNewReceivableOrPayable={RedirectToNewReceivableOrPayable} setreFetchBusinesses={setreFetchBusinesses} ShowNewBusiness={ShowNewBusiness} setShowNewBusiness={setShowNewBusiness} setShowNewInvoice={setShowNewInvoice} setShowNewPayment={setShowNewPayment}/>
-              <AddInvoice SetDefaultValueForBusiness={SetDefaultValueForBusiness} setSetDefaultValueForBusiness={setSetDefaultValueForBusiness} RedirectToNewReceivableOrPayable={RedirectToNewReceivableOrPayable} setRedirectToNewReceivableOrPayable={setRedirectToNewReceivableOrPayable} setloading={setloading} setreFetchBusinesses={setreFetchBusinesses} reFetchBusinesses={reFetchBusinesses} ShowNewBusiness={ShowNewBusiness} setShowNewBusiness={setShowNewBusiness} setisActive={setisActive} ShowNewInvoice={ShowNewInvoice} setShowNewInvoice={setShowNewInvoice}/>
-              <AddPayment ShowSchedulePayment={ShowSchedulePayment} setShowSchedulePayment={setShowSchedulePayment} PayInvoiceImmediately={PayInvoiceImmediately} setPayInvoiceImmediately={setPayInvoiceImmediately} ImmediatePayableID={ImmediatePayableID} setImmediatePayableID={setImmediatePayableID} SetDefaultValueForBusiness={SetDefaultValueForBusiness} setSetDefaultValueForBusiness={setSetDefaultValueForBusiness} RedirectToNewReceivableOrPayable={RedirectToNewReceivableOrPayable} setRedirectToNewReceivableOrPayable={setRedirectToNewReceivableOrPayable} setloading={setloading} setreFetchBusinesses={setreFetchBusinesses} reFetchBusinesses={reFetchBusinesses} ShowNewPayment={ShowNewPayment} setShowNewPayment={setShowNewPayment} setShowNewBusiness={setShowNewBusiness} setisActive={setisActive} ShowNewInvoice={ShowNewInvoice} setShowNewInvoice={setShowNewInvoice}/>
+              <AddBusiness setHideAddInvoiceBackButton={setHideAddInvoiceBackButton} HideAddInvoiceBackButton={HideAddInvoiceBackButton} SetDefaultValueForBusiness={SetDefaultValueForBusiness} setSetDefaultValueForBusiness={setSetDefaultValueForBusiness} RedirectToNewReceivableOrPayable={RedirectToNewReceivableOrPayable} setreFetchBusinesses={setreFetchBusinesses} ShowNewBusiness={ShowNewBusiness} setShowNewBusiness={setShowNewBusiness} setShowNewInvoice={setShowNewInvoice} setShowNewPayment={setShowNewPayment}/>
+              <AddInvoice setHideAddInvoiceBackButton={setHideAddInvoiceBackButton} HideAddInvoiceBackButton={HideAddInvoiceBackButton} SetDefaultValueForBusiness={SetDefaultValueForBusiness} setSetDefaultValueForBusiness={setSetDefaultValueForBusiness} RedirectToNewReceivableOrPayable={RedirectToNewReceivableOrPayable} setRedirectToNewReceivableOrPayable={setRedirectToNewReceivableOrPayable} setloading={setloading} setreFetchBusinesses={setreFetchBusinesses} reFetchBusinesses={reFetchBusinesses} ShowNewBusiness={ShowNewBusiness} setShowNewBusiness={setShowNewBusiness} setisActive={setisActive} ShowNewInvoice={ShowNewInvoice} setShowNewInvoice={setShowNewInvoice}/>
+              <AddPayment HideAddPaymentBackButton={HideAddPaymentBackButton} setHideAddPaymentBackButton={setHideAddPaymentBackButton} ShowSchedulePayment={ShowSchedulePayment} setShowSchedulePayment={setShowSchedulePayment} PayInvoiceImmediately={PayInvoiceImmediately} setPayInvoiceImmediately={setPayInvoiceImmediately} ImmediatePayableID={ImmediatePayableID} setImmediatePayableID={setImmediatePayableID} SetDefaultValueForBusiness={SetDefaultValueForBusiness} setSetDefaultValueForBusiness={setSetDefaultValueForBusiness} RedirectToNewReceivableOrPayable={RedirectToNewReceivableOrPayable} setRedirectToNewReceivableOrPayable={setRedirectToNewReceivableOrPayable} setloading={setloading} setreFetchBusinesses={setreFetchBusinesses} reFetchBusinesses={reFetchBusinesses} ShowNewPayment={ShowNewPayment} setShowNewPayment={setShowNewPayment} setShowNewBusiness={setShowNewBusiness} setisActive={setisActive} ShowNewInvoice={ShowNewInvoice} setShowNewInvoice={setShowNewInvoice}/>
               <SchedulePayment PayInvoiceImmediately={PayInvoiceImmediately} setPayInvoiceImmediately={setPayInvoiceImmediately} ImmediatePayableID={ImmediatePayableID} setImmediatePayableID={setImmediatePayableID} setreFetchPM={setreFetchPM} reFetchPM={reFetchPM} CurrentItem={CurrentItem} setloading={setloading} ShowSchedulePayment={ShowSchedulePayment} setShowSchedulePayment={setShowSchedulePayment} setShowNewBusiness={setShowNewBusiness} setisActive={setisActive} ShowNewInvoice={ShowNewInvoice} setShowNewInvoice={setShowNewInvoice}/>
               <PaymentSettings setreFetchPM={setreFetchPM} reFetchPM={reFetchPM} CurrentItem={CurrentItem} setloading={setloading} ShowPaymentSettings={ShowPaymentSettings} setShowPaymentSettings={setShowPaymentSettings} setShowNewBusiness={setShowNewBusiness} setisActive={setisActive} ShowNewInvoice={ShowNewInvoice} setShowNewInvoice={setShowNewInvoice}/>
             </div>
           <div style={ShowNewInvoice||ShowNewBusiness||ShowNewPayment||ShowPaymentSettings||ShowSchedulePayment?AddCover:RemoveCover} className='Cover'></div>
           <div className='invoicePageContainer'>
-            <Nav setSettingsOrInvoices={setSettingsOrInvoices} SettingsOrInvoices={SettingsOrInvoices} ShowPaymentSettings={ShowPaymentSettings} setShowPaymentSettings={setShowPaymentSettings} setShowSchedulePayment={setShowSchedulePayment} ShowNewPayment={ShowNewPayment} setShowNewPayment={setShowNewPayment} setisMobile={setisMobile} isActive={isActive} setisActive={setisActive} ShowNewInvoice={ShowNewInvoice} setShowNewInvoice={setShowNewInvoice} setcurrentNavItem={setcurrentNavItem} setShowNewBusiness={setShowNewBusiness} currentNavItem={currentNavItem} loadReceivables={loadReceivables} loadPayables={loadPayables} />
+            <Nav HideAddPaymentBackButton={HideAddPaymentBackButton} setHideAddPaymentBackButton={setHideAddPaymentBackButton} HideAddInvoiceBackButton={HideAddInvoiceBackButton} setHideAddInvoiceBackButton={setHideAddInvoiceBackButton} setSettingsOrInvoices={setSettingsOrInvoices} SettingsOrInvoices={SettingsOrInvoices} ShowPaymentSettings={ShowPaymentSettings} setShowPaymentSettings={setShowPaymentSettings} setShowSchedulePayment={setShowSchedulePayment} ShowNewPayment={ShowNewPayment} setShowNewPayment={setShowNewPayment} setisMobile={setisMobile} isActive={isActive} setisActive={setisActive} ShowNewInvoice={ShowNewInvoice} setShowNewInvoice={setShowNewInvoice} setcurrentNavItem={setcurrentNavItem} setShowNewBusiness={setShowNewBusiness} currentNavItem={currentNavItem} loadReceivables={loadReceivables} loadPayables={loadPayables} />
             {!SettingsOrInvoices?
             DataSwitch === 1?
               <Receivables ShowSchedulePayment={ShowSchedulePayment} setShowSchedulePayment={setShowSchedulePayment} setisMobile={setisMobile} isMobile={isMobile} loadReceivables={loadReceivables} loadPayables={loadPayables} SearchedData={SearchedData()} setSearchMethod={setSearchMethod} DataSet={DataSet} setDataSet={setDataSet} itemList={itemList} CurrentItem={CurrentItem} setitemList={setitemList} setCurrentItem={setCurrentItem} setsearchField={setsearchField} DataSwitch={DataSwitch}/>

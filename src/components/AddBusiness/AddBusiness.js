@@ -2,7 +2,7 @@
 import './AddBusiness.css'
 import {useForm} from 'react-hook-form'
 
-export default function AddBusiness({ShowNewBusiness, setShowNewBusiness, setShowNewInvoice, setreFetchBusinesses, RedirectToNewReceivableOrPayable, setShowNewPayment, SetDefaultValueForBusiness, setSetDefaultValueForBusiness}) {
+export default function AddBusiness({ShowNewBusiness, setShowNewBusiness, setShowNewInvoice, setreFetchBusinesses, RedirectToNewReceivableOrPayable, setShowNewPayment, SetDefaultValueForBusiness, setSetDefaultValueForBusiness, setHideAddInvoiceBackButton, HideAddInvoiceBackButton}) {
 
 
 
@@ -20,7 +20,9 @@ export default function AddBusiness({ShowNewBusiness, setShowNewBusiness, setSho
         transform: 'translateX(0%)'
     }
     const HideAddBusiness = {
-        transform: 'translateX(100%)'
+        transform: 'translateX(100%)',
+        boxShadow: 'none'
+
     }
 
     async function onSubmit(data){
@@ -85,7 +87,7 @@ export default function AddBusiness({ShowNewBusiness, setShowNewBusiness, setSho
                 <button className="DiscardInvoiceButton" onClick={(e)=>{
                             resetValue()
                             setShowNewBusiness(false)
-
+                            setHideAddInvoiceBackButton(false)
                             {RedirectToNewReceivableOrPayable?setShowNewInvoice(true):setShowNewPayment(true)}
                             e.preventDefault()
                         }}> Discard</button>

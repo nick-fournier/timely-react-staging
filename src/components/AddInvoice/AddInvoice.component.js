@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faPlus} from '@fortawesome/free-solid-svg-icons'
 
 
-export default function AddInvoice( {ShowNewInvoice, setShowNewInvoice, setisActive, setShowNewBusiness, reFetchBusinesses, setreFetchBusinesses, setloading, setRedirectToNewReceivableOrPayable, setSetDefaultValueForBusiness, SetDefaultValueForBusiness} ) {
+export default function AddInvoice( {ShowNewInvoice, setShowNewInvoice, setisActive, setShowNewBusiness, reFetchBusinesses, setreFetchBusinesses, setloading, setRedirectToNewReceivableOrPayable, setSetDefaultValueForBusiness, SetDefaultValueForBusiness, HideAddInvoiceBackButton, setHideAddInvoiceBackButton} ) {
 
     const [DateOrTerms, setDateOrTerms] = useState(true)
     const [AmountOrItems, setAmountOrItems] = useState(true)
@@ -79,7 +79,12 @@ export default function AddInvoice( {ShowNewInvoice, setShowNewInvoice, setisAct
         transform: 'translateX(0%)'
     }
     const HideAddInvoice = {
-        transform: 'translateX(100%)'
+        transform: 'translateX(100%)',
+        boxShadow: 'none'
+    }
+
+    const Hidden ={
+        display: 'none'
     }
 
     const Clicked ={
@@ -226,6 +231,15 @@ export default function AddInvoice( {ShowNewInvoice, setShowNewInvoice, setisAct
         <div style={ShowNewInvoice? ShowAddInvoice: HideAddInvoice} className='AddInvoiceContainer'>
             <form className='AddInvoiceForm' action="" method="post" onSubmit={handleSubmit(onSubmit)}>
                 <div className="NewInvoiceHeader">Create a new inovice</div>
+                <div style={HideAddInvoiceBackButton?Hidden:{}} className="PopBackButon" onClick={(e)=>{
+                    e.preventDefault()
+                    CleanAllFields()
+                    setHideAddInvoiceBackButton(true)
+                    }}>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </div>
                 <div className="FirstRowOfAddInvoice">
                     <div className="BusinessNameContainer">
                         <label className=''>Business Name: </label>
@@ -245,6 +259,7 @@ export default function AddInvoice( {ShowNewInvoice, setShowNewInvoice, setisAct
                             setRedirectToNewReceivableOrPayable(true)
                             setShowNewInvoice(false)
                             setShowNewBusiness(true)
+                            setHideAddInvoiceBackButton(true)
                         }}>Add Business</button>
                     </div>
                 </div>

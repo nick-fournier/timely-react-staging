@@ -7,7 +7,7 @@ import { useState, useEffect, useRef } from 'react'
 
 
 
-export default function AddPayment({ShowNewPayment, setShowNewInvoice, setShowNewPayment, setisActive, setShowNewBusiness, reFetchBusinesses, setreFetchBusinesses, setloading, setRedirectToNewReceivableOrPayable, SetDefaultValueForBusiness, setSetDefaultValueForBusiness, PayInvoiceImmediately, setPayInvoiceImmediately, ImmediatePayableID, setImmediatePayableID, setShowSchedulePayment}) {
+export default function AddPayment({ShowNewPayment, setShowNewInvoice, setShowNewPayment, setisActive, setShowNewBusiness, reFetchBusinesses, setreFetchBusinesses, setloading, setRedirectToNewReceivableOrPayable, SetDefaultValueForBusiness, setSetDefaultValueForBusiness, PayInvoiceImmediately, setPayInvoiceImmediately, ImmediatePayableID, setImmediatePayableID, setShowSchedulePayment, HideAddPaymentBackButton, setHideAddPaymentBackButton}) {
 
     const [DateOrTerms, setDateOrTerms] = useState(true)
     const [AmountOrItems, setAmountOrItems] = useState(true)
@@ -90,12 +90,18 @@ export default function AddPayment({ShowNewPayment, setShowNewInvoice, setShowNe
         transform: 'translateX(0%)'
     }
     const HideAddPayment = {
-        transform: 'translateX(100%)'
+        transform: 'translateX(100%)',
+        boxShadow: 'none'
+
     }
 
     const Clicked ={
         color: "#0275d8",
         fontWeight: "700",        
+    }
+
+    const Hidden ={
+        display: 'none'
     }
 
     async function SaveAndExit(data){
@@ -252,6 +258,24 @@ export default function AddPayment({ShowNewPayment, setShowNewInvoice, setShowNe
 
     return (
         <div style={ShowNewPayment? ShowAddPayment: HideAddPayment} className='AddPaymentContainer'>
+            <div style={HideAddPaymentBackButton?Hidden:{}} className="PopBackButon" onClick={(e)=>{
+                e.preventDefault()
+                setShowNewPayment(false)
+                setShowNewInvoice(false)
+                if (!ChooseOrInputs && ManualOrUpload){
+                    CleanAllFields()
+                }
+                if (!ManualOrUpload){
+                    setChooseOrInputs(true)
+                    setManualOrUpload(true)
+                }
+                setHideAddPaymentBackButton(true)
+
+                }}>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </div>
          {ChooseOrInputs?
          <>
             <div className="NewPaymentHeader">Add A Bill To Pay</div>
@@ -439,14 +463,14 @@ export default function AddPayment({ShowNewPayment, setShowNewInvoice, setShowNe
 
                         SaveAndPayImmediately()
                     }}> Save and pay immediately</button>
-                    <button className="SubmitPayableButton" type="submit" value="Submit" onClick={()=>{
+                    <button className="AddBillDiscardButton" type="submit" value="Submit" onClick={()=>{
 
                         SaveAndExit()
                     }}> Save and exit</button>
-                    <button className="AddBillDiscardButton" onClick={(e)=>{
+                    {/* <button className="AddBillDiscardButton" onClick={(e)=>{
                         e.preventDefault()
                         CleanAllFields()
-                    }}> Discard</button>
+                    }}> Discard</button> */}
                 </div>
             </div>
             </>

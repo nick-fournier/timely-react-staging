@@ -1,0 +1,49 @@
+
+
+.PGWSuccessLogo{
+    margin: 2em auto 1em;
+    font-size: 2em;
+    padding: 0.5em;
+    font-weight: 700;
+    color: #fcfcfc;
+    background: rgb(0,179,88);
+    background: linear-gradient(90deg, rgba(0,179,88,1) 0%, rgb(23, 216, 155) 100%);
+    border-radius: 50%;
+    width: 2em;
+    height: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.PGWSuccessInvoiceField{
+    color: rgba(49, 49, 49, 0.575);
+    font-weight: 700;
+}
+
+.PGWSuccessTitle{
+    font-size: 2em;
+    font-weight: 700;
+    color: rgb(56, 199, 144);
+}
+
+.PGWSuccessNote{
+    align-self:center;
+    margin-top: 2.5em;
+    font-size: 1.25em;
+}
+
+.PGWSuccessButton{
+    margin-top: 0.5em;
+    color: white;
+    background: rgb(0,179,88);
+    background: linear-gradient(90deg, rgba(0,179,88,1) 0%, rgb(23, 216, 155) 100%);
+    width: 87.5%;
+    font-size: 1.5em;
+    padding: 0.8em;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+    cursor: pointer;
+}

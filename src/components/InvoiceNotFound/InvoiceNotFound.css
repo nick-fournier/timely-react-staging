@@ -1,0 +1,43 @@
+.PGWNotFoundCard{
+    border: solid 1px rgba(172, 172, 172, 0.582);
+    width: 35%;
+    height: 85vh;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.PGWNotFoundLogo{
+    margin: 35% auto 1em;
+    font-size: 5em;
+    padding: 0.1em;
+    font-weight: 700;
+    color: #fcfcfc;
+    background: rgb(179, 0, 0);
+    background: linear-gradient(90deg, rgb(179, 0, 0) 0%, rgb(216, 23, 71) 100%);
+    border-radius: 50%;
+    width: 2em;
+    height: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.PGWSNotFoundInvoiceField{
+    color: rgba(49, 49, 49, 0.575);
+    font-weight: 700;
+}
+
+.PGWNotFoundTitle{
+    font-size: 3em;
+    font-weight: 700;
+    color: rgb(199, 56, 56);
+}
+
+.PGWNotFoundSubtitle{
+    margin-top: 1.2em;
+    font-size: 1.5em;
+    color: rgba(43, 43, 43, 0.493);
+    margin-bottom: 1em;
+}
