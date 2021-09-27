@@ -3,6 +3,7 @@ import PGWSingleCard from '../../components/PGWSingleCard/PGWSingleCard.componen
 import PGWItemizedCard from '../../components/PGWItemizedCard/PGWItemizedCard.component'
 import PaymentSuccess from '../../components/PaymentSuccess/PaymentSuccess';
 import InvoiceNotFound from '../../components/InvoiceNotFound/InvoiceNotFound';
+import Loading from '../../components/loading/loading';
 
 import { CardCvcElement, CardElement, CardExpiryElement, CardNumberElement, useElements, useStripe } from '@stripe/react-stripe-js';
 
@@ -220,7 +221,7 @@ if (!StripeObject)
             </div>
             :
             <>{loading?
-                <>Loading...</>
+                <Loading/>
                 :
                 <div className='PGWContainer'>
                     <InvoiceNotFound/>
