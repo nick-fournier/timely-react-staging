@@ -189,7 +189,7 @@
     padding: 2em 2em;
     width: 80%;
     border-radius: 5px;
-    margin: 2em auto;
+    margin: 0 auto 2em auto;
     border: solid 0.5px #343a403d;
     cursor: pointer;
     
@@ -267,6 +267,7 @@
 .CardEXPandCVC{
     display: flex;
     justify-content: space-between;
+    font-size: 1em;
 }
 
 .CardExpiryContainer{
@@ -335,3 +336,5 @@
     color: red;
     
 }
+
+

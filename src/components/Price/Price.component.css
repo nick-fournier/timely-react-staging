@@ -10,14 +10,14 @@
     font-family: Cairo;
     display: flex;
     width: 90%;
-    border-top: 0.5px solid #343a403d;
+    border-bottom: 0.5px solid #343a403d;
     margin-top: auto;
     line-height: 1em;
     font-size: 1.1em;
 }
 
 .TotalPriceSection{
-    margin: 1em 0.5em 1em 77%;
+    margin: 1em auto;
     width: 25%;
     justify-content: space-between;
     align-self: flex-end;

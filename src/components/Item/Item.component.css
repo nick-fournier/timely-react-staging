@@ -33,3 +33,11 @@
     margin-right: 0.5em;
     font-size: 1.2em;
 }
+
+.ItemPrice{
+    margin-left: auto;
+}
+
+.ItemsTotalPrice{
+    margin-left: auto;
+}

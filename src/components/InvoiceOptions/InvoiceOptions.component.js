@@ -2,7 +2,7 @@ import './InvoiceOptions.component.css'
 import {useState} from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import { faArrowLeft, faBars } from '@fortawesome/free-solid-svg-icons'
 
 
 export default function InvoiceOptions({CurrentItem, setsearchField, setSearchMethod, DataSwitch, isMobile, setisMobile, ShowSchedulePayment, setShowSchedulePayment}) {
@@ -35,6 +35,10 @@ export default function InvoiceOptions({CurrentItem, setsearchField, setSearchMe
 
     const showButtons = () => {
         setHidden(!Hidden)
+    }
+
+    const marginButtons = {
+        marginRight: Hidden?'0':'0.5em'
     }
 
     const buttonStyles = {
@@ -141,13 +145,15 @@ export default function InvoiceOptions({CurrentItem, setsearchField, setSearchMe
             
             <div className={`${isMobile?'ShowButtons':'HideButtons'} ButtonContainer`}>
                 
-                <div className="SecondaryButtonContainer">
+                <div  className="SecondaryButtonContainer">
                     <button onClick={()=> setisMobile(false)} className="BackToInvoiceList">
                         <FontAwesomeIcon icon={faArrowLeft} />
                     </button>
-                    <button onClick={showButtons} className='LabelButton' > Label</button>   
-                    <button style={buttonStyles} onClick ={flagInvoice} className="Button">Flag</button>  
-                    <button style={buttonStyles} disabled={CurrentItem.is_paid?true:false} onClick={markInvoice} className={CurrentItem.is_paid?'Disabled':'Button'}>Mark as Paid</button>
+                    <button style={buttonStyles} onClick ={flagInvoice} className='SecondaryInvoiceButton'>Flag</button>  
+                    <button style={buttonStyles} disabled={CurrentItem.is_paid?true:false} onClick={markInvoice} className={CurrentItem.is_paid?'Disabled':'SecondaryInvoiceButton'}>Mark as Paid</button>
+                    <button onClick={showButtons} className='LabelButton' >
+                        <FontAwesomeIcon icon={faBars} />
+                    </button>   
                     {DataSwitch === 1?
                     <button onClick={scheduleInvoice} className="Button">Remind</button>
                     :
@@ -155,7 +161,7 @@ export default function InvoiceOptions({CurrentItem, setsearchField, setSearchMe
                         setShowSchedulePayment(true)
                         // scheduleInvoice()
                     }} className="Button">Pay</button>
-                    }  
+                }  
                 </div>
             </div>
         </div>

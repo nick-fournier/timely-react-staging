@@ -1,7 +1,22 @@
-import React from 'react'
+import {useEffect, useState} from 'react'
 import './RHSHeaders.component.css'
 
-export default function RHSHeaders({CurrentItem}) {
+export default function RHSHeaders({CurrentItem, ShowHeaders, setShowHeaders}) {
+
+
+    useEffect(() => {
+        if (CurrentItem.items){
+            if (CurrentItem.items.length > 1){
+                setShowHeaders(true)
+            }
+            else {
+                setShowHeaders(false)
+            }
+        }
+            return () => {
+                
+            }
+    }, [CurrentItem])
 
 
     return (
@@ -10,12 +25,12 @@ export default function RHSHeaders({CurrentItem}) {
                 DESCRIPTION
             </div>
             <div className="QuantityPriceAmountContainer">
-                <div className="QuantityHeader">
+                {ShowHeaders &&<div className="QuantityHeader">
                     QUANTITY
-                </div>
-                <div className="ItemPriceHeader">
+                </div>}
+                {ShowHeaders && <div className="ItemPriceHeader">
                     PRICE
-                </div>
+                </div>}
                 <div className="ItemsTotalPriceHeader">
                     AMOUNT
                 </div>

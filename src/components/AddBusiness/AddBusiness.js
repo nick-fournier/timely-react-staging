@@ -22,7 +22,6 @@ export default function AddBusiness({ShowNewBusiness, setShowNewBusiness, setSho
     const HideAddBusiness = {
         transform: 'translateX(100%)',
         boxShadow: 'none'
-
     }
 
     async function onSubmit(data){

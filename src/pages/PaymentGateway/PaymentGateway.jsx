@@ -189,16 +189,43 @@ if (!StripeObject)
                     </div>
                     <div className="PGWCardInformation">        
                         <label className='CardInfoLabel' htmlFor="">Card Number :</label>
-                        <CardNumberElement className='CardNumberElement' />
+                        <CardNumberElement options={{
+                                                style: {
+                                                base: {
+                                                    fontSize: '1em',
+                                                },
+                                                invalid: {
+                                                    color: '#9e2146',
+                                                },
+                                                },
+                            }} className='CardNumberElement' />
 
                         <div className="CardEXPandCVC">
                             <div className="CardExpiryContainer">
                                 <label className='CardInfoLabel' htmlFor="">Card Expiration Date :</label>
-                                <CardExpiryElement className='CardNumberElement'/>
+                                <CardExpiryElement options={{
+                                                style: {
+                                                base: {
+                                                    fontSize: '1em',
+                                                },
+                                                invalid: {
+                                                    color: '#9e2146',
+                                                },
+                                                },
+                            }} className='CardNumberElement'/>
                             </div>
                             <div className="CardCVCContainer">
                                 <label className='CardInfoLabel' htmlFor="">Card Security Code :</label>
-                                <CardCvcElement className='CardNumberElement'/>
+                                <CardCvcElement options={{
+                                                style: {
+                                                base: {
+                                                    fontSize: '1em',
+                                                },
+                                                invalid: {
+                                                    color: '#9e2146',
+                                                },
+                                                },
+                            }} className='CardNumberElement'/>
                             </div>
                         </div>
                     </div>

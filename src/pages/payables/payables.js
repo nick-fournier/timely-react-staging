@@ -8,7 +8,7 @@ import Price from '../../components/Price/Price.component'
 import InvoiceOptions from '../../components/InvoiceOptions/InvoiceOptions.component'
 import MediaQuery from "react-responsive";
 
-export default function Payables({SearchedData, DataSet, setDataSet, itemList, setitemList, CurrentItem, setCurrentItem, setsearchField, setSearchMethod, DataSwitch, loadPayables, loadReceivables, setisMobile, isMobile, ShowSchedulePayment, setShowSchedulePayment}) {
+export default function Payables({SearchedData, DataSet, setDataSet, itemList, setitemList, CurrentItem, setCurrentItem, setsearchField, setSearchMethod, DataSwitch, loadPayables, loadReceivables, setisMobile, isMobile, ShowSchedulePayment, setShowSchedulePayment, ShowHeaders, setShowHeaders}) {
     
     const ShowInvoiceDetails = {
         transform: 'translateX(-100%)'
@@ -26,8 +26,8 @@ export default function Payables({SearchedData, DataSet, setDataSet, itemList, s
                         <InvoiceHeader setisMobile={setisMobile} CurrentItem={CurrentItem}/>
                             
                             <div className="MiddlePart" id='MiddlePart'>
-                                <RHSHeaders CurrentItem={CurrentItem}/>
-                                <ItemList itemList={itemList}/>
+                                <RHSHeaders ShowHeaders={ShowHeaders} setShowHeaders={ShowHeaders} CurrentItem={CurrentItem}/>
+                                <ItemList ShowHeaders={ShowHeaders} setShowHeaders={setShowHeaders} itemList={itemList}/>
                                 
 
                                 <Price CurrentItem={CurrentItem} DataSwitch={DataSwitch}/>
@@ -48,8 +48,8 @@ export default function Payables({SearchedData, DataSet, setDataSet, itemList, s
                     <InvoiceHeader setisMobile={setisMobile} CurrentItem={CurrentItem}/>
                         
                         <div className="MiddlePart" id='MiddlePart'>
-                            <RHSHeaders CurrentItem={CurrentItem}/>
-                            <ItemList itemList={itemList}/>
+                            <RHSHeaders ShowHeaders={ShowHeaders} setShowHeaders={setShowHeaders} CurrentItem={CurrentItem}/>
+                            <ItemList ShowHeaders={ShowHeaders} setShowHeaders={setShowHeaders} itemList={itemList}/>
                             
 
                             <Price CurrentItem={CurrentItem} DataSwitch={DataSwitch}/>

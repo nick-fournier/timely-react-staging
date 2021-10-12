@@ -36,7 +36,7 @@ export default function SchedulePayment({ShowSchedulePayment, setShowNewInvoice,
     useEffect(() => {
         
         const loadPMs = async () =>{
-            const response = await fetch('https://api.pendulumapp.com/api/stripe/payinvoice',{
+            const response = await fetch('https://api.pendulumapp.com/api/stripe/payinvoice/',{
                 method: "GET",
                 headers: new Headers({
                   'Authorization': `token ${localStorage.token}`
@@ -60,7 +60,7 @@ export default function SchedulePayment({ShowSchedulePayment, setShowNewInvoice,
     async function handleSubmit(e){
         e.preventDefault()
         setProcessingPayment(true)
-        const PaymentResponse = await fetch('https://api.pendulumapp.com/api/stripe/payinvoice',{
+        const PaymentResponse = await fetch('https://api.pendulumapp.com/api/stripe/payinvoice/',{
                 method: "POST",
                 headers: new Headers({
                   'Authorization': `token ${localStorage.token}`,
@@ -80,6 +80,15 @@ export default function SchedulePayment({ShowSchedulePayment, setShowNewInvoice,
                 setTimeout(() => {
                     setMessageReveal(false)
                     setShowSchedulePayment(false)
+                }, 2000);
+            }
+
+            else {
+                setProcessingPayment(false)
+                setPaymentSuccessOrFail(false)
+                setMessageReveal(true)
+                setTimeout(() => {
+                    setMessageReveal(false)
                 }, 2000);
             }
     }

@@ -21,7 +21,7 @@
 
 .navbar{
     font-family: Inter;
-    background: #ffffff;
+    background: #222222;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -40,7 +40,7 @@
     padding: 0.5em 0 0.5em 0.5em;
     display: flex;
     margin: 0.15em 0.15em 0.15em 10%;
-    color: rgb(146, 146, 146);
+    color: rgb(165, 165, 165);
     width: 90%;
     cursor: pointer;
     font-size: 0.77em;
@@ -56,7 +56,7 @@
     padding: 0.5em 0 0.5em 0.5em;
     display: flex;
     margin: 0.15em 0.15em 0.15em 30%;
-    color: rgb(146, 146, 146);
+    color: rgb(165, 165, 165);
     width: 90%;
     cursor: pointer;
     font-size: 0.57em;
@@ -68,7 +68,7 @@
     padding: 0.5em 0 0.5em 0.5em;
     display: flex;
     margin: 0.15em 0.15em 0.15em 30%;
-    color: rgb(146, 146, 146);
+    color: rgb(200, 200, 200);
     width: 90%;
     cursor: pointer;
     font-size: 0.57em;
@@ -77,12 +77,12 @@
 }
 
 .ShowNav:hover{
-    color: rgb(26, 23, 25);
+    color: rgb(180, 180, 180);
     font-weight: 700;
 }
 
 .navLogo{
-    color: rgb(26, 23, 25);
+    color: rgb(165, 165, 165);
     text-transform: uppercase;
     font-size: 1.15em;
     padding: 0.5em 1em 0.5em 2.5em;
@@ -94,6 +94,9 @@
     font-weight: 700;
     cursor: default;
 
+}
+
+.PendulumIcon{
 }
 
 
@@ -121,14 +124,14 @@
 } */
 
 .nav-item:hover{
-    color: rgb(26, 23, 25);
+    color: rgb(180, 180, 180);
     font-weight: 700;
 }
 
 .ActiveNavItem{
-    color: rgb(0, 0, 0);
+    color: rgba(255, 255, 255, 0.842);
     font-weight: 700;
-    background-color: #343a401a;
+    background-color: #7e7e7e27;
     border-radius: 5em 0 0 5em;
     padding: 0.5em 0 0.5em 0.75em;
     display: flex;

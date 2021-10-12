@@ -10,7 +10,7 @@ import { useEffect } from 'react'
 
 import MediaQuery from "react-responsive";
 
-export default function Receivables({SearchedData, DataSet, setDataSet, itemList, setitemList, CurrentItem, setCurrentItem, setsearchField, setSearchMethod, DataSwitch, loadPayables, loadReceivables, setisMobile, isMobile, ShowSchedulePayment, setShowSchedulePayment}) {
+export default function Receivables({SearchedData, DataSet, setDataSet, itemList, setitemList, CurrentItem, setCurrentItem, setsearchField, setSearchMethod, DataSwitch, loadPayables, loadReceivables, setisMobile, isMobile, ShowSchedulePayment, setShowSchedulePayment, ShowHeaders, setShowHeaders}) {
 
 
     const ShowInvoiceDetails = {
@@ -30,8 +30,8 @@ export default function Receivables({SearchedData, DataSet, setDataSet, itemList
                     <InvoiceHeader setisMobile={setisMobile} CurrentItem={CurrentItem}/>
                         
                         <div className="MiddlePart" id='MiddlePart'>
-                            <RHSHeaders CurrentItem={CurrentItem}/>
-                            <ItemList itemList={itemList}/>
+                            <RHSHeaders ShowHeaders={ShowHeaders} setShowHeaders={setShowHeaders} CurrentItem={CurrentItem}/>
+                            <ItemList ShowHeaders={ShowHeaders} setShowHeaders={ShowHeaders} itemList={itemList}/>
 
                             
 
@@ -53,8 +53,8 @@ export default function Receivables({SearchedData, DataSet, setDataSet, itemList
                     <InvoiceHeader setisMobile={setisMobile} CurrentItem={CurrentItem}/>
                         
                         <div className="MiddlePart" id='MiddlePart'>
-                            <RHSHeaders CurrentItem={CurrentItem}/>
-                            <ItemList itemList={itemList}/>
+                            <RHSHeaders ShowHeaders={ShowHeaders} setShowHeaders={setShowHeaders} CurrentItem={CurrentItem}/>
+                            <ItemList ShowHeaders={ShowHeaders} setShowHeaders={setShowHeaders} itemList={itemList}/>
 
                             
 

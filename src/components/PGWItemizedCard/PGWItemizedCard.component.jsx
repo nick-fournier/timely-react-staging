@@ -46,7 +46,7 @@ export default function PGWItemizedCard({InvoiceOrPay, setInvoiceOrPay, invoiceT
                 <PGWInvoiceItemList invoiceToPay={invoiceToPay}/>
                 <div className="PGWPriceContainer">
                     <div className="PGWTotalPriceSection">
-                        <div className="TotalAmountWord">
+                        <div className="PGWTotalAmountWord">
                             Total Due:
                         </div>
                         <div className='TotalAmountNumberPayable'>

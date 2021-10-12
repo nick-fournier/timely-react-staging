@@ -46,7 +46,7 @@ export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, c
     })
 
     const black = {
-        color: 'black',
+        color: 'rgb(180, 180, 180)',
         fontWeight: 'bold'
     }
     const showNav1 = {
@@ -65,6 +65,7 @@ export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, c
                     <span className="icon ">
                         <FontAwesomeIcon icon={faStopwatch} />
                     </span>
+                    {/* <img className='PendulumIcon' src="https://uploads-ssl.webflow.com/61294d9880807a7d67ee9e19/61294d9880807a5eacee9e2a_dark_logo_transparent_background%202-1.png" alt="" /> */}
                     <span className="text">
                         Pendulum
                     </span>

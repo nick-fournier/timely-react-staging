@@ -1,7 +1,7 @@
 import React from 'react'
 import './Item.component.css'
 
-export default function Item({item}) {
+export default function Item({item, ShowHeaders}) {
     return (
         <div>
             <div className="ItemDetails">
@@ -14,12 +14,12 @@ export default function Item({item}) {
                     </div>
                 </div>
                 <div className="QuantityPriceAmountContainerNumbers">
-                    <div className="Quantity">
+                    {ShowHeaders && <div className="Quantity">
                         {parseInt(item.quantity_purchased)}
-                    </div>
-                    <div className="ItemPrice">
+                    </div>}
+                    {ShowHeaders && <div className="ItemPrice">
                         ${parseInt(item.item_price)}
-                    </div>
+                    </div>}
                     <div className="ItemsTotalPrice">
                         ${parseInt(item.item_total_price)}
                     </div>

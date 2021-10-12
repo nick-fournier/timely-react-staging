@@ -1,9 +1,10 @@
 .cardsContainer{
     width: 25%;
-    background-color: rgb(245, 245, 245);
+    background-color: rgb(240, 240, 240);
     overflow:auto;
-    height: 84.5vh;
+    height: 88vh;
     transition: 500ms;
+    padding-right: 2.2em;
 }
 
 @media screen and (max-width: 480px){

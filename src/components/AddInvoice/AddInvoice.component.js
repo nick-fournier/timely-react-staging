@@ -28,6 +28,9 @@ export default function AddInvoice( {ShowNewInvoice, setShowNewInvoice, setisAct
     const [TermsValue, setTermsValue] = useState('Custom')
     const [DateValue, setDateValue] = useState(null)
     const [TotalPriceValue, setTotalPriceValue] = useState(0)
+    const [ItemNameValue, setItemNameValue] = useState('')
+    const [ItemDescriptionValue, setItemDescriptionValue] = useState('')
+
     const [PaymentMethods, setPaymentMethods] = useState([])
     const [Note, setNote] = useState('')
 
@@ -38,6 +41,8 @@ export default function AddInvoice( {ShowNewInvoice, setShowNewInvoice, setisAct
     const TermsRef = useRef(null)
     const DateRef = useRef(null)
     const AmountDueRef = useRef(null)
+    const ItemNameRef = useRef(null)
+    const ItemDescriptionRef = useRef(null)
     const NotesRef = useRef(null)
 
 
@@ -104,6 +109,13 @@ export default function AddInvoice( {ShowNewInvoice, setShowNewInvoice, setisAct
         // NewInvoice.append('items', AddItemList)
         // console.log(PaymentMethods)
 
+        const SingularItem = [{        
+            item_name:ItemNameValue,
+            item_description:ItemDescriptionValue,
+            quantity_purchased: 1,
+            item_price:TotalPriceValue,
+            item_total_price:TotalPriceValue    
+        }]
 
         const TestInvoice = {
             bill_to_key: BusinessKey,
@@ -111,8 +123,9 @@ export default function AddInvoice( {ShowNewInvoice, setShowNewInvoice, setisAct
             date_due: DateValue,
             invoice_total_price: TotalPriceValue,
             accepted_payments: PaymentMethods,
-            items: AddItemList,
-            notes: (Note?Note:'Thank you for your business')
+            items: SingularOrItemized?SingularItem:
+            AddItemList,
+            notes: Note?Note:'Thank you for your business'
         }
 
         console.table(TestInvoice)
@@ -133,6 +146,7 @@ export default function AddInvoice( {ShowNewInvoice, setShowNewInvoice, setisAct
             alert('Invoice added successfully')
             setloading(true)
             CleanAllFields()
+            setHideAddInvoiceBackButton(true)
         }
         else{
         alert('something went wrong')
@@ -201,6 +215,10 @@ export default function AddInvoice( {ShowNewInvoice, setShowNewInvoice, setisAct
         DateOrTerms?TermsRef.current.value ='Cash on delivery':DateRef.current.value=null
         SingularOrItemized?AmountDueRef.current.value =null:setSingularOrItemized(false)
         NotesRef.current.value =''
+        if (SingularOrItemized){
+            ItemNameRef.current.value = null;
+            ItemDescriptionRef.current.value = null;
+        }
 
         setTermsValue('Custom')
         setDateValue(null)
@@ -349,10 +367,24 @@ export default function AddInvoice( {ShowNewInvoice, setShowNewInvoice, setisAct
                     </div>
                     <div className="AmountAndItemsFormContainer">
                         {AmountOrItems?
-                        <label className=''>Amount Due:</label>:
+                        <>
+                            <label className=''>Item Name:</label>
+                            <input ref={ItemNameRef} className='AmountInput' type="text" placeholder='Enter name' onChange={(e)=>{setItemNameValue(e.target.value)}}/>
+                            <label className=''>Item Description:</label>
+                            <input ref={ItemDescriptionRef} className='AmountInput' type="text" placeholder='Enter description' onChange={(e)=>{setItemDescriptionValue(e.target.value)}}/>
+                            
+                        </>
+
+                        :
+                        <></>
+                        }
+                        {AmountOrItems?
+                        <label className=''>Amount Due:</label>
+                        :
                         <label className=''>Add items:</label>}
                         {AmountOrItems?
-                        <input ref={AmountDueRef} className='AmountInput' type="number" placeholder='Enter amount' onChange={(e)=>{setTotalPriceValue(e.target.value)}}/>:
+                        <input ref={AmountDueRef} className='AmountInput' type="number" placeholder='Enter amount' onChange={(e)=>{setTotalPriceValue(e.target.value)}}/>
+                        :
                         <div className='AddItemsContainer'>
                             {AddItemList.length>0 && <div className="AddItemsHeaders">
                                 <div className="AddItem-Item">
@@ -468,4 +500,21 @@ export default function AddInvoice( {ShowNewInvoice, setShowNewInvoice, setisAct
 }
 
 
+
+
+// {
+//     "bill_to_key": "biz_2GBjYncDFSPxywcX8uiHFw",
+//     "terms": "NET30",
+//     "date_due": null,
+//     "invoice_total_price": "4000",
+//     "accepted_payments": [1],
+//     "notes": "Thanks",
+//     "items": [{
+// "item_name" :"Hello",
+// "item_description" :"Hello again",
+// "quantity_purchased" :"1",
+// "item_price" :"412",
+// "item_total_price" :"412"
+// }]
+// }
 

@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBriefcase, faCog, faCreditCard, faHandHoldingUsd, faIdCardAlt, faLandmark, faLock, faShieldAlt, faUserLock } from '@fortawesome/free-solid-svg-icons'
 import { useState, useEffect, useRef } from 'react'
 
-import { CardCvcElement, CardExpiryElement, CardNumberElement, useElements, useStripe } from '@stripe/react-stripe-js';
+import { CardCvcElement, CardExpiryElement, CardNumberElement, useElements, useStripe, IdealBankElement} from '@stripe/react-stripe-js';
 
 
 import {gsap} from 'gsap'
@@ -14,6 +14,11 @@ import {gsap} from 'gsap'
 
 
 export default function Settings({setreFetchPM, reFetchPM}) {
+
+    const StripeElementsStyle = {
+        fontSize: '1.4em'
+    }
+
 
     // ->  Success and Error message handling
 
@@ -170,7 +175,7 @@ export default function Settings({setreFetchPM, reFetchPM}) {
 
             console.log('Entered')            
 
-            const paymentData = await fetch('https://api.pendulumapp.com/api/stripe/paymentmethods/attach',{
+            const paymentData = await fetch('https://api.pendulumapp.com/api/stripe/paymentmethods/attach/',{
                 method: 'POST',
                 headers: new Headers({
                     'Authorization': `token ${localStorage.token}`,
@@ -347,6 +352,7 @@ export default function Settings({setreFetchPM, reFetchPM}) {
 
 
     }
+
 
 
     return (
@@ -544,16 +550,7 @@ export default function Settings({setreFetchPM, reFetchPM}) {
                                 console.log(PersonalLastNameInput)
                             }}/>
                             }
-                            
-                            {/* <label className='ProfileInformationLabel' htmlFor="">Role in Business:</label>
-                            {!ReadOrWrite?<div className="ProfileInformationField">{!userPersonalData?'Loading...':userPersonalData.role}</div>
-                            :<input className='ProfileInformationInput' type='text' placeholder={userPersonalData.role}/>
-                            } */}
 
-                            {/* <label className='ProfileInformationLabel' htmlFor="">Password:</label>
-                            {!ReadOrWrite?<div className="ProfileInformationField">******</div>
-                            :<input className='ProfileInformationInput' type='password' placeholder='******'/>
-                            } */}
                             {!ReadOrWrite && <div onClick={()=>setInfoOrPassword(true)} className="PasswordChangeLink">
                                 You can also change your password here.
                             </div>}
@@ -658,17 +655,44 @@ export default function Settings({setreFetchPM, reFetchPM}) {
                             <img className='TeaserLogoPM' src="\Discover_Card_logocolor.svg" alt="" />
                         </div>
                         <div className="CardInformation">        
-                            <label className='CardInfoLabel' htmlFor="">Card Number :</label>
-                            <CardNumberElement className='CardNumberElement' />
+                            <label className='CardInfoLabel' htmlFor="">Card Number:</label>
+                            <CardNumberElement options={{
+                                                style: {
+                                                base: {
+                                                    fontSize: '1em',
+                                                },
+                                                invalid: {
+                                                    color: '#9e2146',
+                                                },
+                                                },
+                            }} className='CardNumberElement' />
 
                             <div className="CardEXPandCVC">
                                 <div className="CardExpiryContainer">
-                                    <label className='CardInfoLabel' htmlFor="">Card Expiration Date :</label>
-                                    <CardExpiryElement className='CardNumberElement'/>
+                                    <label className='CardInfoLabel' htmlFor="">Card Expiration Date:</label>
+                                    <CardExpiryElement  options={{
+                                                style: {
+                                                base: {
+                                                    fontSize: '1em',
+                                                },
+                                                invalid: {
+                                                    color: '#9e2146',
+                                                },
+                                                },
+                            }} className='CardNumberElement'/>
                                 </div>
                                 <div className="CardCVCContainer">
-                                    <label className='CardInfoLabel' htmlFor="">Card Security Code :</label>
-                                    <CardCvcElement className='CardNumberElement'/>
+                                    <label className='CardInfoLabel' htmlFor="">Card Security Code:</label>
+                                    <CardCvcElement options={{
+                                                style: {
+                                                base: {
+                                                    fontSize: '1em',
+                                                },
+                                                invalid: {
+                                                    color: '#9e2146',
+                                                },
+                                                },
+                            }} className='CardNumberElement'/>
                                 </div>
                             </div>
 
@@ -697,7 +721,9 @@ export default function Settings({setreFetchPM, reFetchPM}) {
                         
                     </div>
                     :
-                    <div>Coming soon</div>
+                    <div>
+                        Coming soon
+                    </div>
                     }
                     
                 </div>
