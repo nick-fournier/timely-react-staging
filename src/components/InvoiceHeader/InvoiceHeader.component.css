@@ -3,7 +3,7 @@
     display: flex;
     border-radius: 0;
     color: black;
-    height: 40%;
+    height: 30%;
     font-family: Cairo;
     text-transform: capitalize;
     justify-content: center;
@@ -105,3 +105,10 @@
     }
     
 }
+
+@media screen and (min-width: 1281) and (max-width: 1800px) {
+    .TopPart {
+        font-size: 0.5em;
+    }
+  
+  }

@@ -141,6 +141,13 @@ body {
   
   }
 
+  @media screen and (min-width: 1281) and (max-width: 1800px) and (orientation: landscape) {
+    html body {
+        font-size: .6vw;
+    }
+  
+  }
+
 
 
 
