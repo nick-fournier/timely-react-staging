@@ -99,6 +99,11 @@
 .PendulumIcon{
 }
 
+.PendulumLogo{
+    height: 2.5em;
+    width: 7em;
+}
+
 
 .navLogo .text{
     margin-left:0em

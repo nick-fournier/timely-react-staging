@@ -106,7 +106,8 @@ export default function SchedulePayment({ShowSchedulePayment, setShowNewInvoice,
         transform: 'translateX(0%)'
     }
     const HideSchedulePayment = {
-        transform: 'translateX(100%)'
+        transform: 'translateX(100%)',
+        boxShadow: 'none'
     }
 
     const Selected = {
