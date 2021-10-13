@@ -16,14 +16,14 @@ export default function InvoiceHeader({CurrentItem, setisMobile}) {
                         <div className="BusinessName" id='BusinessName'>
                             {CurrentItem.from_business_name}
                         </div>
-                        <div className="InvoiceNumber" id='InvoiceNumber'>
-                            #{CurrentItem.invoice_name}
-                        </div>
                         <div className="TopPartRHS">
                             <div className="DateDue" id='DateDue'>
                                 Due Date: {CurrentItem.date_due}
                             </div>
                             
+                        </div>
+                        <div className="InvoiceNumber" id='InvoiceNumber'>
+                            #{CurrentItem.invoice_name}
                         </div>
                     </div>
                 </div>
