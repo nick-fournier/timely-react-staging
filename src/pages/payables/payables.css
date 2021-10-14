@@ -140,7 +140,7 @@ body {
   
   @media screen and (min-width: 841px) and (max-width: 1280px) and (orientation: landscape) {
     html body {
-        font-size: .85vw;
+        font-size: 1vw;
     }
   
   }
@@ -151,6 +151,16 @@ body {
     }
   
   }
+
+
+  @media screen and (min-width: 1280) {
+    html body {
+        font-size: .6vw;
+    }
+  
+  }
+
+
 
 
 
