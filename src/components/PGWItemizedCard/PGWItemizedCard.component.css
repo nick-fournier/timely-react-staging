@@ -95,6 +95,22 @@
     html body {
         font-size: 1.2vw;
     }
+
+    .PGWItemDetailsContainer{
+        font-size: 1em;
+    }
+
+    .PGWPriceContainer{
+        margin: auto;
+        font-size: 1.5em;
+    }
+
+    .PGWItemizedButton{
+        margin: auto;
+        font-size: 2em;
+    }
+
+
   
   }
 
