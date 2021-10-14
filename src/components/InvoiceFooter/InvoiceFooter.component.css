@@ -89,7 +89,9 @@
 
 @media screen and (max-width:480px){
     .BottomPart{
-        height: 16vh;
+        height: fit-content;
+        padding-bottom: 3em;
+        padding-top: 3em;
         font-size: 0.7em;
         overflow: hidden;
     }
