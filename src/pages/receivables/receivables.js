@@ -29,8 +29,8 @@ export default function Receivables({SearchedData, DataSet, setDataSet, itemList
                     <div className="RightHandSide">
                     <InvoiceHeader setisMobile={setisMobile} CurrentItem={CurrentItem}/>
                         
-                        <div className="MiddlePart" id='MiddlePart'>
                             <RHSHeaders ShowHeaders={ShowHeaders} setShowHeaders={setShowHeaders} CurrentItem={CurrentItem}/>
+                        <div className="MiddlePart" id='MiddlePart'>
                             <ItemList ShowHeaders={ShowHeaders} setShowHeaders={ShowHeaders} itemList={itemList}/>
 
                             

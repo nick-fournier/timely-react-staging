@@ -43,6 +43,14 @@
         padding-top: 0.5em;
         padding-bottom: 1em;
         font-size: 0.7em;
+        background-color: white;
+        width: 80%;
+        padding-left: 5%;
+        padding-right: 5%;
+        margin: auto;
+        border-left: 1px solid rgba(172, 172, 172, 0.582);
+        border-right: 1px solid rgba(172, 172, 172, 0.582);
+    
     }
 
     .QuantityPriceAmountContainer{
