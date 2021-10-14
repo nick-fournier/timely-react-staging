@@ -90,8 +90,8 @@
 @media screen and (max-width:480px){
     .BottomPart{
         height: fit-content;
-        padding-bottom: 3em;
-        padding-top: 3em;
+        padding-bottom: 5em;
+        padding-top: 5em;
         font-size: 0.7em;
         overflow: hidden;
     }
