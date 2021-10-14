@@ -62,9 +62,9 @@ export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, c
         <div className='NavContainer'>
             <ul className="navbar">
                 <li className="navLogo">
-                    <span className="icon ">
+                    {/* <span className="icon ">
                         <FontAwesomeIcon icon={faStopwatch} />
-                    </span>
+                    </span> */}
                     <img className='PendulumLogo' src="white_logo_transparent_background.png" alt="" />
                     {/* <img className='PendulumIcon' src="https://uploads-ssl.webflow.com/61294d9880807a7d67ee9e19/61294d9880807a5eacee9e2a_dark_logo_transparent_background%202-1.png" alt="" /> */}
                     {/* <span className="text">
