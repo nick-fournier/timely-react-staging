@@ -26,7 +26,7 @@ export default function Payables({SearchedData, DataSet, setDataSet, itemList, s
                         <InvoiceHeader setisMobile={setisMobile} CurrentItem={CurrentItem}/>
                             
                             <div className="MiddlePart" id='MiddlePart'>
-                                <RHSHeaders ShowHeaders={ShowHeaders} setShowHeaders={ShowHeaders} CurrentItem={CurrentItem}/>
+                                <RHSHeaders ShowHeaders={ShowHeaders} setShowHeaders={setShowHeaders} CurrentItem={CurrentItem}/>
                                 <ItemList ShowHeaders={ShowHeaders} setShowHeaders={setShowHeaders} itemList={itemList}/>
                                 
 

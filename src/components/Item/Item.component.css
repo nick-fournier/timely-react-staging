@@ -8,6 +8,11 @@
     font-weight: 600;
 }
 
+.ItemDescription{
+    font-size: 1.2em;
+    color: rgba(0, 0, 0, 0.582);
+}
+
 
 .ItemDetailsLHS{
     text-transform: capitalize;
@@ -40,4 +45,15 @@
 
 .ItemsTotalPrice{
     margin-left: auto;
+}
+
+
+@media screen and (max-width: 480px) {
+    .ItemDescription{
+        font-size: 1em;
+        color: rgba(0, 0, 0, 0.582);
+        width: 80%;
+    }
+    
+    
 }

@@ -1614,7 +1614,7 @@ How It Works Section */
 
 @media screen and (min-width: 1301px) {
     html body {
-        font-size: 0.95vw;
+        font-size: 1vw;
     }
 
     .HeroRHS img{
