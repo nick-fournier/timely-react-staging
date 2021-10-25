@@ -6,8 +6,7 @@ import {useForm} from 'react-hook-form'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faPlus} from '@fortawesome/free-solid-svg-icons'
 
-
-export default function AddInvoice( {ShowNewInvoice, setShowNewInvoice, setisActive, setShowNewBusiness, reFetchBusinesses, setreFetchBusinesses, setloading, setRedirectToNewReceivableOrPayable, setSetDefaultValueForBusiness, SetDefaultValueForBusiness, HideAddInvoiceBackButton, setHideAddInvoiceBackButton} ) {
+export default function AddInvoice( {ShowNewInvoice, setShowNewInvoice, setisActive, setShowNewBusiness, reFetchBusinesses, setreFetchBusinesses, setloading, setRedirectToNewReceivableOrPayable, setSetDefaultValueForBusiness, SetDefaultValueForBusiness, HideAddInvoiceBackButton, setHideAddInvoiceBackButton, setshowPopup, setPopupMessage} ) {
 
     const [DateOrTerms, setDateOrTerms] = useState(true)
     const [AmountOrItems, setAmountOrItems] = useState(true)
@@ -129,7 +128,8 @@ export default function AddInvoice( {ShowNewInvoice, setShowNewInvoice, setisAct
         }
 
         console.table(TestInvoice)
-
+        setPopupMessage('Processing Invoice...')
+        setshowPopup(true)
         const httpResponse = await fetch('https://api.pendulumapp.com/api/new_receivable/',{
             method: 'POST',
             headers: new Headers({
@@ -143,15 +143,14 @@ export default function AddInvoice( {ShowNewInvoice, setShowNewInvoice, setisAct
         console.log(JsonResponse)
         
         if (JsonResponse.bill_to_name){
-            alert('Invoice added successfully')
+            setPopupMessage('Invoice added successfully!')
             setloading(true)
             CleanAllFields()
             setHideAddInvoiceBackButton(true)
         }
         else{
-        alert('something went wrong')
+            setPopupMessage('Something went wrong.')
         }
-
     }
 
     const CalcTotal = () =>{

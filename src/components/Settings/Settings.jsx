@@ -12,8 +12,7 @@ import { CardCvcElement, CardExpiryElement, CardNumberElement, useElements, useS
 import {gsap} from 'gsap'
 
 
-
-export default function Settings({setreFetchPM, reFetchPM}) {
+export default function Settings({setreFetchPM, reFetchPM, setshowPopup, setPopupMessage, Proceed, setActionType, ActionType, setshowPopUpButton, setProceed}) {
 
     const StripeElementsStyle = {
         fontSize: '1.4em'
@@ -136,8 +135,10 @@ export default function Settings({setreFetchPM, reFetchPM}) {
     // Stripe Payment Method logic --> 
 
     async function handleSubmit(e){
-        setErrorState(false)
-        setLoadingPaymentMethod(true)
+        // setErrorState(false)
+        // setLoadingPaymentMethod(true)
+        setPopupMessage('Processing...')
+        setshowPopup(true)
         e.preventDefault()
         const Card = elements.getElement(CardNumberElement)
         const paymentMethodRes = await stripe.createPaymentMethod({
@@ -145,22 +146,22 @@ export default function Settings({setreFetchPM, reFetchPM}) {
             card: Card,
         })
         if (paymentMethodRes.error){
-            setLoadingPaymentMethod(false)
+            // setLoadingPaymentMethod(false)
             console.log(paymentMethodRes.error)
-            setErrorState(true)
-            setErrorMessage(paymentMethodRes.error.message)
-            setPaymentMethodSuccessOrError(false)
+            // setErrorState(true)
+            // setErrorMessage(paymentMethodRes.error.message)
+            setPopupMessage(`${paymentMethodRes.error.message}`)
+            // setPaymentMethodSuccessOrError(false)
             console.log(ErrorMessage)
-            setMessageReveal(true)
-            setTimeout(() => {
-                setMessageReveal(false)
-                setErrorMessage('')
-            }, 3000);
+            // setMessageReveal(true)
+            // setTimeout(() => {
+            //     setMessageReveal(false)
+            //     setErrorMessage('')
+            // }, 3000);
             return
             
         }
-
-        setErrorState(false)
+        // setErrorState(false)
         const {id} = paymentMethodRes.paymentMethod
         console.log(id)
         
@@ -187,25 +188,27 @@ export default function Settings({setreFetchPM, reFetchPM}) {
             })
             const JsonData = await paymentData.json()
             console.log(JsonData)
-            setLoadingPaymentMethod(false)
+            // setLoadingPaymentMethod(false)
             if(JsonData.Error){
                 console.log(JsonData.Error)
-                setPaymentMethodSuccessOrError(false)
-                setErrorMessage(JsonData.Error)
+                // setPaymentMethodSuccessOrError(false)
+                // setErrorMessage(JsonData.Error)
+                setPopupMessage(JsonData.Error)
                 console.log('shouldnt have entered')
             }
             
              else {
-                setPaymentMethodSuccessOrError(true)
+                // setPaymentMethodSuccessOrError(true)
+                setPopupMessage('Payment method added successfully!')
                 console.log('Payment method added successfully')
                 
             }
             
-            setMessageReveal(true)
-            setTimeout(() => {
-                setMessageReveal(false)
-                setErrorMessage('')
-            }, 3000);
+            // setMessageReveal(true)
+            // setTimeout(() => {
+            //     setMessageReveal(false)
+            //     setErrorMessage('')
+            // }, 3000);
             setreFetchPM(true)
             
         }
@@ -286,70 +289,87 @@ export default function Settings({setreFetchPM, reFetchPM}) {
         setPersonalLastNameInput('')
     }
 
-    const SubmitPasswordChange = async () => {
-        let NewPasswordToSend = {
-            old_password: PasswordOneInput,
-            new_password1: PasswordTwoInput,
-            new_password2: PasswordTwoConfirmInput
+    useEffect( async () => {
+        if (!Proceed){
+            return
         }
 
-        const PasswordChangeResponse = await fetch(`https://api.pendulumapp.com/api/rest-auth/password/change/`, {
-           method: 'POST',
-           headers: new Headers({
-            'Authorization': `token ${localStorage.token}`,
-            "content-type":"application/json",
-
-        }),
-           body: JSON.stringify(NewPasswordToSend)
-       })
-
-       const Passwordjson = await PasswordChangeResponse.json()
-
-       if (Passwordjson.detail){
-
-            setPasswordOneInput('')
-            setPasswordTwoInput('')  
-            setPasswordTwoConfirmInput('')
-            if(PasswordOneRef && PasswordTwoRef && PasswordTwoConfirmRef){    
-                PasswordOneRef.current.value = ''
-                PasswordTwoRef.current.value = ''
-                PasswordTwoConfirmRef.current.value = ''
+        if (ActionType === 'ChangePassword'){
+            let NewPasswordToSend = {
+                old_password: PasswordOneInput,
+                new_password1: PasswordTwoInput,
+                new_password2: PasswordTwoConfirmInput
             }
+            setPopupMessage('Changing password...')
+            setshowPopUpButton(false)
+            const PasswordChangeResponse = await fetch(`https://api.pendulumapp.com/api/rest-auth/password/change/`, {
+               method: 'POST',
+               headers: new Headers({
+                'Authorization': `token ${localStorage.token}`,
+                "content-type":"application/json",
+    
+            }),
+               body: JSON.stringify(NewPasswordToSend)
+           })
+    
+           const Passwordjson = await PasswordChangeResponse.json()
+    
+           if (Passwordjson.detail){
+    
+                setPasswordOneInput('')
+                setPasswordTwoInput('')  
+                setPasswordTwoConfirmInput('')
+                if(PasswordOneRef && PasswordTwoRef && PasswordTwoConfirmRef){    
+                    PasswordOneRef.current.value = ''
+                    PasswordTwoRef.current.value = ''
+                    PasswordTwoConfirmRef.current.value = ''
+                }
+    
+                console.log(Passwordjson.detail)
+                setPasswordChangeSuccessOrError(true)
+                setPopupMessage('Password changed successfully!')
+                // setMessageReveal(true)
+                // setTimeout(() => {
+                //     setMessageReveal(false)
+                //     setPasswordErrorMessage('')
+                //     setInfoOrPassword(false)
+                // }, 3000);
+           }
+    
+           else if (Passwordjson.old_password){
+            //  setPasswordChangeSuccessOrError(false)
+                setPopupMessage(`${Passwordjson.old_password}`)
+                // setPasswordErrorMessage(Passwordjson.old_password)
+                console.log(Passwordjson.old_password)
+    
+            //    setMessageReveal(true)
+            //    setTimeout(() => {
+            //        setMessageReveal(false)
+            //        setPasswordErrorMessage('')
+            //    }, 3000);
+               
+           }
+           else if (Passwordjson.new_password2){
+            // setPasswordChangeSuccessOrError(false)
+            setPopupMessage(`${Passwordjson.new_password2}`)
+            // setPasswordErrorMessage(Passwordjson.new_password2)
+               console.log(Passwordjson.new_password2)
+            //    setMessageReveal(true)
+            //    setTimeout(() => {
+            //        setMessageReveal(false)
+            //        setPasswordErrorMessage('')
+            //    }, 3000);
+           }
+    
+        }
+        setProceed(false)
+    }, [Proceed])
 
-            console.log(Passwordjson.detail)
-            setPasswordChangeSuccessOrError(true)
-
-            setMessageReveal(true)
-            setTimeout(() => {
-                setMessageReveal(false)
-                setPasswordErrorMessage('')
-                setInfoOrPassword(false)
-            }, 3000);
-       }
-
-       else if (Passwordjson.old_password){
-           setPasswordChangeSuccessOrError(false)
-           setPasswordErrorMessage(Passwordjson.old_password)
-           console.log(Passwordjson.old_password)
-
-           setMessageReveal(true)
-           setTimeout(() => {
-               setMessageReveal(false)
-               setPasswordErrorMessage('')
-           }, 3000);
-           
-       }
-       else if (Passwordjson.new_password2){
-        setPasswordChangeSuccessOrError(false)
-        setPasswordErrorMessage(Passwordjson.new_password2)
-           console.log(Passwordjson.new_password2)
-           setMessageReveal(true)
-           setTimeout(() => {
-               setMessageReveal(false)
-               setPasswordErrorMessage('')
-           }, 3000);
-       }
-
+    const SubmitPasswordChange = async () => {
+        setPopupMessage('Are you sure you want to change your passowrd?')
+        setshowPopUpButton(true)
+        setshowPopup(true)
+        setActionType('ChangePassword')
 
     }
 

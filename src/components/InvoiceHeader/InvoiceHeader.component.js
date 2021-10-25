@@ -3,8 +3,9 @@ import '../../pages/receivables/receivables.css'
 import './InvoiceHeader.component.css'
 
 
-export default function InvoiceHeader({CurrentItem, setisMobile}) {
-    const logo = (CurrentItem.from_business_name? CurrentItem.from_business_name.split(' ').shift().charAt(0) + CurrentItem.from_business_name.split(' ').pop().charAt(0).toUpperCase(): 'NA')
+export default function InvoiceHeader({CurrentItem, setisMobile, DataSwitch}) {
+    const Business = DataSwitch === 1?CurrentItem.to_business_name:CurrentItem.from_business_name
+    const logo = (Business? Business.split(' ').shift().charAt(0) + Business.split(' ').pop().charAt(0).toUpperCase(): 'NA')
     return (
 
         <div className="TopPart">
@@ -14,7 +15,7 @@ export default function InvoiceHeader({CurrentItem, setisMobile}) {
                     </div>
                     <div className="InvoiceHeaders">
                         <div className="BusinessName" id='BusinessName'>
-                            {CurrentItem.from_business_name}
+                            {Business}
                         </div>
                         <div className="TopPartRHS">
                             <div className="DateDue" id='DateDue'>

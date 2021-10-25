@@ -5,8 +5,7 @@ import { useState, useEffect, useRef } from 'react';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import PaymentMethodCard from '../PaymentMethodCard/PaymentMethodCard.component'
 
-
-export default function SchedulePayment({ShowSchedulePayment, setShowNewInvoice, setShowSchedulePayment, CurrentItem, setreFetchPM, reFetchPM, PayInvoiceImmediately, setPayInvoiceImmediately, ImmediatePayableID, setImmediatePayableID}) {
+export default function SchedulePayment({ShowSchedulePayment, setShowNewInvoice, setShowSchedulePayment, CurrentItem, setreFetchPM, reFetchPM, PayInvoiceImmediately, setPayInvoiceImmediately, ImmediatePayableID, setImmediatePayableID, showPopup, setshowPopup, PopupMessage, setPopupMessage, Proceed, setProceed, setshowPopUpButton, ActionType, setActionType }) {
     
     // const [paymentMethodID, setpaymentMethodID] = useState('')
 
@@ -57,10 +56,15 @@ export default function SchedulePayment({ShowSchedulePayment, setShowNewInvoice,
 
     }, [reFetchPM])
 
-    async function handleSubmit(e){
-        e.preventDefault()
-        setProcessingPayment(true)
-        const PaymentResponse = await fetch('https://api.pendulumapp.com/api/stripe/payinvoice/',{
+    useEffect( async() => {
+        if (!Proceed){
+            return
+        }
+
+        if (ActionType === 'SendPayment') {
+            setshowPopUpButton(false)
+            setPopupMessage('Processing your payment...')
+            const PaymentResponse = await fetch('https://api.pendulumapp.com/api/stripe/payinvoice/',{
                 method: "POST",
                 headers: new Headers({
                   'Authorization': `token ${localStorage.token}`,
@@ -74,23 +78,41 @@ export default function SchedulePayment({ShowSchedulePayment, setShowNewInvoice,
             const PaymentJson = await PaymentResponse.json()
             console.log(PaymentJson)
             if (PaymentJson.status==='succeeded'){
-                setProcessingPayment(false)
-                setMessageReveal(true)
-                setPaymentSuccessOrFail(true)
-                setTimeout(() => {
-                    setMessageReveal(false)
-                    setShowSchedulePayment(false)
-                }, 2000);
+                setPopupMessage(`Payment of $${CurrentItem.invoice_total_price} for Invoice: ${CurrentItem.invoice_name} to ${CurrentItem.to_business_name}  was successful!`)
+                setShowSchedulePayment(false)
+                setProceed(false)
+                // setProcessingPayment(false)
+                // setMessageReveal(true)
+                // setPaymentSuccessOrFail(true)
+                // setTimeout(() => {
+                    // setMessageReveal(false)
+                // }, 2000);
             }
 
             else {
-                setProcessingPayment(false)
-                setPaymentSuccessOrFail(false)
-                setMessageReveal(true)
-                setTimeout(() => {
-                    setMessageReveal(false)
-                }, 2000);
+                // setProcessingPayment(false)
+                setPopupMessage(`${PaymentJson[Object.keys(PaymentJson)[0]]} !`)
+                setProceed(false)
+
+                // setPaymentSuccessOrFail(false)
+                // setMessageReveal(true)
+                // setTimeout(() => {
+                    // setMessageReveal(false)
+                // }, 2000);
             }
+
+        }
+
+    }, [Proceed])
+
+    async function handleSubmit(e){
+        e.preventDefault()
+        setshowPopup(true)
+        // setProcessingPayment(true)
+        setshowPopUpButton(true)
+        setPopupMessage(`Are you sure you want to pay ${CurrentItem.invoice_total_price}?`)
+        setActionType('SendPayment')
+
     }
 
 

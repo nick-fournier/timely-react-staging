@@ -44,6 +44,15 @@
     color: black;
 
 }
+.FromName{
+
+}
+
+.ToName{
+    width: 90%;
+
+}
+
 
 .Address{
     margin-top: 1em;
@@ -100,11 +109,10 @@
 
     }
     
-    .FromName,.ToName{
-        
+    .FromName{
 
     }
-    
+
     
     
     .NoteContainer{

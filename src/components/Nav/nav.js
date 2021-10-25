@@ -13,7 +13,7 @@ import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import {useHistory} from 'react-router-dom'
 
-export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, currentNavItem, ShowNewInvoice, setShowNewInvoice, setShowNewBusiness, isActive, setisActive, setisMobile, ShowNewPayment, setShowNewPayment, setShowSchedulePayment, ShowPaymentSettings, setShowPaymentSettings, setSettingsOrInvoices, SettingsOrInvoices, HideAddInvoiceBackButton, setHideAddInvoiceBackButton, HideAddPaymentBackButton, setHideAddPaymentBackButton}) {
+export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, currentNavItem, ShowNewInvoice, setShowNewInvoice, setShowNewBusiness, isActive, setisActive, setisMobile, ShowNewPayment, setShowNewPayment, setShowSchedulePayment, ShowPaymentSettings, setShowPaymentSettings, setSettingsOrInvoices, SettingsOrInvoices, HideAddInvoiceBackButton, setHideAddInvoiceBackButton, HideAddPaymentBackButton, setHideAddPaymentBackButton, setShowSendRemind}) {
     const [showNav, setshowNav] = useState(false)
     const [showNavSettings, setshowNavSettings] = useState(false)
 
@@ -93,6 +93,7 @@ export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, c
                     setShowNewPayment(false)
                     setShowNewInvoice(!ShowNewInvoice)
                     setShowSchedulePayment(false)
+                    setShowSendRemind(false)
                     {isActive?setisActive(false):setisActive(true)
                     }
                     setHideAddPaymentBackButton(true)
@@ -111,6 +112,7 @@ export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, c
                     setShowNewInvoice(false)
                     setShowNewPayment(!ShowNewPayment)
                     setShowSchedulePayment(false)
+                    setShowSendRemind(false)
                     setisActive(false)
                     setHideAddInvoiceBackButton(true)
                     HideAddPaymentBackButton?setHideAddPaymentBackButton(false):setHideAddPaymentBackButton(true)
@@ -132,6 +134,8 @@ export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, c
 
                     setShowNewInvoice(false)
                     setShowNewPayment(false)
+                    setShowSendRemind(false)
+
                     setisActive(false)
                     setisMobile(false)
 
@@ -179,6 +183,7 @@ export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, c
                     setShowNewPayment(false)
                     setShowNewBusiness(false)
                     setShowNewPayment(false)
+                    setShowSendRemind(false)
                     setshowNav(false)
                     setcurrentNavItem(4)
 

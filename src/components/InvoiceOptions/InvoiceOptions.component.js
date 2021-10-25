@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faBars } from '@fortawesome/free-solid-svg-icons'
 
 
-export default function InvoiceOptions({CurrentItem, setsearchField, setSearchMethod, DataSwitch, isMobile, setisMobile, ShowSchedulePayment, setShowSchedulePayment}) {
+export default function InvoiceOptions({CurrentItem, setsearchField, setSearchMethod, DataSwitch, isMobile, setisMobile, ShowSchedulePayment, setShowSchedulePayment, PopupMessage, setPopupMessage, showPopup,setshowPopup, ShowSendRemind, setShowSendRemind}) {
 
     const [markDisabled, setmarkDisabled] = useState(CurrentItem.is_paid?true:false)
     const [currentTab, setcurrentTab] = useState(1)
@@ -67,6 +67,29 @@ export default function InvoiceOptions({CurrentItem, setsearchField, setSearchMe
     else{
         alert('Error while Scheduling invoice')
     }
+    }
+
+    const sendReminder= async () =>{
+        // setshowPopup(true)
+        // setPopupMessage('Sending reminder...')
+        // setTimeout(() => {
+        //     setPopupMessage('Reminder sent successfully!')
+        // }, 3000);
+        // let RemindBody = {
+        //     invoice_id: CurrentItem.invoice_id,
+        //     cc: 
+        // }
+        // const httpResponse = await fetch('https://api.pendulumapp.com/api/notifications/',{
+        //     method: 'POST',
+        //     headers: new Headers({
+        //         'Authorization': `token ${localStorage.token}`,
+        //         'Content-Type': 'application/json'
+        //     }),
+        //     body: JSON.stringify(RemindBody)
+        // })
+
+        // const JsonResponse = await httpResponse.json()
+        // console.log(JsonResponse)
     }
 
     const flagInvoice = async () =>{
@@ -149,18 +172,23 @@ export default function InvoiceOptions({CurrentItem, setsearchField, setSearchMe
                     <button onClick={()=> setisMobile(false)} className="BackToInvoiceList">
                         <FontAwesomeIcon icon={faArrowLeft} />
                     </button>
-                    <button style={buttonStyles} onClick ={flagInvoice} className='SecondaryInvoiceButton'>Flag</button>  
-                    <button style={buttonStyles} disabled={CurrentItem.is_paid?true:false} onClick={markInvoice} className={CurrentItem.is_paid?'Disabled':'SecondaryInvoiceButton'}>Mark as Paid</button>
-                    <button onClick={showButtons} className='LabelButton' >
-                        <FontAwesomeIcon icon={faBars} />
-                    </button>   
+                    <div className="HamburgerButtonsContainer">
+                        <button onClick={showButtons} className='BurgerButton' >
+                            <FontAwesomeIcon icon={faBars} />
+                        </button>
+                        <button disabled={CurrentItem.invoice_id?false:true} style={buttonStyles} onClick ={flagInvoice} className={CurrentItem.invoice_id?'SecondaryInvoiceButton':'Disabled'}>Flag</button>  
+                        <button style={buttonStyles} disabled={CurrentItem.is_paid?true:false} onClick={markInvoice} className={CurrentItem.is_paid?'Disabled':'SecondaryInvoiceButton'}>Mark as Paid</button>
+                    </div>
+                       
                     {DataSwitch === 1?
-                    <button onClick={scheduleInvoice} className="Button">Remind</button>
+                    <button disabled={CurrentItem.invoice_id?false:true} onClick={() => {
+                        setShowSendRemind(true)
+                    }} className={CurrentItem.invoice_id?"Button":'Disabled'}>Remind</button>
                     :
-                    <button onClick={()=>{
+                    <button disabled={CurrentItem.invoice_id?false:true} onClick={()=>{
                         setShowSchedulePayment(true)
                         // scheduleInvoice()
-                    }} className="Button">Pay</button>
+                    }} className={CurrentItem.invoice_id?"Button":'Disabled'}>Pay</button>
                 }  
                 </div>
             </div>

@@ -6,8 +6,7 @@ import {faEdit, faFileMedical, faPenToSquare, faUpload, faPlus} from '@fortaweso
 import { useState, useEffect, useRef } from 'react'
 
 
-
-export default function AddPayment({ShowNewPayment, setShowNewInvoice, setShowNewPayment, setisActive, setShowNewBusiness, reFetchBusinesses, setreFetchBusinesses, setloading, setRedirectToNewReceivableOrPayable, SetDefaultValueForBusiness, setSetDefaultValueForBusiness, PayInvoiceImmediately, setPayInvoiceImmediately, ImmediatePayableID, setImmediatePayableID, setShowSchedulePayment, HideAddPaymentBackButton, setHideAddPaymentBackButton}) {
+export default function AddPayment({ShowNewPayment, setShowNewInvoice, setShowNewPayment, setisActive, setShowNewBusiness, reFetchBusinesses, setreFetchBusinesses, setloading, setRedirectToNewReceivableOrPayable, SetDefaultValueForBusiness, setSetDefaultValueForBusiness, PayInvoiceImmediately, setPayInvoiceImmediately, ImmediatePayableID, setImmediatePayableID, setShowSchedulePayment, HideAddPaymentBackButton, setHideAddPaymentBackButton, setshowPopup, setPopupMessage }) {
 
     const [DateOrTerms, setDateOrTerms] = useState(true)
     const [AmountOrItems, setAmountOrItems] = useState(true)
@@ -117,6 +116,8 @@ export default function AddPayment({ShowNewPayment, setShowNewInvoice, setShowNe
 
         console.table(TestInvoice)
 
+        setPopupMessage('Proccessing Invoice...')
+        setshowPopup(true)
         const httpResponse = await fetch('https://api.pendulumapp.com/api/new_payable/',{
             method: 'POST',
             headers: new Headers({
@@ -130,13 +131,14 @@ export default function AddPayment({ShowNewPayment, setShowNewInvoice, setShowNe
         console.log(JsonResponse)
         
         if (JsonResponse.invoice_id){
-                alert('Invoice added successfully')
+                setPopupMessage('Invoice added successfully!')
                 setloading(true)
                 CleanAllFields()
                 setShowNewPayment(false)
+                setHideAddPaymentBackButton(true)
         }
         else{
-        alert('something went wrong')
+        setPopupMessage('Something went wrong!')
         }
 
     }
@@ -154,6 +156,8 @@ export default function AddPayment({ShowNewPayment, setShowNewInvoice, setShowNe
 
         console.table(TestInvoice)
 
+        setPopupMessage('Proccessing Invoice...')
+        setshowPopup(true)
         const httpResponse = await fetch('https://api.pendulumapp.com/api/new_payable/',{
             method: 'POST',
             headers: new Headers({
@@ -167,15 +171,17 @@ export default function AddPayment({ShowNewPayment, setShowNewInvoice, setShowNe
         console.log(JsonResponse)
         
         if (JsonResponse.invoice_id){
-            alert('Invoice added successfully')
+            setPopupMessage('Invoice added successfully!')
             setloading(true)
             CleanAllFields()
             setImmediatePayableID(JsonResponse)
             setShowNewPayment(false)
+            setHideAddPaymentBackButton(true)
             setShowSchedulePayment(true)
         }
         else{
-        alert('something went wrong')
+        setPopupMessage('Something went wrong!')
+
         }
 
     }
@@ -319,6 +325,7 @@ export default function AddPayment({ShowNewPayment, setShowNewInvoice, setShowNe
                             <button className="AddBillDiscardButton" onClick={(e)=>{
                             setShowNewPayment(false)
                             setShowNewInvoice(false)
+                            setHideAddPaymentBackButton(true)
                             e.preventDefault()
                         }}> Discard</button>
             </div>
@@ -460,11 +467,9 @@ export default function AddPayment({ShowNewPayment, setShowNewInvoice, setShowNe
                 
                 <div className="SubmitAndDiscardContainer">
                     <button className="SubmitPayableImmediatelyButton" type="submit" value="Submit" onClick={()=>{
-
                         SaveAndPayImmediately()
                     }}> Save and pay immediately</button>
                     <button className="AddBillDiscardButton" type="submit" value="Submit" onClick={()=>{
-
                         SaveAndExit()
                     }}> Save and exit</button>
                     {/* <button className="AddBillDiscardButton" onClick={(e)=>{
