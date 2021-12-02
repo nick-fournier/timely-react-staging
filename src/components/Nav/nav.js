@@ -13,7 +13,7 @@ import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import {useHistory} from 'react-router-dom'
 
-export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, currentNavItem, ShowNewInvoice, setShowNewInvoice, setShowNewBusiness, isActive, setisActive, setisMobile, ShowNewPayment, setShowNewPayment, setShowSchedulePayment, ShowPaymentSettings, setShowPaymentSettings, setSettingsOrInvoices, SettingsOrInvoices, HideAddInvoiceBackButton, setHideAddInvoiceBackButton, HideAddPaymentBackButton, setHideAddPaymentBackButton, setShowSendRemind}) {
+export default function Nav({setitemList, CurrentItem, setCurrentItem, loadPayables, loadReceivables, setcurrentNavItem, currentNavItem, ShowNewInvoice, setShowNewInvoice, setShowNewBusiness, isActive, setisActive, setisMobile, ShowNewPayment, setShowNewPayment, setShowSchedulePayment, ShowPaymentSettings, setShowPaymentSettings, setSettingsOrInvoices, SettingsOrInvoices, HideAddInvoiceBackButton, setHideAddInvoiceBackButton, HideAddPaymentBackButton, setHideAddPaymentBackButton, setShowSendRemind}) {
     const [showNav, setshowNav] = useState(false)
     const [showNavSettings, setshowNavSettings] = useState(false)
 
@@ -142,6 +142,9 @@ export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, c
                     setHideAddPaymentBackButton(true)
                     setHideAddInvoiceBackButton(true)
 
+                    setCurrentItem({})
+                    setitemList([])
+
                 }}>
                     <span className="icon IconRed">
                         <FontAwesomeIcon icon={faMoneyCheckAlt} />
@@ -156,7 +159,6 @@ export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, c
                     loadPayables()
                     setshowNav(false)
                     setshowNavSettings(false)
-
                     setShowNewInvoice(false)
                     setShowNewPayment(false)
                     setisActive(false)
@@ -164,6 +166,8 @@ export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, c
                     
                     setHideAddPaymentBackButton(true)
                     setHideAddInvoiceBackButton(true)
+                    setCurrentItem({})
+                    setitemList([])
                     
 
                 }}>
@@ -189,6 +193,9 @@ export default function Nav({loadPayables, loadReceivables, setcurrentNavItem, c
 
                     setHideAddPaymentBackButton(true)
                     setHideAddInvoiceBackButton(true)
+                    setCurrentItem({})
+                    setitemList([])
+
                 }}>
                     <span className="icon">
                         <FontAwesomeIcon icon ={faCog} />

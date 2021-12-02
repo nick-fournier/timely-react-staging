@@ -19,7 +19,8 @@
 .TotalPriceSection{
     margin: 1em auto;
     width: 25%;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 0.5em;
     align-self: flex-end;
     font-size: 0.75em;
     font-weight: bold;

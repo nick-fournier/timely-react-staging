@@ -5,7 +5,7 @@ import './InvoiceHeader.component.css'
 
 export default function InvoiceHeader({CurrentItem, setisMobile, DataSwitch}) {
     const Business = DataSwitch === 1?CurrentItem.to_business_name:CurrentItem.from_business_name
-    const logo = (Business? Business.split(' ').shift().charAt(0) + Business.split(' ').pop().charAt(0).toUpperCase(): 'NA')
+    const logo = (Business? Business.split(' ').shift().charAt(0) +  Business.split(' ').pop().charAt(0).toUpperCase(): 'NA')
     return (
 
         <div className="TopPart">

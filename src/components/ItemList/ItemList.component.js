@@ -3,11 +3,11 @@ import '../../pages/receivables/receivables.css'
 import Item from '../Item/Item.component'
 import './ItemList.component.css'
 
-export default function ItemList({itemList, ShowHeaders}) {
+export default function ItemList({itemList, ShowHeaders, CurrentItem}) {
     return (
             <div className="ItemDetailsContainer" id='ItemDetailsContainer'>
                 {itemList.map(item => (
-                    <Item ShowHeaders={ShowHeaders} key={item.id} item ={item}/>
+                    <Item CurrentItem={CurrentItem} ShowHeaders={ShowHeaders} key={item.id} item ={item}/>
                 ))}
             </div>
 

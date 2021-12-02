@@ -1,6 +1,6 @@
 .PGWContainer{
     height: 100vh;
-    width: 100%;
+    width: 100vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -116,6 +116,146 @@
     border-radius: 5px;
     cursor: pointer;
     border: none;
+}
+
+
+.ChooseContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5em;
+    height: 60%;
+    width: 60%;
+}
+
+.PGWChooseTitle{
+    border-bottom: solid 5px rgb(0, 0, 0);
+    padding-bottom: 2em;
+    border-radius: 5px;
+}
+
+.ChooseCard{
+    width: 40%;
+    border: solid 2px black;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 1em;
+    transition: 200ms;
+}
+.ChooseCard:hover{
+    transform: translateY(-0.2em);
+}
+
+
+.PGWLogoContainer{
+    height: 15em;
+}
+
+.PGWACHOrCardLogo{
+    border-radius: 1em;
+    height: 100%;
+    
+}
+
+.PGWExplanationAndCardContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 3em;
+}
+
+.PGWExplanation{
+    font-weight: 600;
+    font-size: 1.2em;
+    width: 100%;
+    text-align: center;
+}
+
+/* .TwoLines{
+    width: 80%;
+    text-align: center;
+    margin: auto;
+} */
+
+
+.PGWChooseButton{
+    margin-top: 1.5em;
+    color: white;
+    background-color: black;
+    padding: 1em 3em;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 50%;
+    text-align: center;
+    transition: 200ms;
+}
+
+.PGWChooseButton:hover{
+    background-color: rgba(0, 0, 0, 0.77);
+}
+
+.PGWBackToInvoiceButton{
+    color: rgb(0, 123, 255);
+    border-bottom: solid 1px rgb(0, 123, 255);
+    cursor: pointer;
+    transition: 200ms;
+}
+.PGWBackToInvoiceButton:hover{
+    color: rgb(0, 92, 189);
+}
+
+.PGWACHPaymentFormContainer{
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    border: solid 1px black;
+    align-items: center;
+    justify-content: center;
+    gap: 2em;
+    background-color: white;
+    padding: 4em;
+    border-radius: 0.5em;
+}
+
+.PGWInputsContainer{
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+
+.PGWACHFormLabel{
+    color: black;
+    font-weight: 600;
+    font-size: 1.2em;
+}
+
+.PGWFormInput{
+    width: 20em;
+    margin: auto;
+    padding: 1em 1em;
+    margin-top: 0.25em;
+    font-size: 1.1em;
+    border-radius: 0.5em;
+    border: 1px solid rgba(128, 128, 128, 0.482);
+    outline-color: black;
+}
+
+.PGWACHPayButton{
+    font-size: 1.1em;
+    color: white;
+    background-color: black;
+    width: 20em;
+    padding: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.5em;
+    border-radius: 0.5em;
+
 }
 
 

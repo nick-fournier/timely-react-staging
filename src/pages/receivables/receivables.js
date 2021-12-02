@@ -10,7 +10,7 @@ import { useEffect } from 'react'
 
 import MediaQuery from "react-responsive";
 
-export default function Receivables({SearchedData, DataSet, setDataSet, itemList, setitemList, CurrentItem, setCurrentItem, setsearchField, setSearchMethod, DataSwitch, loadPayables, loadReceivables, setisMobile, isMobile, ShowSchedulePayment, setShowSchedulePayment, ShowHeaders, setShowHeaders, PopupMessage, setPopupMessage, showPopup,setshowPopup, ShowSendRemind, setShowSendRemind}) {
+export default function Receivables({SearchedData, DataSet, setDataSet, itemList, setitemList, CurrentItem, setCurrentItem, setsearchField, setSearchMethod, DataSwitch, loadPayables, loadReceivables, setisMobile, isMobile, ShowSchedulePayment, setShowSchedulePayment, ShowHeaders, setShowHeaders, PopupMessage, setPopupMessage, showPopup,setshowPopup, ShowSendRemind, setShowSendRemind, ActionType, setActionType, setshowPopUpButton, Proceed, setProceed, setloading, loading}) {
 
 
     const ShowInvoiceDetails = {
@@ -23,7 +23,7 @@ export default function Receivables({SearchedData, DataSet, setDataSet, itemList
             <MediaQuery maxDeviceWidth={480} >
                 <InvoiceOptions ShowSchedulePayment={ShowSchedulePayment} setShowSchedulePayment={setShowSchedulePayment} setisMobile={setisMobile} isMobile={isMobile} SearchedData={SearchedData} DataSet={DataSet} setDataSet={setDataSet} CurrentItem={CurrentItem} setsearchField={setsearchField} setSearchMethod={setSearchMethod} DataSwitch={DataSwitch} loadPayables={loadPayables} loadReceivables={loadReceivables} />
                 <div className="invoice-page-container">
-                    <InvoiceCardList DataSwitch={DataSwitch}  setisMobile={setisMobile} isMobile={isMobile} SearchedData={SearchedData} itemList={itemList} setitemList={setitemList} setCurrentItem={setCurrentItem}/>
+                    <InvoiceCardList loading={loading} DataSwitch={DataSwitch}  setisMobile={setisMobile} isMobile={isMobile} SearchedData={SearchedData} itemList={itemList} setitemList={setitemList} setCurrentItem={setCurrentItem}/>
 
                 <div  style={isMobile?ShowInvoiceDetails:{}} className={`${isMobile?'InvoiceMobileHidden':'InvoiceMobileView'} RHSContainer`}>
                     <div className="RightHandSide">
@@ -31,7 +31,7 @@ export default function Receivables({SearchedData, DataSet, setDataSet, itemList
                         
                             <RHSHeaders ShowHeaders={ShowHeaders} setShowHeaders={setShowHeaders} CurrentItem={CurrentItem}/>
                         <div className="MiddlePart" id='MiddlePart'>
-                            <ItemList ShowHeaders={ShowHeaders} setShowHeaders={ShowHeaders} itemList={itemList}/>
+                            <ItemList CurrentItem={CurrentItem} ShowHeaders={ShowHeaders} setShowHeaders={ShowHeaders} itemList={itemList}/>
 
                             
 
@@ -44,9 +44,9 @@ export default function Receivables({SearchedData, DataSet, setDataSet, itemList
             </MediaQuery>
 
             <MediaQuery minDeviceWidth={481} >
-                <InvoiceOptions ShowSendRemind={ShowSendRemind} setShowSendRemind={setShowSendRemind} showPopup={showPopup} setshowPopup={setshowPopup} PopupMessage={PopupMessage} setPopupMessage={setPopupMessage} setisMobile={setisMobile} isMobile={isMobile} SearchedData={SearchedData} DataSet={DataSet} setDataSet={setDataSet} CurrentItem={CurrentItem} setsearchField={setsearchField} setSearchMethod={setSearchMethod} DataSwitch={DataSwitch} loadPayables={loadPayables} loadReceivables={loadReceivables}/>
+                <InvoiceOptions SearchedData={SearchedData} setCurrentItem={setCurrentItem} setloading={setloading} ActionType={ActionType} setActionType={setActionType} setshowPopUpButton={setshowPopUpButton} Proceed={Proceed} setProceed={setProceed} ShowSendRemind={ShowSendRemind} setShowSendRemind={setShowSendRemind} showPopup={showPopup} setshowPopup={setshowPopup} PopupMessage={PopupMessage} setPopupMessage={setPopupMessage} setisMobile={setisMobile} isMobile={isMobile} SearchedData={SearchedData} DataSet={DataSet} setDataSet={setDataSet} CurrentItem={CurrentItem} setsearchField={setsearchField} setSearchMethod={setSearchMethod} DataSwitch={DataSwitch} loadPayables={loadPayables} loadReceivables={loadReceivables}/>
                 <div className="invoice-page-container">
-                    <InvoiceCardList DataSwitch={DataSwitch} setisMobile={setisMobile} isMobile={isMobile} SearchedData={SearchedData} itemList={itemList} setitemList={setitemList} setCurrentItem={setCurrentItem}/>
+                    <InvoiceCardList loading={loading} DataSwitch={DataSwitch} setisMobile={setisMobile} isMobile={isMobile} SearchedData={SearchedData} itemList={itemList} setitemList={setitemList} setCurrentItem={setCurrentItem}/>
 
                 <div  className={`${isMobile?'InvoiceMobileHidden':'InvoiceMobileView'} RHSContainer`}>
                     <div className="RightHandSide">
@@ -54,7 +54,7 @@ export default function Receivables({SearchedData, DataSet, setDataSet, itemList
                         
                         <div className="MiddlePart" id='MiddlePart'>
                             <RHSHeaders ShowHeaders={ShowHeaders} setShowHeaders={setShowHeaders} CurrentItem={CurrentItem}/>
-                            <ItemList ShowHeaders={ShowHeaders} setShowHeaders={setShowHeaders} itemList={itemList}/>
+                            <ItemList CurrentItem={CurrentItem} ShowHeaders={ShowHeaders} setShowHeaders={setShowHeaders} itemList={itemList}/>
 
                             
 

@@ -2,7 +2,7 @@
 import './AddBusiness.css'
 import {useForm} from 'react-hook-form'
 
-export default function AddBusiness({ShowNewBusiness, setShowNewBusiness, setShowNewInvoice, setreFetchBusinesses, RedirectToNewReceivableOrPayable, setShowNewPayment, SetDefaultValueForBusiness, setSetDefaultValueForBusiness, setHideAddInvoiceBackButton, HideAddInvoiceBackButton}) {
+export default function AddBusiness({ShowNewBusiness, setShowNewBusiness, setShowNewInvoice, setreFetchBusinesses, RedirectToNewReceivableOrPayable, setShowNewPayment, SetDefaultValueForBusiness, setSetDefaultValueForBusiness, setHideAddInvoiceBackButton, HideAddInvoiceBackButton, HideAddPaymentBackButton, setHideAddPaymentBackButton}) {
 
 
 
@@ -47,7 +47,14 @@ export default function AddBusiness({ShowNewBusiness, setShowNewBusiness, setSho
             alert('Business added successfully')
             resetValue()
             setShowNewBusiness(false)
-            {RedirectToNewReceivableOrPayable?setShowNewInvoice(true):setShowNewPayment(true)}
+            if (RedirectToNewReceivableOrPayable){
+                setShowNewInvoice(true)
+                setHideAddInvoiceBackButton(false)
+            }
+            else{
+                setShowNewPayment(true)
+                setHideAddPaymentBackButton(false)
+            }
             setreFetchBusinesses(true)
             setSetDefaultValueForBusiness(true)
         }
@@ -86,8 +93,14 @@ export default function AddBusiness({ShowNewBusiness, setShowNewBusiness, setSho
                 <button className="DiscardInvoiceButton" onClick={(e)=>{
                             resetValue()
                             setShowNewBusiness(false)
-                            setHideAddInvoiceBackButton(false)
-                            {RedirectToNewReceivableOrPayable?setShowNewInvoice(true):setShowNewPayment(true)}
+                            if (RedirectToNewReceivableOrPayable){
+                                setShowNewInvoice(true)
+                                setHideAddInvoiceBackButton(false)
+                            }
+                            else {
+                                setShowNewPayment(true)
+                                setHideAddPaymentBackButton(false)
+                            }
                             e.preventDefault()
                         }}> Discard</button>
             </div>

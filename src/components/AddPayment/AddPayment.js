@@ -6,7 +6,7 @@ import {faEdit, faFileMedical, faPenToSquare, faUpload, faPlus} from '@fortaweso
 import { useState, useEffect, useRef } from 'react'
 
 
-export default function AddPayment({ShowNewPayment, setShowNewInvoice, setShowNewPayment, setisActive, setShowNewBusiness, reFetchBusinesses, setreFetchBusinesses, setloading, setRedirectToNewReceivableOrPayable, SetDefaultValueForBusiness, setSetDefaultValueForBusiness, PayInvoiceImmediately, setPayInvoiceImmediately, ImmediatePayableID, setImmediatePayableID, setShowSchedulePayment, HideAddPaymentBackButton, setHideAddPaymentBackButton, setshowPopup, setPopupMessage }) {
+export default function AddPayment({ShowNewPayment, setShowNewInvoice, setShowNewPayment, setisActive, setShowNewBusiness, reFetchBusinesses, setreFetchBusinesses, setloading, setRedirectToNewReceivableOrPayable, SetDefaultValueForBusiness, setSetDefaultValueForBusiness, PayInvoiceImmediately, setPayInvoiceImmediately, ImmediatePayableID, setImmediatePayableID, setShowSchedulePayment, HideAddPaymentBackButton, setHideAddPaymentBackButton, setshowPopup, setPopupMessage, Proceed, setProceed, setshowPopUpButton, ActionType, setActionType, }) {
 
     const [DateOrTerms, setDateOrTerms] = useState(true)
     const [AmountOrItems, setAmountOrItems] = useState(true)
@@ -27,6 +27,8 @@ export default function AddPayment({ShowNewPayment, setShowNewInvoice, setShowNe
     const [TermsValue, setTermsValue] = useState('Custom')
     const [DateValue, setDateValue] = useState(null)
     const [TotalPriceValue, setTotalPriceValue] = useState(0)
+    const [ItemNameValue, setItemNameValue] = useState('')
+    const [ItemDescriptionValue, setItemDescriptionValue] = useState('')
     const [PaymentMethods, setPaymentMethods] = useState([1])
     const [Note, setNote] = useState('')
 
@@ -38,6 +40,9 @@ export default function AddPayment({ShowNewPayment, setShowNewInvoice, setShowNe
     const DateRef = useRef(null)
     const AmountDueRef = useRef(null)
     const NotesRef = useRef(null)
+
+    const ItemNameRef = useRef(null)
+    const ItemDescriptionRef = useRef(null)
 
 
     const [ChooseOrInputs, setChooseOrInputs] = useState(true)
@@ -103,86 +108,133 @@ export default function AddPayment({ShowNewPayment, setShowNewInvoice, setShowNe
         display: 'none'
     }
 
-    async function SaveAndExit(data){
-        setPayInvoiceImmediately(false)
-        const TestInvoice = {
-            bill_from_key: BusinessKey,
-            terms: TermsValue,
-            date_due: DateValue,
-            invoice_total_price: TotalPriceValue,
-            items: AddItemList,
-            notes: (Note?Note:'Thank you for your business')
+    useEffect( async () => {
+        if (!Proceed){
+            return
         }
+        else if (ActionType === 'SaveAndExit'){
+            setPopupMessage('Proccessing Invoice...')
+            setshowPopUpButton(false)
+            setPayInvoiceImmediately(false)
+            const SingularItem = [{        
+                item_name:ItemNameValue,
+                item_description:ItemDescriptionValue,
+                quantity_purchased: 1,
+                item_price:TotalPriceValue,
+                item_total_price:TotalPriceValue    
+            }]
+    
+            const TestInvoice = {
+                bill_from_key: BusinessKey,
+                terms: TermsValue,
+                date_due: DateValue,
+                invoice_total_price: TotalPriceValue,
+                accepted_payments: PaymentMethods,
+                items: SingularOrItemized?SingularItem:
+                AddItemList,
+                notes: Note?Note:'Thank you for your business'
+            }
 
-        console.table(TestInvoice)
+    
+            console.table(TestInvoice)
+    
+            const httpResponse = await fetch('https://api.pendulumapp.com/api/new_payable/',{
+                method: 'POST',
+                headers: new Headers({
+                    'Authorization': `token ${localStorage.token}`,
+                    'Content-Type': 'application/json'
+                }),
+                body: JSON.stringify(TestInvoice)
+            })
+    
+            const JsonResponse = await httpResponse.json()
+            console.log(JsonResponse)
+            
+            if (JsonResponse.invoice_id){
+                    setPopupMessage('Invoice added successfully!')
+                    setloading(true)
+                    CleanAllFields()
+                    setShowNewPayment(false)
+                    setHideAddPaymentBackButton(true)
+            }
+            else{
+            setPopupMessage('Something went wrong!')
+            }
+    
+        }
+        else if (ActionType === 'SaveAndPay'){
+            setPopupMessage('Proccessing Invoice...')
+            setshowPopUpButton(false)
+            setPayInvoiceImmediately(true)
 
-        setPopupMessage('Proccessing Invoice...')
-        setshowPopup(true)
-        const httpResponse = await fetch('https://api.pendulumapp.com/api/new_payable/',{
-            method: 'POST',
-            headers: new Headers({
-                'Authorization': `token ${localStorage.token}`,
-                'Content-Type': 'application/json'
-            }),
-            body: JSON.stringify(TestInvoice)
-        })
-
-        const JsonResponse = await httpResponse.json()
-        console.log(JsonResponse)
-        
-        if (JsonResponse.invoice_id){
+            const SingularItem = [{        
+                item_name:ItemNameValue,
+                item_description:ItemDescriptionValue,
+                quantity_purchased: 1,
+                item_price:TotalPriceValue,
+                item_total_price:TotalPriceValue    
+            }]
+    
+            const TestInvoice = {
+                bill_from_key: BusinessKey,
+                terms: TermsValue,
+                date_due: DateValue,
+                invoice_total_price: TotalPriceValue,
+                accepted_payments: PaymentMethods,
+                items: SingularOrItemized?SingularItem:
+                AddItemList,
+                notes: Note?Note:'Thank you for your business'
+            }
+    
+            console.table(TestInvoice)
+    
+            setPopupMessage('Proccessing Invoice...')
+            setshowPopup(true)
+            const httpResponse = await fetch('https://api.pendulumapp.com/api/new_payable/',{
+                method: 'POST',
+                headers: new Headers({
+                    'Authorization': `token ${localStorage.token}`,
+                    'Content-Type': 'application/json'
+                }),
+                body: JSON.stringify(TestInvoice)
+            })
+    
+            const JsonResponse = await httpResponse.json()
+            console.log(JsonResponse)
+            
+            if (JsonResponse.invoice_id){
                 setPopupMessage('Invoice added successfully!')
                 setloading(true)
                 CleanAllFields()
+                setImmediatePayableID(JsonResponse)
                 setShowNewPayment(false)
                 setHideAddPaymentBackButton(true)
-        }
-        else{
-        setPopupMessage('Something went wrong!')
+                setShowSchedulePayment(true)
+            }
+            else{
+            setPopupMessage('Something went wrong!')
+    
+            }
+    
         }
 
+        setProceed(false)
+
+    }, [Proceed])
+
+    async function SaveAndExit(data){
+        setActionType('SaveAndExit')
+        setPopupMessage('Are you sure you want to add this Invoice?')
+        setshowPopUpButton(true)
+        setshowPopup(true)
+        
     }
 
     async function SaveAndPayImmediately (){
-        setPayInvoiceImmediately(true)
-        const TestInvoice = {
-            bill_from_key: BusinessKey,
-            terms: TermsValue,
-            date_due: DateValue,
-            invoice_total_price: TotalPriceValue,
-            items: AddItemList,
-            notes: (Note?Note:'Thank you for your business')
-        }
-
-        console.table(TestInvoice)
-
-        setPopupMessage('Proccessing Invoice...')
+        setActionType('SaveAndPay')
+        setPopupMessage('Are you sure you want to add this Invoice?')
+        setshowPopUpButton(true)
         setshowPopup(true)
-        const httpResponse = await fetch('https://api.pendulumapp.com/api/new_payable/',{
-            method: 'POST',
-            headers: new Headers({
-                'Authorization': `token ${localStorage.token}`,
-                'Content-Type': 'application/json'
-            }),
-            body: JSON.stringify(TestInvoice)
-        })
-
-        const JsonResponse = await httpResponse.json()
-        console.log(JsonResponse)
-        
-        if (JsonResponse.invoice_id){
-            setPopupMessage('Invoice added successfully!')
-            setloading(true)
-            CleanAllFields()
-            setImmediatePayableID(JsonResponse)
-            setShowNewPayment(false)
-            setHideAddPaymentBackButton(true)
-            setShowSchedulePayment(true)
-        }
-        else{
-        setPopupMessage('Something went wrong!')
-
-        }
 
     }
 
@@ -235,6 +287,10 @@ export default function AddPayment({ShowNewPayment, setShowNewInvoice, setShowNe
         DateRef.current.value=null
         SingularOrItemized?AmountDueRef.current.value =null:setSingularOrItemized(false)
         NotesRef.current.value =''
+        if (SingularOrItemized){
+            ItemNameRef.current.value = null;
+            ItemDescriptionRef.current.value = null;
+        }
 
         setTermsValue('Custom')
         setDateValue(null)
@@ -358,6 +414,7 @@ export default function AddPayment({ShowNewPayment, setShowNewInvoice, setShowNe
                             setShowNewInvoice(false)
                             setShowNewPayment(false)
                             setShowNewBusiness(true)
+                            setHideAddPaymentBackButton(true)
                         }}>Add Business</button>
                     </div>
                 </div>
@@ -385,7 +442,13 @@ export default function AddPayment({ShowNewPayment, setShowNewInvoice, setShowNe
                     </div>
                     <div className="AmountAndItemsFormContainer">
                         {AmountOrItems?
-                        <label className=''>Amount Due:</label>:
+                        <>
+                        <label className=''>Item Name:</label>
+                        <input ref={ItemNameRef} className='AmountInput' type="text" placeholder='Enter name' onChange={(e)=>{setItemNameValue(e.target.value)}}/>
+                        <label className=''>Item Description:</label>
+                        <input ref={ItemDescriptionRef} className='AmountInput' type="text" placeholder='Enter description' onChange={(e)=>{setItemDescriptionValue(e.target.value)}}/>
+                        <label className=''>Amount Due:</label>
+                    </>:
                         <label className=''>Add items:</label>}
                         {AmountOrItems?
                         <input ref={AmountDueRef} className='AmountInput' type="number" placeholder='Enter amount' onChange={(e)=>{setTotalPriceValue(e.target.value)}}/>:
@@ -466,10 +529,10 @@ export default function AddPayment({ShowNewPayment, setShowNewInvoice, setShowNe
                 </div>
                 
                 <div className="SubmitAndDiscardContainer">
-                    <button className="SubmitPayableImmediatelyButton" type="submit" value="Submit" onClick={()=>{
+                    <button disabled={BusinessKey && DateValue && TotalPriceValue?false:true} className={BusinessKey && DateValue && TotalPriceValue?"SubmitPayableImmediatelyButton":'AddBillDisabledButton'} type="submit" value="Submit" onClick={()=>{
                         SaveAndPayImmediately()
                     }}> Save and pay immediately</button>
-                    <button className="AddBillDiscardButton" type="submit" value="Submit" onClick={()=>{
+                    <button disabled={BusinessKey && DateValue && TotalPriceValue?false:true} className={BusinessKey && DateValue && TotalPriceValue?"AddBillDiscardButton":'AddBillDisabledButton'} type="submit" value="Submit" onClick={()=>{
                         SaveAndExit()
                     }}> Save and exit</button>
                     {/* <button className="AddBillDiscardButton" onClick={(e)=>{

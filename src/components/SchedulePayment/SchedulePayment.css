@@ -105,34 +105,38 @@
 }
 
 .PaymentMethodCard{
+    position: relative;
     display: flex;
     color: black;
     height: 5em;
     padding: 2em 1em;
     margin: 0;
+    margin: 0.5em 0;
     cursor: pointer;
     align-items: center;
     border: solid 1px rgba(204, 204, 204, 0.527);
-    border-radius: 5px;
-    margin: 0.5em 0;
+    border-radius: 1em;
     transition: 200ms;
+    background-color: white;
+    box-shadow: 5px 9px 7px #8888885a;
+
 }
 
 .PaymentMethodCard:hover{
-    background-color: rgba(204, 204, 204, 0.527);
+    border: solid 1px rgba(0, 0, 0, 0.527);
 }
 
 .ActivePaymentMethodCard{
+    position: relative;
     display: flex;
     color: black;
-    border: solid 1px rgba(204, 204, 204, 0.527);
+    border: solid 1px rgba(0, 0, 0, 0.527);
     border-radius: 5px;
     height: 5em;
     padding: 2em 1em;
     margin:  0.5em 0;
     cursor: pointer;
     align-items: center;
-    background-color: rgba(143, 143, 143, 0.527);
 }
 
 
@@ -196,6 +200,12 @@
     margin-top: 0.5em;
 }
 
+.RedirectToSettingsLink{
+    margin-top: 1em;
+    color: cornflowerblue;
+    cursor: pointer;
+}
+
 
 @media screen and (max-width:480px){
     .SchedulePaymentContainer{
@@ -213,5 +223,15 @@
         z-index: 2;
         font-size: 2.1em;
     }
+}
+
+@media screen and (min-width:1600px){
+    .SelectPaymentMethod{
+        margin-top: 0.5em;
+        padding: 0.5em;
+        border: solid 1px rgba(204, 204, 204, 0.719);
+        border-radius: 5px;
+        font-size: 1em;
+        }
 }
 

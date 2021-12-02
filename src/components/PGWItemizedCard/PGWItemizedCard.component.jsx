@@ -1,7 +1,7 @@
 import PGWInvoiceItemList from '../PGWInvoiceItemList/PGWInvoiceItemList'
 import './PGWItemizedCard.component.css'
 
-export default function PGWItemizedCard({InvoiceOrPay, setInvoiceOrPay, invoiceToPay}) {
+export default function PGWItemizedCard({InvoiceOrPay, setInvoiceOrPay, invoiceToPay, setChooseOrPay}) {
 
     const logo = (invoiceToPay.from_business_name? invoiceToPay.from_business_name.split(' ').shift().charAt(0) + invoiceToPay.from_business_name.split(' ').pop().charAt(0).toUpperCase(): 'NA')
     return (
@@ -57,6 +57,7 @@ export default function PGWItemizedCard({InvoiceOrPay, setInvoiceOrPay, invoiceT
 
                 <div className="PGWItemizedButton" onClick={()=>{
                     setInvoiceOrPay(false)
+                    setChooseOrPay(true)
                 }}>
                     Pay {invoiceToPay.from_business_name}
                 </div>

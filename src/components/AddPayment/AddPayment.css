@@ -112,7 +112,7 @@
     border-radius: 5px;
     color: white;
     background-color: #0275d8;
-    border: none;
+    border: 1px solid #0275d8;
     display: inline-block;
     padding: 0.75em 1.5em;
     cursor: pointer;
@@ -128,7 +128,6 @@
     border-radius: 5px;
     color: white;
     background-color: #0275d8;
-    border: none;
     display: inline-block;
     padding: 0.75em 1.5em;
     cursor: pointer;
@@ -147,6 +146,16 @@
     padding: 0.75em 1.5em;
     cursor: pointer;
     margin-top: auto;
+}
+
+.AddBillDisabledButton{
+    border-radius: 5px;
+    border: 1px solid rgb(128,128,128);
+    display: inline-block;
+    padding: 0.75em 1.5em;
+    cursor: not-allowed;
+    background-color: #0274d8b0;
+    color: white;
 }
 .AddBillDiscardButton:hover{
     border: solid 1px #002e57;

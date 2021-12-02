@@ -1,0 +1,95 @@
+.skeleton {
+    background-color: #ddd;
+    animation: skeleton-loading 1s linear infinite alternate;
+}
+
+.CardList{
+
+}
+
+.Card{
+    height: 5em;
+    width: 95%;
+    border-radius: 0.5em;
+    margin-bottom: 1em;
+    margin-left: 0.5em;
+    margin-right: 1em;
+    margin-top: 0.5em;
+    position: relative;
+}
+
+.PaymentMethodCardSkeleton{
+    width: 100%;
+    height: 5em;
+    padding: 2em 1em;
+    margin: 0.5em auto;
+    border-radius: 0.5em;
+}
+
+.CardHeader{
+    height: 1em;
+    width: 30%;
+    border-radius: 10px;
+    position: absolute;
+    top: 0.75em;
+    left: 0.75em;
+    animation: header-loading 1s linear infinite alternate;
+}
+
+.CardAmount{
+    position: absolute;
+    right: 0.75em;
+    bottom: 1.75em;
+    border-radius: 5px;
+    animation: header-loading 1s linear infinite alternate;
+    width: 20%;
+    height: 0.8em;
+
+}
+
+.CardDue{
+    position: absolute;
+    left: 0.75em;
+    animation: header-loading 1s linear infinite alternate;
+    width: 30%;
+    height: 0.7em;
+    bottom: 30%;
+    border-radius: 5px;
+
+
+}
+
+.CardName{
+    position: absolute;
+    left: 0.75em;    
+    animation: header-loading 1s linear infinite alternate;
+    width: 25%;
+    height: 0.7em;
+    bottom: 13%;
+    border-radius: 5px;
+
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-color: hsl(0, 0%, 90%);
+    }
+
+    100% {
+        background-color:  hsl(0, 0%, 92%);
+    }
+}
+
+@keyframes header-loading {
+    0% {
+        background-color: hsl(0, 0%, 85%);
+    }
+
+    100% {
+        background-color:  hsl(0, 0%, 83%);
+    }
+}
+
+
+
+

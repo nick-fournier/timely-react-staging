@@ -10,19 +10,24 @@ export default function Popup({showPopup, setshowPopup, PopupMessage, setPopupMe
     const RefPopup = useRef(null)
 
 
-    // const handleClickOutside = (event) => {
-    //     if (RefPopup.current && !RefPopup.current.contains(event.target)) {
-    //         setshowPopup(false)
-    //         setPopupMessage('')
-    //     }
-    // }
+    const handleClickOutside = (event) => {
+        if (RefPopup.current && !RefPopup.current.contains(event.target)) {
+            setshowPopup(false)
+            setPopupMessage('')
+            setshowPopUpButton(false)
+            setProceed(false)
 
-    // useEffect(() => {
-    //     document.addEventListener('click', handleClickOutside, true)
-    //     return () => {
-    //         document.removeEventListener('click', handleClickOutside, true)
-    //     }
-    // })
+        }
+    }
+
+    useEffect(() => {
+        if (showPopUpButton === false){
+            document.addEventListener('click', handleClickOutside, true)
+            return () => {
+                document.removeEventListener('click', handleClickOutside, true)
+            }
+        }
+    })
 
     return (
         <div className='PopupScreenContainer'>
@@ -49,6 +54,8 @@ export default function Popup({showPopup, setshowPopup, PopupMessage, setPopupMe
                             showPopUpButton && <div className="PopupButtonNo" onClick={()=>{
                             setProceed(false)
                             setshowPopup(false)
+                            setPopupMessage('')
+                            setshowPopUpButton(false)
                             }}> No</div>
                         
                         }

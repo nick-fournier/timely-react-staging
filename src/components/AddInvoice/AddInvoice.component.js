@@ -4,9 +4,9 @@ import {useState, useRef, useEffect} from 'react'
 import {useForm} from 'react-hook-form'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faPlus} from '@fortawesome/free-solid-svg-icons'
+import {faPlus, faSleigh} from '@fortawesome/free-solid-svg-icons'
 
-export default function AddInvoice( {ShowNewInvoice, setShowNewInvoice, setisActive, setShowNewBusiness, reFetchBusinesses, setreFetchBusinesses, setloading, setRedirectToNewReceivableOrPayable, setSetDefaultValueForBusiness, SetDefaultValueForBusiness, HideAddInvoiceBackButton, setHideAddInvoiceBackButton, setshowPopup, setPopupMessage} ) {
+export default function AddInvoice( {ShowNewInvoice, setShowNewInvoice, setisActive, setShowNewBusiness, reFetchBusinesses, setreFetchBusinesses, setloading, setRedirectToNewReceivableOrPayable, setSetDefaultValueForBusiness, SetDefaultValueForBusiness, HideAddInvoiceBackButton, setHideAddInvoiceBackButton, setshowPopup, setPopupMessage, Proceed, setProceed, setshowPopUpButton, ActionType, setActionType} ) {
 
     const [DateOrTerms, setDateOrTerms] = useState(true)
     const [AmountOrItems, setAmountOrItems] = useState(true)
@@ -98,59 +98,65 @@ export default function AddInvoice( {ShowNewInvoice, setShowNewInvoice, setisAct
 
     const {register, handleSubmit } = useForm();
 
+    useEffect( async () => {
+        if (!Proceed){
+            return
+        }
+
+        if (ActionType === 'AddInvoice') {
+            setshowPopUpButton(false)
+            setPopupMessage('Processing Invoice...')
+            const SingularItem = [{        
+                item_name:ItemNameValue,
+                item_description:ItemDescriptionValue,
+                quantity_purchased: 1,
+                item_price:TotalPriceValue,
+                item_total_price:TotalPriceValue    
+            }]
+    
+            const TestInvoice = {
+                bill_to_key: BusinessKey,
+                terms: TermsValue,
+                date_due: DateValue,
+                invoice_total_price: TotalPriceValue,
+                accepted_payments: PaymentMethods,
+                items: SingularOrItemized?SingularItem:
+                AddItemList,
+                notes: Note?Note:'Thank you for your business'
+            }
+    
+            console.table(TestInvoice)
+            const httpResponse = await fetch('https://api.pendulumapp.com/api/new_receivable/',{
+                method: 'POST',
+                headers: new Headers({
+                    'Authorization': `token ${localStorage.token}`,
+                    'Content-Type': 'application/json'
+                }),
+                body: JSON.stringify(TestInvoice)
+            })
+    
+            const JsonResponse = await httpResponse.json()
+            console.log(JsonResponse)
+            
+            if (JsonResponse.bill_to_name){
+                setPopupMessage('Invoice added successfully!')
+                setloading(true)
+                CleanAllFields()
+                setHideAddInvoiceBackButton(true)
+            }
+            else{
+                setPopupMessage('Something went wrong.')
+            }
+        }
+        setProceed(false)
+    }, [Proceed])
+
     async function onSubmit(data){
-        // const NewInvoice = new FormData()
-        // NewInvoice.append('bill_to_key', BusinessKey)
-        // NewInvoice.append('terms', TermsValue)
-        // NewInvoice.append('invoice_total_price', TotalPriceValue)
-        // NewInvoice.append('accepted_payments', PaymentMethods)
-        // NewInvoice.append('notes', data.notes)
-        // NewInvoice.append('items', AddItemList)
-        // console.log(PaymentMethods)
-
-        const SingularItem = [{        
-            item_name:ItemNameValue,
-            item_description:ItemDescriptionValue,
-            quantity_purchased: 1,
-            item_price:TotalPriceValue,
-            item_total_price:TotalPriceValue    
-        }]
-
-        const TestInvoice = {
-            bill_to_key: BusinessKey,
-            terms: TermsValue,
-            date_due: DateValue,
-            invoice_total_price: TotalPriceValue,
-            accepted_payments: PaymentMethods,
-            items: SingularOrItemized?SingularItem:
-            AddItemList,
-            notes: Note?Note:'Thank you for your business'
-        }
-
-        console.table(TestInvoice)
-        setPopupMessage('Processing Invoice...')
+        setActionType('AddInvoice')
+        setPopupMessage('Are you sure you want to send this invoice?')
+        setshowPopUpButton(true)
         setshowPopup(true)
-        const httpResponse = await fetch('https://api.pendulumapp.com/api/new_receivable/',{
-            method: 'POST',
-            headers: new Headers({
-                'Authorization': `token ${localStorage.token}`,
-                'Content-Type': 'application/json'
-            }),
-            body: JSON.stringify(TestInvoice)
-        })
-
-        const JsonResponse = await httpResponse.json()
-        console.log(JsonResponse)
         
-        if (JsonResponse.bill_to_name){
-            setPopupMessage('Invoice added successfully!')
-            setloading(true)
-            CleanAllFields()
-            setHideAddInvoiceBackButton(true)
-        }
-        else{
-            setPopupMessage('Something went wrong.')
-        }
     }
 
     const CalcTotal = () =>{
@@ -247,7 +253,7 @@ export default function AddInvoice( {ShowNewInvoice, setShowNewInvoice, setisAct
     return (
         <div style={ShowNewInvoice? ShowAddInvoice: HideAddInvoice} className='AddInvoiceContainer'>
             <form className='AddInvoiceForm' action="" method="post" onSubmit={handleSubmit(onSubmit)}>
-                <div className="NewInvoiceHeader">Create a new inovice</div>
+                <div className='NewInvoiceHeader'>Create a new inovice</div>
                 <div style={HideAddInvoiceBackButton?Hidden:{}} className="PopBackButon" onClick={(e)=>{
                     e.preventDefault()
                     CleanAllFields()
@@ -483,10 +489,11 @@ export default function AddInvoice( {ShowNewInvoice, setShowNewInvoice, setisAct
                 </div>
                 
                 <div className="SubmitAndDiscardContainer">
-                    <button className="SubmitInvoiceButton" type="submit" value="Submit"> Create Invoice</button>
+                    <button disabled={TotalPriceValue && BusinessKey?false:true} className={TotalPriceValue && BusinessKey?"SubmitInvoiceButton":"AddInvoiceButtonDisabled"} type="submit" value="Submit"> Create Invoice</button>
                     <button className="DiscardInvoiceButton" onClick={(e)=>{
                         e.preventDefault()
                         CleanAllFields()
+                        setHideAddInvoiceBackButton(true)
                     }}> Discard</button>
                 </div>
                 
@@ -498,22 +505,4 @@ export default function AddInvoice( {ShowNewInvoice, setShowNewInvoice, setisAct
     
 }
 
-
-
-
-// {
-//     "bill_to_key": "biz_2GBjYncDFSPxywcX8uiHFw",
-//     "terms": "NET30",
-//     "date_due": null,
-//     "invoice_total_price": "4000",
-//     "accepted_payments": [1],
-//     "notes": "Thanks",
-//     "items": [{
-// "item_name" :"Hello",
-// "item_description" :"Hello again",
-// "quantity_purchased" :"1",
-// "item_price" :"412",
-// "item_total_price" :"412"
-// }]
-// }
 

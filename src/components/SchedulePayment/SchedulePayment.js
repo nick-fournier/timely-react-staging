@@ -4,16 +4,17 @@ import {useForm} from 'react-hook-form'
 import { useState, useEffect, useRef } from 'react';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import PaymentMethodCard from '../PaymentMethodCard/PaymentMethodCard.component'
-
-export default function SchedulePayment({ShowSchedulePayment, setShowNewInvoice, setShowSchedulePayment, CurrentItem, setreFetchPM, reFetchPM, PayInvoiceImmediately, setPayInvoiceImmediately, ImmediatePayableID, setImmediatePayableID, showPopup, setshowPopup, PopupMessage, setPopupMessage, Proceed, setProceed, setshowPopUpButton, ActionType, setActionType }) {
+import { useHistory } from 'react-router';
+//
+export default function SchedulePayment({ShowSchedulePayment, setShowNewInvoice, setShowSchedulePayment, CurrentItem, setreFetchPM, reFetchPM, PayInvoiceImmediately, setPayInvoiceImmediately, ImmediatePayableID, setImmediatePayableID, showPopup, setshowPopup, PopupMessage, setPopupMessage, Proceed, setProceed, setshowPopUpButton, ActionType, setActionType, setSettingsOrInvoices, setPaymentLoaded, setPersonalLoaded, setBusinessLoaded, setProfileOrPayment, setCardOrACH, setPaymentOptionsOrPaymentMethods, currentNavItem, setcurrentNavItem, SelectedPaymentMethod, setSelectedPaymentMethod}) {
     
     // const [paymentMethodID, setpaymentMethodID] = useState('')
+    const history = useHistory()
 
     const [PaymentMethodsList, setPaymentMethodsList] = useState([])
     const [ReloadList, setReloadList] = useState(false)
-    const [SelectedPaymentMethod, setSelectedPaymentMethod] = useState(null)
     
-    const [CardOrACH, setCardOrACH] = useState(true)
+    const [CardOrACHForPayment, setCardOrACHForPayment] = useState(true)
     
 
     const Visible = {
@@ -35,7 +36,7 @@ export default function SchedulePayment({ShowSchedulePayment, setShowNewInvoice,
     useEffect(() => {
         
         const loadPMs = async () =>{
-            const response = await fetch('https://api.pendulumapp.com/api/stripe/payinvoice/',{
+            const response = await fetch('https://api.pendulumapp.com/api/stripe/paymentmethods/',{
                 method: "GET",
                 headers: new Headers({
                   'Authorization': `token ${localStorage.token}`
@@ -54,7 +55,7 @@ export default function SchedulePayment({ShowSchedulePayment, setShowNewInvoice,
         loadPMs()
         console.log(PaymentMethodsList)
 
-    }, [reFetchPM])
+    }, [reFetchPM, currentNavItem])
 
     useEffect( async() => {
         if (!Proceed){
@@ -62,6 +63,12 @@ export default function SchedulePayment({ShowSchedulePayment, setShowNewInvoice,
         }
 
         if (ActionType === 'SendPayment') {
+            let PaymentBody = {
+                "payment_method":SelectedPaymentMethod,
+                "invoice_id":PayInvoiceImmediately?ImmediatePayableID.invoice_id:CurrentItem.invoice_id,
+                'type':CardOrACHForPayment?'card':'ach'
+            }
+            console.log(PaymentBody)
             setshowPopUpButton(false)
             setPopupMessage('Processing your payment...')
             const PaymentResponse = await fetch('https://api.pendulumapp.com/api/stripe/payinvoice/',{
@@ -70,17 +77,16 @@ export default function SchedulePayment({ShowSchedulePayment, setShowNewInvoice,
                   'Authorization': `token ${localStorage.token}`,
                   'Content-Type': 'application/json'
               }),
-              body: JSON.stringify({
-                  "id":SelectedPaymentMethod,
-                  "invoice_id":PayInvoiceImmediately?ImmediatePayableID.invoice_id:CurrentItem.invoice_id
-              })
+              body: JSON.stringify(PaymentBody)
               })
             const PaymentJson = await PaymentResponse.json()
             console.log(PaymentJson)
             if (PaymentJson.status==='succeeded'){
-                setPopupMessage(`Payment of $${CurrentItem.invoice_total_price} for Invoice: ${CurrentItem.invoice_name} to ${CurrentItem.to_business_name}  was successful!`)
+                setPopupMessage(`Payment of $${CurrentItem.invoice_total_price} for Invoice: ${CurrentItem.invoice_name} to ${CurrentItem.from_business_name}  was successful!`)
                 setShowSchedulePayment(false)
                 setProceed(false)
+
+                
                 // setProcessingPayment(false)
                 // setMessageReveal(true)
                 // setPaymentSuccessOrFail(true)
@@ -110,7 +116,7 @@ export default function SchedulePayment({ShowSchedulePayment, setShowNewInvoice,
         setshowPopup(true)
         // setProcessingPayment(true)
         setshowPopUpButton(true)
-        setPopupMessage(`Are you sure you want to pay ${CurrentItem.invoice_total_price}?`)
+        setPopupMessage(`Are you sure you want to pay $${CurrentItem.invoice_total_price}? to ${CurrentItem.from_business_name}`)
         setActionType('SendPayment')
 
     }
@@ -162,11 +168,11 @@ export default function SchedulePayment({ShowSchedulePayment, setShowNewInvoice,
                             <select defaultValue='Card Payments' onChange={(e)=>{
                                 if (e.target.value === 'Card Payments'){
                                     console.log('card')
-                                    setCardOrACH(true)
+                                    setCardOrACHForPayment(true)
                                 }
                                 else if (e.target.value === 'ACH'){
                                     console.log('ACH')
-                                    setCardOrACH(false)
+                                    setCardOrACHForPayment(false)
                                 }
                             }} className='SelectPaymentMethod'>
                                 <option value="Card Payments" >Card</option>
@@ -182,19 +188,71 @@ export default function SchedulePayment({ShowSchedulePayment, setShowNewInvoice,
                 </div> */}
 
 
-                {CardOrACH && <label className=''>Choose A Card: </label>}
+                { <label className=''>{CardOrACHForPayment?'Choose A Card:':'Choose a Bank Account'} </label>}
                 {PaymentMethodsList?
-                CardOrACH?
+                CardOrACHForPayment?
                 <div className="PaymentMethodCardList">
-                    {PaymentMethodsList.map((item, index) =>
-                    <PaymentMethodCard  key={index} item={item} SelectedPaymentMethod={SelectedPaymentMethod} ReloadList={ReloadList} PaymentMethodsList={PaymentMethodsList} setSelectedPaymentMethod={setSelectedPaymentMethod} setReloadList={setReloadList}/>
-                    )}
+                    {PaymentMethodsList.filter(item => item.type === 'card').length >= 1?
+                     PaymentMethodsList.filter(item => item.type === 'card').map((item, index) =>
+                     // , , , , , 
+                    <PaymentMethodCard type='card' setProceed={setProceed} setshowPopUpButton={setshowPopUpButton} ActionType={ActionType} setActionType={setActionType} Proceed={Proceed} setPopupMessage={setPopupMessage} setshowPopup={setshowPopup} reFetchPM={reFetchPM} setreFetchPM={setreFetchPM} CardOrACHForPayment={CardOrACHForPayment} key={index} item={item} SelectedPaymentMethod={SelectedPaymentMethod} ReloadList={ReloadList} PaymentMethodsList={PaymentMethodsList} setSelectedPaymentMethod={setSelectedPaymentMethod} setReloadList={setReloadList}/>
+                    ):
+                    <>
+                    <div className="PaymentTotalLabel">
+                        Looks like you don't have any cards saved yet.
+                    </div>
+                    <div onClick={()=>{
+                        setProfileOrPayment(false)
+                        setBusinessLoaded(false)
+                        setPersonalLoaded(false)
+                        setPaymentLoaded(true)
+                        setPaymentOptionsOrPaymentMethods(false)
+                        setcurrentNavItem(4)
+                        setCardOrACH(false)
+                        history.push('/settings')
+                        setSettingsOrInvoices(true)
+                        setSelectedPaymentMethod(null)
+                        setShowSchedulePayment(false)
+                    }} className="RedirectToSettingsLink">
+                        Click here to add a new card.
+                    </div>
+                    </>
+                    }
                 </div>
                 :<>
-                Coming Soon
+                <div className="PaymentMethodCardList">
+                    {PaymentMethodsList.filter(item => item.type === 'ach').length >= 1?
+                    PaymentMethodsList.filter(item => item.type === 'ach').map((item, index) =>
+                    <PaymentMethodCard type='ach' setProceed={setProceed} setshowPopUpButton={setshowPopUpButton} ActionType={ActionType} setActionType={setActionType} Proceed={Proceed} setPopupMessage={setPopupMessage} setshowPopup={setshowPopup} reFetchPM={reFetchPM} setreFetchPM={setreFetchPM} CardOrACHForPayment={CardOrACHForPayment}  key={index} item={item} SelectedPaymentMethod={SelectedPaymentMethod} ReloadList={ReloadList} PaymentMethodsList={PaymentMethodsList} setSelectedPaymentMethod={setSelectedPaymentMethod} setReloadList={setReloadList}/>
+                    )
+                    :
+                    <>
+                    <div className="PaymentTotalLabel">
+                        Looks like you don't have any bank accounts saved yet.
+                    </div>
+                    <div onClick={()=>{
+                        setProfileOrPayment(false)
+                        setBusinessLoaded(false)
+                        setPersonalLoaded(false)
+                        setPaymentLoaded(true)
+                        setPaymentOptionsOrPaymentMethods(false)
+                        setCardOrACH(true)
+                        setcurrentNavItem(4)
+                        history.push('/settings')
+                        setSettingsOrInvoices(true)
+                        setSelectedPaymentMethod(null)
+                        setShowSchedulePayment(false)
+                        setPaymentLoaded(true)
+                    }} className="RedirectToSettingsLink">
+                        Click here to add a new bank account.
+                    </div>
+                    </>
+                }
+                </div>
                 </>
                     :
                 <>Loading...</>
+                
                     }
                         {/* <input className='FirstRowInputField'  type="text" list="nums" placeholder='Last 4 Digits' onChange={(e) => {HandlePMKey(e)}} />
                             {PaymentMethodsList?
@@ -224,10 +282,10 @@ export default function SchedulePayment({ShowSchedulePayment, setShowNewInvoice,
                 <div className="SubmitAndDiscardContainer">
                     <button className="SubmitPaymentButton" onClick={handleSubmit}> {`Pay $${PayInvoiceImmediately && ImmediatePayableID?ImmediatePayableID?ImmediatePayableID.invoice_total_price:'loading...':CurrentItem.invoice_total_price}`} </button>
                     <button className="DiscardInvoiceButton" onClick={(e)=>{
-                                setShowSchedulePayment(false)
-                                setShowNewInvoice(false)
-                                e.preventDefault()
-                                setSelectedPaymentMethod(null)
+                        setShowNewInvoice(false)
+                        e.preventDefault()
+                        setSelectedPaymentMethod(null)
+                        setShowSchedulePayment(false)
                             }}> Discard</button>
                 </div>
                 </form>

@@ -1,11 +1,11 @@
 import './InvoiceOptions.component.css'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faBars } from '@fortawesome/free-solid-svg-icons'
 
 
-export default function InvoiceOptions({CurrentItem, setsearchField, setSearchMethod, DataSwitch, isMobile, setisMobile, ShowSchedulePayment, setShowSchedulePayment, PopupMessage, setPopupMessage, showPopup,setshowPopup, ShowSendRemind, setShowSendRemind}) {
+export default function InvoiceOptions({setCurrentItem, CurrentItem, setsearchField, setSearchMethod, DataSwitch, isMobile, setisMobile, ShowSchedulePayment, setShowSchedulePayment, PopupMessage, setPopupMessage, showPopup,setshowPopup, ShowSendRemind, setShowSendRemind, ActionType, setActionType, setshowPopUpButton, Proceed, setProceed, setloading, SearchedData,}) {
 
     const [markDisabled, setmarkDisabled] = useState(CurrentItem.is_paid?true:false)
     const [currentTab, setcurrentTab] = useState(1)
@@ -69,28 +69,49 @@ export default function InvoiceOptions({CurrentItem, setsearchField, setSearchMe
     }
     }
 
-    const sendReminder= async () =>{
-        // setshowPopup(true)
-        // setPopupMessage('Sending reminder...')
-        // setTimeout(() => {
-        //     setPopupMessage('Reminder sent successfully!')
-        // }, 3000);
-        // let RemindBody = {
-        //     invoice_id: CurrentItem.invoice_id,
-        //     cc: 
-        // }
-        // const httpResponse = await fetch('https://api.pendulumapp.com/api/notifications/',{
-        //     method: 'POST',
-        //     headers: new Headers({
-        //         'Authorization': `token ${localStorage.token}`,
-        //         'Content-Type': 'application/json'
-        //     }),
-        //     body: JSON.stringify(RemindBody)
-        // })
-
-        // const JsonResponse = await httpResponse.json()
-        // console.log(JsonResponse)
+    const DeleteInvoice = () => {
+        setActionType('DeleteInvoice')
+        setPopupMessage('Are you sure you want to delete this invoice?')
+        setshowPopUpButton(true)
+        setshowPopup(true)
     }
+
+
+    useEffect( async () => {
+
+        if (!Proceed) {
+            return
+        }
+
+        else if (ActionType === 'DeleteInvoice'){
+
+            setPopupMessage('Deleting Invoice...')
+            setshowPopUpButton(false)
+            let DeletedInvoice = CurrentItem
+            DeletedInvoice.is_deleted = true
+            const DeleteInvoiceRequest = await fetch(`https://api.pendulumapp.com/api/${DataSwitch === 1?'receivables':'payables'}/${DeletedInvoice.invoice_id}/`, {
+            method: 'PUT',
+            headers: new Headers({
+                'Authorization': `token ${localStorage.token}`,
+                "content-type":"application/json",
+
+            }),
+            body: JSON.stringify(DeletedInvoice)
+            })
+            SearchedData = []
+            setloading(true)
+            const resp = await DeleteInvoiceRequest.json()
+            console.log(resp)
+            setPopupMessage(`Invoice was deleted successfully!`)
+            setCurrentItem({})
+            setloading(false)
+            
+
+
+        }
+        setProceed(false)
+
+    }, [Proceed])
 
     const flagInvoice = async () =>{
         let FlaggedInvoice = CurrentItem
@@ -178,6 +199,7 @@ export default function InvoiceOptions({CurrentItem, setsearchField, setSearchMe
                         </button>
                         <button disabled={CurrentItem.invoice_id?false:true} style={buttonStyles} onClick ={flagInvoice} className={CurrentItem.invoice_id?'SecondaryInvoiceButton':'Disabled'}>Flag</button>  
                         <button style={buttonStyles} disabled={CurrentItem.is_paid?true:false} onClick={markInvoice} className={CurrentItem.is_paid?'Disabled':'SecondaryInvoiceButton'}>Mark as Paid</button>
+                        <button disabled={CurrentItem.invoice_id?false:true} style={buttonStyles} onClick ={DeleteInvoice} className={CurrentItem.invoice_id?'DeleteInvoicButton':'Disabled'}>Delete</button>  
                     </div>
                        
                     {DataSwitch === 1?

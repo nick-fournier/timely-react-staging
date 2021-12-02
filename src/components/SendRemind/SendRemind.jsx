@@ -26,7 +26,7 @@ export default function SendRemind({CurrentItem, ShowSendRemind, setShowSendRemi
         if (ActionType === 'SendReminder') {
             let ReminderBody = {
                 invoice_id: CurrentItem.invoice_id,
-                type: 'remind',
+                notif_type: 'remind',
                 custom_text: emailBody?emailBody:'',
                 cc: ExtraRecipients?ExtraRecipients:''
             }

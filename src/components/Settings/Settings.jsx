@@ -1,22 +1,29 @@
 import './Settings.css'
+import SettingsPMList from '../SettingsPMList/SettingsPMList';
 
 import { setIntervalAsync, clearIntervalAsync } from 'set-interval-async/dynamic';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBriefcase, faCog, faCreditCard, faHandHoldingUsd, faIdCardAlt, faLandmark, faLock, faShieldAlt, faUserLock } from '@fortawesome/free-solid-svg-icons'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback, FunctionComponent } from 'react'
 
 import { CardCvcElement, CardExpiryElement, CardNumberElement, useElements, useStripe, IdealBankElement} from '@stripe/react-stripe-js';
+
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
 
 import {gsap} from 'gsap'
 
 
-export default function Settings({setreFetchPM, reFetchPM, setshowPopup, setPopupMessage, Proceed, setActionType, ActionType, setshowPopUpButton, setProceed}) {
+
+import  { usePlaidLink } from 'react-plaid-link';
+
+export default function Settings({setreFetchPM, reFetchPM, setshowPopup, setPopupMessage, Proceed, setActionType, ActionType, setshowPopUpButton, setProceed, PaymentLoaded, setPaymentLoaded, BusinessLoaded, setBusinessLoaded, PersonalLoaded, setPersonalLoaded, ProfileOrPayment, setProfileOrPayment, CardOrACH, setCardOrACH, PaymentOptionsOrPaymentMethods, setPaymentOptionsOrPaymentMethods, AddPaymentMethodOrListPaymentMethods, setAddPaymentMethodOrListPaymentMethods, SelectedPaymentMethod, setSelectedPaymentMethod}) {
 
     const StripeElementsStyle = {
         fontSize: '1.4em'
     }
+
 
 
     // ->  Success and Error message handling
@@ -39,12 +46,9 @@ export default function Settings({setreFetchPM, reFetchPM, setshowPopup, setPopu
     const stripe = useStripe()
     const elements = useElements()
 
-    const [ProfileOrPayment, setProfileOrPayment] = useState(true)
     const [PersonalOrBusiness, setPersonalOrBusiness] = useState(true)
     const [InfoOrPassword, setInfoOrPassword] = useState(false)
 
-    const [PaymentOptionsOrPaymentMethods, setPaymentOptionsOrPaymentMethods] = useState(true)
-    const [CardOrACH, setCardOrACH] = useState(true)
     const [ReadOrWrite, setReadOrWrite] = useState(false)
     const [userPersonalData, setuserPersonalData] = useState(null)
     const [userBusinessData, setuserBusinessData] = useState(null)
@@ -66,12 +70,12 @@ export default function Settings({setreFetchPM, reFetchPM, setshowPopup, setPopu
     const [PasswordTwoInput, setPasswordTwoInput] = useState('')
     const [PasswordTwoConfirmInput, setPasswordTwoConfirmInput] = useState('')
 
-    const [PersonalLoaded, setPersonalLoaded] = useState(false)
-    const [BusinessLoaded, setBusinessLoaded] = useState(false)
-    const [PaymentLoaded, setPaymentLoaded] = useState(false)
 
     
     const [loading, setloading] = useState(false)
+
+
+    const [plaidToken, setplaidToken] = useState()
 
 
 
@@ -81,7 +85,13 @@ export default function Settings({setreFetchPM, reFetchPM, setshowPopup, setPopu
     
     const [ErrorMessage, setErrorMessage] = useState('')
     const [ErrorState, setErrorState] = useState(false)
-    
+
+    // Stripe inputs validation
+
+    const [CardNumberComplete, setCardNumberComplete] = useState(false)
+    const [CardExpirationComplete, setCardExpirationComplete] = useState(false)    
+    const [CardCVCComplete, setCardCVCComplete] = useState(false)    
+
 
     const ActiveCard = {
         border: 'solid 1px #4b4b4bbe'
@@ -92,7 +102,11 @@ export default function Settings({setreFetchPM, reFetchPM, setshowPopup, setPopu
     const [RedirectURL, setRedirectURL] = useState('')
     const [StripeLoading, setStripeLoading] = useState(false)
 
+    // PMList stuff -->
 
+    const [loadingPMS, setloadingPMS] = useState(true)
+
+    
 
     useEffect(() => {
         LoadStripeLink()
@@ -101,7 +115,7 @@ export default function Settings({setreFetchPM, reFetchPM, setshowPopup, setPopu
     useEffect( async () => {
         setIntervalAsync(async () => {
             setStripeLoading(true)
-            const httpResponse = await fetch('https://api.pendulumapp.com/api/stripe/onboard',{
+            const httpResponse = await fetch('https://api.pendulumapp.com/api/stripe/onboard/',{
                 method: 'GET',
                 headers: new Headers({
                     'Authorization': `token ${localStorage.token}`,
@@ -119,7 +133,7 @@ export default function Settings({setreFetchPM, reFetchPM, setshowPopup, setPopu
     }, [StripeLoading])
     
     const LoadStripeLink = async () => {
-        const httpResponse = await fetch('https://api.pendulumapp.com/api/stripe/onboard',{
+        const httpResponse = await fetch('https://api.pendulumapp.com/api/stripe/onboard/',{
             method: 'GET',
             headers: new Headers({
                 'Authorization': `token ${localStorage.token}`,
@@ -132,85 +146,12 @@ export default function Settings({setreFetchPM, reFetchPM, setshowPopup, setPopu
 
     ////////////////////////////////////////////////
 
-    // Stripe Payment Method logic --> 
 
     async function handleSubmit(e){
-        // setErrorState(false)
-        // setLoadingPaymentMethod(true)
-        setPopupMessage('Processing...')
-        setshowPopup(true)
-        e.preventDefault()
-        const Card = elements.getElement(CardNumberElement)
-        const paymentMethodRes = await stripe.createPaymentMethod({
-            type :'card',
-            card: Card,
-        })
-        if (paymentMethodRes.error){
-            // setLoadingPaymentMethod(false)
-            console.log(paymentMethodRes.error)
-            // setErrorState(true)
-            // setErrorMessage(paymentMethodRes.error.message)
-            setPopupMessage(`${paymentMethodRes.error.message}`)
-            // setPaymentMethodSuccessOrError(false)
-            console.log(ErrorMessage)
-            // setMessageReveal(true)
-            // setTimeout(() => {
-            //     setMessageReveal(false)
-            //     setErrorMessage('')
-            // }, 3000);
-            return
-            
-        }
-        // setErrorState(false)
-        const {id} = paymentMethodRes.paymentMethod
-        console.log(id)
-        
-        if (!stripe || !elements){
-            return;
-        }
-
-        // else if (ErrorState){
-        //     return
-        // }
-
-
-            console.log('Entered')            
-
-            const paymentData = await fetch('https://api.pendulumapp.com/api/stripe/paymentmethods/attach/',{
-                method: 'POST',
-                headers: new Headers({
-                    'Authorization': `token ${localStorage.token}`,
-                    'Content-Type': 'application/json'
-                }), 
-                body: JSON.stringify({
-                    "attach_payment_method":`${id}`
-                })
-            })
-            const JsonData = await paymentData.json()
-            console.log(JsonData)
-            // setLoadingPaymentMethod(false)
-            if(JsonData.Error){
-                console.log(JsonData.Error)
-                // setPaymentMethodSuccessOrError(false)
-                // setErrorMessage(JsonData.Error)
-                setPopupMessage(JsonData.Error)
-                console.log('shouldnt have entered')
-            }
-            
-             else {
-                // setPaymentMethodSuccessOrError(true)
-                setPopupMessage('Payment method added successfully!')
-                console.log('Payment method added successfully')
-                
-            }
-            
-            // setMessageReveal(true)
-            // setTimeout(() => {
-            //     setMessageReveal(false)
-            //     setErrorMessage('')
-            // }, 3000);
-            setreFetchPM(true)
-            
+        setPopupMessage('Are you sure you want to save this card?')
+        setshowPopUpButton(true)
+        setActionType('SaveCard')
+        setshowPopup(true)            
         }
 
         /////////////////////////////////////////////////////////////////
@@ -293,6 +234,9 @@ export default function Settings({setreFetchPM, reFetchPM, setshowPopup, setPopu
         if (!Proceed){
             return
         }
+        
+    // Change password logic --> 
+
 
         if (ActionType === 'ChangePassword'){
             let NewPasswordToSend = {
@@ -328,41 +272,80 @@ export default function Settings({setreFetchPM, reFetchPM, setshowPopup, setPopu
                 console.log(Passwordjson.detail)
                 setPasswordChangeSuccessOrError(true)
                 setPopupMessage('Password changed successfully!')
-                // setMessageReveal(true)
-                // setTimeout(() => {
-                //     setMessageReveal(false)
-                //     setPasswordErrorMessage('')
-                //     setInfoOrPassword(false)
-                // }, 3000);
            }
     
            else if (Passwordjson.old_password){
-            //  setPasswordChangeSuccessOrError(false)
                 setPopupMessage(`${Passwordjson.old_password}`)
-                // setPasswordErrorMessage(Passwordjson.old_password)
                 console.log(Passwordjson.old_password)
     
-            //    setMessageReveal(true)
-            //    setTimeout(() => {
-            //        setMessageReveal(false)
-            //        setPasswordErrorMessage('')
-            //    }, 3000);
                
            }
            else if (Passwordjson.new_password2){
-            // setPasswordChangeSuccessOrError(false)
             setPopupMessage(`${Passwordjson.new_password2}`)
-            // setPasswordErrorMessage(Passwordjson.new_password2)
                console.log(Passwordjson.new_password2)
-            //    setMessageReveal(true)
-            //    setTimeout(() => {
-            //        setMessageReveal(false)
-            //        setPasswordErrorMessage('')
-            //    }, 3000);
            }
     
         }
+
+    // Stripe Payment Method logic --> 
+
+        else if (ActionType === 'SaveCard'){
+            setshowPopUpButton(false)
+            setPopupMessage('Processing...')
+            const Card = elements.getElement(CardNumberElement)
+            const paymentMethodRes = await stripe.createPaymentMethod({
+                type :'card',
+                card: Card,
+            })
+            if (paymentMethodRes.error){
+                console.log(paymentMethodRes.error)
+                setPopupMessage(`${paymentMethodRes.error.message}`)
+                console.log(ErrorMessage)
+                return
+                
+            }
+            const {id} = paymentMethodRes.paymentMethod
+            console.log(id)
+            
+            if (!stripe || !elements){
+                return;
+            }
+    
+                console.log('Entered')            
+    
+                const paymentData = await fetch('https://api.pendulumapp.com/api/stripe/paymentmethods/',{
+                    method: 'POST',
+                    headers: new Headers({
+                        'Authorization': `token ${localStorage.token}`,
+                        'Content-Type': 'application/json'
+                    }), 
+                    body: JSON.stringify({
+                        "payment_method":`${id}`,
+                        "action": 'attach'
+                    })
+                })
+                const JsonData = await paymentData.json()
+                console.log(JsonData)
+                if(JsonData.Error){
+                    console.log(JsonData.Error)
+                    setPopupMessage(JsonData.Error)
+                    console.log('shouldnt have entered')
+                }
+                
+                 else {
+                    setPopupMessage('Card was saved successfully!')
+                    console.log('Payment method added successfully')
+                    
+                }
+                
+                setreFetchPM(true)
+                setAddPaymentMethodOrListPaymentMethods(false)
+                setloadingPMS(true)
+                
+
+        }
         setProceed(false)
+
     }, [Proceed])
 
     const SubmitPasswordChange = async () => {
@@ -372,6 +355,56 @@ export default function Settings({setreFetchPM, reFetchPM, setshowPopup, setPopu
         setActionType('ChangePassword')
 
     }
+
+
+    // Plaid Link Logic
+
+    useEffect( async () => {
+        const PlaidLinkToken = await fetch('https://api.pendulumapp.com/api/plaid/linktoken/',{
+            method: "GET",
+            headers: new Headers({
+                'Authorization': `token ${localStorage.token}`
+            }),
+        })
+        const PlaidLinkTokenJSON = await PlaidLinkToken.json()
+        // console.log(PlaidLinkTokenJSON)
+        setplaidToken(PlaidLinkTokenJSON)
+        console.log(plaidToken)
+    }, [])
+
+
+
+    const config = {
+        onSuccess: async (public_token, metadata) => {
+            const PlaidExchange = await fetch('https://api.pendulumapp.com/api/plaid/linktoken/',{
+            method: "POST",
+            headers: new Headers({
+                'Authorization': `token ${localStorage.token}`,
+                'Content-Type': 'application/json'
+            }),
+            body: JSON.stringify({
+                'public_token': public_token,
+                'plaid_account_id': metadata.accounts[0].id
+            })
+        })
+            const PlaidExchangeResponse = await PlaidExchange.json()
+            console.log(PlaidExchangeResponse)
+            console.log(public_token);
+            console.log(metadata)
+            setAddPaymentMethodOrListPaymentMethods(false)
+            setloadingPMS(true)
+        },
+        onExit: (err, metadata) => {},
+        onEvent: (eventName, metadata) => {},
+        token: `${plaidToken}`,
+        // required for OAuth:
+        receivedRedirectUri: window.location.href,
+        // if not OAuth, set to null or do not include:
+        receivedRedirectUri: null,
+      };
+      const { open, exit, ready } =  usePlaidLink(config);
+
+ 
 
 
 
@@ -412,6 +445,8 @@ export default function Settings({setreFetchPM, reFetchPM, setshowPopup, setPopu
                     setBusinessLoaded(false)
                     setPaymentLoaded(false)
                     setInfoOrPassword(false)
+                    setAddPaymentMethodOrListPaymentMethods(true)
+
                 }
                 }>
                     <div className="SettingsCardLogoContainer">
@@ -456,6 +491,7 @@ export default function Settings({setreFetchPM, reFetchPM, setshowPopup, setPopu
                     setPersonalLoaded(false)
                     setPaymentLoaded(false)
                     setReadOrWrite(false)
+                    setAddPaymentMethodOrListPaymentMethods(true)
 
                 }
                 }>
@@ -501,6 +537,7 @@ export default function Settings({setreFetchPM, reFetchPM, setshowPopup, setPopu
                     setBusinessLoaded(false)
                     setPersonalLoaded(false)
                     setPaymentLoaded(true)
+                    setAddPaymentMethodOrListPaymentMethods(true)
 
                     
                 }
@@ -636,8 +673,10 @@ export default function Settings({setreFetchPM, reFetchPM, setshowPopup, setPopu
 
                         </div>
                     </div>
-                    :PaymentOptionsOrPaymentMethods?
-                    <div>
+                    :AddPaymentMethodOrListPaymentMethods?
+                    PaymentOptionsOrPaymentMethods?
+                    ////
+                    <div className='ProfileInformation'>
                         <div className="PaymentInformationHeader">
                             Payment Methods
                         </div>
@@ -660,10 +699,23 @@ export default function Settings({setreFetchPM, reFetchPM, setshowPopup, setPopu
                                 <span className="AddPaymentMethodLabel"> Add payment method</span>
 
                             </div>
+                            <div onClick={()=>{
+                                setAddPaymentMethodOrListPaymentMethods(false)
+                                setloadingPMS(true)
+                            }} className="ViewPaymentMethodsButton">
+                                View currently saved payment methods
+                            </div>
                         </div>
-                    </div>:
+                    </div>
+                    :
                     !CardOrACH?
                     <div className='CardDetailsSection'>
+                        <div className='SaveCardBackButton' onClick={()=>{
+
+                            setPaymentOptionsOrPaymentMethods(true)
+                            }}>
+                                <FontAwesomeIcon className='' icon={faChevronLeft} />
+                        </div>
                         <div className="CardDetailsHeader">
                             Save your card details
                         </div>
@@ -685,6 +737,13 @@ export default function Settings({setreFetchPM, reFetchPM, setshowPopup, setPopu
                                                     color: '#9e2146',
                                                 },
                                                 },
+                            }} onChange={(e)=>{
+                                if (e.complete){
+                                    setCardNumberComplete(true)
+                                }
+                                else {
+                                    setCardNumberComplete(false)
+                                }
                             }} className='CardNumberElement' />
 
                             <div className="CardEXPandCVC">
@@ -699,6 +758,13 @@ export default function Settings({setreFetchPM, reFetchPM, setshowPopup, setPopu
                                                     color: '#9e2146',
                                                 },
                                                 },
+                            }} onChange={(e)=>{
+                                if (e.complete){
+                                    setCardExpirationComplete(true)
+                                }
+                                else {
+                                    setCardExpirationComplete(false)
+                                }
                             }} className='CardNumberElement'/>
                                 </div>
                                 <div className="CardCVCContainer">
@@ -712,12 +778,19 @@ export default function Settings({setreFetchPM, reFetchPM, setshowPopup, setPopu
                                                     color: '#9e2146',
                                                 },
                                                 },
+                            }} onChange={(e)=>{
+                                if (e.complete){
+                                    setCardCVCComplete(true)
+                                }
+                                else {
+                                    setCardCVCComplete(false)
+                                }
                             }} className='CardNumberElement'/>
                                 </div>
                             </div>
 
 
-                                <button className='SaveCardDetails' onClick={handleSubmit}> Link My Card </button>
+                                <button disabled={CardNumberComplete && CardExpirationComplete && CardCVCComplete?false:true} className={CardNumberComplete && CardExpirationComplete && CardCVCComplete?'SaveCardDetails':'SaveCardDetailsDisabled'} onClick={handleSubmit}> Link My Card </button>
                             <div className="PMMessageContainer">
                                 {LoadingPaymentMethod?
                                 <div className="PaymentMethodMessageSuccess">Loading...</div>
@@ -740,9 +813,72 @@ export default function Settings({setreFetchPM, reFetchPM, setshowPopup, setPopu
                         </div>
                         
                     </div>
+                    ////
                     :
-                    <div>
-                        Coming soon
+                    <div className='AddACHContainer'>
+                        {!plaidToken?
+                        <>Loading...</>
+                        :<div className="">
+                            <div className="ACHHeaderAndSubHeaderContainer">
+                                <div className="ACHDetailsHeader">
+                                    Connect your bank account
+                                </div>
+                                <div className="ACHDetailsSubHeader">
+                                    Choose how you'd like to transfer payments for free
+                                </div>
+                                <div className='ACHDetailsBackButton' onClick={()=>{
+                                    setPaymentOptionsOrPaymentMethods(true)
+                                    }}>
+                                    <FontAwesomeIcon className='' icon={faChevronLeft} />
+                                </div>
+                            </div>
+                            <div className="ACHTabsContainer">
+                                <div className='ACHTab' onClick={open}>
+                                    <div className="ACHTabContentContainer">
+                                        <div className="ACHTabHeader">
+                                            Connect instantly
+                                        </div>
+                                        <div className="ACHSubHeader">
+                                            Securely log in to your bank account and start scheduling transfers right away.
+                                        </div>
+                                    </div>
+                                    <div className="ACHGoArrow">
+                                        <FontAwesomeIcon icon={ faChevronRight} />
+                                    </div>
+                                </div>
+                                <div className='ACHTab'>
+                                    <div className="ACHTabContentContainer">
+                                        <div className="ACHTabHeader">
+                                            Verify with deposits <span className='ACHComingSoon'>  Coming soon </span>
+                                        </div>
+                                        <div className="ACHSubHeader">
+                                            You'll receive two micro-deposits in your bank account in 1-2 business days. Verify the amounts to start getting paid.
+                                        </div>
+                                    </div>
+                                    <div className="ACHGoArrow">
+                                        <FontAwesomeIcon icon={ faChevronRight} />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        }
+                    </div>
+                    :
+                    <div className='ProfileInformation'>
+                        <div className="PMHeaderAndBackButtonContainer">
+                            {!loadingPMS &&
+                            <div className='SettingsPMListBackContainer' onClick={()=>{
+                                setAddPaymentMethodOrListPaymentMethods(true)
+                                setPaymentOptionsOrPaymentMethods(true)
+                            }}>
+                                <FontAwesomeIcon className='SettingsPMListBackButton' icon={faChevronLeft} />
+                            </div>}
+                        <div className="PaymentInformationHeader">
+                            Payment Methods
+                        </div>
+                        </div>
+                        
+                        <SettingsPMList AddPaymentMethodOrListPaymentMethods={AddPaymentMethodOrListPaymentMethods} loadingPMS={loadingPMS} setloadingPMS={setloadingPMS} setCardOrACH={setCardOrACH} setPaymentOptionsOrPaymentMethods={setPaymentOptionsOrPaymentMethods} setAddPaymentMethodOrListPaymentMethods={setAddPaymentMethodOrListPaymentMethods} SelectedPaymentMethod={SelectedPaymentMethod} setSelectedPaymentMethod={setSelectedPaymentMethod} setActionType={setActionType} ActionType={ActionType} setPopupMessage={setPopupMessage} Proceed={Proceed} setProceed={setProceed} setshowPopUpButton={setshowPopUpButton} setshowPopup={setshowPopup} reFetchPM={reFetchPM} setreFetchPM={setreFetchPM} />
                     </div>
                     }
                     

@@ -1,0 +1,29 @@
+.SettingsPMListContainer{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: auto;
+    overflow: scroll;
+    height: 85vh;
+    padding-right: 2em;
+}
+
+.AddPMLink{
+    font-size: 1.1em;
+    font-weight: 600;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    color: rgba(138, 79, 255, 0.838);
+    cursor: pointer;
+    transition: 200ms;
+    width: fit-content;
+}
+
+.AddPMLink:hover{
+    color: rgb(114, 43, 255);
+
+}
+
+.SettingsPMListBackContainer{
+    display: flex;
+}

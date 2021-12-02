@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState, FunctionComponent} from 'react'
 import { useForm } from 'react-hook-form'
 import './Login.css'
 import {useHistory} from 'react-router-dom'

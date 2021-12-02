@@ -70,13 +70,32 @@ function App() {
   const [Proceed, setProceed] = useState(false)
   const [ActionType, setActionType] = useState('')
 
+  const [SearchClicked, setSearchClicked] = useState(false)
+
+
+  // State for settings page to manipulate outside of settings context
+
+  const [PaymentLoaded, setPaymentLoaded] = useState(false)
+  const [PersonalLoaded, setPersonalLoaded] = useState(false)
+  const [BusinessLoaded, setBusinessLoaded] = useState(false)
+  const [ProfileOrPayment, setProfileOrPayment] = useState(false)
+  const [CardOrACH, setCardOrACH] = useState(true)
+  const [PaymentOptionsOrPaymentMethods, setPaymentOptionsOrPaymentMethods] = useState(true)
+  const [AddPaymentMethodOrListPaymentMethods, setAddPaymentMethodOrListPaymentMethods] = useState(true)
+
 
   // Data for users to pay invoices immediately after they add a new payable
 
   const [ImmediatePayableID, setImmediatePayableID] = useState(null)
   const [PayInvoiceImmediately, setPayInvoiceImmediately] = useState(false)
 
+
+  // Data for selected payment method to use in both lists
+  const [SelectedPaymentMethod, setSelectedPaymentMethod] = useState(null)
+
+
   async function loadReceivablesData(){
+    setloading(true)
     const rawReceivablesData = await fetch('https://api.pendulumapp.com/api/receivables/',{
       method: "GET",
       headers: new Headers({
@@ -85,12 +104,13 @@ function App() {
     })
     let dataJson = await rawReceivablesData.json()
     //console.log(dataJson)
+    console.log(DataSet)
     setDataSet(dataJson)
-    //console.log(DataSet)
     setloading(false)
   }
 
   async function loadPayablesData(){
+    setloading(true)
     const rawPayablesData = await fetch('https://api.pendulumapp.com/api/payables/',{
       method: "GET",
       headers: new Headers({
@@ -99,8 +119,8 @@ function App() {
     })
     let dataJson = await rawPayablesData.json()
     //console.log(dataJson)
-    setDataSet(dataJson)
     console.log(DataSet)
+    setDataSet(dataJson)
     setloading(false)
   }
 
@@ -140,17 +160,19 @@ function App() {
     return function cleanup() {
       setDataSet([])
       setitemList([])
+      setloading(false)
     }
-  }, [loading, DataSwitch])
+  }, [DataSwitch])
 
 
   let SearchedData = () => {
-    if (SearchMethod === 1){
-      return DataSet.filter(Data=>
+    if (SearchMethod === 1){        
+      return DataSet.filter(Data => Data.is_paid === false).filter(Data=>
         (Data.to_business_name.toLowerCase().includes(searchField.toLowerCase())
         || Data.invoice_id === parseInt(searchField))
-        || parseInt(Data.total_price) === parseInt(searchField));
+        || parseInt(Data.invoice_total_price) === parseInt(searchField));
     }
+
     else if(SearchMethod === 2){
       return DataSet.filter(Data => Data.is_scheduled === true)
     }
@@ -187,23 +209,22 @@ function App() {
           <div className='AppInside'>
             <div className="AddStuff">
               {showPopup && <Popup showPopUpButton={showPopUpButton} setshowPopUpButton={setshowPopUpButton} Proceed={Proceed} setProceed={setProceed} showPopup={showPopup} setshowPopup={setshowPopup} PopupMessage={PopupMessage} setPopupMessage={setPopupMessage}/>}
-              <AddBusiness setshowPopup={setshowPopup} PopupMessage={PopupMessage} setPopupMessage={setPopupMessage} setHideAddInvoiceBackButton={setHideAddInvoiceBackButton} HideAddInvoiceBackButton={HideAddInvoiceBackButton} SetDefaultValueForBusiness={SetDefaultValueForBusiness} setSetDefaultValueForBusiness={setSetDefaultValueForBusiness} RedirectToNewReceivableOrPayable={RedirectToNewReceivableOrPayable} setreFetchBusinesses={setreFetchBusinesses} ShowNewBusiness={ShowNewBusiness} setShowNewBusiness={setShowNewBusiness} setShowNewInvoice={setShowNewInvoice} setShowNewPayment={setShowNewPayment}/>
-              <AddInvoice setshowPopup={setshowPopup} PopupMessage={PopupMessage} setPopupMessage={setPopupMessage} setHideAddInvoiceBackButton={setHideAddInvoiceBackButton} HideAddInvoiceBackButton={HideAddInvoiceBackButton} SetDefaultValueForBusiness={SetDefaultValueForBusiness} setSetDefaultValueForBusiness={setSetDefaultValueForBusiness} RedirectToNewReceivableOrPayable={RedirectToNewReceivableOrPayable} setRedirectToNewReceivableOrPayable={setRedirectToNewReceivableOrPayable} setloading={setloading} setreFetchBusinesses={setreFetchBusinesses} reFetchBusinesses={reFetchBusinesses} ShowNewBusiness={ShowNewBusiness} setShowNewBusiness={setShowNewBusiness} setisActive={setisActive} ShowNewInvoice={ShowNewInvoice} setShowNewInvoice={setShowNewInvoice}/>
-              <AddPayment setshowPopup={setshowPopup} PopupMessage={PopupMessage} setPopupMessage={setPopupMessage} HideAddPaymentBackButton={HideAddPaymentBackButton} setHideAddPaymentBackButton={setHideAddPaymentBackButton} ShowSchedulePayment={ShowSchedulePayment} setShowSchedulePayment={setShowSchedulePayment} PayInvoiceImmediately={PayInvoiceImmediately} setPayInvoiceImmediately={setPayInvoiceImmediately} ImmediatePayableID={ImmediatePayableID} setImmediatePayableID={setImmediatePayableID} SetDefaultValueForBusiness={SetDefaultValueForBusiness} setSetDefaultValueForBusiness={setSetDefaultValueForBusiness} RedirectToNewReceivableOrPayable={RedirectToNewReceivableOrPayable} setRedirectToNewReceivableOrPayable={setRedirectToNewReceivableOrPayable} setloading={setloading} setreFetchBusinesses={setreFetchBusinesses} reFetchBusinesses={reFetchBusinesses} ShowNewPayment={ShowNewPayment} setShowNewPayment={setShowNewPayment} setShowNewBusiness={setShowNewBusiness} setisActive={setisActive} ShowNewInvoice={ShowNewInvoice} setShowNewInvoice={setShowNewInvoice}/>
-              <SchedulePayment ActionType={ActionType} setActionType={setActionType} setshowPopUpButton={setshowPopUpButton} Proceed={Proceed} setProceed={setProceed} showPopup={showPopup} setshowPopup={setshowPopup} PopupMessage={PopupMessage} setPopupMessage={setPopupMessage} PayInvoiceImmediately={PayInvoiceImmediately} setPayInvoiceImmediately={setPayInvoiceImmediately} ImmediatePayableID={ImmediatePayableID} setImmediatePayableID={setImmediatePayableID} setreFetchPM={setreFetchPM} reFetchPM={reFetchPM} CurrentItem={CurrentItem} setloading={setloading} ShowSchedulePayment={ShowSchedulePayment} setShowSchedulePayment={setShowSchedulePayment} setShowNewBusiness={setShowNewBusiness} setisActive={setisActive} ShowNewInvoice={ShowNewInvoice} setShowNewInvoice={setShowNewInvoice}/>
-              <PaymentSettings setreFetchPM={setreFetchPM} reFetchPM={reFetchPM} CurrentItem={CurrentItem} setloading={setloading} ShowPaymentSettings={ShowPaymentSettings} setShowPaymentSettings={setShowPaymentSettings} setShowNewBusiness={setShowNewBusiness} setisActive={setisActive} ShowNewInvoice={ShowNewInvoice} setShowNewInvoice={setShowNewInvoice}/>
+              <AddBusiness setshowPopup={setshowPopup} PopupMessage={PopupMessage} setPopupMessage={setPopupMessage} HideAddPaymentBackButton={HideAddPaymentBackButton} setHideAddPaymentBackButton={setHideAddPaymentBackButton} setHideAddInvoiceBackButton={setHideAddInvoiceBackButton} HideAddInvoiceBackButton={HideAddInvoiceBackButton} SetDefaultValueForBusiness={SetDefaultValueForBusiness} setSetDefaultValueForBusiness={setSetDefaultValueForBusiness} RedirectToNewReceivableOrPayable={RedirectToNewReceivableOrPayable} setreFetchBusinesses={setreFetchBusinesses} ShowNewBusiness={ShowNewBusiness} setShowNewBusiness={setShowNewBusiness} setShowNewInvoice={setShowNewInvoice} setShowNewPayment={setShowNewPayment}/>
+              <AddInvoice ActionType={ActionType} setActionType={setActionType} setshowPopUpButton={setshowPopUpButton} Proceed={Proceed} setProceed={setProceed}  setshowPopup={setshowPopup} PopupMessage={PopupMessage} setPopupMessage={setPopupMessage} setHideAddInvoiceBackButton={setHideAddInvoiceBackButton} HideAddInvoiceBackButton={HideAddInvoiceBackButton} SetDefaultValueForBusiness={SetDefaultValueForBusiness} setSetDefaultValueForBusiness={setSetDefaultValueForBusiness} RedirectToNewReceivableOrPayable={RedirectToNewReceivableOrPayable} setRedirectToNewReceivableOrPayable={setRedirectToNewReceivableOrPayable} setloading={setloading} setreFetchBusinesses={setreFetchBusinesses} reFetchBusinesses={reFetchBusinesses} ShowNewBusiness={ShowNewBusiness} setShowNewBusiness={setShowNewBusiness} setisActive={setisActive} ShowNewInvoice={ShowNewInvoice} setShowNewInvoice={setShowNewInvoice}/>
+              <AddPayment ActionType={ActionType} setActionType={setActionType} setshowPopUpButton={setshowPopUpButton} Proceed={Proceed} setProceed={setProceed} setshowPopup={setshowPopup} PopupMessage={PopupMessage} setPopupMessage={setPopupMessage} HideAddPaymentBackButton={HideAddPaymentBackButton} setHideAddPaymentBackButton={setHideAddPaymentBackButton} ShowSchedulePayment={ShowSchedulePayment} setShowSchedulePayment={setShowSchedulePayment} PayInvoiceImmediately={PayInvoiceImmediately} setPayInvoiceImmediately={setPayInvoiceImmediately} ImmediatePayableID={ImmediatePayableID} setImmediatePayableID={setImmediatePayableID} SetDefaultValueForBusiness={SetDefaultValueForBusiness} setSetDefaultValueForBusiness={setSetDefaultValueForBusiness} RedirectToNewReceivableOrPayable={RedirectToNewReceivableOrPayable} setRedirectToNewReceivableOrPayable={setRedirectToNewReceivableOrPayable} setloading={setloading} setreFetchBusinesses={setreFetchBusinesses} reFetchBusinesses={reFetchBusinesses} ShowNewPayment={ShowNewPayment} setShowNewPayment={setShowNewPayment} setShowNewBusiness={setShowNewBusiness} setisActive={setisActive} ShowNewInvoice={ShowNewInvoice} setShowNewInvoice={setShowNewInvoice}/>
+              <SchedulePayment SelectedPaymentMethod={SelectedPaymentMethod} setSelectedPaymentMethod={setSelectedPaymentMethod} currentNavItem={currentNavItem} setcurrentNavItem={setcurrentNavItem} setPaymentOptionsOrPaymentMethods={setPaymentOptionsOrPaymentMethods} setCardOrACH={setCardOrACH} setProfileOrPayment={setProfileOrPayment} setPersonalLoaded={setPersonalLoaded} setBusinessLoaded={setBusinessLoaded} setPaymentLoaded={setPaymentLoaded} setSettingsOrInvoices={setSettingsOrInvoices} ActionType={ActionType} setActionType={setActionType} setshowPopUpButton={setshowPopUpButton} Proceed={Proceed} setProceed={setProceed} showPopup={showPopup} setshowPopup={setshowPopup} PopupMessage={PopupMessage} setPopupMessage={setPopupMessage} PayInvoiceImmediately={PayInvoiceImmediately} setPayInvoiceImmediately={setPayInvoiceImmediately} ImmediatePayableID={ImmediatePayableID} setImmediatePayableID={setImmediatePayableID} setreFetchPM={setreFetchPM} reFetchPM={reFetchPM} CurrentItem={CurrentItem} setloading={setloading} ShowSchedulePayment={ShowSchedulePayment} setShowSchedulePayment={setShowSchedulePayment} setShowNewBusiness={setShowNewBusiness} setisActive={setisActive} ShowNewInvoice={ShowNewInvoice} setShowNewInvoice={setShowNewInvoice}/>
               <SendRemind ActionType={ActionType} setActionType={setActionType} setshowPopUpButton={setshowPopUpButton} setProceed={setProceed} Proceed={Proceed} showPopup={showPopup} setshowPopup={setshowPopup} PopupMessage={PopupMessage} setPopupMessage={setPopupMessage} CurrentItem={CurrentItem} ShowSendRemind={ShowSendRemind} setShowSendRemind={setShowSendRemind} />
             </div>
           <div style={ShowSendRemind||ShowNewInvoice||ShowNewBusiness||ShowNewPayment||ShowPaymentSettings||ShowSchedulePayment?AddCover:RemoveCover} className='Cover'></div>
           <div className='invoicePageContainer'>
-            <Nav ShowSendRemind={ShowSendRemind} setShowSendRemind={setShowSendRemind} HideAddPaymentBackButton={HideAddPaymentBackButton} setHideAddPaymentBackButton={setHideAddPaymentBackButton} HideAddInvoiceBackButton={HideAddInvoiceBackButton} setHideAddInvoiceBackButton={setHideAddInvoiceBackButton} setSettingsOrInvoices={setSettingsOrInvoices} SettingsOrInvoices={SettingsOrInvoices} ShowPaymentSettings={ShowPaymentSettings} setShowPaymentSettings={setShowPaymentSettings} setShowSchedulePayment={setShowSchedulePayment} ShowNewPayment={ShowNewPayment} setShowNewPayment={setShowNewPayment} setisMobile={setisMobile} isActive={isActive} setisActive={setisActive} ShowNewInvoice={ShowNewInvoice} setShowNewInvoice={setShowNewInvoice} setcurrentNavItem={setcurrentNavItem} setShowNewBusiness={setShowNewBusiness} currentNavItem={currentNavItem} loadReceivables={loadReceivables} loadPayables={loadPayables} />
+            <Nav setitemList={setitemList} CurrentItem={CurrentItem} setCurrentItem={setCurrentItem} ShowSendRemind={ShowSendRemind} setShowSendRemind={setShowSendRemind} HideAddPaymentBackButton={HideAddPaymentBackButton} setHideAddPaymentBackButton={setHideAddPaymentBackButton} HideAddInvoiceBackButton={HideAddInvoiceBackButton} setHideAddInvoiceBackButton={setHideAddInvoiceBackButton} setSettingsOrInvoices={setSettingsOrInvoices} SettingsOrInvoices={SettingsOrInvoices} ShowPaymentSettings={ShowPaymentSettings} setShowPaymentSettings={setShowPaymentSettings} setShowSchedulePayment={setShowSchedulePayment} ShowNewPayment={ShowNewPayment} setShowNewPayment={setShowNewPayment} setisMobile={setisMobile} isActive={isActive} setisActive={setisActive} ShowNewInvoice={ShowNewInvoice} setShowNewInvoice={setShowNewInvoice} setcurrentNavItem={setcurrentNavItem} setShowNewBusiness={setShowNewBusiness} currentNavItem={currentNavItem} loadReceivables={loadReceivables} loadPayables={loadPayables} />
             {!SettingsOrInvoices?
             DataSwitch === 1?
-              <Receivables ShowSendRemind={ShowSendRemind} setShowSendRemind={setShowSendRemind} showPopup={showPopup} setshowPopup={setshowPopup} PopupMessage={PopupMessage} setPopupMessage={setPopupMessage} ShowHeaders={ShowHeaders} setShowHeaders={setShowHeaders} ShowSchedulePayment={ShowSchedulePayment} setShowSchedulePayment={setShowSchedulePayment} setisMobile={setisMobile} isMobile={isMobile} loadReceivables={loadReceivables} loadPayables={loadPayables} SearchedData={SearchedData()} setSearchMethod={setSearchMethod} DataSet={DataSet} setDataSet={setDataSet} itemList={itemList} CurrentItem={CurrentItem} setitemList={setitemList} setCurrentItem={setCurrentItem} setsearchField={setsearchField} DataSwitch={DataSwitch}/>
+              <Receivables loading={loading} setloading={setloading} ActionType={ActionType} setActionType={setActionType} setshowPopUpButton={setshowPopUpButton} Proceed={Proceed} setProceed={setProceed} ShowSendRemind={ShowSendRemind} setShowSendRemind={setShowSendRemind} showPopup={showPopup} setshowPopup={setshowPopup} PopupMessage={PopupMessage} setPopupMessage={setPopupMessage} ShowHeaders={ShowHeaders} setShowHeaders={setShowHeaders} ShowSchedulePayment={ShowSchedulePayment} setShowSchedulePayment={setShowSchedulePayment} setisMobile={setisMobile} isMobile={isMobile} loadReceivables={loadReceivables} loadPayables={loadPayables} SearchedData={SearchedData()} setSearchMethod={setSearchMethod} DataSet={DataSet} setDataSet={setDataSet} itemList={itemList} CurrentItem={CurrentItem} setitemList={setitemList} setCurrentItem={setCurrentItem} setsearchField={setsearchField} DataSwitch={DataSwitch}/>
               :
-              <Payables ShowSendRemind={ShowSendRemind} setShowSendRemind={setShowSendRemind} showPopup={showPopup} setshowPopup={setshowPopup} PopupMessage={PopupMessage} setPopupMessage={setPopupMessage} ShowHeaders={ShowHeaders} setShowHeaders={setShowHeaders} ShowSchedulePayment={ShowSchedulePayment} setShowSchedulePayment={setShowSchedulePayment} setisMobile={setisMobile} isMobile={isMobile} loadPayables={loadPayables} loadReceivables={loadReceivables} SearchedData={SearchedData()} setSearchMethod={setSearchMethod} DataSet={DataSet} setDataSet={setDataSet} itemList={itemList} CurrentItem={CurrentItem} setitemList={setitemList} setCurrentItem={setCurrentItem} setsearchField={setsearchField} DataSwitch={DataSwitch}/>
+              <Payables loading={loading} setloading={setloading} ActionType={ActionType} setActionType={setActionType} setshowPopUpButton={setshowPopUpButton} Proceed={Proceed} setProceed={setProceed} ShowSendRemind={ShowSendRemind} setShowSendRemind={setShowSendRemind} showPopup={showPopup} setshowPopup={setshowPopup} PopupMessage={PopupMessage} setPopupMessage={setPopupMessage} ShowHeaders={ShowHeaders} setShowHeaders={setShowHeaders} ShowSchedulePayment={ShowSchedulePayment} setShowSchedulePayment={setShowSchedulePayment} setisMobile={setisMobile} isMobile={isMobile} loadPayables={loadPayables} loadReceivables={loadReceivables} SearchedData={SearchedData()} setSearchMethod={setSearchMethod} DataSet={DataSet} setDataSet={setDataSet} itemList={itemList} CurrentItem={CurrentItem} setitemList={setitemList} setCurrentItem={setCurrentItem} setsearchField={setsearchField} DataSwitch={DataSwitch}/>
             :
-              <Settings ActionType={ActionType} setActionType={setActionType} setshowPopUpButton={setshowPopUpButton} setProceed={setProceed} Proceed={Proceed}  showPopup={showPopup} setshowPopup={setshowPopup} PopupMessage={PopupMessage} setPopupMessage={setPopupMessage} setreFetchPM={setreFetchPM} reFetchPM={reFetchPM}/>
+              <Settings SelectedPaymentMethod={SelectedPaymentMethod} setSelectedPaymentMethod={setSelectedPaymentMethod} AddPaymentMethodOrListPaymentMethods={AddPaymentMethodOrListPaymentMethods} setAddPaymentMethodOrListPaymentMethods={setAddPaymentMethodOrListPaymentMethods} PaymentOptionsOrPaymentMethods={PaymentOptionsOrPaymentMethods} setPaymentOptionsOrPaymentMethods={setPaymentOptionsOrPaymentMethods} CardOrACH={CardOrACH} setCardOrACH={setCardOrACH} setProfileOrPayment={setProfileOrPayment} ProfileOrPayment={ProfileOrPayment} BusinessLoaded={BusinessLoaded} setBusinessLoaded={setBusinessLoaded} PersonalLoaded={PersonalLoaded} setPersonalLoaded={setPersonalLoaded} PaymentLoaded={PaymentLoaded} setPaymentLoaded={setPaymentLoaded}  ActionType={ActionType} setActionType={setActionType} setshowPopUpButton={setshowPopUpButton} setProceed={setProceed} Proceed={Proceed}  showPopup={showPopup} setshowPopup={setshowPopup} PopupMessage={PopupMessage} setPopupMessage={setPopupMessage} setreFetchPM={setreFetchPM} reFetchPM={reFetchPM}/>
             }  
           </div>
         </div>
