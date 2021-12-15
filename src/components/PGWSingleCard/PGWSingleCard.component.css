@@ -1,11 +1,12 @@
 .PGWSingleCard{
     border: solid 1px rgba(172, 172, 172, 0.582);
     width: 35%;
-    height: 85%;
+    height: fit-content;
     background-color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 4em;
 }
 
 .PGWLogo{
@@ -47,7 +48,7 @@
     display: flex;
     justify-content: space-between;
     width: 85%;
-    margin-top: 5em;
+    margin-bottom: 1em;
 }
 
 .PGWInvoiceTitle{
@@ -63,7 +64,7 @@
 .PGWNote{
     align-self:flex-start;
     margin-top: 1em;
-    margin-left: 2.5em;
+    border: solid 2px red;
 }
 
 .PGWButton{

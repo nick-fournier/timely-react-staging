@@ -28,13 +28,18 @@ export default function PaymentSuccess({invoiceToPay}) {
                             <div className="PGWSuccessInvoiceField"> {invoiceToPay.to_business_name} </div>
                         </div>
                     </div>
-                    <div className="PGWNote">
-                        <div className="PGWInvoiceTitle"> Note on Invoice:</div>
-                        <div className="PGWSuccessInvoiceField"> {invoiceToPay.notes} </div>
+
+                    <div className="PGWDetails">
+                        <div className="PGWInvoiceDetails">
+                            <div className="PGWInvoiceTitle"> Note on Invoice:</div>
+                            <div className="PGWSuccessInvoiceField"> {invoiceToPay.notes} </div>
+                        </div>
                     </div>
-                    <div className="PGWNote">
-                        <div className="PGWInvoiceTitle"> Amount Paid:</div>
-                        <div className="PGWSuccessInvoiceField"> ${invoiceToPay.invoice_total_price}</div>
+                    <div className="PGWDetails">
+                        <div className="PGWInvoiceDetails">
+                            <div className="PGWInvoiceTitle"> Amount Paid:</div>
+                            <div className="PGWSuccessInvoiceField"> ${invoiceToPay.invoice_total_price}</div>
+                        </div>
                     </div>
 
                     <div className="PGWSuccessNote">

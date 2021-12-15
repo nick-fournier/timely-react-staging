@@ -12,12 +12,13 @@
 .PGWPaySingleCard{
     border: solid 1px rgba(172, 172, 172, 0.582);
     width: 35%;
-    height: 85%;
+    height: fit-content;
     background-color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
     position: relative;
+    padding-bottom: 4em;
 }
 
 
@@ -25,6 +26,8 @@
     font-size: 2em;
     font-weight: 700;
     margin: 3em 0 1em 0;
+    text-align: center;
+    line-height: 1.5em;
 }
 
 .PGWBackButon{
@@ -52,8 +55,8 @@
 .PGWProcessing{
     font-size: 1.5em;
     font-weight: 600;
-    margin-top: 2em;
-    margin-bottom: -2em;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
     color: rgb(56, 199, 144);
 
 }
@@ -135,19 +138,19 @@
 }
 
 .ChooseCard{
-    width: 40%;
-    border: solid 2px black;
+    padding-top: 1em;
+    width: 100%;
+    border-top: solid 2px black;
     height: 60%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    border-radius: 1em;
     transition: 200ms;
 }
-.ChooseCard:hover{
+/* .ChooseCard:hover{
     transform: translateY(-0.2em);
-}
+} */
 
 
 .PGWLogoContainer{
@@ -168,11 +171,17 @@
     margin-bottom: 3em;
 }
 
+.ChooseCardCAndLabelontainer{
+    display: flex;
+    flex-direction: column;
+}
+
 .PGWExplanation{
     font-weight: 600;
     font-size: 1.2em;
     width: 100%;
     text-align: center;
+    margin-bottom: 1em;
 }
 
 /* .TwoLines{
@@ -255,7 +264,24 @@
     justify-content: center;
     margin-top: 0.5em;
     border-radius: 0.5em;
+    font-weight: 700;
+    cursor: pointer;
+}
 
+.DisabledPGWACHPayButton{
+    font-size: 1.1em;
+    color: white;
+    background-color: black;
+    width: 20em;
+    padding: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.5em;
+    border-radius: 0.5em;
+    font-weight: 700;
+    cursor:not-allowed;
+    background-color: rgba(0, 0, 0, 0.53);
 }
 
 

@@ -3,6 +3,7 @@
     height: 100vh;
     justify-content: center;
     overflow: hidden;
+    cursor: default;
 }
 
 @keyframes anim1{   

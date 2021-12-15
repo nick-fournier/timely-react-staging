@@ -95,13 +95,12 @@
 
 .PaymentMethodCardList{
     display: flex;
-    height: 21.5em;
     flex-direction: column;
     margin-top: 1em;
     overflow: scroll;
     padding-right: 1em;
     border-bottom: solid 1px rgba(204, 204, 204, 0.527);
-    
+    height: 33.5em;
 }
 
 .PaymentMethodCard{

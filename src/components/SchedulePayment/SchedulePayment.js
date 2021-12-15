@@ -11,11 +11,6 @@ export default function SchedulePayment({ShowSchedulePayment, setShowNewInvoice,
     // const [paymentMethodID, setpaymentMethodID] = useState('')
     const history = useHistory()
 
-    const [PaymentMethodsList, setPaymentMethodsList] = useState([])
-    const [ReloadList, setReloadList] = useState(false)
-    
-    const [CardOrACHForPayment, setCardOrACHForPayment] = useState(true)
-    
 
     const Visible = {
         display: 'block'
@@ -27,10 +22,18 @@ export default function SchedulePayment({ShowSchedulePayment, setShowNewInvoice,
 
     // States for payment confirmation
 
+    const ResMessage = useRef(null)
     const [ProcessingPayment, setProcessingPayment] = useState(false)
     const [MessageReveal, setMessageReveal] = useState(false)
     const [PaymentSuccessOrFail, setPaymentSuccessOrFail] = useState(false)
-    const ResMessage = useRef(null)
+
+
+    // States for Paymemt methods list
+
+    const [PaymentMethodsList, setPaymentMethodsList] = useState([])
+    const [ReloadList, setReloadList] = useState(false)
+    const [CardOrACHForPayment, setCardOrACHForPayment] = useState(true)
+    
 
 
     useEffect(() => {
@@ -265,7 +268,7 @@ export default function SchedulePayment({ShowSchedulePayment, setShowNewInvoice,
                             } */}
                 </>}
                 
-                <div className="PaymentMessageContainer">
+                {/* <div className="PaymentMessageContainer">
                                 {ProcessingPayment?
                                 <div className="PaymentMethodMessageSuccess">Processing Payment...</div>
                                 :
@@ -277,7 +280,7 @@ export default function SchedulePayment({ShowSchedulePayment, setShowNewInvoice,
                                     }
                                 </div>
                                 }
-                </div>
+                </div> */}
 
                 <div className="SubmitAndDiscardContainer">
                     <button className="SubmitPaymentButton" onClick={handleSubmit}> {`Pay $${PayInvoiceImmediately && ImmediatePayableID?ImmediatePayableID?ImmediatePayableID.invoice_total_price:'loading...':CurrentItem.invoice_total_price}`} </button>

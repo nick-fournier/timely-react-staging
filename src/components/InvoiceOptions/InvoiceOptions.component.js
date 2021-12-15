@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faBars } from '@fortawesome/free-solid-svg-icons'
 
 
-export default function InvoiceOptions({setCurrentItem, CurrentItem, setsearchField, setSearchMethod, DataSwitch, isMobile, setisMobile, ShowSchedulePayment, setShowSchedulePayment, PopupMessage, setPopupMessage, showPopup,setshowPopup, ShowSendRemind, setShowSendRemind, ActionType, setActionType, setshowPopUpButton, Proceed, setProceed, setloading, SearchedData,}) {
+export default function InvoiceOptions({setCurrentItem, CurrentItem, setsearchField, setSearchMethod, DataSwitch, isMobile, setisMobile, ShowSchedulePayment, setShowSchedulePayment, PopupMessage, setPopupMessage, showPopup,setshowPopup, ShowSendRemind, setShowSendRemind, ActionType, setActionType, setshowPopUpButton, Proceed, setProceed, setloading, SearchedData, ShowImmediateSolutions, setShowImmediateSolutions}) {
 
     const [markDisabled, setmarkDisabled] = useState(CurrentItem.is_paid?true:false)
     const [currentTab, setcurrentTab] = useState(1)
@@ -203,14 +203,29 @@ export default function InvoiceOptions({setCurrentItem, CurrentItem, setsearchFi
                     </div>
                        
                     {DataSwitch === 1?
-                    <button disabled={CurrentItem.invoice_id?false:true} onClick={() => {
-                        setShowSendRemind(true)
-                    }} className={CurrentItem.invoice_id?"Button":'Disabled'}>Remind</button>
+                    <div>
+                        <button onClick={()=>{
+                            setShowImmediateSolutions(true)
+                        }} disabled={CurrentItem.invoice_id?false:true} className={CurrentItem.invoice_id?"Button":'Disabled'}> 
+                            Get Paid Out
+                        </button>
+                        <button disabled={CurrentItem.invoice_id?false:true} onClick={() => {
+                            setShowSendRemind(true)
+                        }} className={CurrentItem.invoice_id?"Button":'Disabled'}>Send Reminder</button>
+                        
+                    </div>
                     :
-                    <button disabled={CurrentItem.invoice_id?false:true} onClick={()=>{
-                        setShowSchedulePayment(true)
-                        // scheduleInvoice()
-                    }} className={CurrentItem.invoice_id?"Button":'Disabled'}>Pay</button>
+                    <div>
+                        <button onClick={()=>{
+                            setShowImmediateSolutions(true)
+                        }} disabled={CurrentItem.invoice_id?false:true} className={CurrentItem.invoice_id?"Button":'Disabled'}>
+                            Pay In Installments
+                        </button>
+                        <button disabled={CurrentItem.invoice_id?false:true} onClick={()=>{
+                            setShowSchedulePayment(true)
+                            // scheduleInvoice()
+                        }} className={CurrentItem.invoice_id?"Button":'Disabled'}>Pay Now</button>
+                    </div>
                 }  
                 </div>
             </div>

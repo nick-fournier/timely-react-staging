@@ -34,7 +34,7 @@
 }
 
 .PGWSuccessButton{
-    margin-top: 0.5em;
+    margin-top: 1em;
     color: white;
     background: rgb(0,179,88);
     background: linear-gradient(90deg, rgba(0,179,88,1) 0%, rgb(23, 216, 155) 100%);

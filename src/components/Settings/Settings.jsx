@@ -18,6 +18,8 @@ import {gsap} from 'gsap'
 
 import  { usePlaidLink } from 'react-plaid-link';
 
+
+
 export default function Settings({setreFetchPM, reFetchPM, setshowPopup, setPopupMessage, Proceed, setActionType, ActionType, setshowPopUpButton, setProceed, PaymentLoaded, setPaymentLoaded, BusinessLoaded, setBusinessLoaded, PersonalLoaded, setPersonalLoaded, ProfileOrPayment, setProfileOrPayment, CardOrACH, setCardOrACH, PaymentOptionsOrPaymentMethods, setPaymentOptionsOrPaymentMethods, AddPaymentMethodOrListPaymentMethods, setAddPaymentMethodOrListPaymentMethods, SelectedPaymentMethod, setSelectedPaymentMethod}) {
 
     const StripeElementsStyle = {

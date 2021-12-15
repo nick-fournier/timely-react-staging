@@ -47,7 +47,13 @@ const [ACHName, setACHName] = useState('')
 const [ACHEmail, setACHEmail] = useState('')
 const [plaidToken, setplaidToken] = useState('')
 
+// ACH Plaid data
 
+const [MetaData, setMetaData] = useState({})
+const [PublicToken, setPublicToken] = useState('')
+
+
+// -> Loading invoice data
 
 useEffect( async () => {
     console.log(invoiceID)
@@ -103,11 +109,11 @@ useEffect( async () => {
 
     }, [invoiceID, reLoad])
 
+    // Stripe Card Payment Logic
 
-    async function handleSubmit(e){
-        e.preventDefault()
+
+    async function handleSubmit(){
         setProcessing(true)
-        setErrorFlag(false)
         const Card = elements.getElement(CardNumberElement)
         const paymentMethodRes = await stripe.createPaymentMethod({
             type :'card',
@@ -117,6 +123,7 @@ useEffect( async () => {
             console.log(paymentMethodRes.error)
             setErrorFlag(true)
             setErrorMessage(paymentMethodRes.error.message)
+            setErrorFlag(false)
             return
             
         }
@@ -135,7 +142,8 @@ useEffect( async () => {
                         'Content-Type': 'application/json'
                     }), 
                     body: JSON.stringify({
-                        "payment_method":`${id}`
+                        "payment_method":`${id}`,
+                        'type':'card'
                     })
                 })
                 const JsonData = await paymentData.json()
@@ -144,9 +152,11 @@ useEffect( async () => {
                 {
                     console.log('Payment Successful')
                     setSuccess(true)       
-                    setProcessing(false)   
+                    setProcessing(false)
+                    setErrorFlag(false)   
                 }
                 else {
+                    setProcessing(false)
                     setErrorFlag(true)
                     setErrorMessage(`Something went wrong. Please contact ${invoiceToPay.from_business_name}.`)                    
                 }
@@ -160,47 +170,42 @@ useEffect( async () => {
             }
         }
 
-        useEffect( async () => {
-            const PlaidLinkToken = await fetch('https://api.pendulumapp.com/api/plaid/linktoken/',{
-                method: "GET",
-                headers: new Headers({
-                    'Authorization': `token ${localStorage.token}`
-                }),
-            })
-            const PlaidLinkTokenJSON = await PlaidLinkToken.json()
-            // console.log(PlaidLinkTokenJSON)
-            setplaidToken(PlaidLinkTokenJSON)
-            console.log(plaidToken)
-        }, [])
-    
-    
-    
-        const config = {
-            onSuccess: async (public_token, metadata) => {
+
+        // Plaid payment 
+
+        async function handleACHPayment (){
+            setErrorFlag(false)
+            setProcessing(true)
+            console.log(ACHName)
+                console.log(ACHEmail)
+                let linkTokenBody = {
+                    'public_token': PublicToken,
+                    'plaid_account_id': MetaData.accounts[0].id,
+                    'oon_name':ACHName,
+                    'oon_email':ACHEmail
+                }
+                console.log(linkTokenBody)
                 const PlaidExchange = await fetch('https://api.pendulumapp.com/api/plaid/linktoken/',{
                 method: "POST",
                 headers: new Headers({
                     'Content-Type': 'application/json'
                 }),
-                body: JSON.stringify({
-                    'public_token': public_token,
-                    'plaid_account_id': metadata.accounts[0].id,
-                    'oon_name':ACHName,
-                    'oon_email':ACHEmail
-                })
+                body: JSON.stringify(linkTokenBody)
             })
                 const PlaidExchangeResponse = await PlaidExchange.json()
                 console.log(PlaidExchangeResponse)
-                console.log(public_token);
-                console.log(metadata)
+                // console.log(public_token);
+                // console.log(metadata)
 
                 // COninue logic here
 
                 let PaymentBody = {
                     "payment_method":PlaidExchangeResponse.payment_method,
-                    "invoice_id":invoiceToPay.invoice_id,
-                    'type':'ach'
+                    "invoice_id":invoiceID,
+                    'type':'ach',
+                    'stripe_cus_id':PlaidExchangeResponse.stripe_cus_id
                 }
+
                 console.log(PaymentBody)
                 const PaymentResponse = await fetch('https://api.pendulumapp.com/api/stripe/payinvoice/',{
                     method: "POST",
@@ -213,6 +218,8 @@ useEffect( async () => {
                 console.log(PaymentJson)
                 if (PaymentJson.status==='succeeded'){
                     console.log('payment succeeded')
+                    setProcessing(false)
+                    setSuccess(true)
                     // setProcessingPayment(false)
                     // setMessageReveal(true)
                     // setPaymentSuccessOrFail(true)
@@ -232,6 +239,45 @@ useEffect( async () => {
                 }
 
                 //////////////////////////////
+        }
+
+        /////// Handle Pay Button disabled or not
+
+        useEffect(() => {
+            setProcessing(false)
+            setTimeout(() => {
+                setErrorMessage('')
+                
+            }, 3000);
+        }, [ErrorFlag])
+
+
+        /////////////
+
+        useEffect( async () => {
+
+            
+            const PlaidLinkToken = await fetch('https://api.pendulumapp.com/api/plaid/linktoken/',{
+                method: "GET",
+                headers: new Headers({
+                }),
+            })
+            const PlaidLinkTokenJSON = await PlaidLinkToken.json()
+            // console.log(PlaidLinkTokenJSON)
+            setplaidToken(PlaidLinkTokenJSON)
+            console.log(plaidToken)
+        }, [])
+    
+    
+    
+        const config = {
+            onSuccess:  (public_token, metadata) => {
+                console.log(public_token)
+                console.log(metadata)
+                setMetaData(metadata)
+                setPublicToken(public_token)
+                setChooseOrPay(false)
+                setPaymentGatewayCardOrACH(false)
             },
             onExit: (err, metadata) => {},
             onEvent: (eventName, metadata) => {},
@@ -242,6 +288,8 @@ useEffect( async () => {
             receivedRedirectUri: null,
           };
           const { open, exit, ready } =  usePlaidLink(config);
+
+          //
     
      
 
@@ -341,69 +389,83 @@ if (!StripeObject)
                     </div>
                     }
 
-                    <button className='PGWPayButton' onClick={handleSubmit}> Pay ${invoiceToPay.invoice_total_price} </button>
+                    <button className={Processing?'DisabledPGWACHPayButton':'PGWACHPayButton'} disabled={!Processing?false:true} onClick={()=>{handleSubmit()}}> Pay ${invoiceToPay.invoice_total_price} </button>
                 </div>
                 :
                 <>
                     <div className="PGWPayTitle">
-                        Login to your bank account to pay
+                        Provide us with your name and email <br /> and proceed with payment
                     </div>
                     <div className='PGWACHPaymentFormContainer'>
                         <div className="PGWInputsContainer">
                             <label className='PGWACHFormLabel'>Business Name: </label>
                             <input className='PGWFormInput' type="text"  placeholder='Enter your business name' onChange={(e)=>{
                                 setACHName(e.target.value)
+                                console.log(ACHName)
                             }} />
                         </div>
                         <div className="PGWInputsContainer">
                             <label className='PGWACHFormLabel'>Business Email: </label>
                             <input className='PGWFormInput' type="email" placeholder='Enter your business email' onChange={(e)=>{
                                 setACHEmail(e.target.value)
+                                console.log(ACHEmail)
+
                             }} />
                         </div>
-                        <div className='PGWACHPayButton' onClick={open}> Login to bank and pay </div>
+                        <button className={Processing?'DisabledPGWACHPayButton':'PGWACHPayButton'} disabled={!Processing?false:true} onClick={handleACHPayment}> Submit and pay ${invoiceToPay.invoice_total_price} </button>
                     </div>
+                    {Processing &&
+                    !ErrorFlag? 
+                    <div className="PGWProcessing">
+                        Processing Payment...
+                    </div>
+                    :
+                    <div className="PGWError">
+                        {ErrorMessage}
+                    </div>
+                    }
                 </>
                 :
                 <>
                 <h1 className='PGWChooseTitle'>Choose your payment method</h1>
+
                 <div className="ChooseContainer">
-                    <div className="ChooseCard">
-                        <div className="PGWLogoContainer">
-                            <img className='PGWACHOrCardLogo' src="\card2.svg" alt="" />
+                    <div className="ChooseCardCAndLabelontainer">
+                        <div className="PGWExplanation">
+                            <div className="TwoLines"> Put in your card details and pay immediately. </div>         
                         </div>
-
-                        <div className="PGWExplanationAndCardContainer">
-
-                            <div className="PGWExplanation">
-                                <div className="TwoLines"> Put in your card details and pay immediately. </div>
+                        <div className="ChooseCard">
+                            
+                            <div className="PGWLogoContainer">
+                                <img className='PGWACHOrCardLogo' src="\card2.svg" alt="" />
+                            </div>
                                 
+                            <div className="PGWExplanationAndCardContainer">
+                                <div className="PGWChooseButton" onClick={()=>{
+                                    setChooseOrPay(false)
+                                    setPaymentGatewayCardOrACH(true)
+                                }}>
+                                    Pay With Card    
+                                </div>                            
                             </div>
-                            <div className="PGWChooseButton" onClick={()=>{
-                                setChooseOrPay(false)
-                                setPaymentGatewayCardOrACH(true)
-                            }}>
-                                Pay With Card    
-                            </div>                            
+                        </div>
+                    </div>
+                    <div className="ChooseCardCAndLabelontainer">
+                        <div className="PGWExplanation">
+                            <div className="TwoLines"> Login to your bank account and pay immediately. </div>         
+                        </div>
+                        <div className="ChooseCard">
+                            <div className="PGWLogoContainer">
+                                <img className='PGWACHOrCardLogo' src="\bank2.svg" alt="" />
+                            </div>
+                            <div className="PGWExplanationAndCardContainer">
+                                <div className="PGWChooseButton" onClick={open}>
+                                    Pay With Bank Account    
+                                </div>  
+                            </div>
                         </div>
                     </div>
 
-                    <div className="ChooseCard">
-                        <div className="PGWLogoContainer">
-                            <img className='PGWACHOrCardLogo' src="\bank2.svg" alt="" />
-                        </div>
-                        <div className="PGWExplanationAndCardContainer">
-                            <div className="PGWExplanation">
-                                <div className="TwoLines">  Login to your bank account and pay immediately. </div>
-                            </div>
-                            <div className="PGWChooseButton" onClick={()=>{
-                                setChooseOrPay(false)
-                                setPaymentGatewayCardOrACH(false)
-                            }}>
-                                Pay With Bank Account    
-                            </div>  
-                        </div>
-                    </div>
 
                 </div>
                 <h4 className='PGWBackToInvoiceButton' onClick={()=>setInvoiceOrPay(true)}>Back to invoice</h4>

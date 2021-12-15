@@ -11,6 +11,8 @@ import PaymentGateway from "./pages/PaymentGateway/PaymentGateway";
 
 export default function AppRouter() {
 
+
+
 const [StripeObject, setStripeObject] = useState(null)
 
 useEffect( async () => {
@@ -27,6 +29,8 @@ useEffect( async () => {
 
 
 
+
+
     return (
         <Elements stripe = {StripeObject}>
         <Router>
@@ -35,7 +39,7 @@ useEffect( async () => {
                     <Login />
                 </Route>
                 <Route path='/invoices'>
-                    <App  />
+                    <App   />
                 </Route>
                 <Route path='/Register'>
                     <Register  />
