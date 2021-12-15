@@ -45,6 +45,14 @@ import { div } from 'prelude-ls'
 
     }, [ShowOfferButtonOrCard])
 
+    useEffect(() => {
+        if (!ShowImmediateSolutions){
+            setShowOfferButtonOrCard(true)
+            setIPLoadingOrContent(true)
+
+        }
+    }, [ShowImmediateSolutions])
+
     // States for Paymemt methods list
 
     const [PaymentMethodsList, setPaymentMethodsList] = useState([])
@@ -108,6 +116,19 @@ import { div } from 'prelude-ls'
 
 
     }, [Proceed])
+
+
+    const Installment = {
+        width: 'fit content',
+        textAlign: 'center',
+        marginTop: '1em'
+    }
+
+    const InstallmentAmount = {
+        width: 'fit content',
+        textAlign: 'center',
+        marginBottom: '1em'
+    }
 
 
 
@@ -192,7 +213,7 @@ import { div } from 'prelude-ls'
                         </div>
                                 { <label className=''>{CardOrACHForPayment?'Choose A Card:':'Choose a Bank Account'} </label>}
                         {PaymentMethodsList?
-                        CardOrACHForPayment?
+                        !CardOrACHForPayment?
                         <div className="PaymentMethodCardList">
                             {PaymentMethodsList.filter(item => item.type === 'card').length >= 1?
                             PaymentMethodsList.filter(item => item.type === 'card').map((item, index) =>
@@ -301,10 +322,10 @@ import { div } from 'prelude-ls'
                             </div>
                         </div>
                         
-                        <div className="IPOfferSubHeader">
+                        <div style={Installment} className="IPOfferSubHeader">
                         Amount due per installment:
                         </div>
-                        <div className='IPAmount IPAfterAmount'>
+                        <div style={InstallmentAmount} className='IPAmount IPAfterAmount'>
                             ${((CurrentItem.invoice_total_price*(100+rate)*0.01)/3).toFixed(2)}    
                         </div>
                         <div className="IPOfferSubHeader">
