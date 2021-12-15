@@ -87,7 +87,7 @@ export default function PaymentMethodCard({setSelectedPaymentMethod, SelectedPay
                     {type ==='card'?'Debit Card':'Bank Account'}
                 </div>
                 <div style={Source==='SettingsPMList'?marginLess:{}} className={Source==='SettingsPMList'?'PMCardInfoDetailsFromSettings':"PaymentMethodCardInfoDetails"}>
-                    {item.brand} (...{item.last4})
+                    {type ==='card'?item.brand:'Chase Account'} (...{item.last4})
                 </div>
             </div>
         </div>
