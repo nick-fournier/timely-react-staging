@@ -11,20 +11,24 @@
     display: flex;
     width: 90%;
     border-bottom: 0.5px solid #343a403d;
-    margin-top: auto;
+    border-right: 0.5px solid #343a403d;
+    border-left: 0.5px solid #343a403d;
     line-height: 1em;
     font-size: 1.1em;
+    margin: auto;
+    background-color: white;
 }
 
 .TotalPriceSection{
     margin: 1em auto;
-    width: 25%;
+    width: 100%;
     justify-content: center;
     gap: 0.5em;
     align-self: flex-end;
-    font-size: .85em;
+    font-size: 1.1em;
     font-weight: bold;
     display: flex;
     font-weight: 700;
+    line-height: 1.2em;
 }
 

@@ -51,8 +51,8 @@ export default function Payables({SearchedData, DataSet, setDataSet, itemList, s
                             <ItemList CurrentItem={CurrentItem} ShowHeaders={ShowHeaders} setShowHeaders={setShowHeaders} itemList={itemList}/>
                             
 
-                            <Price CurrentItem={CurrentItem} DataSwitch={DataSwitch}/>
                         </div>
+                        <Price CurrentItem={CurrentItem} DataSwitch={DataSwitch}/>
                         <InvoiceFooter CurrentItem={CurrentItem}/>
                     </div>
                 </div>

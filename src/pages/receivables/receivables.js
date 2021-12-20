@@ -58,8 +58,8 @@ export default function Receivables({SearchedData, DataSet, setDataSet, itemList
 
                             
 
-                            <Price CurrentItem={CurrentItem} DataSwitch={DataSwitch}/>
                         </div>
+                        <Price CurrentItem={CurrentItem} DataSwitch={DataSwitch}/>
                         <InvoiceFooter CurrentItem={CurrentItem}/>
                     </div>
                 </div>
