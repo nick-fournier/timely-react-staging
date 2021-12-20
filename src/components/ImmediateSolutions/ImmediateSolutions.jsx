@@ -197,18 +197,18 @@ import { div } from 'prelude-ls'
                         <div className="IP-PMList">
                         <div className="SchedulePaymentInputContainer">
                             <label className=''>{DataSwitch ===1?'Payout Destination': 'Payment Method'} </label>
-                            <select defaultValue='Card Payments' onChange={(e)=>{
+                            <select defaultValue='ACH' onChange={(e)=>{
                                 if (e.target.value === 'Card Payments'){
                                     console.log('card')
-                                    setCardOrACHForPayment(true)
+                                    setCardOrACHForPayment(false)
                                 }
                                 else if (e.target.value === 'ACH'){
                                     console.log('ACH')
-                                    setCardOrACHForPayment(false)
+                                    setCardOrACHForPayment(true)
                                 }
                             }} className='SelectPaymentMethod'>
-                                <option value="Card Payments" >Card</option>
                                 <option value="ACH" >ACH</option>
+                                <option value="Card Payments" >Card</option>
                             </select>
                         </div>
                                 { <label className=''>{CardOrACHForPayment?'Choose A Card:':'Choose a Bank Account'} </label>}
