@@ -22,8 +22,9 @@
     justify-content: center;
     gap: 0.5em;
     align-self: flex-end;
-    font-size: 0.75em;
+    font-size: .85em;
     font-weight: bold;
     display: flex;
+    font-weight: 700;
 }
 

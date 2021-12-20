@@ -190,7 +190,7 @@ import { div } from 'prelude-ls'
                                     Payout amount:
                                 </div>
                                 <div className="IPAmount IPAfterAmount">
-                                    ${CurrentItem.invoice_total_price*(100-rate)*0.01}
+                                    ${toInteger(CurrentItem.invoice_total_price*(100-rate)*0.01)}
                                 </div>
                             </div>
                         </div>
@@ -317,7 +317,7 @@ import { div } from 'prelude-ls'
                                     Payout amount:
                                 </div>
                                 <div className="IPAmount IPAfterAmount">
-                                    ${CurrentItem.invoice_total_price*(100+rate)*0.01}
+                                    ${toInteger(CurrentItem.invoice_total_price*(100+rate)*0.01)}
                                 </div>
                             </div>
                         </div>
@@ -326,7 +326,7 @@ import { div } from 'prelude-ls'
                         Amount due per installment:
                         </div>
                         <div style={InstallmentAmount} className='IPAmount IPAfterAmount'>
-                            ${((CurrentItem.invoice_total_price*(100+rate)*0.01)/3).toFixed(2)}    
+                            ${toInteger(((CurrentItem.invoice_total_price*(100+rate)*0.01)/3).toFixed(2))}    
                         </div>
                         <div className="IPOfferSubHeader">
                             Installment due dates:

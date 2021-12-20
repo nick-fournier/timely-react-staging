@@ -113,6 +113,7 @@ export default function AddInvoice( {ShowNewInvoice, setShowNewInvoice, setisAct
                 item_price:TotalPriceValue,
                 item_total_price:TotalPriceValue    
             }]
+            console.log(SingularItem)
     
             const TestInvoice = {
                 bill_to_key: BusinessKey,
