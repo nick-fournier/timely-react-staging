@@ -332,9 +332,9 @@ import { div } from 'prelude-ls'
                             Installment due dates:
                         </div>
                         <div className="ISDatesContainer">
-                            <div>December 19th 2021</div>
-                            <div>January 19th 2022</div>
-                            <div>February 19th 2022</div> 
+                            <div>December 28th 2021</div>
+                            <div>January 28th 2022</div>
+                            <div>February 28th 2022</div> 
                         </div>
 
 

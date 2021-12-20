@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faBars } from '@fortawesome/free-solid-svg-icons'
 
 
-export default function InvoiceOptions({setCurrentItem, CurrentItem, setsearchField, setSearchMethod, DataSwitch, isMobile, setisMobile, ShowSchedulePayment, setShowSchedulePayment, PopupMessage, setPopupMessage, showPopup,setshowPopup, ShowSendRemind, setShowSendRemind, ActionType, setActionType, setshowPopUpButton, Proceed, setProceed, setloading, SearchedData, ShowImmediateSolutions, setShowImmediateSolutions}) {
+export default function InvoiceOptions({setCurrentItem, CurrentItem, setsearchField, setSearchMethod, DataSwitch, isMobile, setisMobile, ShowSchedulePayment, setShowSchedulePayment, PopupMessage, setPopupMessage, showPopup,setshowPopup, ShowSendRemind, setShowSendRemind, ActionType, setActionType, setshowPopUpButton, Proceed, setProceed, setloading, SearchedData, ShowImmediateSolutions, setShowImmediateSolutions, ReloadInvoiceList, setReloadInvoiceList}) {
 
     const [markDisabled, setmarkDisabled] = useState(CurrentItem.is_paid?true:false)
     const [currentTab, setcurrentTab] = useState(1)
@@ -105,6 +105,7 @@ export default function InvoiceOptions({setCurrentItem, CurrentItem, setsearchFi
             setPopupMessage(`Invoice was deleted successfully!`)
             setCurrentItem({})
             setloading(false)
+            setReloadInvoiceList(!ReloadInvoiceList)
             
 
 

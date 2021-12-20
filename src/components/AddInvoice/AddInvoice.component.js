@@ -6,7 +6,7 @@ import {useForm} from 'react-hook-form'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faPlus, faSleigh} from '@fortawesome/free-solid-svg-icons'
 
-export default function AddInvoice( {ShowNewInvoice, setShowNewInvoice, setisActive, setShowNewBusiness, reFetchBusinesses, setreFetchBusinesses, setloading, setRedirectToNewReceivableOrPayable, setSetDefaultValueForBusiness, SetDefaultValueForBusiness, HideAddInvoiceBackButton, setHideAddInvoiceBackButton, setshowPopup, setPopupMessage, Proceed, setProceed, setshowPopUpButton, ActionType, setActionType} ) {
+export default function AddInvoice( {ShowNewInvoice, setShowNewInvoice, setisActive, setShowNewBusiness, reFetchBusinesses, setreFetchBusinesses, setloading, setRedirectToNewReceivableOrPayable, setSetDefaultValueForBusiness, SetDefaultValueForBusiness, HideAddInvoiceBackButton, setHideAddInvoiceBackButton, setshowPopup, setPopupMessage, Proceed, setProceed, setshowPopUpButton, ActionType, setActionType, ReloadInvoiceList, setReloadInvoiceList} ) {
 
     const [DateOrTerms, setDateOrTerms] = useState(true)
     const [AmountOrItems, setAmountOrItems] = useState(true)
@@ -144,6 +144,7 @@ export default function AddInvoice( {ShowNewInvoice, setShowNewInvoice, setisAct
                 setloading(true)
                 CleanAllFields()
                 setHideAddInvoiceBackButton(true)
+                setReloadInvoiceList(true)
             }
             else{
                 setPopupMessage('Something went wrong.')
