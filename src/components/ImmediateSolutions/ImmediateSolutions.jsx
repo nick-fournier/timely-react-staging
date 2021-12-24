@@ -166,7 +166,7 @@ import { div } from 'prelude-ls'
                             Terms:
                         </div>
                         <div className="ImmediateSolutionsDescription">
-                            Get paid up front for this invoice due from {CurrentItem.from_business_name} at a slight discount. No debt, no liability. We get paid when your customer pays you.
+                            Get paid up front for this invoice due from {CurrentItem.to_business_name} at a slight discount. No debt, no liability. We get paid when your customer pays you.
                         </div>
                         <div className="IPAmountsContainer">
                             <div className="IPAmountColumn">
@@ -293,7 +293,7 @@ import { div } from 'prelude-ls'
                             Terms:
                         </div>
                         <div className="ImmediateSolutionsDescription">
-                        We will pay {CurrentItem.to_business_name} out on your behalf, allowing you to pay this bill off in 3 installments over the next 3 months.
+                        We will pay {CurrentItem.from_business_name} out on your behalf, allowing you to pay this bill off in 3 installments over the next 3 months.
                         </div>
                         <div className="IPAmountsContainer">
                             <div className="IPAmountColumn">
