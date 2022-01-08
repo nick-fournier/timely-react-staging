@@ -23,7 +23,7 @@ export default function InvoiceCard({item, itemList, setitemList, CurrentItem, s
             setisMobile(true)
  
         }}
-         id="id" className={isActive?'ActiveCard':'card-container'} >
+         id="id" className={isActive?DataSwitch===1?'ActiveCardGreen':'ActiveCardRed':'card-container'} >
             <div className="top-part">
                 <h2 className="top-part-content">{DataSwitch===1?item.to_business_name:item.from_business_name}</h2>
             </div>

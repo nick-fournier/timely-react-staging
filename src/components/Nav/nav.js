@@ -125,7 +125,7 @@ export default function Nav({setitemList, CurrentItem, setCurrentItem, loadPayab
                         Bill To Pay
                     </span>
                 </li>
-                <li className={currentNavItem === 2? 'ActiveNavItem':'nav-item'} onClick={()=>{
+                <li className={currentNavItem === 2? 'ActiveReceivables':'nav-item'} onClick={()=>{
                     setSettingsOrInvoices(false)
                     History.push('/invoices')
                     loadReceivables()
@@ -153,7 +153,7 @@ export default function Nav({setitemList, CurrentItem, setCurrentItem, loadPayab
                         Receivables
                     </span>
                 </li>
-                <li className={currentNavItem === 3?'ActiveNavItem':"nav-item"}onClick={()=>{
+                <li className={currentNavItem === 3?'ActivePayables':"nav-item"}onClick={()=>{
                     setSettingsOrInvoices(false)
                     History.push('/invoices')
                     loadPayables()

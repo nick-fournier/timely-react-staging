@@ -147,6 +147,32 @@
 
 }
 
+.ActivePayables{
+    color: rgb(201,0,0);
+    font-weight: 700;
+    background-color: #ffffff;
+    border-radius: 5em 0 0 5em;
+    padding: 0.5em 0 0.5em 0.75em;
+    display: flex;
+    margin: 0.15em 0.15em 0.15em 10%;
+    width: 90%;
+    cursor: pointer;
+    font-size: 0.77em;
+}
+
+.ActiveReceivables{
+    color: rgba(0, 119, 16, 0.938);
+    font-weight: 700;
+    background-color: #ffffff;
+    border-radius: 5em 0 0 5em;
+    padding: 0.5em 0 0.5em 0.75em;
+    display: flex;
+    margin: 0.15em 0.15em 0.15em 10%;
+    width: 90%;
+    cursor: pointer;
+    font-size: 0.77em;
+}
+
 .ActiveNavItem1{
 
 }
