@@ -158,7 +158,7 @@ export default function SchedulePayment({ShowSchedulePayment, setShowNewInvoice,
                 <div className="PaymentInvoiceDetails">
                     <div className="PaymentInvoiceBusinessDetails">
                         <div className="PaymentInvoiceBusinesslabel"> Business Name</div>
-                        <div className="PaymentInvoiceBusinessname"> {PayInvoiceImmediately && ImmediatePayableID?`${ImmediatePayableID?ImmediatePayableID.bill_from_name:'loading...'}`:`${CurrentItem.to_business_name}`}</div>
+                        <div className="PaymentInvoiceBusinessname"> {PayInvoiceImmediately && ImmediatePayableID?`${ImmediatePayableID?ImmediatePayableID.bill_from_name:'loading...'}`:`${CurrentItem.from_business_name}`}</div>
                     </div>
                     <div className="PaymentInvoiceBusinessDetails">
                         <div className="PaymentInvoiceBusinesslabel"> Invoice Name</div>
