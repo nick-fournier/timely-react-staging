@@ -6,7 +6,7 @@ import {faEdit, faFileMedical, faPenToSquare, faUpload, faPlus} from '@fortaweso
 import { useState, useEffect, useRef } from 'react'
 
 
-export default function AddPayment({ShowNewPayment, setShowNewInvoice, setShowNewPayment, setisActive, setShowNewBusiness, reFetchBusinesses, setreFetchBusinesses, setloading, setRedirectToNewReceivableOrPayable, SetDefaultValueForBusiness, setSetDefaultValueForBusiness, PayInvoiceImmediately, setPayInvoiceImmediately, ImmediatePayableID, setImmediatePayableID, setShowSchedulePayment, HideAddPaymentBackButton, setHideAddPaymentBackButton, setshowPopup, setPopupMessage, Proceed, setProceed, setshowPopUpButton, ActionType, setActionType, }) {
+export default function AddPayment({ShowNewPayment, setShowNewInvoice, setShowNewPayment, setisActive, setShowNewBusiness, reFetchBusinesses, setreFetchBusinesses, setloading, setRedirectToNewReceivableOrPayable, SetDefaultValueForBusiness, setSetDefaultValueForBusiness, PayInvoiceImmediately, setPayInvoiceImmediately, ImmediatePayableID, setImmediatePayableID, setShowSchedulePayment, HideAddPaymentBackButton, setHideAddPaymentBackButton, setshowPopup, setPopupMessage, Proceed, setProceed, setshowPopUpButton, ActionType, setActionType, setReloadInvoiceList }) {
 
     const [DateOrTerms, setDateOrTerms] = useState(true)
     const [AmountOrItems, setAmountOrItems] = useState(true)
@@ -120,8 +120,9 @@ export default function AddPayment({ShowNewPayment, setShowNewInvoice, setShowNe
                 item_name:ItemNameValue,
                 item_description:ItemDescriptionValue,
                 quantity_purchased: 1,
-                item_price:TotalPriceValue,
-                item_total_price:TotalPriceValue    
+                unit_price:TotalPriceValue,
+                item_total_price:TotalPriceValue,
+                item_tax_rates: ["tax_GXXPX9oS2C9cLF75RBFK6e","tax_GXXPX9oS2C9cLF75RBFK6e"]    
             }]
     
             const TestInvoice = {
@@ -137,6 +138,7 @@ export default function AddPayment({ShowNewPayment, setShowNewInvoice, setShowNe
 
     
             console.table(TestInvoice)
+            console.table(SingularItem)
     
             const httpResponse = await fetch('https://api.pendulumapp.com/api/new_payable/',{
                 method: 'POST',
@@ -156,6 +158,8 @@ export default function AddPayment({ShowNewPayment, setShowNewInvoice, setShowNe
                     CleanAllFields()
                     setShowNewPayment(false)
                     setHideAddPaymentBackButton(true)
+                    setReloadInvoiceList(true)
+
             }
             else{
             setPopupMessage('Something went wrong!')
@@ -171,7 +175,7 @@ export default function AddPayment({ShowNewPayment, setShowNewInvoice, setShowNe
                 item_name:ItemNameValue,
                 item_description:ItemDescriptionValue,
                 quantity_purchased: 1,
-                item_price:TotalPriceValue,
+                unit_price:TotalPriceValue,
                 item_total_price:TotalPriceValue    
             }]
     

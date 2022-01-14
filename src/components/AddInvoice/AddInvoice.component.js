@@ -110,8 +110,10 @@ export default function AddInvoice( {ShowNewInvoice, setShowNewInvoice, setisAct
                 item_name:ItemNameValue,
                 item_description:ItemDescriptionValue,
                 quantity_purchased: 1,
-                item_price:TotalPriceValue,
-                item_total_price:TotalPriceValue    
+                unit_price:TotalPriceValue,
+                item_total_price:TotalPriceValue,
+                item_tax_rates: ["tax_GXXPX9oS2C9cLF75RBFK6e","tax_GXXPX9oS2C9cLF75RBFK6e"]    
+
             }]
             console.log(SingularItem)
     
@@ -172,9 +174,12 @@ export default function AddInvoice( {ShowNewInvoice, setShowNewInvoice, setisAct
         if (AddItemName && AddItemQty && AddItemPrice){
             newList.push({
                 item_name: AddItemName,
+                item_description: "",
                 quantity_purchased: AddItemQty,
-                item_price: AddItemPrice,
-                item_total_price: AddItemQty * AddItemPrice
+                unit_price: AddItemPrice,
+                item_total_price: AddItemQty * AddItemPrice,
+                item_tax_rates: ["tax_GXXPX9oS2C9cLF75RBFK6e","tax_GXXPX9oS2C9cLF75RBFK6e"]    
+
             })
         }
         else return
@@ -270,7 +275,7 @@ export default function AddInvoice( {ShowNewInvoice, setShowNewInvoice, setisAct
                         <label className=''>Business Name: </label>
                         <input className='FirstRowInputField' ref={BusinessNameRef} type="text" list="data" placeholder='Search business' onChange={(e) => {HandleKey(e)}} />
                             <datalist id="data">
-                                {BusinssesArray.map((item, index) =>
+                                {BusinssesArray && BusinssesArray.map((item, index) =>
                                 <option key={index} value={item.business_name} />
                                 )}
                             </datalist>
@@ -419,7 +424,7 @@ export default function AddInvoice( {ShowNewInvoice, setShowNewInvoice, setisAct
                                                 {Item.quantity_purchased}
                                             </div>
                                             <div className="ItemPriceInTable">
-                                                ${Item.item_price}   
+                                                ${Item.unit_price}   
                                             </div>
                                             <div className="ItemTotalInTable">
                                                 ${Item.item_total_price}

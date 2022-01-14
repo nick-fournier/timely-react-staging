@@ -185,23 +185,24 @@ function App() {
 
 
   let SearchedData = () => {
-    if (SearchMethod === 1){        
-      return DataSet.filter(Data => Data.is_paid === false).filter(Data=>
-        (Data.to_business_name.toLowerCase().includes(searchField.toLowerCase())
-        || Data.invoice_id === parseInt(searchField))
-        || parseInt(Data.invoice_total_price) === parseInt(searchField));
-    }
 
-    else if(SearchMethod === 2){
-      return DataSet.filter(Data => Data.is_scheduled === true)
+      if (SearchMethod === 1){        
+        return DataSet.filter(Data => Data.is_paid === false).filter(Data=>
+          (Data.to_business_name.toLowerCase().includes(searchField.toLowerCase())
+          || Data.invoice_id === parseInt(searchField))
+          || parseInt(Data.invoice_total_price) === parseInt(searchField));
+        }
+        
+        else if(SearchMethod === 2){
+          return DataSet.filter(Data => Data.is_scheduled === true)
+        }
+        else if(SearchMethod === 3){
+          return DataSet.filter(Data => Data.is_flagged === true)
+        }
+        else if(SearchMethod === 4){
+          return DataSet.filter(Data => Data.is_paid === true)
+        }
     }
-    else if(SearchMethod === 3){
-      return DataSet.filter(Data => Data.is_flagged === true)
-    }
-    else if(SearchMethod === 4){
-      return DataSet.filter(Data => Data.is_paid === true)
-    }
-  }
 
   const loadPayables = () => {
     setDataSwitch(2)
@@ -233,7 +234,7 @@ function App() {
               
               <AddInvoice ReloadInvoiceList={ReloadInvoiceList} setReloadInvoiceList={setReloadInvoiceList} ActionType={ActionType} setActionType={setActionType} setshowPopUpButton={setshowPopUpButton} Proceed={Proceed} setProceed={setProceed}  setshowPopup={setshowPopup} PopupMessage={PopupMessage} setPopupMessage={setPopupMessage} setHideAddInvoiceBackButton={setHideAddInvoiceBackButton} HideAddInvoiceBackButton={HideAddInvoiceBackButton} SetDefaultValueForBusiness={SetDefaultValueForBusiness} setSetDefaultValueForBusiness={setSetDefaultValueForBusiness} RedirectToNewReceivableOrPayable={RedirectToNewReceivableOrPayable} setRedirectToNewReceivableOrPayable={setRedirectToNewReceivableOrPayable} setloading={setloading} setreFetchBusinesses={setreFetchBusinesses} reFetchBusinesses={reFetchBusinesses} ShowNewBusiness={ShowNewBusiness} setShowNewBusiness={setShowNewBusiness} setisActive={setisActive} ShowNewInvoice={ShowNewInvoice} setShowNewInvoice={setShowNewInvoice}/>
               
-              <AddPayment ActionType={ActionType} setActionType={setActionType} setshowPopUpButton={setshowPopUpButton} Proceed={Proceed} setProceed={setProceed} setshowPopup={setshowPopup} PopupMessage={PopupMessage} setPopupMessage={setPopupMessage} HideAddPaymentBackButton={HideAddPaymentBackButton} setHideAddPaymentBackButton={setHideAddPaymentBackButton} ShowSchedulePayment={ShowSchedulePayment} setShowSchedulePayment={setShowSchedulePayment} PayInvoiceImmediately={PayInvoiceImmediately} setPayInvoiceImmediately={setPayInvoiceImmediately} ImmediatePayableID={ImmediatePayableID} setImmediatePayableID={setImmediatePayableID} SetDefaultValueForBusiness={SetDefaultValueForBusiness} setSetDefaultValueForBusiness={setSetDefaultValueForBusiness} RedirectToNewReceivableOrPayable={RedirectToNewReceivableOrPayable} setRedirectToNewReceivableOrPayable={setRedirectToNewReceivableOrPayable} setloading={setloading} setreFetchBusinesses={setreFetchBusinesses} reFetchBusinesses={reFetchBusinesses} ShowNewPayment={ShowNewPayment} setShowNewPayment={setShowNewPayment} setShowNewBusiness={setShowNewBusiness} setisActive={setisActive} ShowNewInvoice={ShowNewInvoice} setShowNewInvoice={setShowNewInvoice}/>
+              <AddPayment setReloadInvoiceList={setReloadInvoiceList} ActionType={ActionType} setActionType={setActionType} setshowPopUpButton={setshowPopUpButton} Proceed={Proceed} setProceed={setProceed} setshowPopup={setshowPopup} PopupMessage={PopupMessage} setPopupMessage={setPopupMessage} HideAddPaymentBackButton={HideAddPaymentBackButton} setHideAddPaymentBackButton={setHideAddPaymentBackButton} ShowSchedulePayment={ShowSchedulePayment} setShowSchedulePayment={setShowSchedulePayment} PayInvoiceImmediately={PayInvoiceImmediately} setPayInvoiceImmediately={setPayInvoiceImmediately} ImmediatePayableID={ImmediatePayableID} setImmediatePayableID={setImmediatePayableID} SetDefaultValueForBusiness={SetDefaultValueForBusiness} setSetDefaultValueForBusiness={setSetDefaultValueForBusiness} RedirectToNewReceivableOrPayable={RedirectToNewReceivableOrPayable} setRedirectToNewReceivableOrPayable={setRedirectToNewReceivableOrPayable} setloading={setloading} setreFetchBusinesses={setreFetchBusinesses} reFetchBusinesses={reFetchBusinesses} ShowNewPayment={ShowNewPayment} setShowNewPayment={setShowNewPayment} setShowNewBusiness={setShowNewBusiness} setisActive={setisActive} ShowNewInvoice={ShowNewInvoice} setShowNewInvoice={setShowNewInvoice}/>
               
               <SchedulePayment SelectedPaymentMethod={SelectedPaymentMethod} setSelectedPaymentMethod={setSelectedPaymentMethod} currentNavItem={currentNavItem} setcurrentNavItem={setcurrentNavItem} setPaymentOptionsOrPaymentMethods={setPaymentOptionsOrPaymentMethods} setCardOrACH={setCardOrACH} setProfileOrPayment={setProfileOrPayment} setPersonalLoaded={setPersonalLoaded} setBusinessLoaded={setBusinessLoaded} setPaymentLoaded={setPaymentLoaded} setSettingsOrInvoices={setSettingsOrInvoices} ActionType={ActionType} setActionType={setActionType} setshowPopUpButton={setshowPopUpButton} Proceed={Proceed} setProceed={setProceed} showPopup={showPopup} setshowPopup={setshowPopup} PopupMessage={PopupMessage} setPopupMessage={setPopupMessage} PayInvoiceImmediately={PayInvoiceImmediately} setPayInvoiceImmediately={setPayInvoiceImmediately} ImmediatePayableID={ImmediatePayableID} setImmediatePayableID={setImmediatePayableID} setreFetchPM={setreFetchPM} reFetchPM={reFetchPM} CurrentItem={CurrentItem} setloading={setloading} ShowSchedulePayment={ShowSchedulePayment} setShowSchedulePayment={setShowSchedulePayment} setShowNewBusiness={setShowNewBusiness} setisActive={setisActive} ShowNewInvoice={ShowNewInvoice} setShowNewInvoice={setShowNewInvoice}/>
               
